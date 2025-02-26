@@ -1,4 +1,4 @@
-# 🎈 Blank app template
+# 🎈 Nifty50 Prediction
 
 A simple Streamlit app template for you to modify!
 
