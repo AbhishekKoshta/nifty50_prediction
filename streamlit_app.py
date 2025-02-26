@@ -4,8 +4,7 @@ import pandas as pd
 # Load the data
 @st.cache_data
 def load_data():
-    DATA_FILENAME = Path(__file__).parent/'Nifty_Features.csv'
-    data = pd.read_csv(DATA_FILENAME)
+    data = pd.read_csv('Nifty_Features.csv')
     return data
 
 data = load_data()
