@@ -2,9 +2,8 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-
 # Load the data
-@st.cache
+@st.cache_data
 def load_data():
     return pd.read_csv('Nifty_Features.csv')
 
@@ -48,7 +47,7 @@ st.header('Additional Visualizations')
 # Plot of percentage move in a day
 st.subheader('Percentage Move in a Day')
 fig, ax = plt.subplots()
-sns.histplot(filtered_data['pct_move_day'], kde=True, ax=ax)
+sns.histplot(filtered_data['abs_directional_move_pct'], kde=True, ax=ax)
 ax.set_xlabel('Percentage Move in a Day')
 ax.set_ylabel('Frequency')
 st.pyplot(fig)
