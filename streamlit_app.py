@@ -5,7 +5,9 @@ import seaborn as sns
 # Load the data
 @st.cache_data
 def load_data():
-    return pd.read_csv('Nifty_Features.csv')
+    tmp = pd.read_csv('Nifty_Features.csv')
+    tmp = tmp.sort_values(by='date')
+    return tmp
 
 data = load_data()
 
@@ -37,9 +39,29 @@ st.header('Probability of Market Closing in Green or Red')
 closing_color_counts = filtered_data['candle_color'].value_counts(normalize=True)
 st.bar_chart(closing_color_counts)
 
-# Display the probabilities
+# # Display the probabilities
+# st.write("Gray- Market closed within 0.2% (abs) from opening\n")
 st.write("Probabilities:")
 st.write(closing_color_counts)
+st.markdown('''<p style="font-size: 12px;">Gray- Market closed within 0.2% (absolute) from opening</p>''', unsafe_allow_html=True)
+
+# Probability that market will give exceptional move
+st.header('Probability of Market giving an Exceptional Move')
+move_category_counts = filtered_data['move_category'].value_counts(normalize=True)
+st.bar_chart(move_category_counts)
+
+# Display the probabilities
+st.write("Probabilities:")
+st.write(move_category_counts)
+st.markdown('''
+<p style="font-size: 12px;">
+Low: absolute percentage (pct) is less than 0.5 <br>
+Moderate: absolute percentage is between 0.5 (inclusive) and 1.0 (exclusive) <br>
+High: absolute percentage is between 1.0 (inclusive) and 1.5 (exclusive) <br>
+Exceptional: absolute percentage is 1.5 or higher
+</p>
+''', unsafe_allow_html=True)
+
 
 # Additional visualizations
 st.header('Additional Visualizations')
