@@ -74,7 +74,7 @@ probabilities = flagged_data['next_move_category'].value_counts(normalize=True) 
 st.write(same_closing_count)
 
 # View 5: Calculate probabilities of "move_category" when "flag_same_closing_3_days" is 1 and days had low category move
-st.header('Probability of next move when market is closing at same price within for 3 days and moved very little during these days')
+st.header('Probability of next move when market is closing at same price for 3 days and moved very little during these days')
 
 fltr_view5 = filtered_data[(filtered_data['flag_same_closing_3_days'] == 1) & (filtered_data['prev_2_day_seq'] =="Low Low") & (filtered_data['move_category']=="Low")]
 same_closing_count_low_move = fltr_view5['next_move_category'].value_counts(normalize=True)
