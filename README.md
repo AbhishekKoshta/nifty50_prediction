@@ -1,4 +1,5 @@
 # 🎈 Nifty50 Prediction
+An attempt to bring a bit of mathematical certainty to the table. As someone fascinated by probabilities and the Indian stock market, I recently built a dashboard to predict Nifty 50 market trends. This tool isn’t just for traders—it’s for anyone who loves numbers, data, and the thrill of the market.
 
 A simple Streamlit app template for you to modify!
 
