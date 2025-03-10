@@ -63,6 +63,47 @@ Exceptional: absolute percentage is 1.5 or higher
 ''', unsafe_allow_html=True)
 
 
+# Calculate probabilities of "move_category" when "flag_same_closing_3_days" is 1
+st.header('Probability of next move when market is closing at same price within <0.25% for 3 days')
+
+flagged_data = filtered_data[filtered_data['flag_same_closing_3_days'] == 1]
+same_closing_count = flagged_data['next_move_category'].value_counts(normalize=True)
+st.bar_chart(same_closing_count)
+
+probabilities = flagged_data['next_move_category'].value_counts(normalize=True) * 100
+st.write(same_closing_count)
+
+# View 5: Calculate probabilities of "move_category" when "flag_same_closing_3_days" is 1 and days had low category move
+st.header('Probability of next move when market is closing at same price within for 3 days and moved very little during these days')
+
+fltr_view5 = filtered_data[(filtered_data['flag_same_closing_3_days'] == 1) & (filtered_data['prev_2_day_seq'] =="Low Low") & (filtered_data['move_category']=="Low")]
+same_closing_count_low_move = fltr_view5['next_move_category'].value_counts(normalize=True)
+st.bar_chart(same_closing_count_low_move)
+
+probabilities = fltr_view5['next_move_category'].value_counts(normalize=True) * 100
+st.write(same_closing_count_low_move)
+
+
+# View 6: Calculate probabilities of "move_category" when "flag_same_closing_3_days" is 1 and days had low category move
+st.header('Probability of next move when market gave high move today')
+
+fltr_view6 = filtered_data[(filtered_data['move_category'] == "High")]
+after_high_move = fltr_view6['next_move_category'].value_counts(normalize=True)
+st.bar_chart(after_high_move)
+
+probabilities = fltr_view6['next_move_category'].value_counts(normalize=True) * 100
+st.write(after_high_move)
+
+# View 7: Calculate probabilities of "opening_category" when market gave a high move today
+st.header('Probability of next opening when market gave high move today')
+
+fltr_view7 = filtered_data[(filtered_data['move_category'] == "High")]
+opening_after_high_move = fltr_view7['opening_category'].value_counts(normalize=True)
+st.bar_chart(opening_after_high_move)
+
+probabilities = fltr_view7['opening_category'].value_counts(normalize=True) * 100
+st.write(opening_after_high_move)
+
 # Additional visualizations
 st.header('Additional Visualizations')
 
