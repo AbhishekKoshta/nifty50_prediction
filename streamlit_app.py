@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+from teller import build_plan, load_daily, GAPFADE_GMIN, GAPHALF_GMIN
+
 # ----------------------------------------------------------------------------
 # Page setup
 # ----------------------------------------------------------------------------
@@ -12,6 +14,125 @@ st.set_page_config(
     page_icon="📊",
     layout="wide",
 )
+
+# ----------------------------------------------------------------------------
+# TELLER — the morning plan, pinned to the top.
+# Given the latest CLOSE it prints what to do at the NEXT open and the exact
+# gap-up LEVEL above which the validated GO shorts trigger. Only surfaces GO edges.
+# ----------------------------------------------------------------------------
+st.markdown("""
+<style>
+  .teller-card {border:1px solid rgba(128,128,128,.25); border-radius:14px;
+                padding:12px 16px; margin-bottom:10px; background:rgba(128,128,128,.05);}
+  .armed  {border-left:5px solid #16a34a;}
+  .ifgap  {border-left:5px solid #f59e0b;}
+  .idle   {border-left:5px solid rgba(128,128,128,.35); opacity:.72;}
+  .lvl    {font-size:1.7rem; font-weight:700; letter-spacing:-.5px;}
+  .pill   {display:inline-block; padding:2px 10px; border-radius:999px;
+           font-size:.72rem; font-weight:700; letter-spacing:.3px; vertical-align:middle;}
+  .p-arm  {background:#16a34a22; color:#16a34a;}
+  .p-gap  {background:#f59e0b22; color:#d97706;}
+  .p-idle {background:#8080801a; color:#888;}
+  .p-long {background:#2563eb22; color:#2563eb;}
+  .p-short{background:#dc262622; color:#dc2626;}
+  .kv     {color:#888; font-size:.82rem;}
+  .headline {font-size:1.0rem; font-weight:600; margin:.3rem 0;}
+</style>
+""", unsafe_allow_html=True)
+
+
+@st.cache_data(ttl=3600)
+def get_plan():
+    return build_plan(load_daily())
+
+
+def _side_pill(side: str) -> str:
+    cls = "p-long" if side == "LONG" else "p-short"
+    return f'<span class="pill {cls}">{side}</span>'
+
+
+def _status_pill(status: str) -> str:
+    m = {"ARMED": ("p-arm", "🟢 ARMED"),
+         "CONDITIONAL": ("p-gap", "🟡 IF GAP-UP"),
+         "IDLE": ("p-idle", "⚪ IDLE")}
+    cls, label = m[status]
+    return f'<span class="pill {cls}">{label}</span>'
+
+
+def _render_signal(s: dict):
+    css = {"ARMED": "armed", "CONDITIONAL": "ifgap", "IDLE": "idle"}[s["status"]]
+    parts = [f'<div class="teller-card {css}">']
+    parts.append(
+        f'{_status_pill(s["status"])} {_side_pill(s["side"])} '
+        f'<b>{s["name"]}</b> <span class="kv">· {s["horizon"]} · {s["stats"]}</span>')
+    parts.append(f'<div class="headline">{s["headline"]}</div>')
+    if s["status"] == "CONDITIONAL" and s.get("level"):
+        parts.append(f'<div class="lvl">▸ {s["level"]:,.0f}</div>'
+                     f'<div class="kv">trigger: {s["trigger"]}</div>')
+    if s["status"] != "IDLE":
+        for lbl, key in (("Entry", "entry"), ("Stop", "stop"), ("Target", "target")):
+            if s.get(key):
+                parts.append(f'<div class="kv"><b>{lbl}:</b> {s[key]}</div>')
+        if s.get("note"):
+            parts.append(f'<div class="kv"><i>{s["note"]}</i></div>')
+    else:
+        parts.append(f'<div class="kv">{s["trigger"]}</div>')
+    parts.append("</div>")
+    st.markdown("".join(parts), unsafe_allow_html=True)
+
+
+def render_teller():
+    try:
+        plan = get_plan()
+    except Exception as e:  # noqa: BLE001 — never let the teller break the dashboard
+        st.warning(f"Morning teller unavailable: {e}")
+        return
+    c = plan["context"]
+    st.title("📈 NIFTY Teller — the morning plan")
+    st.caption(f"What to do at the open **after {c['date']}** · anchor close "
+               f"**{c['close']:,.1f}** · rebuilds each market close. Only validated **GO** edges.")
+
+    m1, m2, m3, m4, m5, m6 = st.columns(6)
+    m1.metric("Close", f"{c['close']:,.0f}")
+    m2.metric("Today o→c", f"{c['ret']:+.2f}%")
+    m3.metric("ATR14", f"{c['atr14']:,.0f}")
+    m4.metric("RSI(2)", f"{c['rsi2']:.1f}")
+    m5.metric("vs 20-DMA", "above" if c["uptrend20"] else "below")
+    m6.metric("vs 200-DMA", "above" if c["above200"] else "below")
+
+    gf = c["gap_up_levels"]["gapfade_0.30pct"]
+    gh = c["gap_up_levels"]["gaphalf_0.35pct"]
+    st.info(
+        f"**If NIFTY opens GAP-UP → go SHORT.**  "
+        f"GapFade-short triggers above **{gf:,.0f}** (≥{GAPFADE_GMIN:.2f}% gap, needs close>20DMA "
+        f"— currently {'✔ ON' if c['uptrend20'] else '✘ off'}).  "
+        f"GapHalfFill-short triggers above **{gh:,.0f}** (≥{GAPHALF_GMIN:.2f}% gap, half-gap target)."
+    )
+
+    order = {"ARMED": 0, "CONDITIONAL": 1, "IDLE": 2}
+    sigs = sorted(plan["signals"], key=lambda x: order[x["status"]])
+    armed = [s for s in sigs if s["status"] == "ARMED"]
+    cond = [s for s in sigs if s["status"] == "CONDITIONAL"]
+    idle = [s for s in sigs if s["status"] == "IDLE"]
+
+    if armed:
+        st.subheader("🟢 Armed at the open")
+        for s in armed:
+            _render_signal(s)
+    st.subheader("🟡 Conditional on the open (gap)")
+    for s in cond:
+        _render_signal(s)
+    if idle:
+        with st.expander(f"⚪ Idle edges ({len(idle)}) — conditions not met"):
+            for s in idle:
+                _render_signal(s)
+    st.caption("⚠️ Gap shorts are fill-sensitive — use a limit at/just below the open; the edge lives "
+               "in the first minute. Costs ~10 pt/round-trip (Zerodha futures, lot 75), net figures. "
+               "Educational use only — not financial advice.")
+
+
+render_teller()
+st.divider()
 
 # ----------------------------------------------------------------------------
 # Data loading
