@@ -1,0 +1,39 @@
+name: Update Nifty data
+
+on:
+  schedule:
+    - cron: "30 10 * * 1-5"   # 16:00 IST, Mon-Fri (after NSE close)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pandas numpy yfinance
+
+      - name: Fetch and append latest data
+        run: python update_data.py
+
+      - name: Commit updated data (if any)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Nifty50_till2025.csv Nifty_Features.csv
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "Auto-update Nifty data ($(date -u +%Y-%m-%d))"
+            git push
+          fi
