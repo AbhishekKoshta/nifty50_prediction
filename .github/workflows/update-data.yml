@@ -38,7 +38,8 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A Nifty50_till2025.csv Nifty_Features.csv today_open.json
+          git add Nifty50_till2025.csv Nifty_Features.csv
+          git add today_open.json 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else
