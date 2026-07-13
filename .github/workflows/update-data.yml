@@ -2,8 +2,8 @@ name: Update Nifty data
 
 on:
   schedule:
-    - cron: "40 3 * * 1-5"    # 09:10 IST, Mon-Fri (after the open prints) — capture today's open
-    - cron: "30 10 * * 1-5"   # 16:00 IST, Mon-Fri (after NSE close)     — append the completed bar
+    - cron: "40 3 * * 1-5"    # 09:10 IST, Mon-Fri — capture today's open
+    - cron: "30 10 * * 1-5"   # 16:00 IST, Mon-Fri — append the completed bar
   workflow_dispatch: {}
 
 permissions:
@@ -32,7 +32,7 @@ jobs:
         if: github.event.schedule != '40 3 * * 1-5'
         run: |
           python update_data.py
-          rm -f today_open.json   # yesterday's open is stale once the bar is closed
+          rm -f today_open.json
 
       - name: Commit changes (if any)
         run: |
@@ -44,5 +44,6 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "Auto-update: Nifty data / today's open ($(date -u +%Y-%m-%dT%H:%MZ))"
+            git pull --rebase origin main   # integrate any commits pushed since checkout
             git push
           fi
