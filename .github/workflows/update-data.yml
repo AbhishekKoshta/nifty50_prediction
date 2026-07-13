@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0   # full history so the pre-push rebase always has the common base
 
       - name: Set up Python
         uses: actions/setup-python@v6
