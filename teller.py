@@ -16,6 +16,9 @@ NO-GO setup:
   Swing (daily):
     R RSI2 mean-rev  (long)  — armed at close when close>200DMA and RSI(2)<10
     D BearRallyFade  (short) — armed at close when up-day>+0.6% AND close<50DMA (MARGINAL-GO)
+    G CarryFwdMomentum(long) — which side to CARRY overnight: momentum persists on NIFTY, so a
+                               strong up-day in an uptrend favours carrying LONG (short-carry has
+                               no edge). Validated GO (32); daily proxy for its 4-green-hourly burst.
 
 Most are validated GO edges. Two are MARGINAL satellites — BearRallyFade (the best
 NIFTY short, profits in real bears) and MarubozuGapReclaim (rare, defined-risk) —
@@ -68,6 +71,9 @@ BEARFADE_ATR_MULT = 2.0   # D: protective stop = 2 x ATR14
 BEARFADE_REGIME_SMA = 50  # D: short only below the 50-DMA (active downtrend)
 MARU_HIWICK = 0.18        # M: upper-wick %% max to call a green "close-on-high" marubozu
 MARU_SL_PTS = 50.0        # M: fixed stop points
+CARRY_REGIME_SMA = 20     # G: carry-momentum uptrend gate (close>20DMA)
+CARRY_SPAN = 1.17         # G: daily range %% proxy for the validated 4-green-hourly burst
+CARRY_CLOSE_WICK = 0.30   # G: max upper-wick %% — closed strong / near the high
 
 
 # ---- data / indicators --------------------------------------------------------
@@ -200,6 +206,44 @@ def _resolve_against_open(sigs: list[Signal], open_px: float, close: float, atr:
                 s.status = "PASSED"
                 s.headline = (f"Open {open_px:,.0f} did not gap down below {low:,.0f} "
                               f"→ MarubozuGapReclaim passed")
+
+
+def _regime(close: float, sma20, sma50, sma200, ret: float) -> dict:
+    """Bull / Bear / Neutral call from the daily DMAs, per the house rules:
+    longs are favoured above the 200-DMA; short only below the 50-DMA; below the
+    200 but holding the 50 is a recovery/squeeze zone with no structural edge."""
+    a20 = sma20 is not None and not np.isnan(sma20) and close > sma20
+    a50 = sma50 is not None and not np.isnan(sma50) and close > sma50
+    a200 = sma200 is not None and not np.isnan(sma200) and close > sma200
+    have200 = sma200 is not None and not np.isnan(sma200)
+
+    if not have200:
+        return {"label": "NEUTRAL", "tone": "neutral", "icon": "⚖️", "lean": "NONE",
+                "favor": "Not enough history for a 200-DMA regime call — trade the intraday book only.",
+                "rationale": f"close {close:,.0f} · 200-DMA warming up"}
+
+    if a200:
+        if a20:
+            favor = ("Favouring LONGS — buy dips (RSI2), DownDayBounce, carry momentum long. "
+                     "Shorts only as intraday gap-fades.")
+            sub = "uptrend intact"
+        else:
+            favor = ("Bullish structure (above 200-DMA) but pulling back under the 20-DMA — "
+                     "buy-the-dip watch, don't chase shorts.")
+            sub = "pullback in an uptrend"
+        return {"label": "BULL", "tone": "bull", "icon": "🐂", "lean": "LONG", "favor": favor,
+                "rationale": f"close {close:,.0f} > 200-DMA {sma200:,.0f} ({sub})"}
+
+    if not a50:
+        return {"label": "BEAR", "tone": "bear", "icon": "🐻", "lean": "SHORT",
+                "favor": ("Favouring SHORTS — BearRallyFade (fade up-day pops below the 50-DMA). "
+                          "Longs off except exhaustion bounces (DownDayBounce)."),
+                "rationale": f"close {close:,.0f} < 50-DMA {sma50:,.0f} < 200-DMA {sma200:,.0f}"}
+
+    return {"label": "NEUTRAL", "tone": "neutral", "icon": "⚖️", "lean": "NONE",
+            "favor": ("Recovery / no structural edge — below the 200-DMA but holding the 50-DMA "
+                      "(the V-bottom squeeze zone). Trade the intraday book; don't carry directional."),
+            "rationale": f"50-DMA {sma50:,.0f} < close {close:,.0f} < 200-DMA {sma200:,.0f}"}
 
 
 def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
@@ -407,9 +451,54 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
         except Exception:  # noqa: BLE001 — a bad open file must never break the plan
             open_info = None
 
+    # ---- G: CarryFwdMomentum — which side to CARRY overnight (long vs short) ----
+    # Validated 32_CarryFwdMomentum is LONG-only: a momentum burst IN AN UPTREND
+    # continues over the next days; carrying SHORT has no edge on NIFTY (momentum
+    # persists up, shorts squeeze). The exact burst = 4 green hourly candles (needs
+    # intraday bars); here we gate on the daily uptrend + a daily strong-up-day proxy.
+    carry_range = (high - low) / close * 100 if close else np.nan
+    carry_burst = bool(ret > 0 and carry_range >= CARRY_SPAN and uwpct <= CARRY_CLOSE_WICK)
+    if uptrend20 and carry_burst:
+        sigs.append(Signal(
+            key="G", name="CarryFwdMomentum", side="LONG", horizon="swing", status="ARMED",
+            headline=f"Strong up-day in an uptrend → CARRY LONG (long has the higher next-day win prob; "
+                     f"short-carry has no edge on NIFTY)",
+            trigger=f"close>20DMA ✔  and  strong green day (range {carry_range:.2f}% ≥ {CARRY_SPAN:.2f}%, "
+                    f"closed near high, wick {uwpct:.2f}% ≤ {CARRY_CLOSE_WICK:.2f}%)  ✔ armed",
+            entry="carry/BUY the close and hold; confirm the intraday 4-green-hourly burst before adding",
+            stop=f"today's low {low:,.0f} (initial)",
+            target="none — trail: exit on the first daily CLOSE below the prior day's low (2–6 day drift)",
+            note="Momentum PERSISTS on NIFTY → the winning side to carry is LONG. Carrying a SHORT forward "
+                 "has no validated edge (shorts squeeze). Long-only, overnight/gap risk, ~6-day hold.",
+            stats="GO · PF 3.30 · 61% win · +2,068 pt · ~6/yr · cross-index",
+        ))
+    else:
+        if not uptrend20:
+            why = (f"close {close:,.0f} ≤ 20DMA {t['sma20']:,.0f} → carry-momentum OFF "
+                   f"(it's long-only; carrying SHORT has no edge on NIFTY either)")
+        else:
+            bits = []
+            if not (ret > 0):
+                bits.append(f"today red (o→c {ret:+.2f}%)")
+            elif not (carry_range >= CARRY_SPAN):
+                bits.append(f"range {carry_range:.2f}% < {CARRY_SPAN:.2f}% (no burst)")
+            elif not (uwpct <= CARRY_CLOSE_WICK):
+                bits.append(f"upper-wick {uwpct:.2f}% > {CARRY_CLOSE_WICK:.2f}% (didn't close strong)")
+            why = ("uptrend ON, so LONG is the favoured carry side — but no fresh momentum burst today ("
+                   + "; ".join(bits) + ")")
+        sigs.append(Signal(
+            key="G", name="CarryFwdMomentum", side="LONG", horizon="swing", status="IDLE",
+            headline="No fresh momentum carry today (LONG is the only side with a next-day edge on NIFTY)",
+            trigger=why,
+            stats="GO · PF 3.30 · 61% win · +2,068 pt · ~6/yr · cross-index",
+        ))
+
+    regime = _regime(close, t["sma20"], t["sma50"], t["sma200"], ret)
+
     context = {
         "date": anchor_date,
         "today_open": open_info,
+        "regime": regime,
         "close": close,
         "ret": ret,
         "atr14": atr,
@@ -435,6 +524,10 @@ def _fmt_cli(plan: dict) -> str:
     out.append("=" * 78)
     out.append(f"NIFTY TELLER — morning plan for the session AFTER {c['date']}")
     out.append("=" * 78)
+    if c.get("regime"):
+        r = c["regime"]
+        out.append(f"{r['icon']} REGIME: {r['label']}  (favouring {r['lean']}) — {r['favor']}")
+        out.append(f"   {r['rationale']}")
     out.append(f"anchor close {c['close']:,.1f} | today o→c {c['ret']:+.2f}% | ATR14 {c['atr14']:,.0f} "
                f"| RSI2 {c['rsi2']:.1f} | {'>' if c['uptrend20'] else '≤'}20DMA "
                f"| {'>' if c['above200'] else '≤'}200DMA | squeeze {'ON' if c['squeeze'] else 'off'}")

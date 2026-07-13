@@ -52,6 +52,16 @@ st.markdown("""
   .p-short{background:#dc262622; color:#dc2626;}
   .kv     {color:#888; font-size:.82rem;}
   .headline {font-size:1.0rem; font-weight:600; margin:.3rem 0;}
+  .regime {border-radius:14px; padding:14px 18px; margin:2px 0 14px 0; color:#fff;
+           display:flex; align-items:center; gap:16px;}
+  .regime .big {font-size:2.0rem; font-weight:800; letter-spacing:-.5px; line-height:1;
+                white-space:nowrap;}
+  .regime .icon {font-size:2.4rem; line-height:1;}
+  .regime .favor {font-size:.95rem; font-weight:600; opacity:.97;}
+  .regime .why {font-size:.8rem; opacity:.85; margin-top:2px;}
+  .r-bull    {background:linear-gradient(90deg,#15803d,#22c55e);}
+  .r-bear    {background:linear-gradient(90deg,#991b1b,#ef4444);}
+  .r-neutral {background:linear-gradient(90deg,#92600e,#d97706);}
 </style>
 """, unsafe_allow_html=True)
 
@@ -73,6 +83,19 @@ def _cached_daily(data_mtime: float):
 
 def get_daily():
     return _cached_daily(_mtime(DATA_FILE))
+
+
+def _render_regime(r: dict):
+    cls = {"bull": "r-bull", "bear": "r-bear", "neutral": "r-neutral"}.get(r.get("tone"), "r-neutral")
+    lean = r.get("lean", "NONE")
+    tag = "no directional bias" if lean == "NONE" else f"favouring {lean}"
+    st.markdown(
+        f'<div class="regime {cls}">'
+        f'<div class="icon">{r["icon"]}</div>'
+        f'<div><div class="big">{r["label"]} · {tag}</div>'
+        f'<div class="favor">{r["favor"]}</div>'
+        f'<div class="why">{r["rationale"]}</div></div></div>',
+        unsafe_allow_html=True)
 
 
 def _side_pill(side: str) -> str:
@@ -125,6 +148,8 @@ def render_teller():
     anchor_date, anchor_close = anchor["date"], anchor["close"]
     captured_valid = bool(captured and str(captured.get("anchor_date")) == anchor_date)
 
+    if anchor.get("regime"):
+        _render_regime(anchor["regime"])
     st.title("📈 NIFTY Teller — the morning plan")
     st.caption(f"What to do at the open **after {anchor_date}** · anchor close "
                f"**{anchor_close:,.1f}** · rebuilds each market close, then resolves at ~09:10 "
