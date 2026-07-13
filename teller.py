@@ -11,12 +11,15 @@ NO-GO setup:
     B GapFade-short  (short) — fires IF tomorrow opens gap-up >= 0.30% AND close>20DMA
     F GapHalfFill    (short) — fires IF tomorrow opens gap-up >= 0.35% (half-gap target)
     C Squeeze-ORB    (long)  — armed at close when 5d span in bottom 25%; break of 30m OR
+    M MarubozuGapReclaim (long) — fires IF tomorrow gaps DOWN below a green close-on-high
+                                  candle's low (MARGINAL, rare satellite)
   Swing (daily):
     R RSI2 mean-rev  (long)  — armed at close when close>200DMA and RSI(2)<10
     D BearRallyFade  (short) — armed at close when up-day>+0.6% AND close<50DMA (MARGINAL-GO)
 
-All are validated GO edges except BearRallyFade, the one MARGINAL-GO bear-side
-short (the best NIFTY short found — it profits in real bear years).
+Most are validated GO edges. Two are MARGINAL satellites — BearRallyFade (the best
+NIFTY short, profits in real bears) and MarubozuGapReclaim (rare, defined-risk) —
+labelled as such so they're taken small, not treated as core.
 
 The two GAP-UP shorts (B, F) are the "if it opens gap-up, go short — above what
 level" answer: their trigger levels are printed as absolute NIFTY prices.
@@ -55,6 +58,8 @@ RSI2_REGIME_SMA = 200     # R: long-only regime filter
 BEARFADE_UP_THRESH = 0.6  # D: prior o->c up-day (%) to arm BearRallyFade
 BEARFADE_ATR_MULT = 2.0   # D: protective stop = 2 x ATR14
 BEARFADE_REGIME_SMA = 50  # D: short only below the 50-DMA (active downtrend)
+MARU_HIWICK = 0.18        # M: upper-wick %% max to call a green "close-on-high" marubozu
+MARU_SL_PTS = 50.0        # M: fixed stop points
 
 
 # ---- data / indicators --------------------------------------------------------
@@ -121,6 +126,10 @@ def build_plan(daily: pd.DataFrame) -> dict:
     above200 = bool(close > t["sma200"]) if not np.isnan(t["sma200"]) else False
     rsi2 = float(t["rsi2"])
     squeeze = (not np.isnan(t["span5_thr"])) and bool(t["span5"] <= t["span5_thr"])
+    high = float(t["high"])
+    low = float(t["low"])
+    uwpct = (high - close) / close * 100 if close else np.nan   # upper-wick %
+    green_maru = bool(ret > 0 and uwpct <= MARU_HIWICK)         # green close-on-high candle
 
     sigs: list[Signal] = []
 
@@ -255,6 +264,34 @@ def build_plan(daily: pd.DataFrame) -> dict:
             headline="No bear-rally pop (needs an up-day >+0.6% below the 50-DMA) → BearRallyFade idle",
             trigger="; ".join(why) if why else "conditions not met",
             stats="MARGINAL-GO · PF 1.41 · +4,036 pt · ~13/yr",
+        ))
+
+    # ---- M: MarubozuGapReclaim (intraday long) — gap-down below a green close-on-high -
+    if green_maru:
+        sigs.append(Signal(
+            key="M", name="MarubozuGapReclaim", side="LONG", horizon="intraday",
+            status="CONDITIONAL",
+            headline=f"Green close-on-high candle → if open GAPS DOWN below {low:,.0f} → BUY the open",
+            trigger=f"today green, upper-wick {uwpct:.2f}% ≤ {MARU_HIWICK:.2f}% ✔ (armed); "
+                    f"needs tomorrow open < today's low {low:,.0f} (gap-down through the candle)",
+            level=low,
+            entry="BUY at 09:15 open (only if it opens below today's low)",
+            stop=f"open − {MARU_SL_PTS:.0f} pt",
+            target="exit at the close (reclaim to EOD, no overnight risk)",
+            note="Rare defined-risk satellite (~2/yr, NIFTY-only, n=22) — take it if it appears, size small.",
+            stats="MARGINAL · PF 2.53 · 59% win · ~2/yr",
+        ))
+    else:
+        why = []
+        if not (ret > 0):
+            why.append(f"not a green day (o→c {ret:+.2f}%)")
+        elif not (uwpct <= MARU_HIWICK):
+            why.append(f"upper-wick {uwpct:.2f}% > {MARU_HIWICK:.2f}% (didn't close on its high)")
+        sigs.append(Signal(
+            key="M", name="MarubozuGapReclaim", side="LONG", horizon="intraday", status="IDLE",
+            headline="No green close-on-high candle → MarubozuGapReclaim not armed",
+            trigger="; ".join(why) if why else "conditions not met",
+            stats="MARGINAL · PF 2.53 · 59% win · ~2/yr",
         ))
 
     context = {
