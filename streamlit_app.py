@@ -62,8 +62,31 @@ st.markdown("""
   .r-bull    {background:linear-gradient(90deg,#15803d,#22c55e);}
   .r-bear    {background:linear-gradient(90deg,#991b1b,#ef4444);}
   .r-neutral {background:linear-gradient(90deg,#92600e,#d97706);}
+  .move-hero {border-radius:14px; padding:18px 22px; margin:8px 0 16px; color:#fff;
+              background:linear-gradient(90deg,#1e3a8a,#3b82f6);
+              display:flex; flex-wrap:wrap; gap:14px 34px; align-items:flex-end;}
+  .move-hero .cell {min-width:120px;}
+  .move-hero .lab {font-size:.74rem; text-transform:uppercase; letter-spacing:.09em; opacity:.9;
+                   font-weight:700;}
+  .move-hero .val {font-size:2.1rem; font-weight:800; line-height:1.15; letter-spacing:-.5px;}
+  .move-hero .val.sm {font-size:1.5rem;}
+  .move-hero .sub {font-size:.82rem; opacity:.92; font-weight:600;}
+  .move-hero .up {color:#86efac;} .move-hero .down {color:#fca5a5;}
+  /* bigger tab labels */
+  .stTabs [data-baseweb="tab"] p {font-size:1.2rem; font-weight:700;}
+  .stTabs [data-baseweb="tab"] {padding-top:8px; padding-bottom:8px;}
+  /* larger body text inside the Next-Day Move Model tab */
+  .movebig {font-size:1.08rem; line-height:1.5;}
+  .movebig b {font-weight:700;}
 </style>
 """, unsafe_allow_html=True)
+
+# Bigger, more legible fonts on every matplotlib/seaborn chart (histograms + the
+# move-model distribution). Set once, globally.
+plt.rcParams.update({
+    "font.size": 14, "axes.titlesize": 16, "axes.labelsize": 14,
+    "xtick.labelsize": 13, "ytick.labelsize": 13, "legend.fontsize": 13,
+})
 
 
 def _mtime(path: str) -> float:
@@ -236,347 +259,450 @@ def render_teller():
                "Educational use only — not financial advice.")
 
 
+@st.cache_data(ttl=3600, show_spinner="Computing the next-day move distribution…")
+def _cached_move(data_mtime: float):
+    # mtime is the cache key — recomputes only when the daily feed changes
+    # (the 16:00 CI run), so the tab refreshes with each new trading day.
+    from move_model_live import compute
+    return compute(DATA_FILE, validate=True)
+
+
+def render_move_model():
+    """Next-day MOVE distribution, computed LIVE from the daily feed (refreshes with new data).
+
+    Calibrated range/magnitude forecast — P(up), expected move, 68/90% bands and the
+    per-bucket distribution vs the base rate. Direction is weak by design (NIFTY is
+    ~memoryless day-ahead); the value is the RANGE/risk read for stops & sizing.
+    """
+    try:
+        m = _cached_move(_mtime(DATA_FILE))
+    except Exception as e:  # noqa: BLE001 — never let the tab break the app
+        st.warning(f"Move model unavailable: {e}")
+        return
+
+    px = m["close"]
+    q = m["q"]
+    st.markdown(
+        f'<div class="movebig">🔮 Next-day <b>move distribution</b> for the session after '
+        f'<b>{m["date"]}</b> · close <b>{px:,.0f}</b> · σ̂ <b>{m["sigma"]*100:.2f}%</b> · '
+        f'{"ABOVE" if m["above200"] else "BELOW"} 200-DMA · RSI2 {m["rsi2"]:.0f} · '
+        f'live on {m["n_days"]:,} days ({m["span"]}). <b>Trust the RANGE, not the direction.</b>'
+        f'</div>', unsafe_allow_html=True)
+
+    band68 = (px * (1 + q["0.16"]), px * (1 + q["0.84"]))
+    band90 = (px * (1 + q["0.05"]), px * (1 + q["0.95"]))
+    exp_cls = "up" if m["exp"] >= 0 else "down"
+    half68 = (q["0.84"] - q["0.16"]) / 2 * 100
+    st.markdown(
+        '<div class="move-hero">'
+        f'<div class="cell"><div class="lab">P(up) tomorrow</div>'
+        f'<div class="val">{m["p_up"]*100:.1f}%</div>'
+        f'<div class="sub">P(down) {100-m["p_up"]*100:.1f}% · {(m["p_up"]-0.5)*100:+.1f} vs coin</div></div>'
+        f'<div class="cell"><div class="lab">Expected move</div>'
+        f'<div class="val {exp_cls}">{m["exp"]*100:+.2f}%</div>'
+        f'<div class="sub">σ̂ {m["sigma"]*100:.2f}% (≈±{px*m["sigma"]:,.0f} pt)</div></div>'
+        f'<div class="cell"><div class="lab">68% range (≈2-in-3)</div>'
+        f'<div class="val sm">{band68[0]:,.0f} – {band68[1]:,.0f}</div>'
+        f'<div class="sub">±{half68:.2f}%</div></div>'
+        f'<div class="cell"><div class="lab">90% range (≈9-in-10)</div>'
+        f'<div class="val sm">{band90[0]:,.0f} – {band90[1]:,.0f}</div>'
+        f'<div class="sub">{q["0.05"]*100:+.2f}% … {q["0.95"]*100:+.2f}%</div></div>'
+        '</div>', unsafe_allow_html=True)
+
+    st.markdown("### Where tomorrow's close lands — model vs. historical base rate")
+    labels = m["bucket_lbl"]
+    model_pct = [p * 100 for p in m["probs"]]
+    base_pct = [b * 100 for b in m["base"]]
+    xs = range(len(labels))
+    fig, ax = plt.subplots(figsize=(10, 4.2))
+    ax.bar([i - 0.21 for i in xs], model_pct, width=0.42, label="model", color="#3b82f6")
+    ax.bar([i + 0.21 for i in xs], base_pct, width=0.42, label="base rate", color="#9ca3af")
+    for i, v in enumerate(model_pct):
+        ax.text(i - 0.21, v + 0.4, f"{v:.0f}", ha="center", va="bottom",
+                fontsize=12, fontweight="bold", color="#1e40af")
+    ax.set_xticks(list(xs))
+    ax.set_xticklabels(labels, rotation=25, ha="right", fontsize=13)
+    ax.set_ylabel("% of days", fontsize=15)
+    ax.legend(fontsize=14, loc="upper right")
+    ax.margins(y=0.15)
+    ax.spines[["top", "right"]].set_visible(False)
+    fig.tight_layout()
+    st.pyplot(fig)
+    plt.close(fig)
+
+    st.markdown(f'<div class="movebig">Median close ≈ <b>{px*(1+q["0.5"]):,.0f}</b> '
+                f'({q["0.5"]*100:+.2f}%). Read the bands as stop/sizing guides: '
+                f'<b>~2-in-3</b> days land inside the 68% range, <b>~9-in-10</b> inside the 90% range.'
+                f'</div>', unsafe_allow_html=True)
+
+    v = m.get("val")
+    if v:
+        with st.expander("🔬 Walk-forward validation (why to trust the range, not the arrow)"):
+            a, b, cc = st.columns(3)
+            a.metric("σ̂ vs |realised| corr", f"{v['vol_corr']:.2f}", "range IS forecastable", delta_color="off")
+            b.metric("68% band coverage", f"{v['cover68']*100:.1f}%", "target 68", delta_color="off")
+            cc.metric("90% band coverage", f"{v['cover90']*100:.1f}%", "target 90", delta_color="off")
+            better = v["ll_model"] < v["ll_base"]
+            st.markdown(
+                f"- **Volatility/range: GO** — σ̂ correlates {v['vol_corr']:.2f} with realised move; "
+                f"coverage {v['cover50']*100:.0f}/{v['cover68']*100:.0f}/{v['cover90']*100:.0f}% "
+                f"(targets 50/68/90); PIT {v['pit_mean']:.2f}/{v['pit_std']:.2f} → well-calibrated.\n"
+                f"- **Direction: NO-GO** — log-loss {v['ll_model']:.4f} vs coin {v['ll_base']:.4f} "
+                f"({'marginally better' if better else 'not better'}); NIFTY is ~memoryless day-ahead. "
+                f"Pair this with a validated *setup* (RSI2, DownDayBounce) for a side — not the P(up) alone.\n"
+                f"- Scored on **{v['n']:,}** causal walk-forward days.")
+    st.caption("⚠️ Educational use only — a calibrated base-rate distribution, not a forecast of any "
+               "single day. Direction is not an edge; use the range for risk.")
+
+
 render_teller()
 st.divider()
 
-# ----------------------------------------------------------------------------
-# Data loading
-# ----------------------------------------------------------------------------
-@st.cache_data
-def load_data():
-    tmp = pd.read_csv("Nifty_Features.csv")
-    tmp = tmp.sort_values(by="date")
-    tmp["date"] = pd.to_datetime(tmp["date"])
-    return tmp
+_tab_dash, _tab_move = st.tabs(["📊 Probability Dashboard", "🔮 Next-Day Move Model"])
+
+with _tab_move:
+    render_move_model()
+
+with _tab_dash:
+
+    # ----------------------------------------------------------------------------
+    # Data loading
+    # ----------------------------------------------------------------------------
+    @st.cache_data
+    def load_data():
+        tmp = pd.read_csv("Nifty_Features.csv")
+        tmp = tmp.sort_values(by="date")
+        tmp["date"] = pd.to_datetime(tmp["date"])
+        return tmp
 
 
-data = load_data()
+    data = load_data()
 
-# ----------------------------------------------------------------------------
-# Human-friendly labels for the raw category codes in the data
-# ----------------------------------------------------------------------------
-COLOR_MEANING = {
-    "Green": "an UP day (closed higher than it opened)",
-    "Red": "a DOWN day (closed lower than it opened)",
-    "Gray": "a FLAT day (closed within 0.2% of the open)",
-}
+    # ----------------------------------------------------------------------------
+    # Human-friendly labels for the raw category codes in the data
+    # ----------------------------------------------------------------------------
+    COLOR_MEANING = {
+        "Green": "an UP day (closed higher than it opened)",
+        "Red": "a DOWN day (closed lower than it opened)",
+        "Gray": "a FLAT day (closed within 0.2% of the open)",
+    }
 
-OPENING_MEANING = {
-    "Flat": "opens roughly flat (near yesterday's close)",
-    "Gap Up": "opens higher than yesterday's close (gap up)",
-    "Gap Down": "opens lower than yesterday's close (gap down)",
-    "Large Gap Up": "opens with a BIG jump up",
-    "Large Gap Down": "opens with a BIG drop down",
-}
+    OPENING_MEANING = {
+        "Flat": "opens roughly flat (near yesterday's close)",
+        "Gap Up": "opens higher than yesterday's close (gap up)",
+        "Gap Down": "opens lower than yesterday's close (gap down)",
+        "Large Gap Up": "opens with a BIG jump up",
+        "Large Gap Down": "opens with a BIG drop down",
+    }
 
-MOVE_MEANING = {
-    "Low": "a quiet day (moves less than 0.5%)",
-    "Moderate": "a normal day (moves 0.5% to 1.0%)",
-    "High": "a big-move day (moves 1.0% to 1.5%)",
-    "Exceptional": "a wild day (moves 1.5% or more)",
-}
+    MOVE_MEANING = {
+        "Low": "a quiet day (moves less than 0.5%)",
+        "Moderate": "a normal day (moves 0.5% to 1.0%)",
+        "High": "a big-move day (moves 1.0% to 1.5%)",
+        "Exceptional": "a wild day (moves 1.5% or more)",
+    }
 
-# A consistent, readable order for each category type
-COLOR_ORDER = ["Green", "Red", "Gray"]
-MOVE_ORDER = ["Low", "Moderate", "High", "Exceptional"]
-OPENING_ORDER = ["Flat", "Gap Up", "Gap Down", "Large Gap Up", "Large Gap Down"]
-
-
-# ----------------------------------------------------------------------------
-# Helpers
-# ----------------------------------------------------------------------------
-def counts_out_of_n(proportions: dict, n: int = 10) -> dict:
-    """Turn probabilities into whole numbers out of n using the largest-remainder
-    method, so the numbers always add up to exactly n."""
-    raw = {k: v * n for k, v in proportions.items()}
-    floors = {k: int(np.floor(x)) for k, x in raw.items()}
-    remaining = n - sum(floors.values())
-    fracs = sorted(raw.items(), key=lambda kv: kv[1] - np.floor(kv[1]), reverse=True)
-    for i in range(remaining):
-        floors[fracs[i % len(fracs)][0]] += 1
-    return floors
+    # A consistent, readable order for each category type
+    COLOR_ORDER = ["Green", "Red", "Gray"]
+    MOVE_ORDER = ["Low", "Moderate", "High", "Exceptional"]
+    OPENING_ORDER = ["Flat", "Gap Up", "Gap Down", "Large Gap Up", "Large Gap Down"]
 
 
-def order_props(props: pd.Series, order: list) -> pd.Series:
-    """Reindex a proportion series into a friendly fixed order, dropping missing."""
-    keep = [c for c in order if c in props.index]
-    extra = [c for c in props.index if c not in order]
-    return props.reindex(keep + extra)
+    # ----------------------------------------------------------------------------
+    # Helpers
+    # ----------------------------------------------------------------------------
+    def counts_out_of_n(proportions: dict, n: int = 10) -> dict:
+        """Turn probabilities into whole numbers out of n using the largest-remainder
+        method, so the numbers always add up to exactly n."""
+        raw = {k: v * n for k, v in proportions.items()}
+        floors = {k: int(np.floor(x)) for k, x in raw.items()}
+        remaining = n - sum(floors.values())
+        fracs = sorted(raw.items(), key=lambda kv: kv[1] - np.floor(kv[1]), reverse=True)
+        for i in range(remaining):
+            floors[fracs[i % len(fracs)][0]] += 1
+        return floors
 
 
-def plain_english_line(props: pd.Series, noun: str = "days") -> str:
-    """Build the headline 'Out of every 10 days, expect ...' sentence."""
-    if props.empty:
-        return "Not enough data in this selection to estimate."
-    n10 = counts_out_of_n(props.to_dict(), 10)
-    parts = []
-    for cat in props.index:
-        c = n10[cat]
-        if c == 0:
-            parts.append(f"fewer than 1 **{cat}**")
+    def order_props(props: pd.Series, order: list) -> pd.Series:
+        """Reindex a proportion series into a friendly fixed order, dropping missing."""
+        keep = [c for c in order if c in props.index]
+        extra = [c for c in props.index if c not in order]
+        return props.reindex(keep + extra)
+
+
+    def plain_english_line(props: pd.Series, noun: str = "days") -> str:
+        """Build the headline 'Out of every 10 days, expect ...' sentence."""
+        if props.empty:
+            return "Not enough data in this selection to estimate."
+        n10 = counts_out_of_n(props.to_dict(), 10)
+        parts = []
+        for cat in props.index:
+            c = n10[cat]
+            if c == 0:
+                parts.append(f"fewer than 1 **{cat}**")
+            else:
+                parts.append(f"**{c} {cat}**")
+        if len(parts) == 1:
+            joined = parts[0]
         else:
-            parts.append(f"**{c} {cat}**")
-    if len(parts) == 1:
-        joined = parts[0]
-    else:
-        joined = ", ".join(parts[:-1]) + f", and {parts[-1]}"
-    return f"Out of every 10 {noun}, you can expect roughly {joined}."
+            joined = ", ".join(parts[:-1]) + f", and {parts[-1]}"
+        return f"Out of every 10 {noun}, you can expect roughly {joined}."
 
 
-def detail_bullets(props: pd.Series, meaning: dict) -> str:
-    """Per-category plain-English bullets with the exact percentage."""
-    lines = []
-    for cat, p in props.items():
-        pct = round(p * 100)
-        desc = meaning.get(cat, cat)
-        lines.append(f"- **{cat}** — {desc}: about **{pct}%** of the time")
-    return "\n".join(lines)
+    def detail_bullets(props: pd.Series, meaning: dict) -> str:
+        """Per-category plain-English bullets with the exact percentage."""
+        lines = []
+        for cat, p in props.items():
+            pct = round(p * 100)
+            desc = meaning.get(cat, cat)
+            lines.append(f"- **{cat}** — {desc}: about **{pct}%** of the time")
+        return "\n".join(lines)
 
 
-def sample_note(n_rows: int) -> None:
-    """Warn the reader when the sample behind a probability is small."""
-    if n_rows == 0:
-        st.info("No matching days in the selected range — try widening the dates.")
-    elif n_rows < 30:
-        st.warning(
-            f"⚠️ Only **{n_rows}** matching days here. That's a small sample, so treat "
-            "these numbers as a rough hint, not a reliable probability."
-        )
-    else:
-        st.caption(f"Based on {n_rows:,} matching trading days.")
+    def sample_note(n_rows: int) -> None:
+        """Warn the reader when the sample behind a probability is small."""
+        if n_rows == 0:
+            st.info("No matching days in the selected range — try widening the dates.")
+        elif n_rows < 30:
+            st.warning(
+                f"⚠️ Only **{n_rows}** matching days here. That's a small sample, so treat "
+                "these numbers as a rough hint, not a reliable probability."
+            )
+        else:
+            st.caption(f"Based on {n_rows:,} matching trading days.")
 
 
-def probability_view(subset: pd.DataFrame, column: str, order: list,
-                     meaning: dict, noun: str = "days"):
-    """Render one full probability block: headline + chart + bullets + sample note."""
-    n_rows = int(subset[column].notna().sum())
-    if n_rows == 0:
-        sample_note(0)
-        return
-    props = order_props(subset[column].value_counts(normalize=True), order)
-    st.success(plain_english_line(props, noun=noun))
-    left, right = st.columns([1, 1])
-    with left:
-        st.bar_chart(props)
-    with right:
-        st.markdown(detail_bullets(props, meaning))
-    sample_note(n_rows)
+    def probability_view(subset: pd.DataFrame, column: str, order: list,
+                         meaning: dict, noun: str = "days"):
+        """Render one full probability block: headline + chart + bullets + sample note."""
+        n_rows = int(subset[column].notna().sum())
+        if n_rows == 0:
+            sample_note(0)
+            return
+        props = order_props(subset[column].value_counts(normalize=True), order)
+        st.success(plain_english_line(props, noun=noun))
+        left, right = st.columns([1, 1])
+        with left:
+            st.bar_chart(props)
+        with right:
+            st.markdown(detail_bullets(props, meaning))
+        sample_note(n_rows)
 
 
-# ----------------------------------------------------------------------------
-# Sidebar controls
-# ----------------------------------------------------------------------------
-st.sidebar.header("⚙️ Filters")
+    # ----------------------------------------------------------------------------
+    # Sidebar controls
+    # ----------------------------------------------------------------------------
+    st.sidebar.header("⚙️ Filters")
 
-start_date = st.sidebar.date_input("Start date", data["date"].min())
-end_date = st.sidebar.date_input("End date", data["date"].max())
+    start_date = st.sidebar.date_input("Start date", data["date"].min())
+    end_date = st.sidebar.date_input("End date", data["date"].max())
 
-weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-chosen_days = st.sidebar.multiselect(
-    "Weekdays to include", weekdays, default=weekdays,
-    help="Look only at certain days of the week — e.g. is Friday more bullish?",
-)
+    weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    chosen_days = st.sidebar.multiselect(
+        "Weekdays to include", weekdays, default=weekdays,
+        help="Look only at certain days of the week — e.g. is Friday more bullish?",
+    )
 
-filtered_data = data[
-    (data["date"] >= pd.to_datetime(start_date))
-    & (data["date"] <= pd.to_datetime(end_date))
-]
-if chosen_days:
-    filtered_data = filtered_data[filtered_data["day_name"].isin(chosen_days)]
+    filtered_data = data[
+        (data["date"] >= pd.to_datetime(start_date))
+        & (data["date"] <= pd.to_datetime(end_date))
+    ]
+    if chosen_days:
+        filtered_data = filtered_data[filtered_data["day_name"].isin(chosen_days)]
 
-# ----------------------------------------------------------------------------
-# Header
-# ----------------------------------------------------------------------------
-st.title("📊 Nifty50 Probability Dashboard")
-st.markdown(
-    "A plain-English look at how the Nifty 50 has behaved historically. "
-    "Every probability below is also written as **\"out of 10 days\"** so you don't "
-    "need a stats background to read it."
-)
-
-with st.expander("❓ How to read this dashboard (start here)"):
+    # ----------------------------------------------------------------------------
+    # Header
+    # ----------------------------------------------------------------------------
+    st.title("📊 Nifty50 Probability Dashboard")
     st.markdown(
-        """
-These numbers come from **history** — thousands of past Nifty 50 trading days. They tell
-you how *often* something happened before, which is a useful base rate. They are **not a
-prediction** of any single day, and past patterns can break.
-
-**The colour code for a day:**
-- 🟢 **Green** = the market closed *higher* than it opened (an up day)
-- 🔴 **Red** = the market closed *lower* than it opened (a down day)
-- ⚪ **Gray** = the market barely moved — closed within **0.2%** of the open
-
-**How big the day was (the "move"):**
-- **Low** = moved less than 0.5% (quiet)
-- **Moderate** = moved 0.5%-1.0% (normal)
-- **High** = moved 1.0%-1.5% (big)
-- **Exceptional** = moved 1.5% or more (wild)
-
-Use the sidebar to narrow the date range or pick specific weekdays.
-        """
+        "A plain-English look at how the Nifty 50 has behaved historically. "
+        "Every probability below is also written as **\"out of 10 days\"** so you don't "
+        "need a stats background to read it."
     )
 
-# ----------------------------------------------------------------------------
-# Snapshot metrics
-# ----------------------------------------------------------------------------
-st.subheader("Snapshot of the selected period")
-total_days = len(filtered_data)
-if total_days > 0:
-    color_share = filtered_data["candle_color"].value_counts(normalize=True)
-    up_pct = round(color_share.get("Green", 0) * 100)
-    down_pct = round(color_share.get("Red", 0) * 100)
-    flat_pct = round(color_share.get("Gray", 0) * 100)
-    avg_move = filtered_data["abs_directional_move_pct"].mean()
-
-    m1, m2, m3, m4, m5 = st.columns(5)
-    m1.metric("Trading days", f"{total_days:,}")
-    m2.metric("🟢 Up days", f"{up_pct}%")
-    m3.metric("🔴 Down days", f"{down_pct}%")
-    m4.metric("⚪ Flat days", f"{flat_pct}%")
-    m5.metric("Avg daily move", f"{avg_move:.2f}%")
-else:
-    st.info("No days match your current filters. Widen the date range or add weekdays.")
-
-st.divider()
-
-# ----------------------------------------------------------------------------
-# View 1 - How does a day usually close?
-# ----------------------------------------------------------------------------
-st.header("1) How does a day usually close - green, red or gray?")
-probability_view(filtered_data, "candle_color", COLOR_ORDER, COLOR_MEANING)
-
-st.divider()
-
-# ----------------------------------------------------------------------------
-# View 2 - How does the market usually open?
-# ----------------------------------------------------------------------------
-st.header("2) How does the market usually open?")
-probability_view(filtered_data, "opening_category", OPENING_ORDER, OPENING_MEANING)
-
-st.divider()
-
-# ----------------------------------------------------------------------------
-# View 3 - How big is a typical day?
-# ----------------------------------------------------------------------------
-st.header("3) How big is a typical day's move?")
-probability_view(filtered_data, "move_category", MOVE_ORDER, MOVE_MEANING)
-
-st.divider()
-
-# ----------------------------------------------------------------------------
-# View 4 - What happens after 3 quiet, sideways days?
-# ----------------------------------------------------------------------------
-st.header("4) After the market sits flat for 3 days, what comes next?")
-st.caption(
-    "Looking only at days where the market closed within ~0.25% of itself for 3 days in a "
-    "row - then measuring the *next* day's move size."
-)
-flat3 = filtered_data[filtered_data["flag_same_closing_3_days"] == 1]
-probability_view(flat3, "next_move_category", MOVE_ORDER, MOVE_MEANING)
-
-st.divider()
-
-# ----------------------------------------------------------------------------
-# View 5 - Flat for 3 days AND very little movement
-# ----------------------------------------------------------------------------
-st.header("5) After 3 flat days with barely any movement, what comes next?")
-st.caption(
-    "The quietest possible setup: 3 days of sideways closing *and* a low-movement day. "
-    "Does a big move tend to follow the calm?"
-)
-coiled = filtered_data[
-    (filtered_data["flag_same_closing_3_days"] == 1)
-    & (filtered_data["prev_2_day_seq"] == "Low Low")
-    & (filtered_data["move_category"] == "Low")
-]
-probability_view(coiled, "next_move_category", MOVE_ORDER, MOVE_MEANING)
-
-st.divider()
-
-# ----------------------------------------------------------------------------
-# View 6 - What follows a big-move day?
-# ----------------------------------------------------------------------------
-st.header("6) After a big-move (High) day, how big is the next day?")
-after_high = filtered_data[filtered_data["move_category"] == "High"]
-probability_view(after_high, "next_move_category", MOVE_ORDER, MOVE_MEANING)
-
-st.divider()
-
-# ----------------------------------------------------------------------------
-# View 7 - How does the market open after a big-move day?
-# ----------------------------------------------------------------------------
-st.header("7) After a big-move (High) day, how does the next day open?")
-probability_view(after_high, "opening_category", OPENING_ORDER, OPENING_MEANING, noun="such days")
-
-st.divider()
-
-# ----------------------------------------------------------------------------
-# View 8 - Day-of-week personality (new)
-# ----------------------------------------------------------------------------
-st.header("8) Does each weekday have its own personality?")
-st.caption("Share of green (up) days for each weekday in the selected period.")
-if total_days > 0:
-    dow = (
-        filtered_data.assign(is_green=(filtered_data["candle_color"] == "Green"))
-        .groupby("day_name")["is_green"]
-        .mean()
-        .reindex(weekdays)
-        .dropna()
-    )
-    if not dow.empty:
-        dow_pct = (dow * 100).round(0)
-        st.bar_chart(dow_pct.rename("% up days"))
-        best = dow_pct.idxmax()
-        worst = dow_pct.idxmin()
+    with st.expander("❓ How to read this dashboard (start here)"):
         st.markdown(
-            f"In this period, **{best}** has been the most bullish weekday "
-            f"(**{int(dow_pct[best])}%** green days) and **{worst}** the least "
-            f"(**{int(dow_pct[worst])}%** green days). "
-            "Out of 10 such weekdays, that's about "
-            f"**{round(dow_pct[best] / 10)} green** on {best} vs "
-            f"**{round(dow_pct[worst] / 10)} green** on {worst}."
+            """
+    These numbers come from **history** — thousands of past Nifty 50 trading days. They tell
+    you how *often* something happened before, which is a useful base rate. They are **not a
+    prediction** of any single day, and past patterns can break.
+
+    **The colour code for a day:**
+    - 🟢 **Green** = the market closed *higher* than it opened (an up day)
+    - 🔴 **Red** = the market closed *lower* than it opened (a down day)
+    - ⚪ **Gray** = the market barely moved — closed within **0.2%** of the open
+
+    **How big the day was (the "move"):**
+    - **Low** = moved less than 0.5% (quiet)
+    - **Moderate** = moved 0.5%-1.0% (normal)
+    - **High** = moved 1.0%-1.5% (big)
+    - **Exceptional** = moved 1.5% or more (wild)
+
+    Use the sidebar to narrow the date range or pick specific weekdays.
+            """
         )
-else:
-    st.info("No data to show for the weekday view.")
 
-st.divider()
+    # ----------------------------------------------------------------------------
+    # Snapshot metrics
+    # ----------------------------------------------------------------------------
+    st.subheader("Snapshot of the selected period")
+    total_days = len(filtered_data)
+    if total_days > 0:
+        color_share = filtered_data["candle_color"].value_counts(normalize=True)
+        up_pct = round(color_share.get("Green", 0) * 100)
+        down_pct = round(color_share.get("Red", 0) * 100)
+        flat_pct = round(color_share.get("Gray", 0) * 100)
+        avg_move = filtered_data["abs_directional_move_pct"].mean()
 
-# ----------------------------------------------------------------------------
-# Distribution charts
-# ----------------------------------------------------------------------------
-st.header("9) The spread of daily & multi-day moves")
-st.caption("How percentage moves are distributed. Fatter tails = more surprise days.")
+        m1, m2, m3, m4, m5 = st.columns(5)
+        m1.metric("Trading days", f"{total_days:,}")
+        m2.metric("🟢 Up days", f"{up_pct}%")
+        m3.metric("🔴 Down days", f"{down_pct}%")
+        m4.metric("⚪ Flat days", f"{flat_pct}%")
+        m5.metric("Avg daily move", f"{avg_move:.2f}%")
+    else:
+        st.info("No days match your current filters. Widen the date range or add weekdays.")
 
-if total_days > 0:
-    c1, c2, c3 = st.columns(3)
-    for col, title, container in [
-        ("abs_directional_move_pct", "1-day move %", c1),
-        ("pct_move_3d", "3-day move %", c2),
-        ("pct_move_5d", "5-day move %", c3),
-    ]:
-        with container:
-            fig, ax = plt.subplots()
-            sns.histplot(filtered_data[col].dropna(), kde=True, ax=ax, color="#4C78A8")
-            ax.set_xlabel(title)
-            ax.set_ylabel("Number of days")
-            ax.set_title(title)
-            st.pyplot(fig)
-            plt.close(fig)
+    st.divider()
 
-st.divider()
+    # ----------------------------------------------------------------------------
+    # View 1 - How does a day usually close?
+    # ----------------------------------------------------------------------------
+    st.header("1) How does a day usually close - green, red or gray?")
+    probability_view(filtered_data, "candle_color", COLOR_ORDER, COLOR_MEANING)
 
-# ----------------------------------------------------------------------------
-# Raw data
-# ----------------------------------------------------------------------------
-with st.expander("🔎 See the underlying data"):
-    st.dataframe(filtered_data)
+    st.divider()
 
-# ----------------------------------------------------------------------------
-# Disclaimer
-# ----------------------------------------------------------------------------
-st.divider()
-st.caption(
-    "⚠️ **Educational use only - not financial advice.** Every figure here is a historical "
-    "base rate, not a forecast of any specific day. Markets change and past patterns can "
-    "and do break. Do your own research before trading."
-)
+    # ----------------------------------------------------------------------------
+    # View 2 - How does the market usually open?
+    # ----------------------------------------------------------------------------
+    st.header("2) How does the market usually open?")
+    probability_view(filtered_data, "opening_category", OPENING_ORDER, OPENING_MEANING)
+
+    st.divider()
+
+    # ----------------------------------------------------------------------------
+    # View 3 - How big is a typical day?
+    # ----------------------------------------------------------------------------
+    st.header("3) How big is a typical day's move?")
+    probability_view(filtered_data, "move_category", MOVE_ORDER, MOVE_MEANING)
+
+    st.divider()
+
+    # ----------------------------------------------------------------------------
+    # View 4 - What happens after 3 quiet, sideways days?
+    # ----------------------------------------------------------------------------
+    st.header("4) After the market sits flat for 3 days, what comes next?")
+    st.caption(
+        "Looking only at days where the market closed within ~0.25% of itself for 3 days in a "
+        "row - then measuring the *next* day's move size."
+    )
+    flat3 = filtered_data[filtered_data["flag_same_closing_3_days"] == 1]
+    probability_view(flat3, "next_move_category", MOVE_ORDER, MOVE_MEANING)
+
+    st.divider()
+
+    # ----------------------------------------------------------------------------
+    # View 5 - Flat for 3 days AND very little movement
+    # ----------------------------------------------------------------------------
+    st.header("5) After 3 flat days with barely any movement, what comes next?")
+    st.caption(
+        "The quietest possible setup: 3 days of sideways closing *and* a low-movement day. "
+        "Does a big move tend to follow the calm?"
+    )
+    coiled = filtered_data[
+        (filtered_data["flag_same_closing_3_days"] == 1)
+        & (filtered_data["prev_2_day_seq"] == "Low Low")
+        & (filtered_data["move_category"] == "Low")
+    ]
+    probability_view(coiled, "next_move_category", MOVE_ORDER, MOVE_MEANING)
+
+    st.divider()
+
+    # ----------------------------------------------------------------------------
+    # View 6 - What follows a big-move day?
+    # ----------------------------------------------------------------------------
+    st.header("6) After a big-move (High) day, how big is the next day?")
+    after_high = filtered_data[filtered_data["move_category"] == "High"]
+    probability_view(after_high, "next_move_category", MOVE_ORDER, MOVE_MEANING)
+
+    st.divider()
+
+    # ----------------------------------------------------------------------------
+    # View 7 - How does the market open after a big-move day?
+    # ----------------------------------------------------------------------------
+    st.header("7) After a big-move (High) day, how does the next day open?")
+    probability_view(after_high, "opening_category", OPENING_ORDER, OPENING_MEANING, noun="such days")
+
+    st.divider()
+
+    # ----------------------------------------------------------------------------
+    # View 8 - Day-of-week personality (new)
+    # ----------------------------------------------------------------------------
+    st.header("8) Does each weekday have its own personality?")
+    st.caption("Share of green (up) days for each weekday in the selected period.")
+    if total_days > 0:
+        dow = (
+            filtered_data.assign(is_green=(filtered_data["candle_color"] == "Green"))
+            .groupby("day_name")["is_green"]
+            .mean()
+            .reindex(weekdays)
+            .dropna()
+        )
+        if not dow.empty:
+            dow_pct = (dow * 100).round(0)
+            st.bar_chart(dow_pct.rename("% up days"))
+            best = dow_pct.idxmax()
+            worst = dow_pct.idxmin()
+            st.markdown(
+                f"In this period, **{best}** has been the most bullish weekday "
+                f"(**{int(dow_pct[best])}%** green days) and **{worst}** the least "
+                f"(**{int(dow_pct[worst])}%** green days). "
+                "Out of 10 such weekdays, that's about "
+                f"**{round(dow_pct[best] / 10)} green** on {best} vs "
+                f"**{round(dow_pct[worst] / 10)} green** on {worst}."
+            )
+    else:
+        st.info("No data to show for the weekday view.")
+
+    st.divider()
+
+    # ----------------------------------------------------------------------------
+    # Distribution charts
+    # ----------------------------------------------------------------------------
+    st.header("9) The spread of daily & multi-day moves")
+    st.caption("How percentage moves are distributed. Fatter tails = more surprise days.")
+
+    if total_days > 0:
+        c1, c2, c3 = st.columns(3)
+        for col, title, container in [
+            ("abs_directional_move_pct", "1-day move %", c1),
+            ("pct_move_3d", "3-day move %", c2),
+            ("pct_move_5d", "5-day move %", c3),
+        ]:
+            with container:
+                fig, ax = plt.subplots()
+                sns.histplot(filtered_data[col].dropna(), kde=True, ax=ax, color="#4C78A8")
+                ax.set_xlabel(title)
+                ax.set_ylabel("Number of days")
+                ax.set_title(title)
+                st.pyplot(fig)
+                plt.close(fig)
+
+    st.divider()
+
+    # ----------------------------------------------------------------------------
+    # Raw data
+    # ----------------------------------------------------------------------------
+    with st.expander("🔎 See the underlying data"):
+        st.dataframe(filtered_data)
+
+    # ----------------------------------------------------------------------------
+    # Disclaimer
+    # ----------------------------------------------------------------------------
+    st.divider()
+    st.caption(
+        "⚠️ **Educational use only - not financial advice.** Every figure here is a historical "
+        "base rate, not a forecast of any specific day. Markets change and past patterns can "
+        "and do break. Do your own research before trading."
+    )
