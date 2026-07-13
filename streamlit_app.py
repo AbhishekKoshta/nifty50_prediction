@@ -62,14 +62,15 @@ def _mtime(path: str) -> float:
 
 
 @st.cache_data(ttl=3600)
-def _cached_plan(data_mtime: float, open_mtime: float):
-    # mtimes are cache keys only — when the daily feed or today_open.json changes
-    # (the 16:00 or 09:10 CI run), the cache invalidates and the plan rebuilds.
-    return build_plan(load_daily(), load_today_open())
+def _cached_daily(data_mtime: float):
+    # mtime is a cache key only — when the 16:00 CI run rewrites the daily feed
+    # the cache invalidates and the indicators rebuild. build_plan() itself is
+    # cheap (last-row read) so it runs live, letting a manual open resolve instantly.
+    return load_daily()
 
 
-def get_plan():
-    return _cached_plan(_mtime(DATA_FILE), _mtime(OPEN_FILE))
+def get_daily():
+    return _cached_daily(_mtime(DATA_FILE))
 
 
 def _side_pill(side: str) -> str:
@@ -112,17 +113,44 @@ def _render_signal(s: dict):
 
 def render_teller():
     try:
-        plan = get_plan()
+        daily = get_daily()
     except Exception as e:  # noqa: BLE001 — never let the teller break the dashboard
         st.warning(f"Morning teller unavailable: {e}")
         return
-    c = plan["context"]
-    o = c.get("today_open")
+
+    captured = load_today_open()                       # from the 09:10 CI run, if any
+    anchor = build_plan(daily)["context"]              # unresolved — gives anchor date/close/low
+    anchor_date, anchor_close = anchor["date"], anchor["close"]
+    captured_valid = bool(captured and str(captured.get("anchor_date")) == anchor_date)
+
     st.title("📈 NIFTY Teller — the morning plan")
-    st.caption(f"What to do at the open **after {c['date']}** · anchor close "
-               f"**{c['close']:,.1f}** · rebuilds each market close, then resolves at ~09:10 "
+    st.caption(f"What to do at the open **after {anchor_date}** · anchor close "
+               f"**{anchor_close:,.1f}** · rebuilds each market close, then resolves at ~09:10 "
                f"once the open prints. Validated **GO** edges plus two **MARGINAL** satellites "
                f"(BearRallyFade, MarubozuGapReclaim) — take those small.")
+
+    # ---- what-if: type an open price and see which edges activate ---------------
+    with st.expander("🔬 Check an open price — see which edges activate",
+                     expanded=not captured_valid):
+        col1, col2 = st.columns([3, 2])
+        default_open = float(captured["open"]) if captured_valid else round(anchor_close, 1)
+        manual_open = col1.number_input(
+            "NIFTY open price", min_value=0.0, value=default_open, step=5.0, format="%.1f",
+            help="Enter the 09:15 open (or any hypothetical) to resolve the plan against it.")
+        use_manual = col2.toggle("Use this open", value=False,
+                                 help="On = resolve against the number above. "
+                                      "Off = use the auto-captured open (or the pre-open plan).")
+
+    is_manual = bool(use_manual)
+    if is_manual:
+        today_open = {"date": "manual", "open": float(manual_open),
+                      "anchor_date": anchor_date, "anchor_close": anchor_close}
+    else:
+        today_open = captured if captured_valid else None
+
+    plan = build_plan(daily, today_open)
+    c = plan["context"]
+    o = c.get("today_open")
 
     m1, m2, m3, m4, m5, m6 = st.columns(6)
     m1.metric("Close", f"{c['close']:,.0f}")
@@ -136,9 +164,11 @@ def render_teller():
         gap = o["open"] - c["close"]
         arrow = "GAP-UP" if o["gap_pct"] >= 0 else "GAP-DOWN"
         active_n = sum(1 for s in plan["signals"] if s["status"] == "ACTIVATED")
-        banner = (f"**Open printed: {o['open']:,.0f}  ({o['gap_pct']:+.2f}%, {arrow} {gap:+,.0f} pt "
+        lead = "**What-if open" if is_manual else "**Open printed"
+        banner = (f"{lead}: {o['open']:,.0f}  ({o['gap_pct']:+.2f}%, {arrow} {gap:+,.0f} pt "
                   f"vs {c['close']:,.0f}).**  Plan RESOLVED — "
-                  f"**{active_n} edge{'s' if active_n != 1 else ''} active now.**")
+                  f"**{active_n} edge{'s' if active_n != 1 else ''} active"
+                  f"{' (hypothetical)' if is_manual else ' now'}.**")
         (st.error if active_n else st.success)(banner)
     else:
         gf = c["gap_up_levels"]["gapfade_0.30pct"]
