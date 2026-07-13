@@ -443,7 +443,7 @@ def _fmt_cli(plan: dict) -> str:
         out.append(f"TODAY'S OPEN {o['open']:,.1f}  (gap {o['gap_pct']:+.2f}% vs anchor) "
                    f"— plan RESOLVED against the real open")
     order = {"ACTIVATED": 0, "ARMED": 1, "CONDITIONAL": 2, "PASSED": 3, "IDLE": 4}
-    tags = {"ACTIVATED": "🔴 ACTIVE", "ARMED": "🟢 ARMED", "CONDITIONAL": "🟡 IF-GAP",
+    tags = {"ACTIVATED": "🎉 ACTIVE", "ARMED": "🟢 ARMED", "CONDITIONAL": "🟡 IF-GAP",
             "PASSED": "⚫ PASSED", "IDLE": "⚪ idle"}
     for s in sorted(plan["signals"], key=lambda x: order[x["status"]]):
         tag = tags[s["status"]]

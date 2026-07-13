@@ -33,7 +33,9 @@ st.markdown("""
 <style>
   .teller-card {border:1px solid rgba(128,128,128,.25); border-radius:14px;
                 padding:12px 16px; margin-bottom:10px; background:rgba(128,128,128,.05);}
-  .active {border-left:5px solid #dc2626; box-shadow:0 0 0 1px #dc262633;}
+  .active {border-left:5px solid #22c55e;
+           background:linear-gradient(90deg, rgba(34,197,94,.16), rgba(16,185,129,.06));
+           box-shadow:0 0 0 1px #22c55e55, 0 3px 14px rgba(34,197,94,.28);}
   .armed  {border-left:5px solid #16a34a;}
   .ifgap  {border-left:5px solid #f59e0b;}
   .passed {border-left:5px solid rgba(128,128,128,.35); opacity:.6;}
@@ -41,7 +43,7 @@ st.markdown("""
   .lvl    {font-size:1.7rem; font-weight:700; letter-spacing:-.5px;}
   .pill   {display:inline-block; padding:2px 10px; border-radius:999px;
            font-size:.72rem; font-weight:700; letter-spacing:.3px; vertical-align:middle;}
-  .p-act  {background:#dc262622; color:#dc2626;}
+  .p-act  {background:#22c55e33; color:#15803d;}
   .p-arm  {background:#16a34a22; color:#16a34a;}
   .p-gap  {background:#f59e0b22; color:#d97706;}
   .p-pass {background:#8080801a; color:#888;}
@@ -79,7 +81,7 @@ def _side_pill(side: str) -> str:
 
 
 def _status_pill(status: str) -> str:
-    m = {"ACTIVATED": ("p-act", "🔴 ACTIVE NOW"),
+    m = {"ACTIVATED": ("p-act", "🎉 ACTIVE NOW"),
          "ARMED": ("p-arm", "🟢 ARMED"),
          "CONDITIONAL": ("p-gap", "🟡 IF GAP-UP"),
          "PASSED": ("p-pass", "⚫ PASSED"),
@@ -169,7 +171,7 @@ def render_teller():
                   f"vs {c['close']:,.0f}).**  Plan RESOLVED — "
                   f"**{active_n} edge{'s' if active_n != 1 else ''} active"
                   f"{' (hypothetical)' if is_manual else ' now'}.**")
-        (st.error if active_n else st.success)(banner)
+        (st.success if active_n else st.info)(banner)
     else:
         gf = c["gap_up_levels"]["gapfade_0.30pct"]
         gh = c["gap_up_levels"]["gaphalf_0.35pct"]
@@ -188,7 +190,7 @@ def render_teller():
     stood_down = [s for s in sigs if s["status"] in ("PASSED", "IDLE")]
 
     if active:
-        st.subheader("🔴 Active now — trade at the open")
+        st.subheader("🎉 Active now — trade at the open")
         for s in active:
             _render_signal(s)
     if armed:
