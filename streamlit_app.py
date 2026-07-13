@@ -18,7 +18,8 @@ st.set_page_config(
 # ----------------------------------------------------------------------------
 # TELLER — the morning plan, pinned to the top.
 # Given the latest CLOSE it prints what to do at the NEXT open and the exact
-# gap-up LEVEL above which the validated GO shorts trigger. Only surfaces GO edges.
+# gap-up LEVEL above which the validated GO shorts trigger. Surfaces the GO edges
+# plus BearRallyFade (the one MARGINAL-GO bear-side short).
 # ----------------------------------------------------------------------------
 st.markdown("""
 <style>
@@ -90,7 +91,8 @@ def render_teller():
     c = plan["context"]
     st.title("📈 NIFTY Teller — the morning plan")
     st.caption(f"What to do at the open **after {c['date']}** · anchor close "
-               f"**{c['close']:,.1f}** · rebuilds each market close. Only validated **GO** edges.")
+               f"**{c['close']:,.1f}** · rebuilds each market close. Validated **GO** edges "
+               f"(plus BearRallyFade, the one bear-side **MARGINAL-GO** short).")
 
     m1, m2, m3, m4, m5, m6 = st.columns(6)
     m1.metric("Close", f"{c['close']:,.0f}")

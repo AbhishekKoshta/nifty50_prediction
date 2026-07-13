@@ -13,6 +13,10 @@ NO-GO setup:
     C Squeeze-ORB    (long)  — armed at close when 5d span in bottom 25%; break of 30m OR
   Swing (daily):
     R RSI2 mean-rev  (long)  — armed at close when close>200DMA and RSI(2)<10
+    D BearRallyFade  (short) — armed at close when up-day>+0.6% AND close<50DMA (MARGINAL-GO)
+
+All are validated GO edges except BearRallyFade, the one MARGINAL-GO bear-side
+short (the best NIFTY short found — it profits in real bear years).
 
 The two GAP-UP shorts (B, F) are the "if it opens gap-up, go short — above what
 level" answer: their trigger levels are printed as absolute NIFTY prices.
@@ -48,6 +52,9 @@ GAPHALF_TFRAC = 0.5       # F: take profit at half the gap
 SQUEEZE_Q = 0.25          # C: 5d-span percentile (bottom 25%) over trailing 60d
 RSI2_TH = 10.0            # R: RSI(2) oversold threshold
 RSI2_REGIME_SMA = 200     # R: long-only regime filter
+BEARFADE_UP_THRESH = 0.6  # D: prior o->c up-day (%) to arm BearRallyFade
+BEARFADE_ATR_MULT = 2.0   # D: protective stop = 2 x ATR14
+BEARFADE_REGIME_SMA = 50  # D: short only below the 50-DMA (active downtrend)
 
 
 # ---- data / indicators --------------------------------------------------------
@@ -69,6 +76,7 @@ def load_daily(data_file: str = DATA_FILE) -> pd.DataFrame:
          [["open", "high", "low", "close"]].astype(float))
     d["ret"] = (d["close"] - d["open"]) / d["open"] * 100          # intraday o->c %
     d["sma20"] = d["close"].rolling(20).mean()
+    d["sma50"] = d["close"].rolling(BEARFADE_REGIME_SMA).mean()
     d["sma200"] = d["close"].rolling(RSI2_REGIME_SMA).mean()
     d["atr14"] = (d["high"] - d["low"]).rolling(14).mean()
     d["rsi2"] = _rsi(d["close"], 2)
@@ -109,6 +117,7 @@ def build_plan(daily: pd.DataFrame) -> dict:
     atr = float(t["atr14"])
     ret = float(t["ret"])
     uptrend20 = bool(close > t["sma20"]) if not np.isnan(t["sma20"]) else False
+    below50 = bool(close < t["sma50"]) if not np.isnan(t["sma50"]) else False
     above200 = bool(close > t["sma200"]) if not np.isnan(t["sma200"]) else False
     rsi2 = float(t["rsi2"])
     squeeze = (not np.isnan(t["span5_thr"])) and bool(t["span5"] <= t["span5_thr"])
@@ -221,15 +230,44 @@ def build_plan(daily: pd.DataFrame) -> dict:
             stats="GO · PF ~3.3 · ~80% win",
         ))
 
+    # ---- D: BearRallyFade (swing short) — fade a bear-rally pop below the 50-DMA -
+    if below50 and ret > BEARFADE_UP_THRESH:
+        stop = close + BEARFADE_ATR_MULT * atr     # entry ~ tomorrow open; close is best proxy now
+        sigs.append(Signal(
+            key="D", name="BearRallyFade", side="SHORT", horizon="swing", status="ARMED",
+            headline=f"Bear-rally pop ({ret:+.2f}% up-day below 50-DMA) → SHORT tomorrow's open",
+            trigger=f"close<50DMA ✔  and  up-day o→c {ret:+.2f}% > +{BEARFADE_UP_THRESH:.1f}%  ✔ armed",
+            entry="SHORT at tomorrow's open",
+            stop=f"open + 2.0 × ATR14  (ATR14={atr:,.0f} → ≈ {stop:,.0f} off today's close)",
+            target="cover at the NEXT day's close (~1–2 day hold; the snapback edge decays — don't hold longer)",
+            note="The one NIFTY short that profits in real bears (2020 +1,534, 2022 +1,157). Mirror of DownDayBounce.",
+            stats="MARGINAL-GO · PF 1.41 · +4,036 pt · ~13/yr",
+        ))
+    else:
+        why = []
+        if not below50:
+            why.append(f"close {close:,.0f} ≥ 50DMA {t['sma50']:,.0f}"
+                       if not np.isnan(t["sma50"]) else "50DMA n/a")
+        if not (ret > BEARFADE_UP_THRESH):
+            why.append(f"o→c {ret:+.2f}% ≤ +{BEARFADE_UP_THRESH:.1f}% (not a rally pop)")
+        sigs.append(Signal(
+            key="D", name="BearRallyFade", side="SHORT", horizon="swing", status="IDLE",
+            headline="No bear-rally pop (needs an up-day >+0.6% below the 50-DMA) → BearRallyFade idle",
+            trigger="; ".join(why) if why else "conditions not met",
+            stats="MARGINAL-GO · PF 1.41 · +4,036 pt · ~13/yr",
+        ))
+
     context = {
         "date": pd.Timestamp(t.name).strftime("%Y-%m-%d"),
         "close": close,
         "ret": ret,
         "atr14": atr,
         "sma20": None if np.isnan(t["sma20"]) else float(t["sma20"]),
+        "sma50": None if np.isnan(t["sma50"]) else float(t["sma50"]),
         "sma200": None if np.isnan(t["sma200"]) else float(t["sma200"]),
         "rsi2": rsi2,
         "uptrend20": uptrend20,
+        "below50": below50,
         "above200": above200,
         "squeeze": squeeze,
         "gap_up_levels": {
