@@ -29,11 +29,18 @@ Signals are one of:
   CONDITIONAL -> depends on tomorrow's OPEN (a gap); trigger level given now.
   IDLE    -> condition not met; nothing to do for this edge.
 
-Pure module: `build_plan(daily_df)` -> dict. No Streamlit import here so it can be
-unit-tested and reused. `load_daily()` builds the daily indicator frame from the
-dashboard's daily OHLC feed (Nifty_Features.csv: date, open, high, low, close).
+Once today's OPEN is known (the 09:10-IST run writes today_open.json), the plan
+RESOLVES against the real open:
+  ACTIVATED -> the setup fired for today; concrete open-based entry/stop/target.
+  PASSED    -> a gap-conditional edge that did NOT get its gap today; stand down.
+
+Pure module: `build_plan(daily_df, today_open=None)` -> dict. No Streamlit import
+here so it can be unit-tested and reused. `load_daily()` builds the daily indicator
+frame from the dashboard's daily OHLC feed (Nifty_Features.csv). `load_today_open()`
+reads today_open.json if the morning run has written it.
 """
 from __future__ import annotations
+import json
 import os
 from dataclasses import dataclass, asdict
 
@@ -42,6 +49,7 @@ import pandas as pd
 
 # Daily OHLC lives next to this file in the deploy repo.
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Nifty_Features.csv")
+OPEN_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "today_open.json")
 LOT = 75
 FEE_PTS = 10.0
 
@@ -91,13 +99,31 @@ def load_daily(data_file: str = DATA_FILE) -> pd.DataFrame:
     return d
 
 
+def load_today_open(open_file: str = OPEN_FILE) -> dict | None:
+    """Read today_open.json if the morning run has produced it; else None.
+
+    Never raises — a missing/corrupt file just means "pre-open plan", which is a
+    perfectly valid state (weekend, holiday, or Yahoo not yet updated).
+    """
+    if not os.path.exists(open_file):
+        return None
+    try:
+        with open(open_file) as f:
+            data = json.load(f)
+        if data.get("open") is None or not data.get("anchor_date"):
+            return None
+        return data
+    except Exception:  # noqa: BLE001
+        return None
+
+
 # ---- plan model ---------------------------------------------------------------
 @dataclass
 class Signal:
-    key: str                    # A/B/F/C/R
+    key: str                    # A/B/F/C/R/D/M
     name: str
     side: str                   # LONG / SHORT
-    status: str                 # ARMED / CONDITIONAL / IDLE
+    status: str                 # ACTIVATED / ARMED / CONDITIONAL / PASSED / IDLE
     horizon: str                # intraday / swing
     headline: str               # one-line what-to-do
     trigger: str                # the exact condition + level in words
@@ -112,8 +138,77 @@ class Signal:
         return asdict(self)
 
 
-def build_plan(daily: pd.DataFrame) -> dict:
-    """Given the daily indicator frame, return the morning plan for the NEXT session."""
+def _resolve_against_open(sigs: list[Signal], open_px: float, close: float, atr: float,
+                          low: float, b_level: float, f_level: float,
+                          green_maru: bool, uptrend20: bool) -> None:
+    """Mutate signals in place once today's real OPEN is known.
+
+    ARMED (close-known) edges become ACTIVATED with concrete open-based prices.
+    CONDITIONAL (gap-dependent) edges become ACTIVATED if their gap fired today,
+    else PASSED. IDLE stays IDLE.
+    """
+    gap = open_px - close
+    gap_pct = gap / close * 100 if close else 0.0
+    for s in sigs:
+        k = s.key
+        if k == "A" and s.status == "ARMED":
+            s.status = "ACTIVATED"
+            s.headline = f"Down day → BUY now at the open {open_px:,.0f}"
+            s.entry = f"BUY at open {open_px:,.0f}"
+            s.stop = f"{open_px - DD_ATR_MULT * atr:,.0f}  (open − 1×ATR14, ATR={atr:,.0f})"
+            s.target = f"{open_px + DD_ATR_MULT * atr:,.0f}  (open + 1×ATR14), else square-off 15:20"
+        elif k == "R" and s.status == "ARMED":
+            s.status = "ACTIVATED"
+            s.entry = f"BUY at the open {open_px:,.0f} (swing)"
+        elif k == "D" and s.status == "ARMED":
+            s.status = "ACTIVATED"
+            s.headline = f"Bear-rally pop → SHORT now at the open {open_px:,.0f}"
+            s.entry = f"SHORT at open {open_px:,.0f}"
+            s.stop = f"{open_px + BEARFADE_ATR_MULT * atr:,.0f}  (open + 2×ATR14, ATR={atr:,.0f})"
+        elif k == "C" and s.status == "ARMED":
+            s.status = "ACTIVATED"  # squeeze confirmed; OR high/low still print ~09:45
+        elif k == "B" and s.status == "CONDITIONAL":
+            if uptrend20 and open_px >= b_level:
+                s.status = "ACTIVATED"
+                s.headline = f"Gap-up {gap_pct:+.2f}% (open {open_px:,.0f} ≥ {b_level:,.0f}) → SHORT the open"
+                s.entry = f"SHORT at open {open_px:,.0f} (limit at/just below)"
+                s.stop = f"{open_px + gap:,.0f}  (open + 1×gap, gap={gap:,.0f})"
+                s.target = f"{close:,.0f}  (prev close, full-gap fill), else square-off 15:20"
+            else:
+                s.status = "PASSED"
+                s.headline = (f"Open {open_px:,.0f} ({gap_pct:+.2f}%) — no qualifying gap-up "
+                              f"(needs ≥ {b_level:,.0f}) → GapFade-short passed")
+        elif k == "F" and s.status == "CONDITIONAL":
+            if open_px >= f_level:
+                s.status = "ACTIVATED"
+                s.headline = f"Gap-up {gap_pct:+.2f}% (open {open_px:,.0f} ≥ {f_level:,.0f}) → SHORT, target ½ the gap"
+                s.entry = f"SHORT at open {open_px:,.0f} (limit at/just below)"
+                s.stop = f"{open_px + GAPHALF_SL_PTS:,.0f}  (open + {GAPHALF_SL_PTS:.0f} pt)"
+                s.target = f"{open_px - GAPHALF_TFRAC * gap:,.0f}  (open − ½ gap), else square-off 15:20"
+            else:
+                s.status = "PASSED"
+                s.headline = (f"Open {open_px:,.0f} ({gap_pct:+.2f}%) — gap-up < {GAPHALF_GMIN:.2f}% "
+                              f"(needs ≥ {f_level:,.0f}) → GapHalfFill passed")
+        elif k == "M" and s.status == "CONDITIONAL":
+            if green_maru and open_px < low:
+                s.status = "ACTIVATED"
+                s.headline = f"Gap-DOWN below {low:,.0f} (open {open_px:,.0f}) → BUY the open, reclaim to EOD"
+                s.entry = f"BUY at open {open_px:,.0f}"
+                s.stop = f"{open_px - MARU_SL_PTS:,.0f}  (open − {MARU_SL_PTS:.0f} pt)"
+                s.target = "exit at the close (reclaim to EOD, no overnight risk)"
+            else:
+                s.status = "PASSED"
+                s.headline = (f"Open {open_px:,.0f} did not gap down below {low:,.0f} "
+                              f"→ MarubozuGapReclaim passed")
+
+
+def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
+    """Given the daily indicator frame, return the morning plan for the NEXT session.
+
+    If `today_open` (from today_open.json) is present AND its anchor_date matches
+    this plan's anchor, the plan is RESOLVED against the real open — gap-dependent
+    edges become ACTIVATED/PASSED and armed edges get concrete open-based prices.
+    """
     d = daily.dropna(subset=["sma20", "atr14"]).copy()
     if len(d) == 0:
         raise ValueError("not enough history to build a plan")
@@ -294,8 +389,27 @@ def build_plan(daily: pd.DataFrame) -> dict:
             stats="MARGINAL · PF 2.53 · 59% win · ~2/yr",
         ))
 
+    # ---- resolve against today's real open, if the morning run captured it -----
+    anchor_date = pd.Timestamp(t.name).strftime("%Y-%m-%d")
+    open_info = None
+    if today_open:
+        try:
+            if str(today_open.get("anchor_date")) == anchor_date and today_open.get("open") is not None:
+                open_px = float(today_open["open"])
+                _resolve_against_open(sigs, open_px, close, atr, low,
+                                      b_level, f_level, green_maru, uptrend20)
+                open_info = {
+                    "date": today_open.get("date"),
+                    "open": open_px,
+                    "gap_pct": (open_px - close) / close * 100 if close else 0.0,
+                    "fetched_utc": today_open.get("fetched_utc"),
+                }
+        except Exception:  # noqa: BLE001 — a bad open file must never break the plan
+            open_info = None
+
     context = {
-        "date": pd.Timestamp(t.name).strftime("%Y-%m-%d"),
+        "date": anchor_date,
+        "today_open": open_info,
         "close": close,
         "ret": ret,
         "atr14": atr,
@@ -324,22 +438,28 @@ def _fmt_cli(plan: dict) -> str:
     out.append(f"anchor close {c['close']:,.1f} | today o→c {c['ret']:+.2f}% | ATR14 {c['atr14']:,.0f} "
                f"| RSI2 {c['rsi2']:.1f} | {'>' if c['uptrend20'] else '≤'}20DMA "
                f"| {'>' if c['above200'] else '≤'}200DMA | squeeze {'ON' if c['squeeze'] else 'off'}")
-    order = {"ARMED": 0, "CONDITIONAL": 1, "IDLE": 2}
+    if c.get("today_open"):
+        o = c["today_open"]
+        out.append(f"TODAY'S OPEN {o['open']:,.1f}  (gap {o['gap_pct']:+.2f}% vs anchor) "
+                   f"— plan RESOLVED against the real open")
+    order = {"ACTIVATED": 0, "ARMED": 1, "CONDITIONAL": 2, "PASSED": 3, "IDLE": 4}
+    tags = {"ACTIVATED": "🔴 ACTIVE", "ARMED": "🟢 ARMED", "CONDITIONAL": "🟡 IF-GAP",
+            "PASSED": "⚫ PASSED", "IDLE": "⚪ idle"}
     for s in sorted(plan["signals"], key=lambda x: order[x["status"]]):
-        tag = {"ARMED": "🟢 ARMED", "CONDITIONAL": "🟡 IF-GAP", "IDLE": "⚪ idle"}[s["status"]]
+        tag = tags[s["status"]]
         out.append("")
         out.append(f"[{s['key']}] {s['name']:16s} {s['side']:5s} {tag:11s} · {s['stats']}")
         out.append(f"     {s['headline']}")
-        if s["status"] != "IDLE":
+        if s["status"] in ("ACTIVATED", "ARMED", "CONDITIONAL"):
             if s["entry"]:  out.append(f"     entry : {s['entry']}")
             if s["stop"]:   out.append(f"     stop  : {s['stop']}")
             if s["target"]: out.append(f"     target: {s['target']}")
             if s["note"]:   out.append(f"     note  : {s['note']}")
-        else:
+        else:  # PASSED / IDLE
             out.append(f"     ({s['trigger']})")
     return "\n".join(out)
 
 
 if __name__ == "__main__":
-    plan = build_plan(load_daily())
+    plan = build_plan(load_daily(), load_today_open())
     print(_fmt_cli(plan))

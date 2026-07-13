@@ -4,7 +4,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from teller import build_plan, load_daily, GAPFADE_GMIN, GAPHALF_GMIN
+import os
+
+from teller import (build_plan, load_daily, load_today_open,
+                    DATA_FILE, OPEN_FILE, GAPFADE_GMIN, GAPHALF_GMIN)
 
 # ----------------------------------------------------------------------------
 # Page setup
@@ -30,14 +33,18 @@ st.markdown("""
 <style>
   .teller-card {border:1px solid rgba(128,128,128,.25); border-radius:14px;
                 padding:12px 16px; margin-bottom:10px; background:rgba(128,128,128,.05);}
+  .active {border-left:5px solid #dc2626; box-shadow:0 0 0 1px #dc262633;}
   .armed  {border-left:5px solid #16a34a;}
   .ifgap  {border-left:5px solid #f59e0b;}
+  .passed {border-left:5px solid rgba(128,128,128,.35); opacity:.6;}
   .idle   {border-left:5px solid rgba(128,128,128,.35); opacity:.72;}
   .lvl    {font-size:1.7rem; font-weight:700; letter-spacing:-.5px;}
   .pill   {display:inline-block; padding:2px 10px; border-radius:999px;
            font-size:.72rem; font-weight:700; letter-spacing:.3px; vertical-align:middle;}
+  .p-act  {background:#dc262622; color:#dc2626;}
   .p-arm  {background:#16a34a22; color:#16a34a;}
   .p-gap  {background:#f59e0b22; color:#d97706;}
+  .p-pass {background:#8080801a; color:#888;}
   .p-idle {background:#8080801a; color:#888;}
   .p-long {background:#2563eb22; color:#2563eb;}
   .p-short{background:#dc262622; color:#dc2626;}
@@ -47,9 +54,22 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+def _mtime(path: str) -> float:
+    try:
+        return os.path.getmtime(path)
+    except OSError:
+        return 0.0
+
+
 @st.cache_data(ttl=3600)
+def _cached_plan(data_mtime: float, open_mtime: float):
+    # mtimes are cache keys only — when the daily feed or today_open.json changes
+    # (the 16:00 or 09:10 CI run), the cache invalidates and the plan rebuilds.
+    return build_plan(load_daily(), load_today_open())
+
+
 def get_plan():
-    return build_plan(load_daily())
+    return _cached_plan(_mtime(DATA_FILE), _mtime(OPEN_FILE))
 
 
 def _side_pill(side: str) -> str:
@@ -58,15 +78,18 @@ def _side_pill(side: str) -> str:
 
 
 def _status_pill(status: str) -> str:
-    m = {"ARMED": ("p-arm", "🟢 ARMED"),
+    m = {"ACTIVATED": ("p-act", "🔴 ACTIVE NOW"),
+         "ARMED": ("p-arm", "🟢 ARMED"),
          "CONDITIONAL": ("p-gap", "🟡 IF GAP-UP"),
+         "PASSED": ("p-pass", "⚫ PASSED"),
          "IDLE": ("p-idle", "⚪ IDLE")}
     cls, label = m[status]
     return f'<span class="pill {cls}">{label}</span>'
 
 
 def _render_signal(s: dict):
-    css = {"ARMED": "armed", "CONDITIONAL": "ifgap", "IDLE": "idle"}[s["status"]]
+    css = {"ACTIVATED": "active", "ARMED": "armed", "CONDITIONAL": "ifgap",
+           "PASSED": "passed", "IDLE": "idle"}[s["status"]]
     parts = [f'<div class="teller-card {css}">']
     parts.append(
         f'{_status_pill(s["status"])} {_side_pill(s["side"])} '
@@ -75,13 +98,13 @@ def _render_signal(s: dict):
     if s["status"] == "CONDITIONAL" and s.get("level"):
         parts.append(f'<div class="lvl">▸ {s["level"]:,.0f}</div>'
                      f'<div class="kv">trigger: {s["trigger"]}</div>')
-    if s["status"] != "IDLE":
+    if s["status"] in ("ACTIVATED", "ARMED", "CONDITIONAL"):
         for lbl, key in (("Entry", "entry"), ("Stop", "stop"), ("Target", "target")):
             if s.get(key):
                 parts.append(f'<div class="kv"><b>{lbl}:</b> {s[key]}</div>')
         if s.get("note"):
             parts.append(f'<div class="kv"><i>{s["note"]}</i></div>')
-    else:
+    else:  # PASSED / IDLE
         parts.append(f'<div class="kv">{s["trigger"]}</div>')
     parts.append("</div>")
     st.markdown("".join(parts), unsafe_allow_html=True)
@@ -94,10 +117,12 @@ def render_teller():
         st.warning(f"Morning teller unavailable: {e}")
         return
     c = plan["context"]
+    o = c.get("today_open")
     st.title("📈 NIFTY Teller — the morning plan")
     st.caption(f"What to do at the open **after {c['date']}** · anchor close "
-               f"**{c['close']:,.1f}** · rebuilds each market close. Validated **GO** edges "
-               f"plus two **MARGINAL** satellites (BearRallyFade, MarubozuGapReclaim) — take those small.")
+               f"**{c['close']:,.1f}** · rebuilds each market close, then resolves at ~09:10 "
+               f"once the open prints. Validated **GO** edges plus two **MARGINAL** satellites "
+               f"(BearRallyFade, MarubozuGapReclaim) — take those small.")
 
     m1, m2, m3, m4, m5, m6 = st.columns(6)
     m1.metric("Close", f"{c['close']:,.0f}")
@@ -107,31 +132,47 @@ def render_teller():
     m5.metric("vs 20-DMA", "above" if c["uptrend20"] else "below")
     m6.metric("vs 200-DMA", "above" if c["above200"] else "below")
 
-    gf = c["gap_up_levels"]["gapfade_0.30pct"]
-    gh = c["gap_up_levels"]["gaphalf_0.35pct"]
-    st.info(
-        f"**If NIFTY opens GAP-UP → go SHORT.**  "
-        f"GapFade-short triggers above **{gf:,.0f}** (≥{GAPFADE_GMIN:.2f}% gap, needs close>20DMA "
-        f"— currently {'✔ ON' if c['uptrend20'] else '✘ off'}).  "
-        f"GapHalfFill-short triggers above **{gh:,.0f}** (≥{GAPHALF_GMIN:.2f}% gap, half-gap target)."
-    )
+    if o:
+        gap = o["open"] - c["close"]
+        arrow = "GAP-UP" if o["gap_pct"] >= 0 else "GAP-DOWN"
+        active_n = sum(1 for s in plan["signals"] if s["status"] == "ACTIVATED")
+        banner = (f"**Open printed: {o['open']:,.0f}  ({o['gap_pct']:+.2f}%, {arrow} {gap:+,.0f} pt "
+                  f"vs {c['close']:,.0f}).**  Plan RESOLVED — "
+                  f"**{active_n} edge{'s' if active_n != 1 else ''} active now.**")
+        (st.error if active_n else st.success)(banner)
+    else:
+        gf = c["gap_up_levels"]["gapfade_0.30pct"]
+        gh = c["gap_up_levels"]["gaphalf_0.35pct"]
+        st.info(
+            f"**If NIFTY opens GAP-UP → go SHORT.**  "
+            f"GapFade-short triggers above **{gf:,.0f}** (≥{GAPFADE_GMIN:.2f}% gap, needs close>20DMA "
+            f"— currently {'✔ ON' if c['uptrend20'] else '✘ off'}).  "
+            f"GapHalfFill-short triggers above **{gh:,.0f}** (≥{GAPHALF_GMIN:.2f}% gap, half-gap target)."
+        )
 
-    order = {"ARMED": 0, "CONDITIONAL": 1, "IDLE": 2}
+    order = {"ACTIVATED": 0, "ARMED": 1, "CONDITIONAL": 2, "PASSED": 3, "IDLE": 4}
     sigs = sorted(plan["signals"], key=lambda x: order[x["status"]])
+    active = [s for s in sigs if s["status"] == "ACTIVATED"]
     armed = [s for s in sigs if s["status"] == "ARMED"]
     cond = [s for s in sigs if s["status"] == "CONDITIONAL"]
-    idle = [s for s in sigs if s["status"] == "IDLE"]
+    stood_down = [s for s in sigs if s["status"] in ("PASSED", "IDLE")]
 
+    if active:
+        st.subheader("🔴 Active now — trade at the open")
+        for s in active:
+            _render_signal(s)
     if armed:
         st.subheader("🟢 Armed at the open")
         for s in armed:
             _render_signal(s)
-    st.subheader("🟡 Conditional on the open (gap)")
-    for s in cond:
-        _render_signal(s)
-    if idle:
-        with st.expander(f"⚪ Idle edges ({len(idle)}) — conditions not met"):
-            for s in idle:
+    if cond:
+        st.subheader("🟡 Conditional on the open (gap)")
+        for s in cond:
+            _render_signal(s)
+    if stood_down:
+        label = "Passed / idle" if o else "Idle edges"
+        with st.expander(f"⚪ {label} ({len(stood_down)}) — no trade for these today"):
+            for s in stood_down:
                 _render_signal(s)
     st.caption("⚠️ Gap shorts are fill-sensitive — use a limit at/just below the open; the edge lives "
                "in the first minute. Costs ~10 pt/round-trip (Zerodha futures, lot 75), net figures. "
