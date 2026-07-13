@@ -458,38 +458,39 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
     # intraday bars); here we gate on the daily uptrend + a daily strong-up-day proxy.
     carry_range = (high - low) / close * 100 if close else np.nan
     carry_burst = bool(ret > 0 and carry_range >= CARRY_SPAN and uwpct <= CARRY_CLOSE_WICK)
-    if uptrend20 and carry_burst:
+    if uptrend20:
+        # In an uptrend the winning carry side is LONG (momentum persists on NIFTY;
+        # short-carry has no edge). A fresh momentum burst = the validated entry;
+        # otherwise it's the standing long-carry bias.
+        if carry_burst:
+            entry = ("carry/BUY the close and HOLD — fresh momentum burst is the validated entry; "
+                     "confirm the intraday 4-green-hourly run to add size")
+            note = ("Fresh momentum burst today. Momentum PERSISTS on NIFTY → carry LONG. Carrying a "
+                    "SHORT forward has NO validated edge (shorts squeeze). Overnight/gap risk, ~6-day hold.")
+            burst_txt = (f"fresh burst ✔ (range {carry_range:.2f}% ≥ {CARRY_SPAN:.2f}%, "
+                         f"closed strong, wick {uwpct:.2f}%)")
+        else:
+            entry = ("HOLD/accumulate longs while close > 20-DMA; add on a fresh 4-green-hourly "
+                     "momentum burst (the validated add trigger)")
+            note = ("Standing bias — no fresh burst today, but LONG is the only side with a next-day "
+                    "carry edge on NIFTY (short-carry has none). NB: this is the 20-DMA momentum gate; "
+                    "the top regime banner uses the structural 200-DMA.")
+            burst_txt = f"no fresh burst (day's range {carry_range:.2f}% < {CARRY_SPAN:.2f}%)"
         sigs.append(Signal(
             key="G", name="CarryFwdMomentum", side="LONG", horizon="swing", status="ARMED",
-            headline=f"Strong up-day in an uptrend → CARRY LONG (long has the higher next-day win prob; "
-                     f"short-carry has no edge on NIFTY)",
-            trigger=f"close>20DMA ✔  and  strong green day (range {carry_range:.2f}% ≥ {CARRY_SPAN:.2f}%, "
-                    f"closed near high, wick {uwpct:.2f}% ≤ {CARRY_CLOSE_WICK:.2f}%)  ✔ armed",
-            entry="carry/BUY the close and hold; confirm the intraday 4-green-hourly burst before adding",
-            stop=f"today's low {low:,.0f} (initial)",
-            target="none — trail: exit on the first daily CLOSE below the prior day's low (2–6 day drift)",
-            note="Momentum PERSISTS on NIFTY → the winning side to carry is LONG. Carrying a SHORT forward "
-                 "has no validated edge (shorts squeeze). Long-only, overnight/gap risk, ~6-day hold.",
+            headline="CARRY LONG — long has the higher next-day win prob on NIFTY (short-carry has no edge)",
+            trigger=f"close>20DMA ✔ (uptrend gate on) · {burst_txt}",
+            entry=entry,
+            stop=f"prior-day-low trail (close-based); initial ≈ today's low {low:,.0f}",
+            target="none — let the drift run; flip flat on a daily CLOSE below the prior day's low / 20-DMA",
+            note=note,
             stats="GO · PF 3.30 · 61% win · +2,068 pt · ~6/yr · cross-index",
         ))
     else:
-        if not uptrend20:
-            why = (f"close {close:,.0f} ≤ 20DMA {t['sma20']:,.0f} → carry-momentum OFF "
-                   f"(it's long-only; carrying SHORT has no edge on NIFTY either)")
-        else:
-            bits = []
-            if not (ret > 0):
-                bits.append(f"today red (o→c {ret:+.2f}%)")
-            elif not (carry_range >= CARRY_SPAN):
-                bits.append(f"range {carry_range:.2f}% < {CARRY_SPAN:.2f}% (no burst)")
-            elif not (uwpct <= CARRY_CLOSE_WICK):
-                bits.append(f"upper-wick {uwpct:.2f}% > {CARRY_CLOSE_WICK:.2f}% (didn't close strong)")
-            why = ("uptrend ON, so LONG is the favoured carry side — but no fresh momentum burst today ("
-                   + "; ".join(bits) + ")")
         sigs.append(Signal(
             key="G", name="CarryFwdMomentum", side="LONG", horizon="swing", status="IDLE",
-            headline="No fresh momentum carry today (LONG is the only side with a next-day edge on NIFTY)",
-            trigger=why,
+            headline="Below the 20-DMA → carry-momentum OFF (long-only; short-carry has no edge either)",
+            trigger=f"needs close>20DMA; close {close:,.0f} ≤ 20DMA {t['sma20']:,.0f}",
             stats="GO · PF 3.30 · 61% win · +2,068 pt · ~6/yr · cross-index",
         ))
 
