@@ -15,6 +15,11 @@ st.set_page_config(
     layout="wide",
 )
 
+# Optional visitor tracking (Google Analytics 4). No-op unless a GA4 Measurement
+# ID is set via st.secrets["ga_measurement_id"] or the GA_MEASUREMENT_ID env var.
+from analytics import inject_ga  # noqa: E402
+inject_ga()
+
 # ----------------------------------------------------------------------------
 # TELLER — the morning plan, pinned to the top.
 # Given the latest CLOSE it prints what to do at the NEXT open and the exact
