@@ -152,13 +152,25 @@ def _grade_pill(stats: str) -> str:
     return f'<span class="pill {cls}">{label}</span>'
 
 
-def _status_pill(status: str) -> str:
+def _cond_label(s: dict) -> str:
+    """CONDITIONAL trigger direction, read from the signal's own headline."""
+    h = (s.get("headline") or "").upper()
+    if "GAPS DOWN" in h or "GAP-DOWN" in h:
+        return "🟠 IF GAP-DOWN"
+    if "GAPS UP" in h or "GAP-UP" in h:
+        return "🟠 IF GAP-UP"
+    return "🟠 IF BREAKOUT"
+
+
+def _status_pill(status: str, s: dict | None = None) -> str:
     m = {"ACTIVATED": ("p-act", "🎉 ACTIVE NOW"),
          "ARMED": ("p-arm", "🟢 ARMED"),
          "CONDITIONAL": ("p-gap", "🟠 IF GAP-UP"),
          "PASSED": ("p-pass", "⚫ PASSED"),
          "IDLE": ("p-idle", "⚪ IDLE")}
     cls, label = m[status]
+    if status == "CONDITIONAL" and s is not None:
+        label = _cond_label(s)
     return f'<span class="pill {cls}">{label}</span>'
 
 
@@ -174,7 +186,7 @@ def _render_signal(s: dict, signal_day: str | None = None):
            "PASSED": "passed", "IDLE": "idle"}[s["status"]]
     parts = [f'<div class="teller-card {css}">']
     parts.append(
-        f'{_status_pill(s["status"])} {_grade_pill(s["stats"])} {_side_pill(s["side"])} '
+        f'{_status_pill(s["status"], s)} {_grade_pill(s["stats"])} {_side_pill(s["side"])} '
         f'{_horizon_pill(s["horizon"])} '
         f'<b>{s["name"]}</b> <span class="kv">· {s["stats"]}</span>')
     if signal_day and s["status"] in ("ACTIVATED", "ARMED"):
