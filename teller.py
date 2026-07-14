@@ -13,16 +13,30 @@ NO-GO setup:
     C Squeeze-ORB    (long)  — armed at close when 5d span in bottom 25%; break of 30m OR
     M MarubozuGapReclaim (long) — fires IF tomorrow gaps DOWN below a green close-on-high
                                   candle's low (MARGINAL, rare satellite)
+    P GapDownBounce  (long)  — fires IF tomorrow gaps DOWN after a big 3-day drop (exhaustion
+                                bounce; buy open, exit close; skip in a crash). MARGINAL-GO (30)
   Swing (daily):
     R RSI2 mean-rev  (long)  — armed at close when close>200DMA and RSI(2)<10
     D BearRallyFade  (short) — armed at close when up-day>+0.6% AND close<50DMA (MARGINAL-GO)
-    G CarryFwdMomentum(long) — which side to CARRY overnight: momentum persists on NIFTY, so a
-                               strong up-day in an uptrend favours carrying LONG (short-carry has
-                               no edge). Validated GO (32); daily proxy for its 4-green-hourly burst.
+    G CarryFwdMomentum(long) — which side to CARRY overnight: momentum persists on NIFTY (32).
+    N MomentumCarryBook(long)— the validated 4-leg carry book (33): 20-DMA reclaim / wide-range
+                                thrust / gap-up hold / 3-up-days, gated close>20DMA; buy the close,
+                                prior-day-low trail. GO. Reports which leg fired.
+    T Donchian trend (both)  — daily 20/10 channel proxy for the validated 1h Donchian (12, GO-thin):
+                                break the 20-day high → trend LONG, the 20-day low → trend SHORT.
+    E EMA5BreakdownShort(short)— fresh loss of the 5-EMA while close<50DMA → short next open, 2-day
+                                hold. MARGINAL-GO (34), correction-harvester.
+    K Breakdown20DMAShort(short)— fresh close below the 20-DMA while close<50DMA → short, cover on a
+                                close above the prior high. MARGINAL-GO (43).
+    S BearShootingStar(short)— shooting star + RSI2>90 + 500-pt stretch → sell-stop the star's low.
+                                MARGINAL, rare (~1.7/yr, 27).
+    O OverboughtReversalFade(short)— bearish reversal candle at RSI14>70 → short next open. MARGINAL,
+                                ~96% of its edge is 2024 — superseded by BearRallyFade (29).
 
-Most are validated GO edges. Two are MARGINAL satellites — BearRallyFade (the best
-NIFTY short, profits in real bears) and MarubozuGapReclaim (rare, defined-risk) —
-labelled as such so they're taken small, not treated as core.
+Most are validated GO edges; several are MARGINAL satellites (BearRallyFade, GapDownBounce,
+EMA5/20-DMA breakdown shorts, MarubozuGapReclaim, BearShootingStar, OverboughtReversalFade) —
+each labelled with its stats so it's taken small, not treated as core. 13_RegimeSystem is the
+Bull/Bear regime banner + running RSI2 (R) and Donchian (T) as a portfolio.
 
 The two GAP-UP shorts (B, F) are the "if it opens gap-up, go short — above what
 level" answer: their trigger levels are printed as absolute NIFTY prices.
@@ -75,6 +89,23 @@ CARRY_REGIME_SMA = 20     # G: carry-momentum uptrend gate (close>20DMA)
 CARRY_SPAN = 1.17         # G: daily range %% proxy for the validated 4-green-hourly burst
 CARRY_CLOSE_WICK = 0.30   # G: max upper-wick %% — closed strong / near the high
 
+# --- expanded validated GO/MARGINAL library (added) ---------------------------
+DONCH_N_ENTRY = 20        # T: daily Donchian breakout channel (proxy for the validated 1h 20/10)
+DONCH_N_EXIT = 10         # T: opposite 10-bar channel = trailing exit
+GDB_GAP = -0.15           # P: gap-down threshold (%) to consider the exhaustion bounce
+GDB_DROP = 3.5            # P: prior 3-day high -> open drop (%) that marks exhaustion
+GDB_RVOL_MAX = 2.5        # P: skip if 20-day realized vol (%) above this (crash circuit-breaker)
+BOOK_THRUST_ATR = 1.5     # N: wide-range-thrust leg = range > 1.5 x ATR14
+BOOK_THRUST_POS = 0.8     # N: close in the top 20% of the day's range
+BOOK_GAPUP = 1.003        # N: gap-up-hold leg = open > prev_close x 1.003
+EMA5_SPAN = 5             # E: fast EMA for the breakdown short
+EMA5_HOLD = 2             # E: EMA5-breakdown short = fixed 2-day hold
+SHOOT_STRETCH_PT = 500    # S: rally stretch (pts over 15 sessions) for the shooting-star short
+SHOOT_LOOKBACK = 15       # S: stretch lookback (sessions)
+SHOOT_RSI2 = 90           # S: RSI(2) overbought (rolling 3-day max) during the rally
+SHOOT_SL_PTS = None       # S: stop = entry + 2xATR14 (computed live)
+ORFADE_RSI14 = 70         # O: RSI(14) overbought for the reversal-candle fade
+
 
 # ---- data / indicators --------------------------------------------------------
 def _rsi(series: pd.Series, n: int) -> pd.Series:
@@ -102,6 +133,50 @@ def load_daily(data_file: str = DATA_FILE) -> pd.DataFrame:
     span5 = (d["high"].rolling(5).max() - d["low"].rolling(5).min()) / d["close"] * 100
     d["span5"] = span5
     d["span5_thr"] = span5.rolling(60, min_periods=20).quantile(SQUEEZE_Q)
+
+    # ---- extra indicators for the expanded GO library ------------------------
+    d["ema5"] = d["close"].ewm(span=EMA5_SPAN, adjust=False).mean()
+    d["rsi14"] = _rsi(d["close"], 14)
+    d["green"] = d["close"] > d["open"]
+    d["body"] = (d["close"] - d["open"]).abs()
+    d["rng"] = (d["high"] - d["low"]).replace(0, np.nan)
+    d["uwick"] = d["high"] - d[["open", "close"]].max(axis=1)
+    d["lwick"] = d[["open", "close"]].min(axis=1) - d["low"]
+    d["close_pos"] = (d["close"] - d["low"]) / d["rng"]           # 1 = closed on the high
+    prevc = d["close"].shift(1)
+    prevsma20 = d["sma20"].shift(1)
+
+    # N — the 4 carry-forward momentum legs (all long; gated on close>20DMA in build)
+    d["leg_reclaim20"] = (prevc <= prevsma20) & (d["close"] > d["sma20"])          # R (⭐ champion)
+    d["leg_thrust"] = d["green"] & (d["rng"] > BOOK_THRUST_ATR * d["atr14"]) & \
+        (d["close_pos"] >= BOOK_THRUST_POS)                                        # W
+    d["leg_gapup"] = (d["open"] > prevc * BOOK_GAPUP) & d["green"]                 # G
+    d["leg_3up"] = d["green"] & d["green"].shift(1) & d["green"].shift(2)          # U
+
+    # K / E — fresh downtrend-continuation breakdowns (need close<50DMA in build)
+    d["fresh_bd20"] = (prevc >= prevsma20) & (d["close"] < d["sma20"])             # 43
+    e = d["ema5"]; c = d["close"]
+    d["fresh_ema5_bd"] = (c.shift(2) >= e.shift(2)) & (c.shift(1) < e.shift(1)) & (c < e)  # 34
+
+    # P — gap-down exhaustion bounce (precondition known at close; gap resolved vs open)
+    d["hi3"] = d["high"].rolling(3).max()
+    d["rvol20"] = d["close"].pct_change().rolling(20).std() * 100
+
+    # T — daily Donchian channel (proxy for the validated 1h 20/10)
+    d["donch_hi20"] = d["high"].rolling(DONCH_N_ENTRY).max()
+    d["donch_lo20"] = d["low"].rolling(DONCH_N_ENTRY).min()
+    d["donch_hi10"] = d["high"].rolling(DONCH_N_EXIT).max()
+    d["donch_lo10"] = d["low"].rolling(DONCH_N_EXIT).min()
+
+    # S — bear shooting star (exhausted-top short)
+    d["star"] = (d["uwick"] >= 1.5 * d["body"]) & (d["uwick"] >= 0.45 * d["rng"]) & \
+        (d["lwick"] <= d["body"])
+    d["stretch15"] = d["close"] - d["close"].shift(SHOOT_LOOKBACK)
+    d["rsi2_max3"] = d["rsi2"].rolling(3).max()
+
+    # O — bearish reversal candle at RSI14 overbought
+    d["bear_engulf"] = (~d["green"]) & (d["close"].shift(1) > d["open"].shift(1)) & \
+        (d["open"] >= d["close"].shift(1)) & (d["close"] <= d["open"].shift(1))
     return d
 
 
@@ -146,7 +221,8 @@ class Signal:
 
 def _resolve_against_open(sigs: list[Signal], open_px: float, close: float, atr: float,
                           low: float, b_level: float, f_level: float,
-                          green_maru: bool, uptrend20: bool) -> None:
+                          green_maru: bool, uptrend20: bool,
+                          extra: dict | None = None) -> None:
     """Mutate signals in place once today's real OPEN is known.
 
     ARMED (close-known) edges become ACTIVATED with concrete open-based prices.
@@ -206,6 +282,29 @@ def _resolve_against_open(sigs: list[Signal], open_px: float, close: float, atr:
                 s.status = "PASSED"
                 s.headline = (f"Open {open_px:,.0f} did not gap down below {low:,.0f} "
                               f"→ MarubozuGapReclaim passed")
+        elif k == "P" and s.status == "CONDITIONAL":
+            hi3 = (extra or {}).get("hi3")
+            rvol_ok = (extra or {}).get("rvol_ok", True)
+            drop_pct = (hi3 - open_px) / open_px * 100 if hi3 else 0.0
+            if gap_pct <= GDB_GAP and hi3 and drop_pct >= GDB_DROP and rvol_ok:
+                s.status = "ACTIVATED"
+                s.headline = (f"Gap-DOWN {gap_pct:+.2f}% after a {drop_pct:.1f}% 3-day drop "
+                              f"→ BUY the open, exit at the close")
+                s.entry = f"BUY at open {open_px:,.0f}"
+                s.stop = "none — the daily bar is the trade (worst historical −460 pt)"
+                s.target = "exit at TODAY'S close (intraday; no overnight hold)"
+            else:
+                why = ("crash circuit-breaker ON (20-day rvol high)" if not rvol_ok else
+                       f"no exhausted gap-down (gap {gap_pct:+.2f}%, 3-day drop {drop_pct:.1f}% "
+                       f"< {GDB_DROP:.1f}%)")
+                s.status = "PASSED"
+                s.headline = f"Open {open_px:,.0f} — {why} → GapDownBounce passed"
+        elif k == "N" and s.status == "ARMED":
+            s.status = "ACTIVATED"
+            s.entry = f"BUY at open {open_px:,.0f} (carry; validated entry = the signal-day close)"
+        elif k in ("E", "K", "O") and s.status == "ARMED":
+            s.status = "ACTIVATED"
+            s.entry = f"SHORT at open {open_px:,.0f}"
 
 
 def _regime(close: float, sma20, sma50, sma200, ret: float) -> dict:
@@ -269,6 +368,26 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
     low = float(t["low"])
     uwpct = (high - close) / close * 100 if close else np.nan   # upper-wick %
     green_maru = bool(ret > 0 and uwpct <= MARU_HIWICK)         # green close-on-high candle
+
+    # ---- extra reads for the expanded library --------------------------------
+    rsi14 = float(t["rsi14"]) if not np.isnan(t["rsi14"]) else 50.0
+    hi3 = float(t["hi3"]) if not np.isnan(t["hi3"]) else high
+    rvol20 = float(t["rvol20"]) if not np.isnan(t["rvol20"]) else 0.0
+    rvol_ok = rvol20 <= GDB_RVOL_MAX
+    donch_hi20 = float(t["donch_hi20"]) if not np.isnan(t["donch_hi20"]) else high
+    donch_lo20 = float(t["donch_lo20"]) if not np.isnan(t["donch_lo20"]) else low
+    donch_hi10 = float(t["donch_hi10"]) if not np.isnan(t["donch_hi10"]) else high
+    donch_lo10 = float(t["donch_lo10"]) if not np.isnan(t["donch_lo10"]) else low
+    leg_reclaim = bool(t["leg_reclaim20"])
+    leg_thrust = bool(t["leg_thrust"])
+    leg_gapup = bool(t["leg_gapup"])
+    leg_3up = bool(t["leg_3up"])
+    fresh_bd20 = bool(t["fresh_bd20"])
+    fresh_ema5 = bool(t["fresh_ema5_bd"])
+    is_star = bool(t["star"])
+    stretch15 = float(t["stretch15"]) if not np.isnan(t["stretch15"]) else 0.0
+    rsi2_max3 = float(t["rsi2_max3"]) if not np.isnan(t["rsi2_max3"]) else 0.0
+    bear_engulf = bool(t["bear_engulf"])
 
     sigs: list[Signal] = []
 
@@ -433,6 +552,185 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             stats="MARGINAL · PF 2.53 · 59% win · ~2/yr",
         ))
 
+    # ---- P: GapDownBounce (intraday long) — exhausted gap-down bounce -----------
+    drop_level = hi3 / (1 + GDB_DROP / 100)              # open must be ≤ this for a ≥3.5% 3-day drop
+    gap_level = close * (1 + GDB_GAP / 100)              # and a gap-down vs prev close
+    p_level = min(drop_level, gap_level)
+    if rvol_ok:
+        sigs.append(Signal(
+            key="P", name="GapDownBounce", side="LONG", horizon="intraday", status="CONDITIONAL",
+            headline=f"If open GAPS DOWN below {p_level:,.0f} (big 3-day drop) → BUY the open, exit at close",
+            trigger=f"needs gap-down & (3-day high {hi3:,.0f} − open)/open ≥ {GDB_DROP:.1f}%; "
+                    f"crash-breaker OFF (20d rvol {rvol20:.2f}% ≤ {GDB_RVOL_MAX:.1f}%) ✔",
+            level=p_level,
+            entry="BUY at 09:15 open (only if it gaps down through the level)",
+            stop="none — the daily bar is the trade (worst historical −460 pt)",
+            target="exit at today's CLOSE (intraday; do NOT hold — the bounce fades by day 3)",
+            note="Buys exhaustion, not a crash — the rvol circuit-breaker skips waterfall days.",
+            stats="MARGINAL-GO · PF 1.74 · 58% win · +2,654 pt · ~6/yr",
+        ))
+    else:
+        sigs.append(Signal(
+            key="P", name="GapDownBounce", side="LONG", horizon="intraday", status="IDLE",
+            headline=f"Crash circuit-breaker ON (20-day rvol {rvol20:.2f}% > {GDB_RVOL_MAX:.1f}%) → no gap-down buy",
+            trigger="extreme-vol regime — don't catch a falling knife",
+            stats="MARGINAL-GO · PF 1.74 · 58% win · +2,654 pt · ~6/yr",
+        ))
+
+    # ---- T: Donchian trend (both sides) — daily-channel proxy for the 1h 20/10 --
+    _pos = ("above the 20-day high (trend LONG in force)" if close >= donch_hi20 else
+            "below the 20-day low (trend SHORT in force)" if close <= donch_lo20 else
+            "inside the channel (no trend position)")
+    sigs.append(Signal(
+        key="T", name="Donchian trend", side="BOTH", horizon="swing", status="CONDITIONAL",
+        headline=f"Trend LONG on a break above {donch_hi20:,.0f} · trend SHORT below {donch_lo20:,.0f}",
+        trigger=f"daily 20/10 channel · currently {_pos}",
+        level=donch_hi20,
+        entry=f"LONG if it breaks {donch_hi20:,.0f} (20-day high) · SHORT if it breaks {donch_lo20:,.0f} (20-day low)",
+        stop="opposite 10-day channel is the trail",
+        target=f"trail: long exits on a break below {donch_lo10:,.0f} (10-day low); "
+               f"short exits above {donch_hi10:,.0f} (10-day high)",
+        note="Positional trend-rider (holds overnight). Thin edge — the validated version is 1-HOUR "
+             "Donchian; this daily channel is the proxy the daily feed can show.",
+        stats="GO (thin) · PF 1.16 · +3,718 pt · ~72/yr (1h)",
+    ))
+
+    # ---- N: MomentumCarryBook (swing long) — the validated 4-leg carry book -----
+    book_legs = []
+    if leg_reclaim: book_legs.append("20-DMA reclaim ⭐")
+    if leg_thrust:  book_legs.append("wide-range thrust")
+    if leg_gapup:   book_legs.append("gap-up hold")
+    if leg_3up:     book_legs.append("3 up-days")
+    if uptrend20 and book_legs:
+        sigs.append(Signal(
+            key="N", name="MomentumCarryBook", side="LONG", horizon="swing", status="ARMED",
+            headline=f"Carry-momentum fired ({', '.join(book_legs)}) → BUY & carry (prior-day-low trail)",
+            trigger=f"close>20DMA ✔ · leg(s): {', '.join(book_legs)}",
+            entry="BUY the signal-day close and carry (in the morning, enter at the open as the practical proxy)",
+            stop=f"initial = today's low {low:,.0f}",
+            target="none — trail: exit on the first daily CLOSE below the prior day's low (40-day cap, ~5-day hold)",
+            note="The 4 legs are correlated (all bullish continuation) — run as ONE book, one position at a time. "
+                 "20-DMA reclaim (leg R / strategy 39) is the champion leg.",
+            stats="GO · PF 1.81 · +12,732 pt · ~20/yr · NIFTY+SENSEX",
+        ))
+    else:
+        why = ("close ≤ 20-DMA (uptrend gate off)" if not uptrend20
+               else "no carry leg fired (no reclaim / thrust / gap-up-hold / 3-up-days)")
+        sigs.append(Signal(
+            key="N", name="MomentumCarryBook", side="LONG", horizon="swing", status="IDLE",
+            headline="No carry-momentum entry today → book flat",
+            trigger=why,
+            stats="GO · PF 1.81 · +12,732 pt · ~20/yr · NIFTY+SENSEX",
+        ))
+
+    # ---- E: EMA5BreakdownShort (swing short) — fresh 5-EMA loss in a downtrend ---
+    if below50 and fresh_ema5:
+        sigs.append(Signal(
+            key="E", name="EMA5BreakdownShort", side="SHORT", horizon="swing", status="ARMED",
+            headline="Fresh 5-EMA breakdown below the 50-DMA → SHORT tomorrow's open (2-day hold)",
+            trigger="clean above → two consecutive closes below the 5-EMA ✔ and close<50DMA ✔ (confirmed downtrend)",
+            entry="SHORT at tomorrow's open",
+            stop=f"open + 1.5 × ATR14 (informational; ATR14={atr:,.0f}) — headline is a fixed 2-day time-exit",
+            target=f"cover at the close of day t+{EMA5_HOLD} (fixed {EMA5_HOLD}-day hold)",
+            note="Continuation-down short (fades the DOWN leg). Distinct from BearRallyFade (fades an up-pop). "
+                 "Thin correction-harvester — size small.",
+            stats="MARGINAL-GO · ~7.6/yr · net ~+200/yr",
+        ))
+    else:
+        why = []
+        if not below50:
+            why.append(f"close {close:,.0f} ≥ 50DMA (no downtrend)" if not np.isnan(t["sma50"]) else "50DMA n/a")
+        if not fresh_ema5:
+            why.append("no fresh 5-EMA breakdown (needs a clean above → 2 closes below)")
+        sigs.append(Signal(
+            key="E", name="EMA5BreakdownShort", side="SHORT", horizon="swing", status="IDLE",
+            headline="No fresh 5-EMA breakdown in a downtrend → idle",
+            trigger="; ".join(why) if why else "conditions not met",
+            stats="MARGINAL-GO · ~7.6/yr · net ~+200/yr",
+        ))
+
+    # ---- K: Breakdown20DMAShort (swing short) — fresh 20-DMA loss in a downtrend -
+    if below50 and fresh_bd20:
+        sigs.append(Signal(
+            key="K", name="Breakdown20DMAShort", side="SHORT", horizon="swing", status="ARMED",
+            headline="Fresh 20-DMA breakdown below the 50-DMA → SHORT & carry (cover on a close above the prior high)",
+            trigger="close crossed BELOW the 20-DMA (prev close ≥ prev 20-DMA) ✔ and close<50DMA ✔",
+            entry="SHORT the signal-day close (in the morning, enter at the open as the practical proxy)",
+            stop=f"initial = today's high {high:,.0f}",
+            target="cover on the first daily CLOSE above the prior day's high (40-day cap)",
+            note="The one short mirror of the momentum-carry legs that survives. Lumpy — top-3 trades ≈ 89% of "
+                 "net; a small bear-side satellite, not standalone income.",
+            stats="MARGINAL-GO · PF 1.92 · +5,037 pt · ~5/yr",
+        ))
+    else:
+        why = []
+        if not below50:
+            why.append(f"close {close:,.0f} ≥ 50DMA (no downtrend)" if not np.isnan(t["sma50"]) else "50DMA n/a")
+        if not fresh_bd20:
+            why.append("no fresh 20-DMA breakdown")
+        sigs.append(Signal(
+            key="K", name="Breakdown20DMAShort", side="SHORT", horizon="swing", status="IDLE",
+            headline="No fresh 20-DMA breakdown in a downtrend → idle",
+            trigger="; ".join(why) if why else "conditions not met",
+            stats="MARGINAL-GO · PF 1.92 · +5,037 pt · ~5/yr",
+        ))
+
+    # ---- S: BearShootingStar (swing short, rare satellite) ---------------------
+    if stretch15 >= SHOOT_STRETCH_PT and rsi2_max3 > SHOOT_RSI2 and is_star:
+        sigs.append(Signal(
+            key="S", name="BearShootingStar", side="SHORT", horizon="swing", status="ARMED",
+            headline=f"Exhausted top (shooting star, +{stretch15:,.0f}pt/15d, RSI2>90) → sell-stop the star's low {low:,.0f}",
+            trigger=f"stretch +{stretch15:,.0f}pt ≥ {SHOOT_STRETCH_PT} ✔ · RSI2(3d max) {rsi2_max3:.0f} > {SHOOT_RSI2} ✔ · shooting star ✔",
+            level=low,
+            entry=f"SHORT on a break below the star's low {low:,.0f} (sell-stop, valid 2 sessions; else cancel)",
+            stop=f"entry + 2.0 × ATR14 (wide; ATR14={atr:,.0f} → ≈ {close + 2*atr:,.0f})",
+            target=f"entry − 3.0 × ATR14 (big swing-down objective ≈ {close - 3*atr:,.0f}), else 10-day time-exit",
+            note="Rare exhaustion short (~1.7/yr, n=12) — the shooting star is the essential filter. Size small.",
+            stats="MARGINAL · PF 1.82 · 58% win · ~1.7/yr",
+        ))
+    else:
+        why = []
+        if stretch15 < SHOOT_STRETCH_PT:
+            why.append(f"stretch +{stretch15:,.0f}pt < {SHOOT_STRETCH_PT} (no extended rally)")
+        if not (rsi2_max3 > SHOOT_RSI2):
+            why.append(f"RSI2(3d max) {rsi2_max3:.0f} ≤ {SHOOT_RSI2}")
+        if not is_star:
+            why.append("no shooting-star candle")
+        sigs.append(Signal(
+            key="S", name="BearShootingStar", side="SHORT", horizon="swing", status="IDLE",
+            headline="No exhausted-top shooting star → idle",
+            trigger="; ".join(why) if why else "conditions not met",
+            stats="MARGINAL · PF 1.82 · 58% win · ~1.7/yr",
+        ))
+
+    # ---- O: OverboughtReversalFade (swing short) -------------------------------
+    or_candle = is_star or bear_engulf
+    if rsi14 > ORFADE_RSI14 and or_candle:
+        which = "shooting star" if is_star else "bearish engulfing"
+        sigs.append(Signal(
+            key="O", name="OverboughtReversalFade", side="SHORT", horizon="swing", status="ARMED",
+            headline=f"Bearish reversal candle ({which}) at RSI14 {rsi14:.0f}>70 → SHORT tomorrow's open",
+            trigger=f"RSI14 {rsi14:.1f} > {ORFADE_RSI14} ✔ · rejection candle ({which}) ✔",
+            entry="SHORT at tomorrow's open (a break-of-low entry destroys the edge — NIFTY V-bounces there)",
+            stop=f"open + 2.0 × ATR14 (ATR14={atr:,.0f} → ≈ {close + 2*atr:,.0f})",
+            target=f"entry − 2.0 × ATR14 (≈ {close - 2*atr:,.0f}), else 7-day time-exit",
+            note="⚠️ ~96% of this edge came from 2024 and it's candle-fragile — superseded by BearRallyFade (D). "
+                 "Treat as informational, not core.",
+            stats="MARGINAL · PF 2.03 · 64% win · ~2.5/yr · 2024-concentrated",
+        ))
+    else:
+        why = []
+        if not (rsi14 > ORFADE_RSI14):
+            why.append(f"RSI14 {rsi14:.1f} ≤ {ORFADE_RSI14} (not overbought)")
+        if not or_candle:
+            why.append("no bearish reversal candle")
+        sigs.append(Signal(
+            key="O", name="OverboughtReversalFade", side="SHORT", horizon="swing", status="IDLE",
+            headline="No overbought bearish-reversal candle → idle",
+            trigger="; ".join(why) if why else "conditions not met",
+            stats="MARGINAL · PF 2.03 · 64% win · ~2.5/yr · 2024-concentrated",
+        ))
+
     # ---- resolve against today's real open, if the morning run captured it -----
     anchor_date = pd.Timestamp(t.name).strftime("%Y-%m-%d")
     open_info = None
@@ -441,7 +739,8 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             if str(today_open.get("anchor_date")) == anchor_date and today_open.get("open") is not None:
                 open_px = float(today_open["open"])
                 _resolve_against_open(sigs, open_px, close, atr, low,
-                                      b_level, f_level, green_maru, uptrend20)
+                                      b_level, f_level, green_maru, uptrend20,
+                                      extra={"hi3": hi3, "rvol_ok": rvol_ok})
                 open_info = {
                     "date": today_open.get("date"),
                     "open": open_px,
@@ -537,7 +836,7 @@ def _fmt_cli(plan: dict) -> str:
         out.append(f"TODAY'S OPEN {o['open']:,.1f}  (gap {o['gap_pct']:+.2f}% vs anchor) "
                    f"— plan RESOLVED against the real open")
     order = {"ACTIVATED": 0, "ARMED": 1, "CONDITIONAL": 2, "PASSED": 3, "IDLE": 4}
-    tags = {"ACTIVATED": "🎉 ACTIVE", "ARMED": "🟢 ARMED", "CONDITIONAL": "🟡 IF-GAP",
+    tags = {"ACTIVATED": "🎉 ACTIVE", "ARMED": "🟢 ARMED", "CONDITIONAL": "🟠 IF-GAP",
             "PASSED": "⚫ PASSED", "IDLE": "⚪ idle"}
     for s in sorted(plan["signals"], key=lambda x: order[x["status"]]):
         tag = tags[s["status"]]

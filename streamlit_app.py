@@ -33,36 +33,42 @@ st.markdown("""
 <style>
   .teller-card {border:1px solid rgba(128,128,128,.25); border-radius:14px;
                 padding:12px 16px; margin-bottom:10px; background:rgba(128,128,128,.05);}
-  .active {border-left:5px solid #22c55e;
-           background:linear-gradient(90deg, rgba(34,197,94,.16), rgba(16,185,129,.06));
-           box-shadow:0 0 0 1px #22c55e55, 0 3px 14px rgba(34,197,94,.28);}
-  .armed  {border-left:5px solid #16a34a;}
-  .ifgap  {border-left:5px solid #f59e0b;}
+  .active {border-left:5px solid #14b8a6;
+           background:linear-gradient(90deg, rgba(20,184,166,.14), rgba(13,148,136,.05));
+           box-shadow:0 0 0 1px #14b8a64d, 0 3px 14px rgba(20,184,166,.22);}
+  .armed  {border-left:5px solid #0d9488;}
+  .ifgap  {border-left:5px solid #D97757;}
   .passed {border-left:5px solid rgba(128,128,128,.35); opacity:.6;}
   .idle   {border-left:5px solid rgba(128,128,128,.35); opacity:.72;}
   .lvl    {font-size:1.7rem; font-weight:700; letter-spacing:-.5px;}
   .pill   {display:inline-block; padding:2px 10px; border-radius:999px;
            font-size:.72rem; font-weight:700; letter-spacing:.3px; vertical-align:middle;}
-  .p-act  {background:#22c55e33; color:#15803d;}
-  .p-arm  {background:#16a34a22; color:#16a34a;}
-  .p-gap  {background:#f59e0b22; color:#d97706;}
+  .p-act  {background:#14b8a630; color:#0f766e;}
+  .p-arm  {background:#0d948822; color:#0d9488;}
+  .p-gap  {background:#D9775722; color:#C2410C;}
   .p-pass {background:#8080801a; color:#888;}
   .p-idle {background:#8080801a; color:#888;}
   .p-long {background:#2563eb22; color:#2563eb;}
-  .p-short{background:#dc262622; color:#dc2626;}
+  .p-short{background:#bd6b6b22; color:#a5504f;}
+  .p-both {background:#7c3aed22; color:#7c3aed;}
+  .h-intraday {background:#0891b222; color:#0e7490; border:1px solid #0891b255;}
+  .h-swing    {background:#7c3aed1a; color:#6d28d9; border:1px solid #7c3aed44;}
+  .g-go   {background:#0d94882b; color:#0f766e; border:1px solid #0d948877;}
+  .g-mgo  {background:#D9775726; color:#B8512E; border:1px solid #D9775788;}
+  .g-marg {background:#9ca3af26; color:#6b7280; border:1px solid #9ca3af77;}
   .kv     {color:#888; font-size:.82rem;}
   .headline {font-size:1.0rem; font-weight:600; margin:.3rem 0;}
-  .regime {border-radius:14px; padding:14px 18px; margin:2px 0 14px 0; color:#fff;
+  .regime {border-radius:14px; padding:14px 18px; margin:2px 0 14px 0; color:#f8fafc;
            display:flex; align-items:center; gap:16px;}
   .regime .big {font-size:2.0rem; font-weight:800; letter-spacing:-.5px; line-height:1;
                 white-space:nowrap;}
   .regime .icon {font-size:2.4rem; line-height:1;}
   .regime .favor {font-size:.95rem; font-weight:600; opacity:.97;}
   .regime .why {font-size:.8rem; opacity:.85; margin-top:2px;}
-  .r-bull    {background:linear-gradient(90deg,#15803d,#22c55e);}
-  .r-bear    {background:linear-gradient(90deg,#991b1b,#ef4444);}
-  .r-neutral {background:linear-gradient(90deg,#92600e,#d97706);}
-  .move-hero {border-radius:14px; padding:18px 22px; margin:8px 0 16px; color:#fff;
+  .r-bull    {background:linear-gradient(90deg,#0f766e,#14b8a6);}
+  .r-bear    {background:linear-gradient(90deg,#965454,#c07d7d);}
+  .r-neutral {background:linear-gradient(90deg,#B8512E,#D97757);}
+  .move-hero {border-radius:14px; padding:18px 22px; margin:8px 0 16px; color:#f8fafc;
               background:linear-gradient(90deg,#1e3a8a,#3b82f6);
               display:flex; flex-wrap:wrap; gap:14px 34px; align-items:flex-end;}
   .move-hero .cell {min-width:120px;}
@@ -71,7 +77,7 @@ st.markdown("""
   .move-hero .val {font-size:2.1rem; font-weight:800; line-height:1.15; letter-spacing:-.5px;}
   .move-hero .val.sm {font-size:1.5rem;}
   .move-hero .sub {font-size:.82rem; opacity:.92; font-weight:600;}
-  .move-hero .up {color:#86efac;} .move-hero .down {color:#fca5a5;}
+  .move-hero .up {color:#5eead4;} .move-hero .down {color:#f3aeae;}
   /* bigger tab labels */
   .stTabs [data-baseweb="tab"] p {font-size:1.2rem; font-weight:700;}
   .stTabs [data-baseweb="tab"] {padding-top:8px; padding-bottom:8px;}
@@ -122,27 +128,58 @@ def _render_regime(r: dict):
 
 
 def _side_pill(side: str) -> str:
-    cls = "p-long" if side == "LONG" else "p-short"
+    cls = {"LONG": "p-long", "SHORT": "p-short", "BOTH": "p-both"}.get(side, "p-short")
     return f'<span class="pill {cls}">{side}</span>'
+
+
+def _horizon_pill(horizon: str) -> str:
+    cls = "h-intraday" if horizon == "intraday" else "h-swing"
+    return f'<span class="pill {cls}">{horizon.upper()}</span>'
+
+
+def _grade_pill(stats: str) -> str:
+    """Surface the validated verdict (GO / MARGINAL-GO / MARGINAL) as a badge.
+
+    The grade is the leading token of each signal's stats string, so read it back
+    rather than duplicating it on every Signal."""
+    s = (stats or "").strip().upper()
+    if s.startswith("MARGINAL-GO"):
+        cls, label = "g-mgo", "MARGINAL-GO"
+    elif s.startswith("MARGINAL"):
+        cls, label = "g-marg", "MARGINAL"
+    else:                                   # "GO", "GO (thin)", "GO leg of…"
+        cls, label = "g-go", "GO"
+    return f'<span class="pill {cls}">{label}</span>'
 
 
 def _status_pill(status: str) -> str:
     m = {"ACTIVATED": ("p-act", "🎉 ACTIVE NOW"),
          "ARMED": ("p-arm", "🟢 ARMED"),
-         "CONDITIONAL": ("p-gap", "🟡 IF GAP-UP"),
+         "CONDITIONAL": ("p-gap", "🟠 IF GAP-UP"),
          "PASSED": ("p-pass", "⚫ PASSED"),
          "IDLE": ("p-idle", "⚪ IDLE")}
     cls, label = m[status]
     return f'<span class="pill {cls}">{label}</span>'
 
 
-def _render_signal(s: dict):
+def _fmt_day(d: str) -> str:
+    try:
+        return pd.to_datetime(d).strftime("%d %b %Y")
+    except Exception:  # noqa: BLE001
+        return str(d)
+
+
+def _render_signal(s: dict, signal_day: str | None = None):
     css = {"ACTIVATED": "active", "ARMED": "armed", "CONDITIONAL": "ifgap",
            "PASSED": "passed", "IDLE": "idle"}[s["status"]]
     parts = [f'<div class="teller-card {css}">']
     parts.append(
-        f'{_status_pill(s["status"])} {_side_pill(s["side"])} '
-        f'<b>{s["name"]}</b> <span class="kv">· {s["horizon"]} · {s["stats"]}</span>')
+        f'{_status_pill(s["status"])} {_grade_pill(s["stats"])} {_side_pill(s["side"])} '
+        f'{_horizon_pill(s["horizon"])} '
+        f'<b>{s["name"]}</b> <span class="kv">· {s["stats"]}</span>')
+    if signal_day and s["status"] in ("ACTIVATED", "ARMED"):
+        parts.append(f'<div class="kv">⏱ Trigger met on <b>{_fmt_day(signal_day)}</b> '
+                     f'(last completed session)</div>')
     parts.append(f'<div class="headline">{s["headline"]}</div>')
     if s["status"] == "CONDITIONAL" and s.get("level"):
         parts.append(f'<div class="lvl">▸ {s["level"]:,.0f}</div>'
@@ -176,8 +213,10 @@ def render_teller():
     st.title("📈 NIFTY Teller — the morning plan")
     st.caption(f"What to do at the open **after {anchor_date}** · anchor close "
                f"**{anchor_close:,.1f}** · rebuilds each market close, then resolves at ~09:10 "
-               f"once the open prints. Validated **GO** edges plus two **MARGINAL** satellites "
-               f"(BearRallyFade, MarubozuGapReclaim) — take those small.")
+               f"once the open prints. Every edge is tagged with its validated grade — "
+               f"🟢 **GO** (deployable core), 🟠 **MARGINAL-GO** (thin/lumpy — size small), "
+               f"⚪ **MARGINAL** (rare or concentrated — informational) — plus an "
+               f"**INTRADAY**/**SWING** horizon badge.")
 
     # ---- what-if: type an open price and see which edges activate ---------------
     with st.expander("🔬 Check an open price — see which edges activate",
@@ -237,16 +276,17 @@ def render_teller():
     cond = [s for s in sigs if s["status"] == "CONDITIONAL"]
     stood_down = [s for s in sigs if s["status"] in ("PASSED", "IDLE")]
 
+    signal_day = c.get("date")
     if active:
         st.subheader("🎉 Active now — trade at the open")
         for s in active:
-            _render_signal(s)
+            _render_signal(s, signal_day)
     if armed:
-        st.subheader("🟢 Armed at the open")
+        st.subheader("🔫 Trigger met — trade at the open")
         for s in armed:
-            _render_signal(s)
+            _render_signal(s, signal_day)
     if cond:
-        st.subheader("🟡 Conditional on the open (gap)")
+        st.subheader("🟠 Conditional on the open (gap)")
         for s in cond:
             _render_signal(s)
     if stood_down:

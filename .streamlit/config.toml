@@ -1,0 +1,4 @@
+[theme]
+# Teal accent to match the eye-soothing dashboard palette.
+# Colors the active-tab underline, links, expander highlights and all widgets/buttons.
+primaryColor = "#0d9488"
