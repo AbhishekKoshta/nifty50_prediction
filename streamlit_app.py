@@ -189,7 +189,10 @@ def _render_signal(s: dict, signal_day: str | None = None):
         f'{_status_pill(s["status"], s)} {_grade_pill(s["stats"])} {_side_pill(s["side"])} '
         f'{_horizon_pill(s["horizon"])} '
         f'<b>{s["name"]}</b> <span class="kv">· {s["stats"]}</span>')
-    if signal_day and s["status"] in ("ACTIVATED", "ARMED"):
+    if s.get("since"):
+        parts.append(f'<div class="kv">⏱ In position since <b>{s["since"]}</b> '
+                     f'(still open — trail not hit)</div>')
+    elif signal_day and s["status"] in ("ACTIVATED", "ARMED"):
         parts.append(f'<div class="kv">⏱ Trigger met on <b>{_fmt_day(signal_day)}</b> '
                      f'(last completed session)</div>')
     parts.append(f'<div class="headline">{s["headline"]}</div>')
@@ -290,7 +293,7 @@ def render_teller():
 
     signal_day = c.get("date")
     if active:
-        st.subheader("🎉 Active now — trade at the open")
+        st.subheader("🎉 Active now")
         for s in active:
             _render_signal(s, signal_day)
     if armed:

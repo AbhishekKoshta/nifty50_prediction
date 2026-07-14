@@ -214,6 +214,7 @@ class Signal:
     target: str = ""
     note: str = ""
     stats: str = ""             # validated edge stats
+    since: str = ""             # for a HELD swing carry: the real entry date (not the anchor)
 
     def as_dict(self):
         return asdict(self)
@@ -345,6 +346,46 @@ def _regime(close: float, sma20, sma50, sma200, ret: float) -> dict:
             "rationale": f"50-DMA {sma50:,.0f} < close {close:,.0f} < 200-DMA {sma200:,.0f}"}
 
 
+# MomentumCarryBook (N): any one leg OPENS the carry while close>20DMA; the position
+# then trails out on the first daily CLOSE below the PRIOR day's low (or a 40-day cap).
+# One position at a time — so a carry entered days ago is still LIVE until the trail hits.
+_CARRY_LEGS = {
+    "leg_reclaim20": "20-DMA reclaim ⭐",
+    "leg_thrust":    "wide-range thrust",
+    "leg_gapup":     "gap-up hold",
+    "leg_3up":       "3 up-days",
+}
+BOOK_MAX_HOLD = 40  # trading-day cap on a single carry
+
+
+def _carry_state(d: pd.DataFrame) -> dict | None:
+    """Return the MomentumCarryBook carry that is STILL OPEN as of the last bar, else None.
+
+    Replays the book's state machine over the whole frame so a position opened on an
+    earlier session is reported as live until its prior-day-low trail (or 40-day cap) hits.
+    """
+    def _entry(i):
+        r = d.iloc[i]
+        if not (r["close"] > r["sma20"]):
+            return None
+        legs = [lbl for c, lbl in _CARRY_LEGS.items() if bool(r.get(c))]
+        return dict(idx=i, date=d.index[i], px=float(r["close"]), legs=legs) if legs else None
+
+    pos = None
+    for i in range(len(d)):
+        if pos is None:
+            pos = _entry(i)
+        else:
+            hit = d.iloc[i]["close"] < d.iloc[i - 1]["low"]      # close < prior-day low
+            capped = (i - pos["idx"]) >= BOOK_MAX_HOLD
+            if hit or capped:
+                pos = _entry(i)                                   # flat → allow same-day re-entry
+    if pos is None:
+        return None
+    return dict(entry_date=pos["date"], entry_px=pos["px"], legs=pos["legs"],
+                held=len(d) - 1 - pos["idx"], trail=float(d.iloc[-1]["low"]))
+
+
 def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
     """Given the daily indicator frame, return the morning plan for the NEXT session.
 
@@ -403,7 +444,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             entry="SHORT at 09:15 open (use a limit at/just below the open — edge lives in the 1st minute)",
             stop="open + 1.0 × gap  (gap = open − prev_close)",
             target=f"prev_close {close:,.0f}  (full-gap fill), else square-off 15:20",
-            stats="GO · +1,937 pt · PF 1.52",
+            stats="GO · +1,937 pt · PF 1.52 · 54% win (all) · +100 (0.4%) pt/win · 3.3h hold (2024+)",
         ))
     else:
         sigs.append(Signal(
@@ -412,7 +453,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             trigger=f"needs close>20DMA; close {close:,.0f} vs 20DMA {t['sma20']:,.0f}",
             level=b_level,
             note="Fading a gap-up only validated in an uptrend; skip today.",
-            stats="GO · +1,937 pt · PF 1.52",
+            stats="GO · +1,937 pt · PF 1.52 · 54% win (all) · +100 (0.4%) pt/win · 3.3h hold (2024+)",
         ))
 
     # ---- F: GapHalfFill short (short-only, no uptrend filter) -------------------
@@ -427,7 +468,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
         stop=f"open + {GAPHALF_SL_PTS:.0f} pt",
         target=f"open − {GAPHALF_TFRAC:.1f} × gap  (half-gap fill), else square-off 15:20",
         note="Highest-win gap short (66%). Don't chase if you miss the first minute.",
-        stats="GO · +2,440 pt · PF 1.67 · 66% win",
+        stats="GO · +2,440 pt · PF 1.67 · 66% win · 66% win (all) · +72 (0.3%) pt/win · 0.9h hold (2024+)",
     ))
 
     # ---- A: DownDayBounce (long) — armed by TODAY's close ----------------------
@@ -442,14 +483,14 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             stop=f"open − 1.0 × ATR14  (ATR14={atr:,.0f} → ≈ {stop:,.0f} off today's close)",
             target=f"open + 1.0 × ATR14  (≈ {tgt:,.0f}), else square-off 15:20",
             note="Best single intraday edge; mean-reversion bounce after a selloff.",
-            stats="GO · PF 1.72 · every year +",
+            stats="GO · PF 1.72 · every year + · 66% win (all) · +130 (0.6%) pt/win · 5.1h hold (2024+)",
         ))
     else:
         sigs.append(Signal(
             key="A", name="DownDayBounce", side="LONG", horizon="intraday", status="IDLE",
             headline=f"Not a down day (o→c {ret:+.2f}%) → no bounce buy",
             trigger=f"needs today o→c < {DD_THRESH:.1f}%; today {ret:+.2f}%",
-            stats="GO · PF 1.72 · every year +",
+            stats="GO · PF 1.72 · every year + · 66% win (all) · +130 (0.6%) pt/win · 5.1h hold (2024+)",
         ))
 
     # ---- C: Squeeze-ORB (long) — squeeze armed by close, breakout intraday -----
@@ -462,14 +503,14 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             stop="opening-range LOW",
             target="no target — ride to 15:25 square-off (or OR-low stop)",
             note="OR high/low are only known ~09:45; the squeeze itself is confirmed now.",
-            stats="GO leg of the intraday book",
+            stats="GO leg of the intraday book · 52% win (all) · +81 (0.3%) pt/win · 3.9h hold (2024+)",
         ))
     else:
         sigs.append(Signal(
             key="C", name="Squeeze-ORB", side="LONG", horizon="intraday", status="IDLE",
             headline="No squeeze (5d span not in bottom 25%) → ORB leg idle",
             trigger=f"5d span {t['span5']:.2f}% vs thr {t['span5_thr']:.2f}%",
-            stats="GO leg of the intraday book",
+            stats="GO leg of the intraday book · 52% win (all) · +81 (0.3%) pt/win · 3.9h hold (2024+)",
         ))
 
     # ---- R: RSI2 mean-reversion (swing long) -----------------------------------
@@ -482,7 +523,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             stop="none (200-DMA regime is the risk control)",
             target="exit on the FIRST UP-CLOSE (preferred variant), 10-day time-stop backstop",
             note="High-edge low-frequency starter; ~13 trades/yr.",
-            stats="GO · PF ~3.3 · ~80% win",
+            stats="GO · PF ~3.3 · ~80% win · 81% win (all) · +165 (0.7%) pt/win · 0.7d hold (2024+)",
         ))
     else:
         why = []
@@ -494,7 +535,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             key="R", name="RSI2 mean-rev", side="LONG", horizon="swing", status="IDLE",
             headline="Not oversold-in-uptrend → RSI2 swing idle",
             trigger="; ".join(why) if why else "conditions not met",
-            stats="GO · PF ~3.3 · ~80% win",
+            stats="GO · PF ~3.3 · ~80% win · 81% win (all) · +165 (0.7%) pt/win · 0.7d hold (2024+)",
         ))
 
     # ---- D: BearRallyFade (swing short) — fade a bear-rally pop below the 50-DMA -
@@ -508,7 +549,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             stop=f"open + 2.0 × ATR14  (ATR14={atr:,.0f} → ≈ {stop:,.0f} off today's close)",
             target="cover at the NEXT day's close (~1–2 day hold; the snapback edge decays — don't hold longer)",
             note="The one NIFTY short that profits in real bears (2020 +1,534, 2022 +1,157). Mirror of DownDayBounce.",
-            stats="MARGINAL-GO · PF 1.41 · +4,036 pt · ~13/yr",
+            stats="MARGINAL-GO · PF 1.41 · +4,036 pt · ~13/yr · 54% win (all) · +213 (0.9%) pt/win · 1.0d hold (2024+)",
         ))
     else:
         why = []
@@ -521,7 +562,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             key="D", name="BearRallyFade", side="SHORT", horizon="swing", status="IDLE",
             headline="No bear-rally pop (needs an up-day >+0.6% below the 50-DMA) → BearRallyFade idle",
             trigger="; ".join(why) if why else "conditions not met",
-            stats="MARGINAL-GO · PF 1.41 · +4,036 pt · ~13/yr",
+            stats="MARGINAL-GO · PF 1.41 · +4,036 pt · ~13/yr · 54% win (all) · +213 (0.9%) pt/win · 1.0d hold (2024+)",
         ))
 
     # ---- M: MarubozuGapReclaim (intraday long) — gap-down below a green close-on-high -
@@ -537,7 +578,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             stop=f"open − {MARU_SL_PTS:.0f} pt",
             target="exit at the close (reclaim to EOD, no overnight risk)",
             note="Rare defined-risk satellite (~2/yr, NIFTY-only, n=22) — take it if it appears, size small.",
-            stats="MARGINAL · PF 2.53 · 59% win · ~2/yr",
+            stats="MARGINAL · PF 2.53 · 59% win · ~2/yr · 55% win (all) · +140 (0.6%) pt/win · 6.2h hold (2024+)",
         ))
     else:
         why = []
@@ -549,7 +590,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             key="M", name="MarubozuGapReclaim", side="LONG", horizon="intraday", status="IDLE",
             headline="No green close-on-high candle → MarubozuGapReclaim not armed",
             trigger="; ".join(why) if why else "conditions not met",
-            stats="MARGINAL · PF 2.53 · 59% win · ~2/yr",
+            stats="MARGINAL · PF 2.53 · 59% win · ~2/yr · 55% win (all) · +140 (0.6%) pt/win · 6.2h hold (2024+)",
         ))
 
     # ---- P: GapDownBounce (intraday long) — exhausted gap-down bounce -----------
@@ -567,14 +608,14 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             stop="none — the daily bar is the trade (worst historical −460 pt)",
             target="exit at today's CLOSE (intraday; do NOT hold — the bounce fades by day 3)",
             note="Buys exhaustion, not a crash — the rvol circuit-breaker skips waterfall days.",
-            stats="MARGINAL-GO · PF 1.74 · 58% win · +2,654 pt · ~6/yr",
+            stats="MARGINAL-GO · PF 1.74 · 58% win · +2,654 pt · ~6/yr · 58% win (all) · +213 (0.9%) pt/win · 6.2h hold (2024+)",
         ))
     else:
         sigs.append(Signal(
             key="P", name="GapDownBounce", side="LONG", horizon="intraday", status="IDLE",
             headline=f"Crash circuit-breaker ON (20-day rvol {rvol20:.2f}% > {GDB_RVOL_MAX:.1f}%) → no gap-down buy",
             trigger="extreme-vol regime — don't catch a falling knife",
-            stats="MARGINAL-GO · PF 1.74 · 58% win · +2,654 pt · ~6/yr",
+            stats="MARGINAL-GO · PF 1.74 · 58% win · +2,654 pt · ~6/yr · 58% win (all) · +213 (0.9%) pt/win · 6.2h hold (2024+)",
         ))
 
     # ---- T: Donchian trend (both sides) — daily-channel proxy for the 1h 20/10 --
@@ -592,16 +633,19 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
                f"short exits above {donch_hi10:,.0f} (10-day high)",
         note="Positional trend-rider (holds overnight). Thin edge — the validated version is 1-HOUR "
              "Donchian; this daily channel is the proxy the daily feed can show.",
-        stats="GO (thin) · PF 1.16 · +3,718 pt · ~72/yr (1h)",
+        stats="GO (thin) · PF 1.16 · +3,718 pt · ~72/yr (1h) · 38% win (all) · +292 (1.2%) pt/win · 2.9d hold (2024+)",
     ))
 
     # ---- N: MomentumCarryBook (swing long) — the validated 4-leg carry book -----
+    N_STATS = "GO · PF 1.81 · +12,732 pt · ~20/yr · NIFTY+SENSEX · 46% win (all) · +348 (1.5%) pt/win · 5.2d hold (2024+)"
     book_legs = []
     if leg_reclaim: book_legs.append("20-DMA reclaim ⭐")
     if leg_thrust:  book_legs.append("wide-range thrust")
     if leg_gapup:   book_legs.append("gap-up hold")
     if leg_3up:     book_legs.append("3 up-days")
-    if uptrend20 and book_legs:
+    carry = _carry_state(d)
+    fresh_entry = bool(carry) and carry["entry_date"] == d.index[-1]
+    if fresh_entry:
         sigs.append(Signal(
             key="N", name="MomentumCarryBook", side="LONG", horizon="swing", status="ARMED",
             headline=f"Carry-momentum fired ({', '.join(book_legs)}) → BUY & carry (prior-day-low trail)",
@@ -611,16 +655,33 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             target="none — trail: exit on the first daily CLOSE below the prior day's low (40-day cap, ~5-day hold)",
             note="The 4 legs are correlated (all bullish continuation) — run as ONE book, one position at a time. "
                  "20-DMA reclaim (leg R / strategy 39) is the champion leg.",
-            stats="GO · PF 1.81 · +12,732 pt · ~20/yr · NIFTY+SENSEX",
+            stats=N_STATS,
+        ))
+    elif carry:
+        entry_d = carry["entry_date"].strftime("%a %d %b")
+        legs_txt = ", ".join(carry["legs"])
+        add_txt = (f" · confirming today: {', '.join(book_legs)}" if book_legs else "")
+        sigs.append(Signal(
+            key="N", name="MomentumCarryBook", side="LONG", horizon="swing", status="ACTIVATED",
+            headline=f"HOLDING the carry (entered {entry_d}) → stay long; trail not hit yet",
+            trigger=f"opened {entry_d} via {legs_txt} · held {carry['held']} trading day(s) · "
+                    f"no daily CLOSE below the prior-day low yet{add_txt}",
+            entry=f"already long from ~{carry['entry_px']:,.0f} (signal-day close) — one position at a time, do NOT re-enter",
+            stop=f"trail = exit on the first daily CLOSE below today's low {carry['trail']:,.0f}",
+            target="none — let the drift run (40-day cap, ~5-day typical hold)",
+            note="A carry opened on an earlier session stays LIVE until its prior-day-low trail breaks. "
+                 "Today's entry gate being off means NO NEW entry — it does NOT close the open position.",
+            stats=N_STATS,
+            since=f"{entry_d} · {carry['held']} session(s) ago",
         ))
     else:
-        why = ("close ≤ 20-DMA (uptrend gate off)" if not uptrend20
+        why = ("close ≤ 20-DMA and no open carry (book flat)" if not uptrend20
                else "no carry leg fired (no reclaim / thrust / gap-up-hold / 3-up-days)")
         sigs.append(Signal(
             key="N", name="MomentumCarryBook", side="LONG", horizon="swing", status="IDLE",
             headline="No carry-momentum entry today → book flat",
             trigger=why,
-            stats="GO · PF 1.81 · +12,732 pt · ~20/yr · NIFTY+SENSEX",
+            stats=N_STATS,
         ))
 
     # ---- E: EMA5BreakdownShort (swing short) — fresh 5-EMA loss in a downtrend ---
@@ -634,7 +695,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             target=f"cover at the close of day t+{EMA5_HOLD} (fixed {EMA5_HOLD}-day hold)",
             note="Continuation-down short (fades the DOWN leg). Distinct from BearRallyFade (fades an up-pop). "
                  "Thin correction-harvester — size small.",
-            stats="MARGINAL-GO · ~7.6/yr · net ~+200/yr",
+            stats="MARGINAL-GO · ~7.6/yr · net ~+200/yr · 55% win (all) · +235 (1.0%) pt/win · 2.0d hold (2024+)",
         ))
     else:
         why = []
@@ -646,7 +707,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             key="E", name="EMA5BreakdownShort", side="SHORT", horizon="swing", status="IDLE",
             headline="No fresh 5-EMA breakdown in a downtrend → idle",
             trigger="; ".join(why) if why else "conditions not met",
-            stats="MARGINAL-GO · ~7.6/yr · net ~+200/yr",
+            stats="MARGINAL-GO · ~7.6/yr · net ~+200/yr · 55% win (all) · +235 (1.0%) pt/win · 2.0d hold (2024+)",
         ))
 
     # ---- K: Breakdown20DMAShort (swing short) — fresh 20-DMA loss in a downtrend -
@@ -660,7 +721,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             target="cover on the first daily CLOSE above the prior day's high (40-day cap)",
             note="The one short mirror of the momentum-carry legs that survives. Lumpy — top-3 trades ≈ 89% of "
                  "net; a small bear-side satellite, not standalone income.",
-            stats="MARGINAL-GO · PF 1.92 · +5,037 pt · ~5/yr",
+            stats="MARGINAL-GO · PF 1.92 · +5,037 pt · ~5/yr · 50% win (all) · +447 (1.8%) pt/win · 5.8d hold (2024+)",
         ))
     else:
         why = []
@@ -672,7 +733,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             key="K", name="Breakdown20DMAShort", side="SHORT", horizon="swing", status="IDLE",
             headline="No fresh 20-DMA breakdown in a downtrend → idle",
             trigger="; ".join(why) if why else "conditions not met",
-            stats="MARGINAL-GO · PF 1.92 · +5,037 pt · ~5/yr",
+            stats="MARGINAL-GO · PF 1.92 · +5,037 pt · ~5/yr · 50% win (all) · +447 (1.8%) pt/win · 5.8d hold (2024+)",
         ))
 
     # ---- S: BearShootingStar (swing short, rare satellite) ---------------------
@@ -686,7 +747,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             stop=f"entry + 2.0 × ATR14 (wide; ATR14={atr:,.0f} → ≈ {close + 2*atr:,.0f})",
             target=f"entry − 3.0 × ATR14 (big swing-down objective ≈ {close - 3*atr:,.0f}), else 10-day time-exit",
             note="Rare exhaustion short (~1.7/yr, n=12) — the shooting star is the essential filter. Size small.",
-            stats="MARGINAL · PF 1.82 · 58% win · ~1.7/yr",
+            stats="MARGINAL · PF 1.82 · 58% win · ~1.7/yr · 58% win (all) · +467 (1.8%) pt/win · 7.0d hold (2024+)",
         ))
     else:
         why = []
@@ -700,7 +761,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             key="S", name="BearShootingStar", side="SHORT", horizon="swing", status="IDLE",
             headline="No exhausted-top shooting star → idle",
             trigger="; ".join(why) if why else "conditions not met",
-            stats="MARGINAL · PF 1.82 · 58% win · ~1.7/yr",
+            stats="MARGINAL · PF 1.82 · 58% win · ~1.7/yr · 58% win (all) · +467 (1.8%) pt/win · 7.0d hold (2024+)",
         ))
 
     # ---- O: OverboughtReversalFade (swing short) -------------------------------
@@ -716,7 +777,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             target=f"entry − 2.0 × ATR14 (≈ {close - 2*atr:,.0f}), else 7-day time-exit",
             note="⚠️ ~96% of this edge came from 2024 and it's candle-fragile — superseded by BearRallyFade (D). "
                  "Treat as informational, not core.",
-            stats="MARGINAL · PF 2.03 · 64% win · ~2.5/yr · 2024-concentrated",
+            stats="MARGINAL · PF 2.03 · 64% win · ~2.5/yr · 2024-concentrated · 64% win (all) · +340 (1.4%) pt/win · 5.0d hold (2024+)",
         ))
     else:
         why = []
@@ -728,7 +789,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             key="O", name="OverboughtReversalFade", side="SHORT", horizon="swing", status="IDLE",
             headline="No overbought bearish-reversal candle → idle",
             trigger="; ".join(why) if why else "conditions not met",
-            stats="MARGINAL · PF 2.03 · 64% win · ~2.5/yr · 2024-concentrated",
+            stats="MARGINAL · PF 2.03 · 64% win · ~2.5/yr · 2024-concentrated · 64% win (all) · +340 (1.4%) pt/win · 5.0d hold (2024+)",
         ))
 
     # ---- resolve against today's real open, if the morning run captured it -----
@@ -783,14 +844,14 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             stop=f"prior-day-low trail (close-based); initial ≈ today's low {low:,.0f}",
             target="none — let the drift run; flip flat on a daily CLOSE below the prior day's low / 20-DMA",
             note=note,
-            stats="GO · PF 3.30 · 61% win · +2,068 pt · ~6/yr · cross-index",
+            stats="GO · PF 3.30 · 61% win · +2,068 pt · ~6/yr · cross-index · 56% win (all) · +297 (1.2%) pt/win · 6.5d hold (2024+)",
         ))
     else:
         sigs.append(Signal(
             key="G", name="CarryFwdMomentum", side="LONG", horizon="swing", status="IDLE",
             headline="Below the 20-DMA → carry-momentum OFF (long-only; short-carry has no edge either)",
             trigger=f"needs close>20DMA; close {close:,.0f} ≤ 20DMA {t['sma20']:,.0f}",
-            stats="GO · PF 3.30 · 61% win · +2,068 pt · ~6/yr · cross-index",
+            stats="GO · PF 3.30 · 61% win · +2,068 pt · ~6/yr · cross-index · 56% win (all) · +297 (1.2%) pt/win · 6.5d hold (2024+)",
         ))
 
     regime = _regime(close, t["sma20"], t["sma50"], t["sma200"], ret)
