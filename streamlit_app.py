@@ -288,7 +288,10 @@ def render_teller():
     sigs = sorted(plan["signals"], key=lambda x: order[x["status"]])
     active = [s for s in sigs if s["status"] == "ACTIVATED"]
     armed = [s for s in sigs if s["status"] == "ARMED"]
-    cond = [s for s in sigs if s["status"] == "CONDITIONAL"]
+    cond_gap = [s for s in sigs if s["status"] == "CONDITIONAL"
+                and s.get("cond_kind", "gap") == "gap"]
+    cond_break = [s for s in sigs if s["status"] == "CONDITIONAL"
+                  and s.get("cond_kind", "gap") == "breakout"]
     stood_down = [s for s in sigs if s["status"] in ("PASSED", "IDLE")]
 
     signal_day = c.get("date")
@@ -300,9 +303,13 @@ def render_teller():
         st.subheader("🔫 Trigger met — trade at the open")
         for s in armed:
             _render_signal(s, signal_day)
-    if cond:
+    if cond_gap:
         st.subheader("🟠 Conditional on the open (gap)")
-        for s in cond:
+        for s in cond_gap:
+            _render_signal(s)
+    if cond_break:
+        st.subheader("🟠 Conditional on an intraday breakout (level watch)")
+        for s in cond_break:
             _render_signal(s)
     if stood_down:
         label = "Passed / idle" if o else "Idle edges"

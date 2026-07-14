@@ -215,6 +215,7 @@ class Signal:
     note: str = ""
     stats: str = ""             # validated edge stats
     since: str = ""             # for a HELD swing carry: the real entry date (not the anchor)
+    cond_kind: str = "gap"      # CONDITIONAL sub-type: "gap" (resolves at the open) / "breakout" (intraday level watch)
 
     def as_dict(self):
         return asdict(self)
@@ -624,6 +625,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             "inside the channel (no trend position)")
     sigs.append(Signal(
         key="T", name="Donchian trend", side="BOTH", horizon="swing", status="CONDITIONAL",
+        cond_kind="breakout",
         headline=f"Trend LONG on a break above {donch_hi20:,.0f} · trend SHORT below {donch_lo20:,.0f}",
         trigger=f"daily 20/10 channel · currently {_pos}",
         level=donch_hi20,
