@@ -2,8 +2,8 @@ name: Update Nifty data
 
 on:
   schedule:
-    - cron: "40 3 * * 1-5"    # 09:10 IST, Mon-Fri — capture today's open
-    - cron: "30 10 * * 1-5"   # 16:00 IST, Mon-Fri — append the completed bar
+    - cron: "40 2 * * 1-5"    # 09:10 IST, Mon-Fri — capture today's open
+    - cron: "30 9 * * 1-5"   # 16:00 IST, Mon-Fri — append the completed bar
   workflow_dispatch: {}
 
 permissions:
