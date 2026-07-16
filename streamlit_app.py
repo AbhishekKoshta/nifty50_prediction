@@ -207,6 +207,8 @@ def _render_signal(s: dict, signal_day: str | None = None):
             parts.append(f'<div class="kv"><i>{s["note"]}</i></div>')
     else:  # PASSED / IDLE
         parts.append(f'<div class="kv">{s["trigger"]}</div>')
+    if s.get("last_trade"):
+        parts.append(f'<div class="kv">↩ <b>Last recorded trade</b> — {s["last_trade"]}</div>')
     parts.append("</div>")
     st.markdown("".join(parts), unsafe_allow_html=True)
 

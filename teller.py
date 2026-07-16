@@ -70,6 +70,74 @@ OPEN_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "today_open
 LOT = 75
 FEE_PTS = 10.0
 
+# Bundled backtest trade logs (real 5m-simulated fills) → last recorded outcome
+# per edge, shown on its card. Net is recomputed from entry/exit/side minus
+# FEE_PTS so it matches the net convention in every card's stats string. Intraday
+# edges close same-day; swing edges show the holding time in trading days.
+TRADE_LOG_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "trade_logs")
+_TRADE_LOGS = {                       # signal key -> bundled log filename (no .csv)
+    # intraday
+    "A": "DownDayBounce", "B": "GapFade", "C": "SqueezeORB",
+    "F": "GapHalfFill", "M": "MarubozuGapReclaim", "P": "GapDownBounce",
+    # swing
+    "R": "RSI2", "D": "BearRallyFade", "T": "Donchian", "N": "MomentumCarryBook",
+    "E": "EMA5BreakdownShort", "K": "Breakdown20DMAShort", "S": "BearShootingStar",
+    "O": "OverboughtReversalFade", "G": "CarryFwdMomentum",
+}
+_EXIT_WORDS = {"sl": "SL hit", "target": "target hit", "tgt": "target hit",
+               "eod": "EOD close", "": "EOD close",
+               "first-up-close": "first up-close", "cover": "covered",
+               "endofdata": "sample end", "trail": "trailing stop",
+               "time": "time exit"}
+
+
+def last_trade_line(key: str, side: str | None = None, horizon: str = "intraday") -> str:
+    """Return a one-line 'last recorded trade' summary for an edge, or ''.
+
+    Reads the bundled backtest log, takes the most recent trade (restricted to
+    `side` when the edge is one-directional — e.g. GapFade-short's log also holds
+    long fades), and reports date · side · entry→exit · NET points (net of
+    FEE_PTS) · how it closed · holding time (same day for intraday; N-day hold for
+    swing, computed as trading days between entry and exit).
+    """
+    name = _TRADE_LOGS.get(key)
+    if not name:
+        return ""
+    path = os.path.join(TRADE_LOG_DIR, f"{name}.csv")
+    if not os.path.exists(path):
+        return ""
+    try:
+        df = pd.read_csv(path)
+        if df.empty:
+            return ""
+        want = (side or "").lower()
+        if want in ("short", "long"):
+            df = df[df["side"].str.lower().str.startswith(want[0])]
+        if df.empty:
+            return ""
+        r = df.sort_values("date").iloc[-1]
+        side = str(r["side"]).lower()
+        sign = -1 if side.startswith("s") else 1
+        entry, exit_ = float(r["entry"]), float(r["exit"])
+        net = sign * (exit_ - entry) - FEE_PTS
+        reason = str(r.get("exit_reason", r.get("tag", "")) or "").strip().lower()
+        word = _EXIT_WORDS.get(reason, reason.upper() or "EOD close")
+        d = pd.to_datetime(r["date"]).strftime("%d %b %Y")
+        hold_s = "same day"
+        if horizon != "intraday":
+            try:
+                a = pd.to_datetime(r["entry_dt"]).date()
+                b = pd.to_datetime(r["exit_dt"]).date()
+                nd = int(np.busday_count(a, b))
+                hold_s = f"{nd}-day hold" if nd > 0 else "same day"
+            except Exception:  # noqa: BLE001
+                hold_s = ""
+        tail = f", {hold_s}" if hold_s else ""
+        return (f"{d}: {side.upper()} {entry:,.0f} → {exit_:,.0f} = "
+                f"{net:+,.0f} pt ({word}{tail})")
+    except Exception:  # noqa: BLE001 — never let a log hiccup break the plan
+        return ""
+
 # ---- edge parameters (a-priori, from the validated GO configs) ----------------
 DD_THRESH = -0.9          # A: prior o->c return (%) to arm DownDayBounce
 DD_ATR_MULT = 1.0         # A: stop/target = 1 x ATR14
@@ -216,6 +284,7 @@ class Signal:
     stats: str = ""             # validated edge stats
     since: str = ""             # for a HELD swing carry: the real entry date (not the anchor)
     cond_kind: str = "gap"      # CONDITIONAL sub-type: "gap" (resolves at the open) / "breakout" (intraday level watch)
+    last_trade: str = ""        # intraday only: last recorded backtest trade + outcome
 
     def as_dict(self):
         return asdict(self)
@@ -878,6 +947,10 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             "gaphalf_0.35pct": f_level,
         },
     }
+    # attach each edge's last recorded backtest trade + outcome
+    for s in sigs:
+        s.last_trade = last_trade_line(s.key, s.side, s.horizon)
+
     return {"context": context, "signals": [s.as_dict() for s in sigs]}
 
 

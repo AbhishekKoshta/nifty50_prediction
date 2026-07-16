@@ -63,6 +63,19 @@ def fetch_new_ohlc(last_date: str) -> pd.DataFrame:
     df = df.dropna(subset=["open", "high", "low", "close"])
     df["date"] = pd.to_datetime(df["date"]).dt.strftime("%Y-%m-%d")
     df = df[df["date"] > last_date].reset_index(drop=True)
+
+    # HISTORY IS FROZEN → only append COMPLETED daily bars. While NSE is open
+    # (09:15–15:30 IST) yfinance returns today's still-forming candle, whose
+    # "close" is just the last traded price — never persist it. Today's bar is
+    # only complete after the 15:30 close (CI runs at 16:00 IST, so unaffected).
+    ist_now = pd.Timestamp.now(tz="Asia/Kolkata")
+    if ist_now.time() < pd.Timestamp("15:30").time():
+        today_ist = ist_now.strftime("%Y-%m-%d")
+        dropped = df[df["date"] >= today_ist]
+        if not dropped.empty:
+            print(f"Skipping in-progress bar(s) (market still open): "
+                  f"{', '.join(dropped['date'].tolist())}")
+        df = df[df["date"] < today_ist].reset_index(drop=True)
     return df
 
 
