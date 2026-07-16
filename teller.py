@@ -91,7 +91,8 @@ _EXIT_WORDS = {"sl": "SL hit", "target": "target hit", "tgt": "target hit",
                "time": "time exit"}
 
 
-def last_trade_line(key: str, side: str | None = None, horizon: str = "intraday") -> str:
+def last_trade_line(key: str, side: str | None = None, horizon: str = "intraday",
+                    exclude_date: str | None = None) -> str:
     """Return a one-line 'last recorded trade' summary for an edge, or ''.
 
     Reads the bundled backtest log, takes the most recent trade (restricted to
@@ -99,6 +100,10 @@ def last_trade_line(key: str, side: str | None = None, horizon: str = "intraday"
     long fades), and reports date · side · entry→exit · NET points (net of
     FEE_PTS) · how it closed · holding time (same day for intraday; N-day hold for
     swing, computed as trading days between entry and exit).
+
+    `exclude_date` drops any log row with that entry date — used for the carry
+    book, whose last log row is the STILL-OPEN position marked out at the last
+    data bar (not a completed trade), so we show the last genuinely-closed one.
     """
     name = _TRADE_LOGS.get(key)
     if not name:
@@ -113,6 +118,8 @@ def last_trade_line(key: str, side: str | None = None, horizon: str = "intraday"
         want = (side or "").lower()
         if want in ("short", "long"):
             df = df[df["side"].str.lower().str.startswith(want[0])]
+        if exclude_date:
+            df = df[df["date"].astype(str).str[:10] != exclude_date[:10]]
         if df.empty:
             return ""
         r = df.sort_values("date").iloc[-1]
@@ -121,7 +128,12 @@ def last_trade_line(key: str, side: str | None = None, horizon: str = "intraday"
         entry, exit_ = float(r["entry"]), float(r["exit"])
         net = sign * (exit_ - entry) - FEE_PTS
         reason = str(r.get("exit_reason", r.get("tag", "")) or "").strip().lower()
-        word = _EXIT_WORDS.get(reason, reason.upper() or "EOD close")
+        # Donchian labels its opposite-channel (10-day) exit "Target" for every
+        # trade — misleading on a loss; call it what it is.
+        if key == "T" and reason in ("target", "tgt"):
+            word = "channel exit"
+        else:
+            word = _EXIT_WORDS.get(reason, reason.upper() or "EOD close")
         d = pd.to_datetime(r["date"]).strftime("%d %b %Y")
         hold_s = "same day"
         if horizon != "intraday":
@@ -947,9 +959,13 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             "gaphalf_0.35pct": f_level,
         },
     }
-    # attach each edge's last recorded backtest trade + outcome
+    # attach each edge's last recorded backtest trade + outcome. For the carry
+    # book (N), if a position is still open its last log row is that open trade
+    # marked out at the last bar — exclude it so we show the last CLOSED carry.
+    carry_open_date = carry["entry_date"].strftime("%Y-%m-%d") if carry else None
     for s in sigs:
-        s.last_trade = last_trade_line(s.key, s.side, s.horizon)
+        excl = carry_open_date if s.key == "N" else None
+        s.last_trade = last_trade_line(s.key, s.side, s.horizon, exclude_date=excl)
 
     return {"context": context, "signals": [s.as_dict() for s in sigs]}
 
