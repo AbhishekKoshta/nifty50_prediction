@@ -34,7 +34,7 @@ jobs:
         if: github.event.schedule != '40 3 * * 1-5'
         run: |
           python update_data.py
-          python update_squeeze_log.py   # log the latest Squeeze-ORB trigger, if any
+          python update_trade_logs.py    # log the latest intraday triggers (squeeze/gap/down-day), if any
           rm -f today_open.json
 
       - name: Commit changes (if any)
@@ -42,7 +42,7 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add Nifty50_till2025.csv Nifty_Features.csv
-          git add trade_logs/SqueezeORB.csv 2>/dev/null || true
+          git add trade_logs 2>/dev/null || true
           git add today_open.json 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
