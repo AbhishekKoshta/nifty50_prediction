@@ -1,0 +1,55 @@
+{
+  "last_updated": "2026-07-20",
+  "updated_by": "manual-seed",
+  "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
+  "nse_holidays": [],
+  "calendar": [
+    {"date": "2026-07-24", "name": "India-US tariff deadline (temp 10% expiry)", "category": "Trade", "importance": "high", "impact": "Deal/relief → up (IT/pharma/auto); snap-back to ≥25% → down", "nifty_session": "same day"},
+    {"date": "2026-07-29", "name": "US FOMC rate decision", "category": "CenBank", "importance": "high", "impact": "Hawkish/hike → down (FII outflow, INR weak); dovish → up", "nifty_session": "hits NIFTY on Jul 30 open (2AM IST announce)"},
+    {"date": "2026-08-05", "name": "RBI MPC rate decision", "category": "CenBank", "importance": "high", "impact": "Cut → up (banks lead); hawkish surprise → down. ~10AM IST", "nifty_session": "same day"},
+    {"date": "2026-08-12", "name": "US CPI (Jul data)", "category": "Data", "importance": "high", "impact": "Hot print → down (rate fears); soft → up. 6PM IST", "nifty_session": "hits NIFTY on Aug 13 open"},
+    {"date": "2026-09-16", "name": "US FOMC rate decision + dot plot", "category": "CenBank", "importance": "high", "impact": "Dot-plot repricing; SEP meeting = higher vol", "nifty_session": "hits NIFTY on Sep 17 open"},
+    {"date": "2026-10-07", "name": "RBI MPC rate decision", "category": "CenBank", "importance": "high", "impact": "Rate path for H2; banks sensitive", "nifty_session": "same day"}
+  ],
+  "earnings_band": {"active": true, "label": "Q1 FY27 earnings season", "note": "Underway (TCS reported Jul 9); rolls through Aug. Stock/sector-specific, not a single date."},
+  "dynamic": [
+    {
+      "id": "india_us_deal",
+      "name": "India-US trade deal (1st tranche)",
+      "status": "“99% / last 1%” done; partial relief already live (reciprocal cut 25→18%, +25% Russia-oil tariff removed by EO). No signed pact yet.",
+      "next_catalyst": "2026-07-24",
+      "direction": "Deal/relief → NIFTY up; snap-back → down",
+      "prob": {"p_announce_full": 0.33, "p_announce_relief_or_extension": 0.65, "p_implement_given_announce": 0.78, "p_snapback": 0.18},
+      "combined": "Full pact ~0.26 · avoid-snapback ~0.55",
+      "watch": "Interim text publication; Indian-side pullback risk (happened once after a negotiation round)"
+    },
+    {
+      "id": "iran_war",
+      "name": "Iran-US war (crude / Strait of Hormuz)",
+      "status": "Active, escalating — renewed phase from Jul 8 (2nd ceasefire collapsed); ~9th night of US strikes as of Jul 19.",
+      "next_catalyst": "rolling — see time-to-peace model",
+      "direction": "Ceasefire → crude down → NIFTY up; Hormuz closure → crude spike → NIFTY down",
+      "prob": {"p_ceasefire_hold_if_announced": 0.38, "p_hormuz_closure_tail": 0.11},
+      "combined": "See peace model for time-phased P(ceasefire/talks announced)",
+      "watch": "Brent crude is the real-time NIFTY channel (India imports ~85% oil)"
+    }
+  ],
+  "peace_model": {
+    "phase_start": "2026-07-08",
+    "phase_note": "2nd ceasefire collapsed here; renewed nightly strikes",
+    "conflicts": {
+      "Twelve-Day War (Iran-Israel-US, Jun 2025)": 12,
+      "Yom Kippur War (1973)": 19,
+      "Iraq War / Baghdad fall (2003)": 21,
+      "Gaza 'Cast Lead' (2008-09)": 22,
+      "Lebanon War (2006)": 34,
+      "2026 Iran War - phase 1 (this war)": 39,
+      "Gulf War / Desert Storm (1991)": 42,
+      "Israel-Hamas first truce (2023)": 48,
+      "Kosovo (1999)": 78
+    },
+    "censored": ["Russia-Ukraine (2022- )"],
+    "hold_prob": 0.38,
+    "signals": []
+  }
+}

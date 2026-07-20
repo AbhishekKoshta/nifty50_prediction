@@ -422,7 +422,30 @@ def render_move_model():
 render_teller()
 st.divider()
 
-_tab_dash, _tab_move = st.tabs(["📊 Probability Dashboard", "🔮 Next-Day Move Model"])
+# --- Macro event alert banner (D-0 / D-1) — defensive, never breaks the app ---
+try:
+    from macro_events import today_ist as _mac_today, load_data as _mac_load, alerts as _mac_alerts
+    _mac_data = _mac_load()
+    _mac_al = _mac_alerts(_mac_today(), _mac_data)
+    if _mac_al["today"]:
+        st.error("🔴 **EVENT TODAY:** " + " · ".join(e["name"] for e in _mac_al["today"])
+                 + " — see the 🌍 Macro & Events tab.")
+    if _mac_al["tomorrow"]:
+        st.warning("🟠 **EVENT TOMORROW:** " + " · ".join(e["name"] for e in _mac_al["tomorrow"])
+                   + " — see the 🌍 Macro & Events tab.")
+except Exception:  # noqa: BLE001
+    _mac_data = None
+
+_tab_dash, _tab_move, _tab_macro = st.tabs(
+    ["📊 Probability Dashboard", "🔮 Next-Day Move Model", "🌍 Macro & Events"])
+
+with _tab_macro:
+    try:
+        from macro_view import render_macro
+        from macro_events import today_ist as _mt, load_data as _ml
+        render_macro(_ml() if _mac_data is None else _mac_data, _mt())
+    except Exception as _macro_err:  # noqa: BLE001
+        st.error(f"Macro & Events tab unavailable: {_macro_err}")
 
 with _tab_move:
     render_move_model()
