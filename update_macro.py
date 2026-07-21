@@ -26,7 +26,9 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
+import time
 from datetime import date, datetime, timedelta, timezone
 
 DATA_PATH = "macro_events.json"
@@ -43,6 +45,115 @@ def today_ist() -> date:
 def load(path=DATA_PATH) -> dict:
     with open(path) as f:
         return json.load(f)
+
+
+# ---- layer 0: free news + market (always; NO API key) ------------------------------
+GDELT_URL = "https://api.gdeltproject.org/api/v2/doc/doc"
+_DOVISH = ("ceasefire", "cease-fire", "truce", "peace talk", "peace deal", "de-escalat",
+           "diplomacy", "negotiat", "agreement", "stand down", "withdraw", "pause", "detente")
+_HAWKISH = ("strike", "attack", "escalat", "blockade", "missile", "killed", "offensive",
+            "bomb", "retaliat", "targets", "assault", "invasion", "threat")
+
+# scrub personal names from fetched headlines (dashboard rule: institutions/roles only)
+_NAME_SUB = [
+    (r"\b(Trump|Biden)\b", "the US administration"),
+    (r"\bModi\b", "the Indian govt"),
+    (r"\bNetanyahu\b", "Israel"),
+    (r"\bKhamenei\b", "Iran's leadership"),
+    (r"\b(Warsh|Powell)\b", "the Fed"),
+    (r"\b(Goyal|Sitharaman|Piyush|Malhotra)\b", "Indian officials"),
+]
+
+
+def _scrub(text: str) -> str:
+    for pat, rep in _NAME_SUB:
+        text = re.sub(pat, rep, text, flags=re.IGNORECASE)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def gdelt(query: str, timespan: str = "3d", n: int = 6, _last=[0.0]):
+    """Newest-first headlines from the free, key-less GDELT DOC 2.0 API. Honors GDELT's
+    1-request-per-5-seconds limit and retries once on a throttled/empty response. Personal
+    names are scrubbed to institutions/roles. Returns [] on failure."""
+    import requests
+    for attempt in (0, 1):
+        wait = (6.0 if attempt else 5.2) - (time.monotonic() - _last[0])
+        if wait > 0:
+            time.sleep(wait)
+        try:
+            r = requests.get(GDELT_URL, timeout=25, headers={"User-Agent": "nifty-teller/1.0"},
+                             params={"query": query, "mode": "artlist", "maxrecords": n,
+                                     "timespan": timespan, "sort": "datedesc", "format": "json"})
+            _last[0] = time.monotonic()
+            arts = r.json().get("articles", [])
+        except Exception:  # noqa: BLE001  (rate-limit text, timeout, bad JSON…)
+            _last[0] = time.monotonic()
+            arts = []
+        out = []
+        for a in arts[:n]:
+            sd = a.get("seendate", "")
+            title = _scrub((a.get("title") or "").strip())
+            if title:
+                out.append({"date": f"{sd[0:4]}-{sd[4:6]}-{sd[6:8]}" if len(sd) >= 8 else "",
+                            "title": title, "domain": a.get("domain", ""), "url": a.get("url", "")})
+        if out:
+            return out
+    return []
+
+
+def _tone(headlines):
+    """Per-headline dovish/hawkish classification → (hawkish_count, dovish_count)."""
+    hawk = dove = 0
+    for h in headlines:
+        t = h["title"].lower()
+        d = any(k in t for k in _DOVISH)
+        w = any(k in t for k in _HAWKISH)
+        if w and not d:
+            hawk += 1
+        elif d and not w:
+            dove += 1
+    return hawk, dove
+
+
+def free_refresh(data: dict, today: date) -> None:
+    """Free layer (no key): GDELT headlines + a keyword-tone signal + yfinance market quotes."""
+    iran = gdelt("Iran ceasefire sourcelang:english", "3d", 6)
+    india = gdelt("India United States trade deal sourcelang:english", "7d", 6)
+    if iran or india:  # don't clobber prior headlines if the fetch failed
+        data["headlines"] = {"iran": iran, "india_us": india, "fetched": today.isoformat()}
+
+    # keyword tone → ONE net heuristic signal on the peace model, replaced each run
+    pm = data.setdefault("peace_model", {})
+    sigs = [s for s in pm.get("signals", []) if s.get("source") != "gdelt-heuristic"]
+    hawk, dove = _tone(iran)
+    if iran and hawk != dove:
+        sigs.append({"date": today.isoformat(),
+                     "kind": "hawkish" if hawk > dove else "dovish",
+                     "weight": "medium" if abs(hawk - dove) >= 3 else "weak",
+                     "note": f"GDELT tone: {hawk} hawkish vs {dove} dovish headlines (3d)",
+                     "source": "gdelt-heuristic"})
+    pm["signals"] = sigs
+
+    # yfinance quotes — crude is the Iran→NIFTY channel; INR/VIX for context
+    market = {}
+    try:
+        import yfinance as yf
+        for key, tk in (("brent", "BZ=F"), ("usdinr", "INR=X"), ("indiavix", "^INDIAVIX")):
+            h = yf.Ticker(tk).history(period="5d")
+            if len(h):
+                last = float(h["Close"].iloc[-1])
+                prev = float(h["Close"].iloc[-2]) if len(h) > 1 else last
+                market[key] = {"last": round(last, 2), "chg_pct": round((last / prev - 1) * 100, 2)}
+    except Exception:  # noqa: BLE001
+        pass
+    if market:
+        market["fetched"] = today.isoformat()
+        data["market"] = market
+
+    if (iran or india) or market:  # something fresh landed → stamp the refresh
+        data["last_updated"] = today.isoformat()
+        if data.get("updated_by") != "daily-refresh":  # preserve the LLM stamp if it ran
+            data["updated_by"] = "auto-refresh"
 
 
 # ---- layer 1: deterministic maintenance -------------------------------------------
@@ -158,7 +269,13 @@ def main() -> int:
         elif fresh is not None:
             print("  news refresh: result failed validation — discarded")
     else:
-        print("news refresh: ANTHROPIC_API_KEY not set — skipping (deterministic only)")
+        print("news refresh: ANTHROPIC_API_KEY not set — skipping the LLM layer")
+
+    # free layer (always, no key): GDELT headlines + keyword-tone signal + market quotes
+    free_refresh(data, today)
+    hl = data.get("headlines", {})
+    print(f"free news+market: {len(hl.get('iran', []))} Iran + {len(hl.get('india_us', []))} "
+          f"India-US headlines; market={'yes' if data.get('market') else 'no'}")
 
     if not valid(data, today):
         print("FINAL validation failed — leaving file untouched")

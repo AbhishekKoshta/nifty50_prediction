@@ -27,6 +27,18 @@ def render_macro(data, today, alerts_dict=None):
                f"data as of **{data.get('last_updated', '?')}** ({data.get('updated_by', '?')}) · "
                "refreshes daily 7 AM IST.")
 
+    # --- live market strip (free, yfinance) ---
+    mk = data.get("market") or {}
+    _row = []
+    if mk.get("brent"):
+        _row.append(f"🛢 Brent ${mk['brent']['last']:,.2f} ({mk['brent']['chg_pct']:+.2f}%)")
+    if mk.get("usdinr"):
+        _row.append(f"💵 USD/INR {mk['usdinr']['last']:,.2f} ({mk['usdinr']['chg_pct']:+.2f}%)")
+    if mk.get("indiavix"):
+        _row.append(f"📉 India VIX {mk['indiavix']['last']:,.2f} ({mk['indiavix']['chg_pct']:+.2f}%)")
+    if _row:
+        st.caption("&nbsp;&nbsp;·&nbsp;&nbsp;".join(_row) + f"&nbsp;&nbsp;· as of {mk.get('fetched', '')}")
+
     # --- TODAY / TOMORROW banner ---
     if alerts_dict is None:
         from macro_events import alerts as _alerts
@@ -74,6 +86,24 @@ def render_macro(data, today, alerts_dict=None):
                 f'<span class="macro-kv"><b>Combined:</b> {ev.get("combined", "")} · '
                 f'<b>Watch:</b> {ev.get("watch", "")}</span></div>')
         st.markdown(html, unsafe_allow_html=True)
+
+    # --- latest headlines (free, GDELT) ---
+    hl = data.get("headlines") or {}
+    if hl.get("iran") or hl.get("india_us"):
+        st.divider()
+        st.subheader("📰 Latest headlines")
+        st.caption(f"Auto-fetched from GDELT (free, no key) · as of {hl.get('fetched', '')} "
+                   "· personal names scrubbed to roles")
+        for label, key in (("🌍 Iran-US war", "iran"), ("🤝 India-US trade deal", "india_us")):
+            arts = hl.get(key) or []
+            if arts:
+                st.markdown(f"**{label}**")
+                for a in arts[:5]:
+                    meta = (f" <span class='macro-kv'>· {a.get('domain', '')} · "
+                            f"{a.get('date', '')}</span>")
+                    line = (f"- [{a.get('title', '')}]({a['url']})" if a.get("url")
+                            else f"- {a.get('title', '')}")
+                    st.markdown(line + meta, unsafe_allow_html=True)
 
     # --- Iran time-to-peace model ---
     st.divider()

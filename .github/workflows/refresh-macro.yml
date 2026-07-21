@@ -30,7 +30,9 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install anthropic
+        run: pip install requests yfinance pandas anthropic
+        # requests+yfinance = the free layer (GDELT headlines + crude/INR/VIX);
+        # anthropic is only used if the ANTHROPIC_API_KEY secret is set.
 
       - name: Refresh macro_events.json
         env:

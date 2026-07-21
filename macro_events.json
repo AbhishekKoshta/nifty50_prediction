@@ -1,17 +1,63 @@
 {
-  "last_updated": "2026-07-20",
-  "updated_by": "manual-seed",
+  "last_updated": "2026-07-21",
+  "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
   "calendar": [
-    {"date": "2026-07-24", "name": "India-US tariff deadline (temp 10% expiry)", "category": "Trade", "importance": "high", "impact": "Deal/relief → up (IT/pharma/auto); snap-back to ≥25% → down", "nifty_session": "same day"},
-    {"date": "2026-07-29", "name": "US FOMC rate decision", "category": "CenBank", "importance": "high", "impact": "Hawkish/hike → down (FII outflow, INR weak); dovish → up", "nifty_session": "hits NIFTY on Jul 30 open (2AM IST announce)"},
-    {"date": "2026-08-05", "name": "RBI MPC rate decision", "category": "CenBank", "importance": "high", "impact": "Cut → up (banks lead); hawkish surprise → down. ~10AM IST", "nifty_session": "same day"},
-    {"date": "2026-08-12", "name": "US CPI (Jul data)", "category": "Data", "importance": "high", "impact": "Hot print → down (rate fears); soft → up. 6PM IST", "nifty_session": "hits NIFTY on Aug 13 open"},
-    {"date": "2026-09-16", "name": "US FOMC rate decision + dot plot", "category": "CenBank", "importance": "high", "impact": "Dot-plot repricing; SEP meeting = higher vol", "nifty_session": "hits NIFTY on Sep 17 open"},
-    {"date": "2026-10-07", "name": "RBI MPC rate decision", "category": "CenBank", "importance": "high", "impact": "Rate path for H2; banks sensitive", "nifty_session": "same day"}
+    {
+      "date": "2026-07-24",
+      "name": "India-US tariff deadline (temp 10% expiry)",
+      "category": "Trade",
+      "importance": "high",
+      "impact": "Deal/relief → up (IT/pharma/auto); snap-back to ≥25% → down",
+      "nifty_session": "same day"
+    },
+    {
+      "date": "2026-07-29",
+      "name": "US FOMC rate decision",
+      "category": "CenBank",
+      "importance": "high",
+      "impact": "Hawkish/hike → down (FII outflow, INR weak); dovish → up",
+      "nifty_session": "hits NIFTY on Jul 30 open (2AM IST announce)"
+    },
+    {
+      "date": "2026-08-05",
+      "name": "RBI MPC rate decision",
+      "category": "CenBank",
+      "importance": "high",
+      "impact": "Cut → up (banks lead); hawkish surprise → down. ~10AM IST",
+      "nifty_session": "same day"
+    },
+    {
+      "date": "2026-08-12",
+      "name": "US CPI (Jul data)",
+      "category": "Data",
+      "importance": "high",
+      "impact": "Hot print → down (rate fears); soft → up. 6PM IST",
+      "nifty_session": "hits NIFTY on Aug 13 open"
+    },
+    {
+      "date": "2026-09-16",
+      "name": "US FOMC rate decision + dot plot",
+      "category": "CenBank",
+      "importance": "high",
+      "impact": "Dot-plot repricing; SEP meeting = higher vol",
+      "nifty_session": "hits NIFTY on Sep 17 open"
+    },
+    {
+      "date": "2026-10-07",
+      "name": "RBI MPC rate decision",
+      "category": "CenBank",
+      "importance": "high",
+      "impact": "Rate path for H2; banks sensitive",
+      "nifty_session": "same day"
+    }
   ],
-  "earnings_band": {"active": true, "label": "Q1 FY27 earnings season", "note": "Underway (TCS reported Jul 9); rolls through Aug. Stock/sector-specific, not a single date."},
+  "earnings_band": {
+    "active": true,
+    "label": "Q1 FY27 earnings season",
+    "note": "Underway (TCS reported Jul 9); rolls through Aug. Stock/sector-specific, not a single date."
+  },
   "dynamic": [
     {
       "id": "india_us_deal",
@@ -19,7 +65,12 @@
       "status": "“99% / last 1%” done; partial relief already live (reciprocal cut 25→18%, +25% Russia-oil tariff removed by EO). No signed pact yet.",
       "next_catalyst": "2026-07-24",
       "direction": "Deal/relief → NIFTY up; snap-back → down",
-      "prob": {"p_announce_full": 0.33, "p_announce_relief_or_extension": 0.65, "p_implement_given_announce": 0.78, "p_snapback": 0.18},
+      "prob": {
+        "p_announce_full": 0.33,
+        "p_announce_relief_or_extension": 0.65,
+        "p_implement_given_announce": 0.78,
+        "p_snapback": 0.18
+      },
       "combined": "Full pact ~0.26 · avoid-snapback ~0.55",
       "watch": "Interim text publication; Indian-side pullback risk (happened once after a negotiation round)"
     },
@@ -29,7 +80,10 @@
       "status": "Active, escalating — renewed phase from Jul 8 (2nd ceasefire collapsed); ~9th night of US strikes as of Jul 19.",
       "next_catalyst": "rolling — see time-to-peace model",
       "direction": "Ceasefire → crude down → NIFTY up; Hormuz closure → crude spike → NIFTY down",
-      "prob": {"p_ceasefire_hold_if_announced": 0.38, "p_hormuz_closure_tail": 0.11},
+      "prob": {
+        "p_ceasefire_hold_if_announced": 0.38,
+        "p_hormuz_closure_tail": 0.11
+      },
       "combined": "See peace model for time-phased P(ceasefire/talks announced)",
       "watch": "Brent crude is the real-time NIFTY channel (India imports ~85% oil)"
     }
@@ -48,8 +102,75 @@
       "Israel-Hamas first truce (2023)": 48,
       "Kosovo (1999)": 78
     },
-    "censored": ["Russia-Ukraine (2022- )"],
+    "censored": [
+      "Russia-Ukraine (2022- )"
+    ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-07-21",
+        "kind": "hawkish",
+        "weight": "weak",
+        "note": "GDELT tone: 1 hawkish vs 0 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
+  },
+  "market": {
+    "brent": {
+      "last": 90.3,
+      "chg_pct": 1.21
+    },
+    "usdinr": {
+      "last": 96.24,
+      "chg_pct": -0.05
+    },
+    "indiavix": {
+      "last": 12.6,
+      "chg_pct": -2.93
+    },
+    "fetched": "2026-07-21"
+  },
+  "headlines": {
+    "iran": [
+      {
+        "date": "2026-07-21",
+        "title": "the US administration weighs Iran ceasefire as mediators race to halt escalating conflict",
+        "domain": "livemint.com",
+        "url": "https://www.livemint.com/news/mediators-push-ceasefire-as-us-iran-tensions-escalate-amid-cycle-of-retaliation-11784627784210.html"
+      },
+      {
+        "date": "2026-07-21",
+        "title": "Lebanese army begins takeover in south Lebanon",
+        "domain": "pakistantoday.com.pk",
+        "url": "https://www.pakistantoday.com.pk/2026/07/21/lebanese-army-begins-takeover-of-pilot-zones"
+      },
+      {
+        "date": "2026-07-21",
+        "title": "NQ +1 . 4 % as tech rebounds ; Oil a touch firmer awaiting US - Iran updates - Newsquawk US Market Open",
+        "domain": "zerohedge.com",
+        "url": "https://www.zerohedge.com/markets/nq-14-tech-rebounds-oil-touch-firmer-awaiting-us-iran-updates-newsquawk-us-market-open"
+      },
+      {
+        "date": "2026-07-21",
+        "title": "Oil prices volatile amid geopolitical tensions and diplomatic hopes - London Business News",
+        "domain": "londonlovesbusiness.com",
+        "url": "https://londonlovesbusiness.com/oil-prices-volatile-amid-geopolitical-tensions-and-diplomatic-hopes/"
+      },
+      {
+        "date": "2026-07-21",
+        "title": "Iran war halves number of airlines operating at Dubai airports",
+        "domain": "thenationalnews.com",
+        "url": "https://www.thenationalnews.com/business/aviation/2026/07/21/iran-war-halves-number-of-airlines-operating-at-dubai-airports/"
+      },
+      {
+        "date": "2026-07-21",
+        "title": "Amid U . S .- Iran war , Houthi rebels threaten to blockade another key strait",
+        "domain": "aspenpublicradio.org",
+        "url": "https://www.aspenpublicradio.org/2026-07-21/amid-u-s-iran-war-houthi-rebels-threaten-to-blockade-another-key-strait"
+      }
+    ],
+    "india_us": [],
+    "fetched": "2026-07-21"
   }
 }
