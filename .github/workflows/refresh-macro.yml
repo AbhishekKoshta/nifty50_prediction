@@ -1,0 +1,51 @@
+name: Refresh macro events
+
+# Daily at 7:00 AM IST (01:30 UTC), 7 days a week — geopolitical news doesn't skip weekends.
+# Separate from update-data.yml so it can never interfere with the market-data pipeline.
+#
+# The news refresh runs ONLY if the ANTHROPIC_API_KEY repo secret is set
+# (Settings → Secrets and variables → Actions → New repository secret). Without it, the job
+# still runs but only does deterministic maintenance (prune stale signals / past events) —
+# no API calls, no cost, and usually nothing to commit.
+on:
+  schedule:
+    - cron: "30 1 * * *"    # 07:00 IST daily
+  workflow_dispatch: {}
+
+permissions:
+  contents: write            # allow committing the refreshed macro_events.json
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Refresh macro_events.json
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python update_macro.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add macro_events.json
+          if git diff --cached --quiet; then
+            echo "No macro changes to commit."
+          else
+            git commit -m "macro refresh $(date -u +%Y-%m-%d)"
+            git pull --rebase origin main
+            git push
+          fi
