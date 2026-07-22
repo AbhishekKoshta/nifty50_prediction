@@ -110,8 +110,8 @@
   },
   "market": {
     "brent": {
-      "last": 92.0,
-      "chg_pct": 3.12
+      "last": 92.04,
+      "chg_pct": 3.16
     },
     "usdinr": {
       "last": 96.22,
@@ -124,45 +124,45 @@
     "fetched": "2026-07-22"
   },
   "headlines": {
-    "iran": [
+    "iran": [],
+    "india_us": [
       {
         "date": "2026-07-22",
-        "title": "Oil prices rise slightly after US announces new round of strikes on Iran",
-        "domain": "economictimes.indiatimes.com",
-        "url": "https://economictimes.indiatimes.com/markets/commodities/news/oil-prices-rise-slightly-after-us-announces-new-round-of-strikes-on-iran/articleshow/132549431.cms"
+        "title": "US readies new tariffs as the US administration 10 % global levy to expire",
+        "domain": "thestar.com.my",
+        "url": "https://www.thestar.com.my/news/world/2026/07/22/us-readies-new-tariffs-as-trump039s-10-global-levy-to-expire"
       },
       {
-        "date": "2026-07-22",
-        "title": "Renewed US - Iran strikes : Is a major war looming",
-        "domain": "arabherald.com",
-        "url": "http://www.arabherald.com/news/279201983/renewed-us-iran-strikes-is-a-major-war-looming"
+        "date": "2026-07-21",
+        "title": "the US administration Puts Section 338 Tariffs on Canada as Greer Foreshadows New Global Duties",
+        "domain": "foreignpolicy.com",
+        "url": "https://foreignpolicy.com/2026/07/21/trump-tariffs-canada-section-338-mexico-brazil-trade-usmca/?tpcc=recirc_trending062921"
       },
       {
-        "date": "2026-07-22",
-        "title": "US military completes 11th night of strikes on Iran as attacks overshadow diplomacy - Las Vegas Sun News",
-        "domain": "lasvegassun.com",
-        "url": "https://lasvegassun.com/news/2026/jul/21/us-military-completes-11th-night-of-strikes-on-ira/"
+        "date": "2026-07-21",
+        "title": "US set to impose new tariffs as the US administration 10 % global levy to expire",
+        "domain": "newindianexpress.com",
+        "url": "https://www.newindianexpress.com/world/2026/Jul/21/us-set-to-impose-new-tariffs-as-trumps-10-global-levy-to-expire"
       },
       {
-        "date": "2026-07-22",
-        "title": "Hegseth defends the US administration request for $67B to fund Iran conflict",
-        "domain": "sanfordherald.com",
-        "url": "https://www.sanfordherald.com/news/national/hegseth-defends-trumps-request-for-67b-to-fund-iran-conflict/article_f5e55942-d34c-5e5c-a9b0-251f0a21080d.html"
+        "date": "2026-07-21",
+        "title": "Analysing India trade bottlenecks",
+        "domain": "thehindu.com",
+        "url": "https://www.thehindu.com/opinion/op-ed/analysing-indias-trade-bottlenecks/article71250862.ece"
       },
       {
-        "date": "2026-07-22",
-        "title": "What does the US administration want ? Gulf states have no answer as Iran war escalates",
-        "domain": "straitstimes.com",
-        "url": "https://www.straitstimes.com/opinion/what-does-trump-want-gulf-states-have-no-answer-as-iran-war-escalates"
+        "date": "2026-07-21",
+        "title": "Explained : Why are farmers protesting against the proposed India - US trade deal ?",
+        "domain": "thenewsminute.com",
+        "url": "https://www.thenewsminute.com/news/explained-why-are-farmers-protesting-against-the-proposed-india-us-trade-deal"
       },
       {
-        "date": "2026-07-22",
-        "title": "Estimated cost of Iran war so far is $37 . 5 billion , Hegseth says",
-        "domain": "en.apa.az",
-        "url": "https://en.apa.az/america/estimated-cost-of-iran-war-so-far-is-375-billion-hegseth-says-517154"
+        "date": "2026-07-21",
+        "title": "Saudi oil tankers bound for China and India make U - turn after Houthi threat in Red Sea",
+        "domain": "livemint.com",
+        "url": "https://www.livemint.com/news/world/saudi-oil-tankers-bound-for-china-and-india-make-u-turn-after-houthi-threat-in-red-sea-11784639412243.html"
       }
     ],
-    "india_us": [],
     "fetched": "2026-07-22"
   }
 }
