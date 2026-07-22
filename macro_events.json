@@ -110,16 +110,16 @@
   },
   "market": {
     "brent": {
-      "last": 92.04,
-      "chg_pct": 3.16
+      "last": 92.14,
+      "chg_pct": 1.24
     },
     "usdinr": {
-      "last": 96.22,
-      "chg_pct": -0.27
+      "last": 96.4,
+      "chg_pct": -0.1
     },
     "indiavix": {
-      "last": 12.6,
-      "chg_pct": -2.93
+      "last": 12.94,
+      "chg_pct": 2.74
     },
     "fetched": "2026-07-22"
   },
@@ -129,8 +129,14 @@
       {
         "date": "2026-07-22",
         "title": "US readies new tariffs as the US administration 10 % global levy to expire",
-        "domain": "thestar.com.my",
-        "url": "https://www.thestar.com.my/news/world/2026/07/22/us-readies-new-tariffs-as-trump039s-10-global-levy-to-expire"
+        "domain": "manilatimes.net",
+        "url": "https://www.manilatimes.net/2026/07/22/business/foreign-business/us-readies-new-tariffs-as-trumps-10-global-levy-to-expire/2388980"
+      },
+      {
+        "date": "2026-07-22",
+        "title": "Another setback to India ? the US administration says US may impose tariffs upto 200 % on generic drug imports . Here why",
+        "domain": "livemint.com",
+        "url": "https://www.livemint.com/news/us-news/another-setback-to-india-trump-says-us-may-impose-tariffs-upto-200-on-generic-drug-imports-heres-why-11784684332690.html"
       },
       {
         "date": "2026-07-21",
@@ -155,12 +161,6 @@
         "title": "Explained : Why are farmers protesting against the proposed India - US trade deal ?",
         "domain": "thenewsminute.com",
         "url": "https://www.thenewsminute.com/news/explained-why-are-farmers-protesting-against-the-proposed-india-us-trade-deal"
-      },
-      {
-        "date": "2026-07-21",
-        "title": "Saudi oil tankers bound for China and India make U - turn after Houthi threat in Red Sea",
-        "domain": "livemint.com",
-        "url": "https://www.livemint.com/news/world/saudi-oil-tankers-bound-for-china-and-india-make-u-turn-after-houthi-threat-in-red-sea-11784639412243.html"
       }
     ],
     "fetched": "2026-07-22"
