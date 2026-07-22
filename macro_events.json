@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-21",
+  "last_updated": "2026-07-22",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -106,71 +106,63 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": [
-      {
-        "date": "2026-07-21",
-        "kind": "hawkish",
-        "weight": "weak",
-        "note": "GDELT tone: 1 hawkish vs 0 dovish headlines (3d)",
-        "source": "gdelt-heuristic"
-      }
-    ]
+    "signals": []
   },
   "market": {
     "brent": {
-      "last": 90.3,
-      "chg_pct": 1.21
+      "last": 91.98,
+      "chg_pct": 3.09
     },
     "usdinr": {
-      "last": 96.24,
-      "chg_pct": -0.05
+      "last": 96.22,
+      "chg_pct": -0.27
     },
     "indiavix": {
       "last": 12.6,
       "chg_pct": -2.93
     },
-    "fetched": "2026-07-21"
+    "fetched": "2026-07-22"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-07-21",
-        "title": "the US administration weighs Iran ceasefire as mediators race to halt escalating conflict",
-        "domain": "livemint.com",
-        "url": "https://www.livemint.com/news/mediators-push-ceasefire-as-us-iran-tensions-escalate-amid-cycle-of-retaliation-11784627784210.html"
+        "date": "2026-07-22",
+        "title": "Inflation set to have cooled in June ahead of household energy squeeze",
+        "domain": "nwemail.co.uk",
+        "url": "https://www.nwemail.co.uk/news/national/26300288.inflation-set-cooled-june-ahead-household-energy-squeeze/"
       },
       {
-        "date": "2026-07-21",
-        "title": "Lebanese army begins takeover in south Lebanon",
-        "domain": "pakistantoday.com.pk",
-        "url": "https://www.pakistantoday.com.pk/2026/07/21/lebanese-army-begins-takeover-of-pilot-zones"
+        "date": "2026-07-22",
+        "title": "Inflation set to have cooled in June ahead of household energy squeeze",
+        "domain": "bournemouthecho.co.uk",
+        "url": "https://www.bournemouthecho.co.uk/news/national/26300288.inflation-set-cooled-june-ahead-household-energy-squeeze/"
       },
       {
-        "date": "2026-07-21",
-        "title": "NQ +1 . 4 % as tech rebounds ; Oil a touch firmer awaiting US - Iran updates - Newsquawk US Market Open",
-        "domain": "zerohedge.com",
-        "url": "https://www.zerohedge.com/markets/nq-14-tech-rebounds-oil-touch-firmer-awaiting-us-iran-updates-newsquawk-us-market-open"
+        "date": "2026-07-22",
+        "title": "Inflation set to have cooled in June ahead of household energy squeeze",
+        "domain": "countypress.co.uk",
+        "url": "https://www.countypress.co.uk/news/national/26300288.inflation-set-cooled-june-ahead-household-energy-squeeze/"
       },
       {
-        "date": "2026-07-21",
-        "title": "Oil prices volatile amid geopolitical tensions and diplomatic hopes - London Business News",
-        "domain": "londonlovesbusiness.com",
-        "url": "https://londonlovesbusiness.com/oil-prices-volatile-amid-geopolitical-tensions-and-diplomatic-hopes/"
+        "date": "2026-07-22",
+        "title": "AP News in Brief at 9 : 04 p . m . EDT",
+        "domain": "averyjournal.com",
+        "url": "http://www.averyjournal.com/ap/national/ap-news-in-brief-at-9-04-p-m-edt/article_7d0519a8-ea9d-5572-9350-0c6c00f43773.html"
       },
       {
-        "date": "2026-07-21",
-        "title": "Iran war halves number of airlines operating at Dubai airports",
-        "domain": "thenationalnews.com",
-        "url": "https://www.thenationalnews.com/business/aviation/2026/07/21/iran-war-halves-number-of-airlines-operating-at-dubai-airports/"
+        "date": "2026-07-22",
+        "title": "Ryanair Earnings call April to June quarter 2026",
+        "domain": "travelextra.ie",
+        "url": "https://www.travelextra.ie/ryanair-earnings-call-april-to-june-quarter-2027/"
       },
       {
-        "date": "2026-07-21",
-        "title": "Amid U . S .- Iran war , Houthi rebels threaten to blockade another key strait",
-        "domain": "aspenpublicradio.org",
-        "url": "https://www.aspenpublicradio.org/2026-07-21/amid-u-s-iran-war-houthi-rebels-threaten-to-blockade-another-key-strait"
+        "date": "2026-07-22",
+        "title": "The real oil shock from the Iran war might be just beginning",
+        "domain": "smh.com.au",
+        "url": "https://www.smh.com.au/business/markets/the-real-oil-shock-from-the-iran-war-might-be-just-beginning-20260722-p60heb.html"
       }
     ],
     "india_us": [],
-    "fetched": "2026-07-21"
+    "fetched": "2026-07-22"
   }
 }
