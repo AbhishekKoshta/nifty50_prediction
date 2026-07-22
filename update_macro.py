@@ -55,13 +55,14 @@ _HAWKISH = ("strike", "attack", "escalat", "blockade", "missile", "killed", "off
             "bomb", "retaliat", "targets", "assault", "invasion", "threat")
 
 # scrub personal names from fetched headlines (dashboard rule: institutions/roles only)
+# best-effort: covers current-cycle officials; live news can still name others we don't list
 _NAME_SUB = [
-    (r"\b(Trump|Biden)\b", "the US administration"),
-    (r"\bModi\b", "the Indian govt"),
-    (r"\bNetanyahu\b", "Israel"),
-    (r"\bKhamenei\b", "Iran's leadership"),
+    (r"\b(Trump|Biden|Hegseth|Rubio|Vance|Waltz|Bessent)\b", "the US administration"),
+    (r"\b(Modi|Jaishankar|Goyal|Sitharaman|Piyush|Malhotra)\b", "Indian officials"),
+    (r"\b(Netanyahu|Katz)\b", "Israel"),
+    (r"\b(Khamenei|Pezeshkian|Araghchi)\b", "Iran's leadership"),
     (r"\b(Warsh|Powell)\b", "the Fed"),
-    (r"\b(Goyal|Sitharaman|Piyush|Malhotra)\b", "Indian officials"),
+    (r"\bGuterres\b", "the UN"),
 ]
 
 
