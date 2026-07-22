@@ -106,20 +106,12 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": [
-      {
-        "date": "2026-07-22",
-        "kind": "hawkish",
-        "weight": "medium",
-        "note": "GDELT tone: 3 hawkish vs 0 dovish headlines (3d)",
-        "source": "gdelt-heuristic"
-      }
-    ]
+    "signals": []
   },
   "market": {
     "brent": {
-      "last": 91.92,
-      "chg_pct": 3.03
+      "last": 92.0,
+      "chg_pct": 3.12
     },
     "usdinr": {
       "last": 96.22,
