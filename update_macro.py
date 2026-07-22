@@ -71,10 +71,12 @@ def _scrub(text: str) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
-def gdelt(query: str, timespan: str = "3d", n: int = 6, _last=[0.0]):
+def gdelt(query: str, timespan: str = "3d", n: int = 6, must_match=(), _last=[0.0]):
     """Newest-first headlines from the free, key-less GDELT DOC 2.0 API. Honors GDELT's
-    1-request-per-5-seconds limit and retries once on a throttled/empty response. Personal
-    names are scrubbed to institutions/roles. Returns [] on failure."""
+    1-request-per-5-seconds limit and retries once on a throttled/empty response. Fetches a
+    wide pool, keeps only titles that contain a `must_match` term (relevance — GDELT's loose
+    matching otherwise surfaces off-topic articles), de-duplicates syndicated copies, and
+    scrubs personal names to roles. Returns up to `n`, or [] on failure."""
     import requests
     for attempt in (0, 1):
         wait = (6.0 if attempt else 5.2) - (time.monotonic() - _last[0])
@@ -82,20 +84,25 @@ def gdelt(query: str, timespan: str = "3d", n: int = 6, _last=[0.0]):
             time.sleep(wait)
         try:
             r = requests.get(GDELT_URL, timeout=25, headers={"User-Agent": "nifty-teller/1.0"},
-                             params={"query": query, "mode": "artlist", "maxrecords": n,
+                             params={"query": query, "mode": "artlist", "maxrecords": max(4 * n, 25),
                                      "timespan": timespan, "sort": "datedesc", "format": "json"})
             _last[0] = time.monotonic()
             arts = r.json().get("articles", [])
         except Exception:  # noqa: BLE001  (rate-limit text, timeout, bad JSON…)
             _last[0] = time.monotonic()
             arts = []
-        out = []
-        for a in arts[:n]:
-            sd = a.get("seendate", "")
+        out, seen = [], set()
+        for a in arts:
             title = _scrub((a.get("title") or "").strip())
-            if title:
-                out.append({"date": f"{sd[0:4]}-{sd[4:6]}-{sd[6:8]}" if len(sd) >= 8 else "",
-                            "title": title, "domain": a.get("domain", ""), "url": a.get("url", "")})
+            low = title.lower()
+            if not title or low in seen or (must_match and not any(k in low for k in must_match)):
+                continue
+            seen.add(low)
+            sd = a.get("seendate", "")
+            out.append({"date": f"{sd[0:4]}-{sd[4:6]}-{sd[6:8]}" if len(sd) >= 8 else "",
+                        "title": title, "domain": a.get("domain", ""), "url": a.get("url", "")})
+            if len(out) >= n:
+                break
         if out:
             return out
     return []
@@ -117,8 +124,10 @@ def _tone(headlines):
 
 def free_refresh(data: dict, today: date) -> None:
     """Free layer (no key): GDELT headlines + a keyword-tone signal + yfinance market quotes."""
-    iran = gdelt("Iran ceasefire sourcelang:english", "3d", 6)
-    india = gdelt("India United States trade deal sourcelang:english", "7d", 6)
+    iran = gdelt("Iran ceasefire sourcelang:english", "3d", 6,
+                 must_match=("iran", "tehran", "israel", "hormuz"))
+    india = gdelt("India United States trade deal sourcelang:english", "7d", 6,
+                  must_match=("india", "tariff"))
     if iran or india:  # don't clobber prior headlines if the fetch failed
         data["headlines"] = {"iran": iran, "india_us": india, "fetched": today.isoformat()}
 
