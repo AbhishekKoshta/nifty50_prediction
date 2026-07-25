@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-24",
+  "last_updated": "2026-07-25",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -106,63 +106,108 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-07-25",
+        "kind": "hawkish",
+        "weight": "medium",
+        "note": "GDELT tone: 3 hawkish vs 0 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 100.29,
-      "chg_pct": -0.4
+      "last": 96.78,
+      "chg_pct": -3.88
     },
     "usdinr": {
-      "last": 96.51,
-      "chg_pct": -0.05
+      "last": 96.56,
+      "chg_pct": -0.33
     },
     "indiavix": {
-      "last": 14.73,
-      "chg_pct": 9.31
+      "last": 14.03,
+      "chg_pct": 4.08
     },
-    "fetched": "2026-07-24"
+    "fetched": "2026-07-25"
   },
   "headlines": {
-    "iran": [],
-    "india_us": [
+    "iran": [
       {
-        "date": "2026-07-22",
-        "title": "US readies new tariffs as the US administration 10 % global levy to expire",
-        "domain": "manilatimes.net",
-        "url": "https://www.manilatimes.net/2026/07/22/business/foreign-business/us-readies-new-tariffs-as-trumps-10-global-levy-to-expire/2388980"
+        "date": "2026-07-25",
+        "title": "Unesco adds West Bank site and Lebanese castles to World Heritage List despite Israeli objections",
+        "domain": "asiaone.com",
+        "url": "https://www.asiaone.com/world/unesco-west-bank-lebanese-castles-world-heritage-list-despite-israeli-objections"
       },
       {
-        "date": "2026-07-22",
-        "title": "Another setback to India ? the US administration says US may impose tariffs upto 200 % on generic drug imports . Here why",
-        "domain": "livemint.com",
-        "url": "https://www.livemint.com/news/us-news/another-setback-to-india-trump-says-us-may-impose-tariffs-upto-200-on-generic-drug-imports-heres-why-11784684332690.html"
+        "date": "2026-07-25",
+        "title": "Iran : US attack on rescue vessels amounts to war crime",
+        "domain": "presstv.co.uk",
+        "url": "https://www.presstv.co.uk/Detail/2026/07/24/772943/Iran-United-States-attack-rescue-vessels-complaint-United-Nations"
       },
       {
-        "date": "2026-07-21",
-        "title": "the US administration Puts Section 338 Tariffs on Canada as Greer Foreshadows New Global Duties",
-        "domain": "foreignpolicy.com",
-        "url": "https://foreignpolicy.com/2026/07/21/trump-tariffs-canada-section-338-mexico-brazil-trade-usmca/?tpcc=recirc_trending062921"
+        "date": "2026-07-25",
+        "title": "the US administration seethes as Iran war spirals anew with no end in sight",
+        "domain": "businesstimes.com.sg",
+        "url": "https://www.businesstimes.com.sg/international/trump-seethes-iran-war-spirals-anew-no-end-sight"
       },
       {
-        "date": "2026-07-21",
-        "title": "US set to impose new tariffs as the US administration 10 % global levy to expire",
-        "domain": "newindianexpress.com",
-        "url": "https://www.newindianexpress.com/world/2026/Jul/21/us-set-to-impose-new-tariffs-as-trumps-10-global-levy-to-expire"
+        "date": "2026-07-25",
+        "title": "the US administration weighs harder Iran strikes as war widens",
+        "domain": "straitstimes.com",
+        "url": "https://www.straitstimes.com/world/middle-east/trump-weighs-harder-iran-strikes-as-war-widens"
       },
       {
-        "date": "2026-07-21",
-        "title": "Analysing India trade bottlenecks",
-        "domain": "thehindu.com",
-        "url": "https://www.thehindu.com/opinion/op-ed/analysing-indias-trade-bottlenecks/article71250862.ece"
+        "date": "2026-07-25",
+        "title": "Bond Markets React to Iran Tensions With Higher Borrowing Costs",
+        "domain": "finance.yahoo.com",
+        "url": "https://finance.yahoo.com/markets/options/articles/bond-markets-react-iran-tensions-214420060.html"
       },
       {
-        "date": "2026-07-21",
-        "title": "Explained : Why are farmers protesting against the proposed India - US trade deal ?",
-        "domain": "thenewsminute.com",
-        "url": "https://www.thenewsminute.com/news/explained-why-are-farmers-protesting-against-the-proposed-india-us-trade-deal"
+        "date": "2026-07-25",
+        "title": "Ops . Nasr - 2 and Saeqeh : Iran retaliatory strikes against US military assets on July 24",
+        "domain": "presstv.co.uk",
+        "url": "https://www.presstv.co.uk/Detail/2026/07/24/772942/Iran-IRGC-Army-Operation-Nasr-2-Sa-eqeh-United-States"
       }
     ],
-    "fetched": "2026-07-22"
+    "india_us": [
+      {
+        "date": "2026-07-25",
+        "title": "Was a pleasure to unveil the book : Indian officials on USISPF publication celebrating India - US ties",
+        "domain": "iranherald.com",
+        "url": "http://www.iranherald.com/news/279208680/was-a-pleasure-to-unveil-the-book-jaishankar-on-usispf-publication-celebrating-india-us-ties"
+      },
+      {
+        "date": "2026-07-25",
+        "title": "How the new US tariffs stack India against its competitors",
+        "domain": "indianexpress.com",
+        "url": "https://indianexpress.com/article/explained/how-the-new-us-tariffs-stack-india-against-its-competitors-10802399/"
+      },
+      {
+        "date": "2026-07-25",
+        "title": "Pak goods to face 10 % US tariff",
+        "domain": "tribune.com.pk",
+        "url": "https://tribune.com.pk/story/2620167/pak-goods-to-face-10-us-tariff"
+      },
+      {
+        "date": "2026-07-25",
+        "title": "the US administration hits 60 economies , including Canada , with new tariffs",
+        "domain": "financialpost.com",
+        "url": "https://financialpost.com/news/economy/trump-hits-60-economies-including-canada-with-new-tariffs"
+      },
+      {
+        "date": "2026-07-24",
+        "title": "the US administration extends 10 % tariff baseline in broad use of trade powers",
+        "domain": "spokesman.com",
+        "url": "https://www.spokesman.com/stories/2026/jul/24/trump-extends-10-tariff-baseline-in-broad-use-of-t/"
+      },
+      {
+        "date": "2026-07-24",
+        "title": "India - US economic partnership continues to grow despite pending trade deal : USISPF CEO Mukesh Aghi",
+        "domain": "calcuttanews.net",
+        "url": "http://www.calcuttanews.net/news/279208026/india-us-economic-partnership-continues-to-grow-despite-pending-trade-deal-usispf-ceo-mukesh-aghi"
+      }
+    ],
+    "fetched": "2026-07-25"
   }
 }
