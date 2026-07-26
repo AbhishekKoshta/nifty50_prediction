@@ -436,8 +436,8 @@ try:
 except Exception:  # noqa: BLE001
     _mac_data = None
 
-_tab_dash, _tab_move, _tab_macro = st.tabs(
-    ["📊 Probability Dashboard", "🔮 Next-Day Move Model", "🌍 Macro & Events"])
+_tab_macro, _tab_dash, _tab_move = st.tabs(
+    ["🌍 Macro & Events", "📊 Probability Dashboard", "🔮 Next-Day Move Model"])
 
 with _tab_macro:
     try:
