@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-26",
+  "last_updated": "2026-07-27",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -106,100 +106,108 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-07-27",
+        "kind": "hawkish",
+        "weight": "weak",
+        "note": "GDELT tone: 2 hawkish vs 1 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 96.78,
-      "chg_pct": -3.88
+      "last": 92.11,
+      "chg_pct": -4.83
     },
     "usdinr": {
-      "last": 96.56,
-      "chg_pct": -0.33
+      "last": 96.23,
+      "chg_pct": -0.67
     },
     "indiavix": {
-      "last": 13.48,
-      "chg_pct": 1.43
+      "last": 13.27,
+      "chg_pct": -1.54
     },
-    "fetched": "2026-07-26"
+    "fetched": "2026-07-27"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-07-25",
-        "title": "Unesco adds West Bank site and Lebanese castles to World Heritage List despite Israeli objections",
-        "domain": "asiaone.com",
-        "url": "https://www.asiaone.com/world/unesco-west-bank-lebanese-castles-world-heritage-list-despite-israeli-objections"
+        "date": "2026-07-27",
+        "title": "US - Iran Conflict Pause : Key Updates and Travel Alerts for UAE Residents Today ( July 27 , 2026 )",
+        "domain": "gulfnews.com",
+        "url": "https://gulfnews.com/uae/us-iran-conflict-what-uae-residents-need-to-know-today-july-27-2026-1.500621062"
       },
       {
-        "date": "2026-07-25",
-        "title": "Iran : US attack on rescue vessels amounts to war crime",
-        "domain": "presstv.co.uk",
-        "url": "https://www.presstv.co.uk/Detail/2026/07/24/772943/Iran-United-States-attack-rescue-vessels-complaint-United-Nations"
+        "date": "2026-07-27",
+        "title": "US and Iran pause their attacks after days of escalation",
+        "domain": "abcnews4.com",
+        "url": "https://abcnews4.com/news/nation-world/us-and-iran-pause-their-attacks-after-days-of-escalation"
       },
       {
-        "date": "2026-07-25",
-        "title": "the US administration seethes as Iran war spirals anew with no end in sight",
-        "domain": "businesstimes.com.sg",
-        "url": "https://www.businesstimes.com.sg/international/trump-seethes-iran-war-spirals-anew-no-end-sight"
+        "date": "2026-07-27",
+        "title": "Mine Detonates in Strait of Hormuz as Iran - Oman Safety Talks Inch Forward",
+        "domain": "travelerstoday.com",
+        "url": "https://www.travelerstoday.com/articles/60623/20260726/mine-detonates-strait-hormuz-iran-oman-safety-talks-inch-forward.htm"
       },
       {
-        "date": "2026-07-25",
-        "title": "the US administration weighs harder Iran strikes as war widens",
-        "domain": "straitstimes.com",
-        "url": "https://www.straitstimes.com/world/middle-east/trump-weighs-harder-iran-strikes-as-war-widens"
+        "date": "2026-07-27",
+        "title": "Pentagon official Iran war death toll no longer lists 4 troops killed during renewed fighting",
+        "domain": "mymotherlode.com",
+        "url": "https://mymotherlode.com/news/national/11019340/pentagons-official-iran-war-death-toll-no-longer-lists-4-troops-killed-during-renewed-fighting.html"
       },
       {
-        "date": "2026-07-25",
-        "title": "Bond Markets React to Iran Tensions With Higher Borrowing Costs",
-        "domain": "finance.yahoo.com",
-        "url": "https://finance.yahoo.com/markets/options/articles/bond-markets-react-iran-tensions-214420060.html"
+        "date": "2026-07-27",
+        "title": "US and Iran hold off on attacks for second straight night",
+        "domain": "ktvu.com",
+        "url": "https://www.ktvu.com/news/us-iran-hold-off-attacks-second-straight-night"
       },
       {
-        "date": "2026-07-25",
-        "title": "Ops . Nasr - 2 and Saeqeh : Iran retaliatory strikes against US military assets on July 24",
-        "domain": "presstv.co.uk",
-        "url": "https://www.presstv.co.uk/Detail/2026/07/24/772942/Iran-IRGC-Army-Operation-Nasr-2-Sa-eqeh-United-States"
+        "date": "2026-07-27",
+        "title": "US and Iran pause their attacks after days of escalation - Boston News , Weather , Sports",
+        "domain": "whdh.com",
+        "url": "https://whdh.com/news/us-and-iran-pause-their-attacks-after-days-of-escalation/"
       }
     ],
     "india_us": [
       {
+        "date": "2026-07-27",
+        "title": "New U . S . Tariffs Replace Expiring Section 122 Tariffs",
+        "domain": "mondaq.com",
+        "url": "https://www.mondaq.com:443/unitedstates/export-controls-trade-investment-sanctions/1822684/new-us-tariffs-replace-expiring-section-122-tariffs"
+      },
+      {
+        "date": "2026-07-27",
+        "title": "From IEEPA To Section 301 : USTR Reimplements the US administration Global Tariff Regime - Export Controls & Trade & Investment Sanctions",
+        "domain": "mondaq.com",
+        "url": "https://www.mondaq.com:443/unitedstates/export-controls-trade-investment-sanctions/1822576/from-ieepa-to-section-301-ustr-reimplements-trumps-global-tariff-regime"
+      },
+      {
+        "date": "2026-07-26",
+        "title": "the US administration shares an AI image of a giant air filter spanning the US - Canada border days after slapping Canada with a 50 % tariff",
+        "domain": "attackofthefanboy.com",
+        "url": "https://attackofthefanboy.com/politics/trump-shares-an-ai-image-of-a-giant-air-filter-spanning-the-us-canada-border-days-after-slapping-canada-with-a-50-tariff/"
+      },
+      {
+        "date": "2026-07-26",
+        "title": "LEN - www . lankaenews . com | Strategic Shield : How Sri Lanka Benefits from Securing the Lower 10 % US Tariff Rate",
+        "domain": "lankaenews.com",
+        "url": "http://www.lankaenews.com/news/5073/en"
+      },
+      {
+        "date": "2026-07-25",
+        "title": "Indian officials Launches USISPF Book on US - India Ties",
+        "domain": "newkerala.com",
+        "url": "https://www.newkerala.com/news/a/pleasure-unveil-book-jaishankar-usispf-publication-celebrating-india-us-420.htm"
+      },
+      {
         "date": "2026-07-25",
         "title": "Was a pleasure to unveil the book : Indian officials on USISPF publication celebrating India - US ties",
-        "domain": "iranherald.com",
-        "url": "http://www.iranherald.com/news/279208680/was-a-pleasure-to-unveil-the-book-jaishankar-on-usispf-publication-celebrating-india-us-ties"
-      },
-      {
-        "date": "2026-07-25",
-        "title": "How the new US tariffs stack India against its competitors",
-        "domain": "indianexpress.com",
-        "url": "https://indianexpress.com/article/explained/how-the-new-us-tariffs-stack-india-against-its-competitors-10802399/"
-      },
-      {
-        "date": "2026-07-25",
-        "title": "Pak goods to face 10 % US tariff",
-        "domain": "tribune.com.pk",
-        "url": "https://tribune.com.pk/story/2620167/pak-goods-to-face-10-us-tariff"
-      },
-      {
-        "date": "2026-07-25",
-        "title": "the US administration hits 60 economies , including Canada , with new tariffs",
-        "domain": "financialpost.com",
-        "url": "https://financialpost.com/news/economy/trump-hits-60-economies-including-canada-with-new-tariffs"
-      },
-      {
-        "date": "2026-07-24",
-        "title": "the US administration extends 10 % tariff baseline in broad use of trade powers",
-        "domain": "spokesman.com",
-        "url": "https://www.spokesman.com/stories/2026/jul/24/trump-extends-10-tariff-baseline-in-broad-use-of-t/"
-      },
-      {
-        "date": "2026-07-24",
-        "title": "India - US economic partnership continues to grow despite pending trade deal : USISPF CEO Mukesh Aghi",
-        "domain": "calcuttanews.net",
-        "url": "http://www.calcuttanews.net/news/279208026/india-us-economic-partnership-continues-to-grow-despite-pending-trade-deal-usispf-ceo-mukesh-aghi"
+        "domain": "philippinetimes.com",
+        "url": "http://www.philippinetimes.com/news/279208680/was-a-pleasure-to-unveil-the-book-jaishankar-on-usispf-publication-celebrating-india-us-ties"
       }
     ],
-    "fetched": "2026-07-25"
+    "fetched": "2026-07-27"
   }
 }
