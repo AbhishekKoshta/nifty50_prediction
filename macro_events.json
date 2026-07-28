@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-27",
+  "last_updated": "2026-07-28",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -108,106 +108,69 @@
     "hold_prob": 0.38,
     "signals": [
       {
-        "date": "2026-07-27",
-        "kind": "hawkish",
+        "date": "2026-07-28",
+        "kind": "dovish",
         "weight": "weak",
-        "note": "GDELT tone: 2 hawkish vs 1 dovish headlines (3d)",
+        "note": "GDELT tone: 0 hawkish vs 1 dovish headlines (3d)",
         "source": "gdelt-heuristic"
       }
     ]
   },
   "market": {
     "brent": {
-      "last": 92.11,
-      "chg_pct": -4.83
+      "last": 87.34,
+      "chg_pct": -1.15
     },
     "usdinr": {
-      "last": 96.23,
-      "chg_pct": -0.67
+      "last": 95.69,
+      "chg_pct": -0.9
     },
     "indiavix": {
-      "last": 13.27,
-      "chg_pct": -1.54
+      "last": 12.74,
+      "chg_pct": 0.61
     },
-    "fetched": "2026-07-27"
+    "fetched": "2026-07-28"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-07-27",
-        "title": "US - Iran Conflict Pause : Key Updates and Travel Alerts for UAE Residents Today ( July 27 , 2026 )",
-        "domain": "gulfnews.com",
-        "url": "https://gulfnews.com/uae/us-iran-conflict-what-uae-residents-need-to-know-today-july-27-2026-1.500621062"
+        "date": "2026-07-28",
+        "title": "Oil price , WTI , Brent : U . S .- Iran fighting pause holds",
+        "domain": "cnbc.com",
+        "url": "https://www.cnbc.com/2026/07/28/oil-price-today-wti-brent-us-iran-hormuz.html"
       },
       {
-        "date": "2026-07-27",
-        "title": "US and Iran pause their attacks after days of escalation",
-        "domain": "abcnews4.com",
-        "url": "https://abcnews4.com/news/nation-world/us-and-iran-pause-their-attacks-after-days-of-escalation"
+        "date": "2026-07-28",
+        "title": "Report : Israel to present the US administration with proof of Iranian nuclear buildup",
+        "domain": "israelnationalnews.com",
+        "url": "https://www.israelnationalnews.com/news/430858"
       },
       {
-        "date": "2026-07-27",
-        "title": "Mine Detonates in Strait of Hormuz as Iran - Oman Safety Talks Inch Forward",
-        "domain": "travelerstoday.com",
-        "url": "https://www.travelerstoday.com/articles/60623/20260726/mine-detonates-strait-hormuz-iran-oman-safety-talks-inch-forward.htm"
+        "date": "2026-07-28",
+        "title": "the US administration says US and Tehran having good talk as drones hit Iran neighbours",
+        "domain": "dailymaverick.co.za",
+        "url": "https://www.dailymaverick.co.za/article/2026-07-28-trump-says-us-and-tehran-having-good-talks-as-drones-hit-irans-neighbours/"
       },
       {
-        "date": "2026-07-27",
-        "title": "Pentagon official Iran war death toll no longer lists 4 troops killed during renewed fighting",
-        "domain": "mymotherlode.com",
-        "url": "https://mymotherlode.com/news/national/11019340/pentagons-official-iran-war-death-toll-no-longer-lists-4-troops-killed-during-renewed-fighting.html"
+        "date": "2026-07-28",
+        "title": "Israel heads to US for first the US administration meeting since Iran war",
+        "domain": "manilatimes.net",
+        "url": "https://www.manilatimes.net/2026/07/28/world/americas-emea/netanyahu-heads-to-us-for-first-trump-meeting-since-iran-war/2392654"
       },
       {
-        "date": "2026-07-27",
-        "title": "US and Iran hold off on attacks for second straight night",
-        "domain": "ktvu.com",
-        "url": "https://www.ktvu.com/news/us-iran-hold-off-attacks-second-straight-night"
+        "date": "2026-07-28",
+        "title": "the US administration Downplays Russia - Iran Intelligence Claims Ahead of Zelensky , Israel Meetings : Dow Futures Fall 5",
+        "domain": "benzinga.com",
+        "url": "https://www.benzinga.com/news/politics/26/07/60714419/trump-russia-iran-intelligence-zelensky-netanyahu-dow-oil"
       },
       {
-        "date": "2026-07-27",
-        "title": "US and Iran pause their attacks after days of escalation - Boston News , Weather , Sports",
-        "domain": "whdh.com",
-        "url": "https://whdh.com/news/us-and-iran-pause-their-attacks-after-days-of-escalation/"
+        "date": "2026-07-28",
+        "title": "Israel violence engulfs occupied West Bank - World Socialist Web Site",
+        "domain": "wsws.org",
+        "url": "https://www.wsws.org/en/articles/2026/07/27/vehr-j27.html"
       }
     ],
-    "india_us": [
-      {
-        "date": "2026-07-27",
-        "title": "New U . S . Tariffs Replace Expiring Section 122 Tariffs",
-        "domain": "mondaq.com",
-        "url": "https://www.mondaq.com:443/unitedstates/export-controls-trade-investment-sanctions/1822684/new-us-tariffs-replace-expiring-section-122-tariffs"
-      },
-      {
-        "date": "2026-07-27",
-        "title": "From IEEPA To Section 301 : USTR Reimplements the US administration Global Tariff Regime - Export Controls & Trade & Investment Sanctions",
-        "domain": "mondaq.com",
-        "url": "https://www.mondaq.com:443/unitedstates/export-controls-trade-investment-sanctions/1822576/from-ieepa-to-section-301-ustr-reimplements-trumps-global-tariff-regime"
-      },
-      {
-        "date": "2026-07-26",
-        "title": "the US administration shares an AI image of a giant air filter spanning the US - Canada border days after slapping Canada with a 50 % tariff",
-        "domain": "attackofthefanboy.com",
-        "url": "https://attackofthefanboy.com/politics/trump-shares-an-ai-image-of-a-giant-air-filter-spanning-the-us-canada-border-days-after-slapping-canada-with-a-50-tariff/"
-      },
-      {
-        "date": "2026-07-26",
-        "title": "LEN - www . lankaenews . com | Strategic Shield : How Sri Lanka Benefits from Securing the Lower 10 % US Tariff Rate",
-        "domain": "lankaenews.com",
-        "url": "http://www.lankaenews.com/news/5073/en"
-      },
-      {
-        "date": "2026-07-25",
-        "title": "Indian officials Launches USISPF Book on US - India Ties",
-        "domain": "newkerala.com",
-        "url": "https://www.newkerala.com/news/a/pleasure-unveil-book-jaishankar-usispf-publication-celebrating-india-us-420.htm"
-      },
-      {
-        "date": "2026-07-25",
-        "title": "Was a pleasure to unveil the book : Indian officials on USISPF publication celebrating India - US ties",
-        "domain": "philippinetimes.com",
-        "url": "http://www.philippinetimes.com/news/279208680/was-a-pleasure-to-unveil-the-book-jaishankar-on-usispf-publication-celebrating-india-us-ties"
-      }
-    ],
-    "fetched": "2026-07-27"
+    "india_us": [],
+    "fetched": "2026-07-28"
   }
 }
