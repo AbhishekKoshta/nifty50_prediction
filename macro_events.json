@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-29",
+  "last_updated": "2026-07-30",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -106,63 +106,71 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-07-30",
+        "kind": "hawkish",
+        "weight": "medium",
+        "note": "GDELT tone: 5 hawkish vs 0 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 87.6,
-      "chg_pct": 4.17
+      "last": 89.8,
+      "chg_pct": -1.04
     },
     "usdinr": {
-      "last": 95.72,
-      "chg_pct": -0.05
+      "last": 95.59,
+      "chg_pct": -0.01
     },
     "indiavix": {
-      "last": 12.2,
-      "chg_pct": -3.65
+      "last": 12.18,
+      "chg_pct": 1.44
     },
-    "fetched": "2026-07-29"
+    "fetched": "2026-07-30"
   },
   "headlines": {
-    "iran": [],
-    "india_us": [
+    "iran": [
       {
-        "date": "2026-07-29",
-        "title": "India - EU FTA will be major catalyst for bilateral trade and investment , says German Envoy Philipp Ackermann",
-        "domain": "calcuttanews.net",
-        "url": "http://www.calcuttanews.net/news/279214190/india-eu-fta-will-be-major-catalyst-for-bilateral-trade-and-investment-says-german-envoy-philipp-ackermann"
+        "date": "2026-07-30",
+        "title": "US launches strikes on Iranian targets after the US administration Will hit them very hard warning",
+        "domain": "newindianexpress.com",
+        "url": "https://www.newindianexpress.com/world/2026/Jul/30/us-launches-strikes-on-iranian-targets-after-trumps-will-hit-them-very-hard-warning"
       },
       {
-        "date": "2026-07-29",
-        "title": "India - EU FTA : German Envoy Calls It a Major Catalyst",
-        "domain": "newkerala.com",
-        "url": "https://www.newkerala.com/news/a/india-eu-fta-will-major-catalyst-bilateral-trade-investment-700.htm"
+        "date": "2026-07-30",
+        "title": "US launches strikes on Iran in retaliation for attack on military base",
+        "domain": "eppingforestguardian.co.uk",
+        "url": "https://www.eppingforestguardian.co.uk/news/national/26421607.us-launches-strikes-iran-retaliation-attack-military-base/"
       },
       {
-        "date": "2026-07-28",
-        "title": "the US administration defends tariffs before midterms , says theyve made the US a fortune",
-        "domain": "foxbusiness.com",
-        "url": "https://www.foxbusiness.com/politics/trump-defends-tariffs-ahead-looming-midterms-says-have-made-us-a-fortune"
+        "date": "2026-07-30",
+        "title": "US launches strikes on Iranian targets a day after it foiled missile attack on American forces",
+        "domain": "cdapress.com",
+        "url": "https://cdapress.com/news/2026/jul/29/us-launches-strikes-on-iranian-targets-a-day-after-it-foiled-missile-attack-on-american-forces/"
       },
       {
-        "date": "2026-07-28",
-        "title": "Asim Munir scores another Gulf defence deal as Kuwait ratifies military pact with Pakistan : Why India is watching closely",
-        "domain": "moneycontrol.com",
-        "url": "https://www.moneycontrol.com/world/asim-munir-scores-another-gulf-defence-deal-as-kuwait-ratifies-military-pact-with-pakistan-why-india-is-watching-closely-article-13985702.html"
+        "date": "2026-07-30",
+        "title": "US launches strikes on Iran after attack on troops in Jordan",
+        "domain": "siasat.com",
+        "url": "https://www.siasat.com/us-launches-strikes-on-iran-after-attack-on-troops-in-jordan-3515697/"
       },
       {
-        "date": "2026-07-28",
-        "title": "India plans up to quarter of 2027 LPG imports from US , sources say",
-        "domain": "economictimes.indiatimes.com",
-        "url": "https://economictimes.indiatimes.com/industry/energy/oil-gas/india-plans-up-to-quarter-of-2027-lpg-imports-from-us-sources-say/articleshow/132679546.cms"
+        "date": "2026-07-30",
+        "title": "US launches fresh strikes on Iran after days - long pause , amid fears the war is widening",
+        "domain": "theguardian.com",
+        "url": "https://www.theguardian.com/world/2026/jul/30/us-strikes-iran-war-widening-iraq"
       },
       {
-        "date": "2026-07-27",
-        "title": "Forced labour farce : on India and the U . S . new tariffs",
-        "domain": "thehindu.com",
-        "url": "https://www.thehindu.com/opinion/editorial/forced-labour-farce-on-india-and-the-uss-new-tariffs/article71272646.ece"
+        "date": "2026-07-30",
+        "title": "US military launches strikes on Iranian targets a day after it foiled missile attack on US forces - Las Vegas Sun News",
+        "domain": "lasvegassun.com",
+        "url": "https://lasvegassun.com/news/2026/jul/29/us-military-launches-strikes-on-iranian-targets-a-/"
       }
     ],
-    "fetched": "2026-07-29"
+    "india_us": [],
+    "fetched": "2026-07-30"
   }
 }
