@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-30",
+  "last_updated": "2026-07-31",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -108,69 +108,64 @@
     "hold_prob": 0.38,
     "signals": [
       {
-        "date": "2026-07-30",
-        "kind": "hawkish",
-        "weight": "medium",
-        "note": "GDELT tone: 5 hawkish vs 0 dovish headlines (3d)",
+        "date": "2026-07-31",
+        "kind": "dovish",
+        "weight": "weak",
+        "note": "GDELT tone: 0 hawkish vs 1 dovish headlines (3d)",
         "source": "gdelt-heuristic"
       }
     ]
   },
   "market": {
     "brent": {
-      "last": 89.8,
-      "chg_pct": -1.04
+      "last": 87.8,
+      "chg_pct": -1.38
     },
     "usdinr": {
-      "last": 95.59,
-      "chg_pct": -0.01
+      "last": 95.37,
+      "chg_pct": -0.38
     },
     "indiavix": {
-      "last": 12.18,
-      "chg_pct": 1.44
+      "last": 11.94,
+      "chg_pct": -1.79
     },
-    "fetched": "2026-07-30"
+    "fetched": "2026-07-31"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-07-30",
-        "title": "US launches strikes on Iranian targets after the US administration Will hit them very hard warning",
-        "domain": "newindianexpress.com",
-        "url": "https://www.newindianexpress.com/world/2026/Jul/30/us-launches-strikes-on-iranian-targets-after-trumps-will-hit-them-very-hard-warning"
+        "date": "2026-07-31",
+        "title": "A warning sign blinking red : the US administration polls at historic lows due to Iran and inflation",
+        "domain": "thenationalnews.com",
+        "url": "https://www.thenationalnews.com/news/us/2026/07/30/donald-trump-cnn-poll-quinnipiac/"
       },
       {
-        "date": "2026-07-30",
-        "title": "US launches strikes on Iran in retaliation for attack on military base",
-        "domain": "eppingforestguardian.co.uk",
-        "url": "https://www.eppingforestguardian.co.uk/news/national/26421607.us-launches-strikes-iran-retaliation-attack-military-base/"
-      },
-      {
-        "date": "2026-07-30",
-        "title": "US launches strikes on Iranian targets a day after it foiled missile attack on American forces",
-        "domain": "cdapress.com",
-        "url": "https://cdapress.com/news/2026/jul/29/us-launches-strikes-on-iranian-targets-a-day-after-it-foiled-missile-attack-on-american-forces/"
-      },
-      {
-        "date": "2026-07-30",
-        "title": "US launches strikes on Iran after attack on troops in Jordan",
-        "domain": "siasat.com",
-        "url": "https://www.siasat.com/us-launches-strikes-on-iran-after-attack-on-troops-in-jordan-3515697/"
-      },
-      {
-        "date": "2026-07-30",
-        "title": "US launches fresh strikes on Iran after days - long pause , amid fears the war is widening",
-        "domain": "theguardian.com",
-        "url": "https://www.theguardian.com/world/2026/jul/30/us-strikes-iran-war-widening-iraq"
-      },
-      {
-        "date": "2026-07-30",
-        "title": "US military launches strikes on Iranian targets a day after it foiled missile attack on US forces - Las Vegas Sun News",
-        "domain": "lasvegassun.com",
-        "url": "https://lasvegassun.com/news/2026/jul/29/us-military-launches-strikes-on-iranian-targets-a-/"
+        "date": "2026-07-31",
+        "title": "the US administration claims deal reached for Hamas disarmament , Israeli military withdrawal from Gaza",
+        "domain": "fox35orlando.com",
+        "url": "https://www.fox35orlando.com/news/trump-claims-deal-reached-hamas-disarmament-israeli-military-withdrawal-from-gaza"
       }
     ],
-    "india_us": [],
-    "fetched": "2026-07-30"
+    "india_us": [
+      {
+        "date": "2026-07-30",
+        "title": "Russia importing sensitive united kingdom , EU tech through India , data shows",
+        "domain": "politico.eu",
+        "url": "https://www.politico.eu/article/russia-import-uk-eu-technology-india-data/"
+      },
+      {
+        "date": "2026-07-29",
+        "title": "India Cockroaches rise : no retreat until Indian officials falls",
+        "domain": "marxist.com",
+        "url": "https://marxist.com/india-s-cockroaches-rise-no-retreat-until-modi-falls.htm"
+      },
+      {
+        "date": "2026-07-29",
+        "title": "Appreciated his valuable contributions : Indian officials bids farewell to German envoy to India Philipp Ackermann",
+        "domain": "afghanistannews.net",
+        "url": "http://www.afghanistannews.net/news/279214412/appreciated-his-valuable-contributions-jaishankar-bids-farewell-to-german-envoy-to-india-philipp-ackermann"
+      }
+    ],
+    "fetched": "2026-07-31"
   }
 }
