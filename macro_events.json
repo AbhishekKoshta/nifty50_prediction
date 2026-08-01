@@ -1,17 +1,9 @@
 {
-  "last_updated": "2026-07-31",
+  "last_updated": "2026-08-01",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
   "calendar": [
-    {
-      "date": "2026-07-24",
-      "name": "India-US tariff deadline (temp 10% expiry)",
-      "category": "Trade",
-      "importance": "high",
-      "impact": "Deal/relief → up (IT/pharma/auto); snap-back to ≥25% → down",
-      "nifty_session": "same day"
-    },
     {
       "date": "2026-07-29",
       "name": "US FOMC rate decision",
@@ -106,30 +98,22 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": [
-      {
-        "date": "2026-07-31",
-        "kind": "dovish",
-        "weight": "weak",
-        "note": "GDELT tone: 0 hawkish vs 1 dovish headlines (3d)",
-        "source": "gdelt-heuristic"
-      }
-    ]
+    "signals": []
   },
   "market": {
     "brent": {
-      "last": 87.8,
-      "chg_pct": -1.38
+      "last": 90.12,
+      "chg_pct": 1.22
     },
     "usdinr": {
-      "last": 95.37,
-      "chg_pct": -0.38
+      "last": 95.39,
+      "chg_pct": -0.31
     },
     "indiavix": {
-      "last": 11.94,
-      "chg_pct": -1.79
+      "last": 11.76,
+      "chg_pct": -3.29
     },
-    "fetched": "2026-07-31"
+    "fetched": "2026-08-01"
   },
   "headlines": {
     "iran": [
