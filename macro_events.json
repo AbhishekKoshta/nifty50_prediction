@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-02",
+  "last_updated": "2026-08-03",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -98,7 +98,15 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-08-03",
+        "kind": "hawkish",
+        "weight": "weak",
+        "note": "GDELT tone: 3 hawkish vs 1 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
@@ -106,50 +114,68 @@
       "chg_pct": 1.22
     },
     "usdinr": {
-      "last": 95.39,
-      "chg_pct": -0.31
+      "last": 95.15,
+      "chg_pct": -0.55
     },
     "indiavix": {
-      "last": 11.76,
-      "chg_pct": -3.29
+      "last": 11.84,
+      "chg_pct": 0.66
     },
-    "fetched": "2026-08-02"
+    "fetched": "2026-08-03"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-07-31",
-        "title": "A warning sign blinking red : the US administration polls at historic lows due to Iran and inflation",
-        "domain": "thenationalnews.com",
-        "url": "https://www.thenationalnews.com/news/us/2026/07/30/donald-trump-cnn-poll-quinnipiac/"
+        "date": "2026-08-03",
+        "title": "the US administration planned biggest attack since World War II before halting Iran strikes",
+        "domain": "bridgwatermercury.co.uk",
+        "url": "https://www.bridgwatermercury.co.uk/news/national/26430143.trump-planned-biggest-attack-since-world-war-ii-halting-iran-strikes/"
       },
       {
-        "date": "2026-07-31",
-        "title": "the US administration claims deal reached for Hamas disarmament , Israeli military withdrawal from Gaza",
-        "domain": "fox35orlando.com",
-        "url": "https://www.fox35orlando.com/news/trump-claims-deal-reached-hamas-disarmament-israeli-military-withdrawal-from-gaza"
+        "date": "2026-08-03",
+        "title": "Iran déjà vu : the US administration once again threatens massive escalation ...",
+        "domain": "semissourian.com",
+        "url": "https://www.semissourian.com/world/iran-dj-vu-trump-once-again-threatens-massive-escalation-against-tehran-only-to-walk-back-96a9950a"
+      },
+      {
+        "date": "2026-08-03",
+        "title": "the US administration says negotiations will resume Monday afternoon while Tehran continues Hormuz talks with Oman",
+        "domain": "fortune.com",
+        "url": "https://fortune.com/2026/08/02/iran-war-trump-negotiations-resume-monday-tehran-hormuz-talks-oman/"
+      },
+      {
+        "date": "2026-08-03",
+        "title": "Iran war could halt growth across united kingdom economy",
+        "domain": "cityam.com",
+        "url": "https://www.cityam.com/iran-war-could-halt-growth-across-uk-economy/"
+      },
+      {
+        "date": "2026-08-03",
+        "title": "Washington to hold off on Iran strikes",
+        "domain": "usa.chinadaily.com.cn",
+        "url": "http://usa.chinadaily.com.cn/a/202608/03/WS6a6feb21a310986e2b4689e0.html"
+      },
+      {
+        "date": "2026-08-03",
+        "title": "the US administration says new round of Iran talks will begin Monday",
+        "domain": "aljazeera.com",
+        "url": "https://www.aljazeera.com/news/2026/8/2/trump-says-new-round-of-iran-talks-will-begin-monday"
       }
     ],
     "india_us": [
       {
-        "date": "2026-07-30",
-        "title": "Russia importing sensitive united kingdom , EU tech through India , data shows",
-        "domain": "politico.eu",
-        "url": "https://www.politico.eu/article/russia-import-uk-eu-technology-india-data/"
+        "date": "2026-08-01",
+        "title": "PM Indian officials Is Forcibly Imposing Ethanol on Indians To Please US President the US administration : Arvind Kejriwal",
+        "domain": "oneindia.com",
+        "url": "https://www.oneindia.com/india/pm-modi-is-forcibly-imposing-ethanol-on-indians-to-please-us-president-trump-arvind-kejriwal-8163997.html"
       },
       {
-        "date": "2026-07-29",
-        "title": "India Cockroaches rise : no retreat until Indian officials falls",
-        "domain": "marxist.com",
-        "url": "https://marxist.com/india-s-cockroaches-rise-no-retreat-until-modi-falls.htm"
-      },
-      {
-        "date": "2026-07-29",
-        "title": "Appreciated his valuable contributions : Indian officials bids farewell to German envoy to India Philipp Ackermann",
-        "domain": "afghanistannews.net",
-        "url": "http://www.afghanistannews.net/news/279214412/appreciated-his-valuable-contributions-jaishankar-bids-farewell-to-german-envoy-to-india-philipp-ackermann"
+        "date": "2026-07-31",
+        "title": "Stopped India - Pakistan war during Operation Sindoor with tariff threat , claims the US administration",
+        "domain": "southeastasiapost.com",
+        "url": "http://www.southeastasiapost.com/news/279218096/stopped-india-pakistan-war-during-operation-sindoor-with-tariff-threat-claims-trump"
       }
     ],
-    "fetched": "2026-07-31"
+    "fetched": "2026-08-03"
   }
 }
