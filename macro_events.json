@@ -1,17 +1,9 @@
 {
-  "last_updated": "2026-08-05",
+  "last_updated": "2026-08-06",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
   "calendar": [
-    {
-      "date": "2026-07-29",
-      "name": "US FOMC rate decision",
-      "category": "CenBank",
-      "importance": "high",
-      "impact": "Hawkish/hike → down (FII outflow, INR weak); dovish → up",
-      "nifty_session": "hits NIFTY on Jul 30 open (2AM IST announce)"
-    },
     {
       "date": "2026-08-05",
       "name": "RBI MPC rate decision",
@@ -102,72 +94,47 @@
   },
   "market": {
     "brent": {
-      "last": 78.65,
-      "chg_pct": -6.11
+      "last": 79.09,
+      "chg_pct": -0.45
     },
     "usdinr": {
-      "last": 95.03,
-      "chg_pct": -0.32
+      "last": 95.14,
+      "chg_pct": 0.05
     },
     "indiavix": {
-      "last": 11.91,
-      "chg_pct": -2.32
+      "last": 12.2,
+      "chg_pct": 1.16
     },
-    "fetched": "2026-08-05"
+    "fetched": "2026-08-06"
   },
   "headlines": {
-    "iran": [
-      {
-        "date": "2026-08-03",
-        "title": "the US administration planned biggest attack since World War II before halting Iran strikes",
-        "domain": "bridgwatermercury.co.uk",
-        "url": "https://www.bridgwatermercury.co.uk/news/national/26430143.trump-planned-biggest-attack-since-world-war-ii-halting-iran-strikes/"
-      },
-      {
-        "date": "2026-08-03",
-        "title": "Iran déjà vu : the US administration once again threatens massive escalation ...",
-        "domain": "semissourian.com",
-        "url": "https://www.semissourian.com/world/iran-dj-vu-trump-once-again-threatens-massive-escalation-against-tehran-only-to-walk-back-96a9950a"
-      },
-      {
-        "date": "2026-08-03",
-        "title": "the US administration says negotiations will resume Monday afternoon while Tehran continues Hormuz talks with Oman",
-        "domain": "fortune.com",
-        "url": "https://fortune.com/2026/08/02/iran-war-trump-negotiations-resume-monday-tehran-hormuz-talks-oman/"
-      },
-      {
-        "date": "2026-08-03",
-        "title": "Iran war could halt growth across united kingdom economy",
-        "domain": "cityam.com",
-        "url": "https://www.cityam.com/iran-war-could-halt-growth-across-uk-economy/"
-      },
-      {
-        "date": "2026-08-03",
-        "title": "Washington to hold off on Iran strikes",
-        "domain": "usa.chinadaily.com.cn",
-        "url": "http://usa.chinadaily.com.cn/a/202608/03/WS6a6feb21a310986e2b4689e0.html"
-      },
-      {
-        "date": "2026-08-03",
-        "title": "the US administration says new round of Iran talks will begin Monday",
-        "domain": "aljazeera.com",
-        "url": "https://www.aljazeera.com/news/2026/8/2/trump-says-new-round-of-iran-talks-will-begin-monday"
-      }
-    ],
+    "iran": [],
     "india_us": [
       {
-        "date": "2026-08-01",
-        "title": "PM Indian officials Is Forcibly Imposing Ethanol on Indians To Please US President the US administration : Arvind Kejriwal",
-        "domain": "oneindia.com",
-        "url": "https://www.oneindia.com/india/pm-modi-is-forcibly-imposing-ethanol-on-indians-to-please-us-president-trump-arvind-kejriwal-8163997.html"
+        "date": "2026-08-06",
+        "title": "Stocks to Watch Today : Aurobindo Pharma , Cohance , Hindalco , Cummins , PB Fintech , Navin Fluorine , Biocon , RMC Switchgears , Meenakshi India , Juniper Green Energy in focus on 6 August",
+        "domain": "moneycontrol.com",
+        "url": "https://www.moneycontrol.com/news/business/markets/stocks-to-watch-today-aurobindo-pharma-cohance-hindalco-cummins-pb-fintech-navin-fluorine-biocon-rmc-switchgears-meenakshi-india-juniper-green-energy-in-focus-on-6-august-13995827.html"
       },
       {
-        "date": "2026-07-31",
-        "title": "Stopped India - Pakistan war during Operation Sindoor with tariff threat , claims the US administration",
-        "domain": "southeastasiapost.com",
-        "url": "http://www.southeastasiapost.com/news/279218096/stopped-india-pakistan-war-during-operation-sindoor-with-tariff-threat-claims-trump"
+        "date": "2026-08-05",
+        "title": "India – UK trade deal : Good bargain , but not without risks",
+        "domain": "hindustantimes.com",
+        "url": "https://www.hindustantimes.com/ht-insight/international-affairs/indiauk-trade-deal-good-bargain-but-not-without-risks-101785929327290.html"
+      },
+      {
+        "date": "2026-08-05",
+        "title": "India , US Advancing Toward Interim Trade Deal : MEA",
+        "domain": "siliconindia.com",
+        "url": "https://www.siliconindia.com/news/general/india-us-advancing-toward-interim-trade-deal-mea-nid-241800-cid-1.html"
+      },
+      {
+        "date": "2026-08-05",
+        "title": "US Iran war : Qatar says mediators make progress ; Indian ship sinks in the Middle East",
+        "domain": "economictimes.indiatimes.com",
+        "url": "https://economictimes.indiatimes.com/news/international/world-news/us-iran-war-qatar-says-mediators-make-progress-after-indian-ship-sinks-in-the-middle-east/articleshow/132882612.cms"
       }
     ],
-    "fetched": "2026-08-03"
+    "fetched": "2026-08-06"
   }
 }
