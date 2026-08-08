@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-07",
+  "last_updated": "2026-08-08",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -94,47 +94,41 @@
   },
   "market": {
     "brent": {
-      "last": 82.49,
-      "chg_pct": 3.83
+      "last": 82.27,
+      "chg_pct": -0.27
     },
     "usdinr": {
-      "last": 95.25,
-      "chg_pct": 0.18
+      "last": 95.2,
+      "chg_pct": 0.13
     },
     "indiavix": {
-      "last": 12.47,
-      "chg_pct": 2.57
+      "last": 12.16,
+      "chg_pct": 0.0
     },
-    "fetched": "2026-08-07"
+    "fetched": "2026-08-08"
   },
   "headlines": {
     "iran": [],
     "india_us": [
       {
+        "date": "2026-08-07",
+        "title": "July Update US Generic Drug Tariffs Implications For Pharma And Outsourcing",
+        "domain": "lifescienceleader.com",
+        "url": "https://www.lifescienceleader.com/doc/july-update-u-s-generic-drug-tariffs-implications-for-pharma-and-outsourcing-0001"
+      },
+      {
+        "date": "2026-08-06",
+        "title": "Farmer Groups Warn Seeds Bill 2025 , Trade Deals May Weaken Traditional Seed Rights in India",
+        "domain": "downtoearth.org.in",
+        "url": "https://www.downtoearth.org.in/governance/farmer-groups-warn-mps-that-seeds-bill-and-trade-deals-could-weaken-control-over-traditional-seeds"
+      },
+      {
         "date": "2026-08-06",
         "title": "Stocks to Watch Today : Aurobindo Pharma , Cohance , Hindalco , Cummins , PB Fintech , Navin Fluorine , Biocon , RMC Switchgears , Meenakshi India , Juniper Green Energy in focus on 6 August",
         "domain": "moneycontrol.com",
         "url": "https://www.moneycontrol.com/news/business/markets/stocks-to-watch-today-aurobindo-pharma-cohance-hindalco-cummins-pb-fintech-navin-fluorine-biocon-rmc-switchgears-meenakshi-india-juniper-green-energy-in-focus-on-6-august-13995827.html"
-      },
-      {
-        "date": "2026-08-05",
-        "title": "India – UK trade deal : Good bargain , but not without risks",
-        "domain": "hindustantimes.com",
-        "url": "https://www.hindustantimes.com/ht-insight/international-affairs/indiauk-trade-deal-good-bargain-but-not-without-risks-101785929327290.html"
-      },
-      {
-        "date": "2026-08-05",
-        "title": "India , US Advancing Toward Interim Trade Deal : MEA",
-        "domain": "siliconindia.com",
-        "url": "https://www.siliconindia.com/news/general/india-us-advancing-toward-interim-trade-deal-mea-nid-241800-cid-1.html"
-      },
-      {
-        "date": "2026-08-05",
-        "title": "US Iran war : Qatar says mediators make progress ; Indian ship sinks in the Middle East",
-        "domain": "economictimes.indiatimes.com",
-        "url": "https://economictimes.indiatimes.com/news/international/world-news/us-iran-war-qatar-says-mediators-make-progress-after-indian-ship-sinks-in-the-middle-east/articleshow/132882612.cms"
       }
     ],
-    "fetched": "2026-08-06"
+    "fetched": "2026-08-08"
   }
 }
