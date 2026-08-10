@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-09",
+  "last_updated": "2026-08-10",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -94,8 +94,8 @@
   },
   "market": {
     "brent": {
-      "last": 83.55,
-      "chg_pct": 1.29
+      "last": 84.23,
+      "chg_pct": 0.81
     },
     "usdinr": {
       "last": 95.2,
@@ -105,30 +105,48 @@
       "last": 12.16,
       "chg_pct": 0.0
     },
-    "fetched": "2026-08-09"
+    "fetched": "2026-08-10"
   },
   "headlines": {
-    "iran": [],
-    "india_us": [
+    "iran": [
       {
-        "date": "2026-08-07",
-        "title": "July Update US Generic Drug Tariffs Implications For Pharma And Outsourcing",
-        "domain": "lifescienceleader.com",
-        "url": "https://www.lifescienceleader.com/doc/july-update-u-s-generic-drug-tariffs-implications-for-pharma-and-outsourcing-0001"
+        "date": "2026-08-10",
+        "title": "Hormuz wont be reopened until US meets our demands – Iran – Daily Trust",
+        "domain": "dailytrust.com",
+        "url": "https://dailytrust.com/hormuz-wont-be-reopened-until-us-meets-our-demands-iran/"
       },
       {
-        "date": "2026-08-06",
-        "title": "Farmer Groups Warn Seeds Bill 2025 , Trade Deals May Weaken Traditional Seed Rights in India",
-        "domain": "downtoearth.org.in",
-        "url": "https://www.downtoearth.org.in/governance/farmer-groups-warn-mps-that-seeds-bill-and-trade-deals-could-weaken-control-over-traditional-seeds"
+        "date": "2026-08-10",
+        "title": "Just watching …: the US administration says US low keying it with Iran as Tehran demands concessions to reopen Hormuz",
+        "domain": "businesstoday.in",
+        "url": "https://www.businesstoday.in/world/story/just-watching-trump-says-us-low-keying-it-with-iran-as-tehran-demands-concessions-to-reopen-hormuz-548204-2026-08-10"
       },
       {
-        "date": "2026-08-06",
-        "title": "Stocks to Watch Today : Aurobindo Pharma , Cohance , Hindalco , Cummins , PB Fintech , Navin Fluorine , Biocon , RMC Switchgears , Meenakshi India , Juniper Green Energy in focus on 6 August",
-        "domain": "moneycontrol.com",
-        "url": "https://www.moneycontrol.com/news/business/markets/stocks-to-watch-today-aurobindo-pharma-cohance-hindalco-cummins-pb-fintech-navin-fluorine-biocon-rmc-switchgears-meenakshi-india-juniper-green-energy-in-focus-on-6-august-13995827.html"
+        "date": "2026-08-10",
+        "title": "Israel rejects the US administration Gaza plan , more details emerge on the Strait of Hormuz and other Mideast news",
+        "domain": "messenger-inquirer.com",
+        "url": "https://www.messenger-inquirer.com/ap/elections/israel-rejects-trumps-gaza-plan-more-details-emerge-on-the-strait-of-hormuz-and-other/article_fd6c1087-2ffd-5398-bc6f-3a65985a0adc.html"
+      },
+      {
+        "date": "2026-08-10",
+        "title": "Iran ties Hormuz reopening to US concessions on several demands",
+        "domain": "kathmandupost.com",
+        "url": "https://kathmandupost.com/world/2026/08/10/iran-ties-hormuz-reopening-to-us-concessions-on-several-demands"
+      },
+      {
+        "date": "2026-08-10",
+        "title": "Iran rejects US talks for now as wait for Hormuz deal drags on",
+        "domain": "canoncitydailyrecord.com",
+        "url": "https://www.canoncitydailyrecord.com/2026/08/09/iran-rejects-us-talks-for-now-as-wait-for-hormuz-deal-drags-on-4/"
+      },
+      {
+        "date": "2026-08-10",
+        "title": "Israel rejects the US administration Gaza plan , more details emerge on the Strait of Hormuz and other Mideast news - Las Vegas Sun News",
+        "domain": "lasvegassun.com",
+        "url": "https://lasvegassun.com/news/2026/aug/09/israel-rejects-trumps-gaza-plan-more-details-emerg/"
       }
     ],
-    "fetched": "2026-08-08"
+    "india_us": [],
+    "fetched": "2026-08-10"
   }
 }
