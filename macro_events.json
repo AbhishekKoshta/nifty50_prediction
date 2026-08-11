@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-10",
+  "last_updated": "2026-08-11",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -90,63 +90,71 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-08-11",
+        "kind": "dovish",
+        "weight": "weak",
+        "note": "GDELT tone: 0 hawkish vs 1 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 84.23,
-      "chg_pct": 0.81
+      "last": 87.92,
+      "chg_pct": 5.23
     },
     "usdinr": {
-      "last": 95.2,
-      "chg_pct": -0.12
+      "last": 95.29,
+      "chg_pct": 0.08
     },
     "indiavix": {
-      "last": 12.16,
-      "chg_pct": 0.0
+      "last": 12.25,
+      "chg_pct": 0.74
     },
-    "fetched": "2026-08-10"
+    "fetched": "2026-08-11"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-08-10",
-        "title": "Hormuz wont be reopened until US meets our demands – Iran – Daily Trust",
-        "domain": "dailytrust.com",
-        "url": "https://dailytrust.com/hormuz-wont-be-reopened-until-us-meets-our-demands-iran/"
+        "date": "2026-08-11",
+        "title": "the US administration Demands Compensation From Iran as Hormuz Deal Hopes Fade",
+        "domain": "gcaptain.com",
+        "url": "https://gcaptain.com/trump-demands-compensation-from-iran-as-hormuz-deal-hopes-fade/"
       },
       {
-        "date": "2026-08-10",
-        "title": "Just watching …: the US administration says US low keying it with Iran as Tehran demands concessions to reopen Hormuz",
-        "domain": "businesstoday.in",
-        "url": "https://www.businesstoday.in/world/story/just-watching-trump-says-us-low-keying-it-with-iran-as-tehran-demands-concessions-to-reopen-hormuz-548204-2026-08-10"
+        "date": "2026-08-11",
+        "title": "Hopes for Hormuz Deal Fade as the US administration Demands Iranian Reparations",
+        "domain": "deccanchronicle.com",
+        "url": "https://www.deccanchronicle.com/west-asia/hopes-for-hormuz-deal-fade-as-trump-demands-iranian-reparations-1978239"
       },
       {
-        "date": "2026-08-10",
-        "title": "Israel rejects the US administration Gaza plan , more details emerge on the Strait of Hormuz and other Mideast news",
-        "domain": "messenger-inquirer.com",
-        "url": "https://www.messenger-inquirer.com/ap/elections/israel-rejects-trumps-gaza-plan-more-details-emerge-on-the-strait-of-hormuz-and-other/article_fd6c1087-2ffd-5398-bc6f-3a65985a0adc.html"
+        "date": "2026-08-11",
+        "title": "the US administration says relationship with Israel is very good despite Israeli PM rejecting Gaza plan",
+        "domain": "moneycontrol.com",
+        "url": "https://www.moneycontrol.com/world/trump-says-relationship-with-netanyahu-is-very-good-despite-israeli-pm-rejecting-gaza-plan-article-14000760.html"
       },
       {
-        "date": "2026-08-10",
-        "title": "Iran ties Hormuz reopening to US concessions on several demands",
-        "domain": "kathmandupost.com",
-        "url": "https://kathmandupost.com/world/2026/08/10/iran-ties-hormuz-reopening-to-us-concessions-on-several-demands"
+        "date": "2026-08-11",
+        "title": "the US administration plays down Gaza rift with Israel , says ties remain very good",
+        "domain": "geo.tv",
+        "url": "https://www.geo.tv/latest/677039-trump-plays-down-gaza-rift-with-netanyahu-says-ties-remain-very-good"
       },
       {
-        "date": "2026-08-10",
-        "title": "Iran rejects US talks for now as wait for Hormuz deal drags on",
-        "domain": "canoncitydailyrecord.com",
-        "url": "https://www.canoncitydailyrecord.com/2026/08/09/iran-rejects-us-talks-for-now-as-wait-for-hormuz-deal-drags-on-4/"
+        "date": "2026-08-11",
+        "title": "the US administration : The war against Iran will end soon , they cannot resist . Ghalibaf : His is a theatrical diplomacy",
+        "domain": "odnako.org",
+        "url": "https://www.odnako.org/trump-the-war-against-iran-will-end-soon-they-cannot-resist-ghalibaf-his-is-a-theatrical-diplomacy/"
       },
       {
-        "date": "2026-08-10",
-        "title": "Israel rejects the US administration Gaza plan , more details emerge on the Strait of Hormuz and other Mideast news - Las Vegas Sun News",
-        "domain": "lasvegassun.com",
-        "url": "https://lasvegassun.com/news/2026/aug/09/israel-rejects-trumps-gaza-plan-more-details-emerg/"
+        "date": "2026-08-11",
+        "title": "Israel rejects the US administration Gaza plan , more details emerge on the Strait of Hormuz",
+        "domain": "kold.com",
+        "url": "https://www.kold.com/2026/08/09/israel-rejects-trumps-gaza-plan-more-details-emerge-strait-hormuz/"
       }
     ],
     "india_us": [],
-    "fetched": "2026-08-10"
+    "fetched": "2026-08-11"
   }
 }
