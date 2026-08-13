@@ -1,17 +1,9 @@
 {
-  "last_updated": "2026-08-12",
+  "last_updated": "2026-08-13",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
   "calendar": [
-    {
-      "date": "2026-08-05",
-      "name": "RBI MPC rate decision",
-      "category": "CenBank",
-      "importance": "high",
-      "impact": "Cut → up (banks lead); hawkish surprise → down. ~10AM IST",
-      "nifty_session": "same day"
-    },
     {
       "date": "2026-08-12",
       "name": "US CPI (Jul data)",
@@ -94,59 +86,53 @@
   },
   "market": {
     "brent": {
-      "last": 89.69,
-      "chg_pct": 2.25
+      "last": 88.17,
+      "chg_pct": -0.83
     },
     "usdinr": {
-      "last": 95.4,
-      "chg_pct": 0.0
+      "last": 95.36,
+      "chg_pct": -0.02
     },
     "indiavix": {
-      "last": 12.25,
-      "chg_pct": 0.74
+      "last": 11.69,
+      "chg_pct": -1.43
     },
-    "fetched": "2026-08-12"
+    "fetched": "2026-08-13"
   },
   "headlines": {
-    "iran": [
+    "iran": [],
+    "india_us": [
       {
-        "date": "2026-08-11",
-        "title": "the US administration Demands Compensation From Iran as Hormuz Deal Hopes Fade",
-        "domain": "gcaptain.com",
-        "url": "https://gcaptain.com/trump-demands-compensation-from-iran-as-hormuz-deal-hopes-fade/"
+        "date": "2026-08-12",
+        "title": "Tequila surges 34 % in India in 2025 - The Spirits Business",
+        "domain": "thespiritsbusiness.com",
+        "url": "https://www.thespiritsbusiness.com/2026/08/tequila-surges-34-in-india-in-2025/"
+      },
+      {
+        "date": "2026-08-12",
+        "title": "India Turns to Latin America for Lithium to Escape China Grip",
+        "domain": "riotimesonline.com",
+        "url": "https://www.riotimesonline.com/india-latin-america-lithium-copper-2026/"
       },
       {
         "date": "2026-08-11",
-        "title": "Hopes for Hormuz Deal Fade as the US administration Demands Iranian Reparations",
-        "domain": "deccanchronicle.com",
-        "url": "https://www.deccanchronicle.com/west-asia/hopes-for-hormuz-deal-fade-as-trump-demands-iranian-reparations-1978239"
+        "title": "US - India partnership vital for global security : Envoy Sergio Gor holds talks with NSA Ajit Doval",
+        "domain": "arabherald.com",
+        "url": "http://www.arabherald.com/news/279234602/us-india-partnership-vital-for-global-security-envoy-sergio-gor-holds-talks-with-nsa-ajit-doval"
       },
       {
         "date": "2026-08-11",
-        "title": "the US administration says relationship with Israel is very good despite Israeli PM rejecting Gaza plan",
-        "domain": "moneycontrol.com",
-        "url": "https://www.moneycontrol.com/world/trump-says-relationship-with-netanyahu-is-very-good-despite-israeli-pm-rejecting-gaza-plan-article-14000760.html"
+        "title": "the US administration tariffs fallout : China moves to join Brazil WTO challenge of US forced labor duties",
+        "domain": "undercurrentnews.com",
+        "url": "https://www.undercurrentnews.com/2026/08/11/trump-tariffs-fallout/"
       },
       {
         "date": "2026-08-11",
-        "title": "the US administration plays down Gaza rift with Israel , says ties remain very good",
-        "domain": "geo.tv",
-        "url": "https://www.geo.tv/latest/677039-trump-plays-down-gaza-rift-with-netanyahu-says-ties-remain-very-good"
-      },
-      {
-        "date": "2026-08-11",
-        "title": "the US administration : The war against Iran will end soon , they cannot resist . Ghalibaf : His is a theatrical diplomacy",
-        "domain": "odnako.org",
-        "url": "https://www.odnako.org/trump-the-war-against-iran-will-end-soon-they-cannot-resist-ghalibaf-his-is-a-theatrical-diplomacy/"
-      },
-      {
-        "date": "2026-08-11",
-        "title": "Israel rejects the US administration Gaza plan , more details emerge on the Strait of Hormuz",
-        "domain": "kold.com",
-        "url": "https://www.kold.com/2026/08/09/israel-rejects-trumps-gaza-plan-more-details-emerge-strait-hormuz/"
+        "title": "From Gift Nifty to Oil prices , Asian banking stocks rally : 8 key things that changed for Indian stock market overnight",
+        "domain": "livemint.com",
+        "url": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-to-crude-oil-prices-asian-banking-stocks-8-key-things-that-changed-for-indian-stock-market-overnight-11786410558811.html"
       }
     ],
-    "india_us": [],
-    "fetched": "2026-08-11"
+    "fetched": "2026-08-13"
   }
 }
