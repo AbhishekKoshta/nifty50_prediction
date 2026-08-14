@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-13",
+  "last_updated": "2026-08-14",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -82,57 +82,71 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-08-14",
+        "kind": "hawkish",
+        "weight": "medium",
+        "note": "GDELT tone: 3 hawkish vs 0 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 88.17,
-      "chg_pct": -0.83
+      "last": 87.09,
+      "chg_pct": -2.12
     },
     "usdinr": {
-      "last": 95.36,
-      "chg_pct": -0.02
+      "last": 95.39,
+      "chg_pct": 0.05
     },
     "indiavix": {
       "last": 11.69,
       "chg_pct": -1.43
     },
-    "fetched": "2026-08-13"
+    "fetched": "2026-08-14"
   },
   "headlines": {
-    "iran": [],
-    "india_us": [
+    "iran": [
       {
-        "date": "2026-08-12",
-        "title": "Tequila surges 34 % in India in 2025 - The Spirits Business",
-        "domain": "thespiritsbusiness.com",
-        "url": "https://www.thespiritsbusiness.com/2026/08/tequila-surges-34-in-india-in-2025/"
+        "date": "2026-08-14",
+        "title": "Oil prices today : Crude edges higher as US - Iran tensions revive supply concerns",
+        "domain": "timesofindia.indiatimes.com",
+        "url": "https://timesofindia.indiatimes.com/business/international-business/oil-prices-today-14-august-2026-crude-edges-higher-as-us-iran-tensions-revive-supply-concerns/articleshow/133227220.cms"
       },
       {
-        "date": "2026-08-12",
-        "title": "India Turns to Latin America for Lithium to Escape China Grip",
-        "domain": "riotimesonline.com",
-        "url": "https://www.riotimesonline.com/india-latin-america-lithium-copper-2026/"
+        "date": "2026-08-14",
+        "title": "Oil steadies after US threatens to blockade Iran indefinitely",
+        "domain": "economictimes.indiatimes.com",
+        "url": "https://economictimes.indiatimes.com/markets/commodities/news/oil-steadies-after-us-threatens-to-blockade-iran-indefinitely/articleshow/133227088.cms"
       },
       {
-        "date": "2026-08-11",
-        "title": "US - India partnership vital for global security : Envoy Sergio Gor holds talks with NSA Ajit Doval",
-        "domain": "arabherald.com",
-        "url": "http://www.arabherald.com/news/279234602/us-india-partnership-vital-for-global-security-envoy-sergio-gor-holds-talks-with-nsa-ajit-doval"
+        "date": "2026-08-14",
+        "title": "Iran - backed Houthis clash with Yemeni forces and other Mideast developments",
+        "domain": "2news.com",
+        "url": "https://www.2news.com/news/national/iran-backed-houthis-clash-with-yemeni-forces-and-other-mideast-developments/article_f9a5ed12-7773-5d6c-be3f-65a7bddc0412.html"
       },
       {
-        "date": "2026-08-11",
-        "title": "the US administration tariffs fallout : China moves to join Brazil WTO challenge of US forced labor duties",
-        "domain": "undercurrentnews.com",
-        "url": "https://www.undercurrentnews.com/2026/08/11/trump-tariffs-fallout/"
+        "date": "2026-08-14",
+        "title": "Oil Price Today ( August 14 ): Crude oil dips below $88 despite the US administration threat to blockade Iran indefinitely . What are experts saying ?",
+        "domain": "economictimes.indiatimes.com",
+        "url": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-august-14-crude-oil-dips-below-88-despite-trumps-threat-to-blockade-iran-indefinitely-what-are-experts-saying/articleshow/133227242.cms"
       },
       {
-        "date": "2026-08-11",
-        "title": "From Gift Nifty to Oil prices , Asian banking stocks rally : 8 key things that changed for Indian stock market overnight",
-        "domain": "livemint.com",
-        "url": "https://www.livemint.com/market/stock-market-news/from-gift-nifty-to-crude-oil-prices-asian-banking-stocks-8-key-things-that-changed-for-indian-stock-market-overnight-11786410558811.html"
+        "date": "2026-08-14",
+        "title": "Live Updates : Latest from Israel , Iran , and the Middle East",
+        "domain": "jpost.com",
+        "url": "http://www.jpost.com/middle-east/iran-news/2026-08-14/live-updates-905502"
+      },
+      {
+        "date": "2026-08-14",
+        "title": "U . S . signals it can keep up naval blockade indefinitely , increase economic pressure on Iran",
+        "domain": "cbc.ca",
+        "url": "https://www.cbc.ca/news/world/hegseth-us-blockade-iran-9.7306636"
       }
     ],
-    "fetched": "2026-08-13"
+    "india_us": [],
+    "fetched": "2026-08-14"
   }
 }
