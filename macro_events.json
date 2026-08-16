@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-15",
+  "last_updated": "2026-08-16",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -82,63 +82,65 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-08-16",
+        "kind": "hawkish",
+        "weight": "medium",
+        "note": "GDELT tone: 4 hawkish vs 0 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 88.59,
-      "chg_pct": 1.75
+      "last": 88.52,
+      "chg_pct": 1.67
     },
     "usdinr": {
-      "last": 95.42,
-      "chg_pct": 0.01
+      "last": 95.43,
+      "chg_pct": 0.03
     },
     "indiavix": {
       "last": 11.31,
       "chg_pct": -0.96
     },
-    "fetched": "2026-08-15"
+    "fetched": "2026-08-16"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-08-14",
-        "title": "Oil prices today : Crude edges higher as US - Iran tensions revive supply concerns",
-        "domain": "timesofindia.indiatimes.com",
-        "url": "https://timesofindia.indiatimes.com/business/international-business/oil-prices-today-14-august-2026-crude-edges-higher-as-us-iran-tensions-revive-supply-concerns/articleshow/133227220.cms"
+        "date": "2026-08-16",
+        "title": "Lebanon reports 11 dead in strikes that Israel says targeted Hezbollah",
+        "domain": "manilatimes.net",
+        "url": "https://www.manilatimes.net/2026/08/16/world/lebanon-reports-11-dead-in-strikes-that-israel-says-targeted-hezbollah/2406300"
       },
       {
-        "date": "2026-08-14",
-        "title": "Oil steadies after US threatens to blockade Iran indefinitely",
-        "domain": "economictimes.indiatimes.com",
-        "url": "https://economictimes.indiatimes.com/markets/commodities/news/oil-steadies-after-us-threatens-to-blockade-iran-indefinitely/articleshow/133227088.cms"
+        "date": "2026-08-16",
+        "title": "Israeli airstrikes on southern Lebanon kill 11 people in another test to truce",
+        "domain": "santafenewmexican.com",
+        "url": "https://www.santafenewmexican.com/ap/international/israeli-airstrikes-on-southern-lebanon-kill-11-people-in-another-test-to-truce/article_7d8004d0-4867-5ebe-973b-2539525e051d.html"
       },
       {
-        "date": "2026-08-14",
-        "title": "Iran - backed Houthis clash with Yemeni forces and other Mideast developments",
-        "domain": "2news.com",
-        "url": "https://www.2news.com/news/national/iran-backed-houthis-clash-with-yemeni-forces-and-other-mideast-developments/article_f9a5ed12-7773-5d6c-be3f-65a7bddc0412.html"
+        "date": "2026-08-16",
+        "title": "Gross violations of international law : Iran condemns Israeli strikes on southern Lebanon",
+        "domain": "russiaherald.com",
+        "url": "http://www.russiaherald.com/news/279244189/gross-violations-of-international-law-iran-condemns-israeli-strikes-on-southern-lebanon"
       },
       {
-        "date": "2026-08-14",
-        "title": "Oil Price Today ( August 14 ): Crude oil dips below $88 despite the US administration threat to blockade Iran indefinitely . What are experts saying ?",
-        "domain": "economictimes.indiatimes.com",
-        "url": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-august-14-crude-oil-dips-below-88-despite-trumps-threat-to-blockade-iran-indefinitely-what-are-experts-saying/articleshow/133227242.cms"
+        "date": "2026-08-15",
+        "title": "Qatar denies it is detaining three Iranian bomber pilots - Grenada Chronicle – Daily Grenada And Caribbean News",
+        "domain": "grenadachronicle.com",
+        "url": "https://grenadachronicle.com/qatar-denies-it-is-detaining-three-iranian-bomber-pilots/"
       },
       {
-        "date": "2026-08-14",
-        "title": "Live Updates : Latest from Israel , Iran , and the Middle East",
-        "domain": "jpost.com",
-        "url": "http://www.jpost.com/middle-east/iran-news/2026-08-14/live-updates-905502"
-      },
-      {
-        "date": "2026-08-14",
-        "title": "U . S . signals it can keep up naval blockade indefinitely , increase economic pressure on Iran",
-        "domain": "cbc.ca",
-        "url": "https://www.cbc.ca/news/world/hegseth-us-blockade-iran-9.7306636"
+        "date": "2026-08-15",
+        "title": "Iran fires back at the US administration threat to declare Hormuz a US territory",
+        "domain": "rnz.co.nz",
+        "url": "https://www.rnz.co.nz/news/world/1010211/iran-fires-back-at-trump-s-threat-to-declare-hormuz-a-us-territory"
       }
     ],
     "india_us": [],
-    "fetched": "2026-08-14"
+    "fetched": "2026-08-16"
   }
 }
