@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-17",
+  "last_updated": "2026-08-18",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -86,53 +86,84 @@
   },
   "market": {
     "brent": {
-      "last": 89.23,
-      "chg_pct": 0.8
+      "last": 91.15,
+      "chg_pct": 2.97
     },
     "usdinr": {
-      "last": 95.42,
-      "chg_pct": 0.01
+      "last": 95.59,
+      "chg_pct": 0.15
     },
     "indiavix": {
       "last": 11.31,
       "chg_pct": -0.96
     },
-    "fetched": "2026-08-17"
+    "fetched": "2026-08-18"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-08-16",
-        "title": "Lebanon reports 11 dead in strikes that Israel says targeted Hezbollah",
-        "domain": "manilatimes.net",
-        "url": "https://www.manilatimes.net/2026/08/16/world/lebanon-reports-11-dead-in-strikes-that-israel-says-targeted-hezbollah/2406300"
+        "date": "2026-08-18",
+        "title": "Iran Rules Out Talks Extension As Ceasefire Ends ; Oil Settles Up 2 . 5 %",
+        "domain": "shipandbunker.com",
+        "url": "https://shipandbunker.com/news/world/717193-iran-rules-out-talks-extension-as-ceasefire-ends-oil-settles-up-25"
       },
       {
-        "date": "2026-08-16",
-        "title": "Israeli airstrikes on southern Lebanon kill 11 people in another test to truce",
-        "domain": "santafenewmexican.com",
-        "url": "https://www.santafenewmexican.com/ap/international/israeli-airstrikes-on-southern-lebanon-kill-11-people-in-another-test-to-truce/article_7d8004d0-4867-5ebe-973b-2539525e051d.html"
+        "date": "2026-08-18",
+        "title": "Donald the US administration approval hits new low amid fears of prolonged Iran war",
+        "domain": "jpost.com",
+        "url": "https://www.jpost.com/american-politics/article-905825"
       },
       {
-        "date": "2026-08-16",
-        "title": "Gross violations of international law : Iran condemns Israeli strikes on southern Lebanon",
-        "domain": "russiaherald.com",
-        "url": "http://www.russiaherald.com/news/279244189/gross-violations-of-international-law-iran-condemns-israeli-strikes-on-southern-lebanon"
+        "date": "2026-08-18",
+        "title": "the US administration threatens Oman as it works with Iran on a Strait of Hormuz deal , and other Middle East news",
+        "domain": "butlereagle.com",
+        "url": "https://www.butlereagle.com/20260817/trump-threatens-oman-as-it-works-with-iran-on-a-strait-of-hormuz-deal-and-other-middle-east-news/"
       },
       {
-        "date": "2026-08-15",
-        "title": "Qatar denies it is detaining three Iranian bomber pilots - Grenada Chronicle – Daily Grenada And Caribbean News",
-        "domain": "grenadachronicle.com",
-        "url": "https://grenadachronicle.com/qatar-denies-it-is-detaining-three-iranian-bomber-pilots/"
+        "date": "2026-08-18",
+        "title": "As 60 - day deadline for peace deal expires , U . S ., Iran further apart over way forward",
+        "domain": "en.people.cn",
+        "url": "http://en.people.cn/n3/2026/0818/c90000-20489541.html"
       },
       {
-        "date": "2026-08-15",
-        "title": "Iran fires back at the US administration threat to declare Hormuz a US territory",
-        "domain": "rnz.co.nz",
-        "url": "https://www.rnz.co.nz/news/world/1010211/iran-fires-back-at-trump-s-threat-to-declare-hormuz-a-us-territory"
+        "date": "2026-08-18",
+        "title": "the US administration pivoted from bombs to economic war . But in Iran view , the real fighting hasnt started yet",
+        "domain": "fortune.com",
+        "url": "https://fortune.com/2026/08/17/iran-economic-war-blockade-hormuz-escalation-attacks-oil/"
+      },
+      {
+        "date": "2026-08-18",
+        "title": "Israeli security minister calls for nightly killing quota of Palestinians in Gaza",
+        "domain": "wrp.org.uk",
+        "url": "https://wrp.org.uk/editorials/israeli-security-minister-calls-for-nightly-killing-quota-of-palestinians-in-gaza/"
       }
     ],
-    "india_us": [],
-    "fetched": "2026-08-16"
+    "india_us": [
+      {
+        "date": "2026-08-18",
+        "title": "Sask . businesses brace for U . S . tariffs as Wednesday deadline looms",
+        "domain": "cjme.com",
+        "url": "https://www.cjme.com/2026/08/17/sask-businesses-brace-for-u-s-tariffs-as-tariff-deadline-looms/"
+      },
+      {
+        "date": "2026-08-16",
+        "title": "India and Iran : A Tightrope Walk in a Changing Middle East",
+        "domain": "countercurrents.org",
+        "url": "https://countercurrents.org/2026/08/india-and-iran-a-tightrope-walk-in-a-changing-middle-east/"
+      },
+      {
+        "date": "2026-08-14",
+        "title": "U . S . accuses Chinese firms of avoiding tariffs by shipping through other countries",
+        "domain": "upi.com",
+        "url": "https://www.upi.com/Top_News/US/2026/08/14/china-transshipment-scam-tariffs/2941786713398/"
+      },
+      {
+        "date": "2026-08-14",
+        "title": "Restrictions on Foreign Fund Flow to Christian Organizations in India Complicate India - US Ties",
+        "domain": "thediplomat.com",
+        "url": "https://thediplomat.com/2026/08/restrictions-on-foreign-fund-flow-to-christian-organizations-in-india-complicate-india-us-ties/"
+      }
+    ],
+    "fetched": "2026-08-18"
   }
 }
