@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-18",
+  "last_updated": "2026-08-19",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -82,88 +82,59 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-08-19",
+        "kind": "hawkish",
+        "weight": "weak",
+        "note": "GDELT tone: 1 hawkish vs 0 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 91.15,
-      "chg_pct": 2.97
+      "last": 91.83,
+      "chg_pct": 1.06
     },
     "usdinr": {
-      "last": 95.59,
-      "chg_pct": 0.15
+      "last": 95.67,
+      "chg_pct": -0.03
     },
     "indiavix": {
-      "last": 11.31,
-      "chg_pct": -0.96
+      "last": 11.33,
+      "chg_pct": 0.18
     },
-    "fetched": "2026-08-18"
+    "fetched": "2026-08-19"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-08-18",
-        "title": "Iran Rules Out Talks Extension As Ceasefire Ends ; Oil Settles Up 2 . 5 %",
-        "domain": "shipandbunker.com",
-        "url": "https://shipandbunker.com/news/world/717193-iran-rules-out-talks-extension-as-ceasefire-ends-oil-settles-up-25"
+        "date": "2026-08-19",
+        "title": "We will correct delusions of this deluded man : Iran hits back at the US administration assertion over Hormuz as NEW U . S . Territory",
+        "domain": "mainemirror.com",
+        "url": "http://www.mainemirror.com/news/279250174/we-will-correct-delusions-of-this-deluded-man-iran-hits-back-at-trump-assertion-over-hormuz-as-new-us-territory"
       },
       {
-        "date": "2026-08-18",
-        "title": "Donald the US administration approval hits new low amid fears of prolonged Iran war",
-        "domain": "jpost.com",
-        "url": "https://www.jpost.com/american-politics/article-905825"
+        "date": "2026-08-19",
+        "title": "the US administration says no talks planned with Iran , Tehran says Strait of Hormuz still shut",
+        "domain": "asiaone.com",
+        "url": "https://www.asiaone.com/world/trump-says-no-talks-planned-iran-tehran-says-strait-hormuz-still-shut"
       },
       {
-        "date": "2026-08-18",
-        "title": "the US administration threatens Oman as it works with Iran on a Strait of Hormuz deal , and other Middle East news",
-        "domain": "butlereagle.com",
-        "url": "https://www.butlereagle.com/20260817/trump-threatens-oman-as-it-works-with-iran-on-a-strait-of-hormuz-deal-and-other-middle-east-news/"
+        "date": "2026-08-19",
+        "title": "Oil edges up on uncertainty over exports through Hormuz",
+        "domain": "finance.yahoo.com",
+        "url": "https://finance.yahoo.com/news/oil-edges-uncertainty-over-exports-003901978.html"
       },
       {
-        "date": "2026-08-18",
-        "title": "As 60 - day deadline for peace deal expires , U . S ., Iran further apart over way forward",
-        "domain": "en.people.cn",
-        "url": "http://en.people.cn/n3/2026/0818/c90000-20489541.html"
-      },
-      {
-        "date": "2026-08-18",
-        "title": "the US administration pivoted from bombs to economic war . But in Iran view , the real fighting hasnt started yet",
-        "domain": "fortune.com",
-        "url": "https://fortune.com/2026/08/17/iran-economic-war-blockade-hormuz-escalation-attacks-oil/"
-      },
-      {
-        "date": "2026-08-18",
-        "title": "Israeli security minister calls for nightly killing quota of Palestinians in Gaza",
-        "domain": "wrp.org.uk",
-        "url": "https://wrp.org.uk/editorials/israeli-security-minister-calls-for-nightly-killing-quota-of-palestinians-in-gaza/"
+        "date": "2026-08-19",
+        "title": "Iran Calls MOU Irrelevant as Oman Stays Silent on the US administration Bomb Threat and Egypt Backs Hormuz Deal",
+        "domain": "hngn.com",
+        "url": "https://www.hngn.com/articles/272667/20260818/iran-parliament-panel-advances-bill-control-hormuz-us-presses-arms-makers-war-footing.htm"
       }
     ],
-    "india_us": [
-      {
-        "date": "2026-08-18",
-        "title": "Sask . businesses brace for U . S . tariffs as Wednesday deadline looms",
-        "domain": "cjme.com",
-        "url": "https://www.cjme.com/2026/08/17/sask-businesses-brace-for-u-s-tariffs-as-tariff-deadline-looms/"
-      },
-      {
-        "date": "2026-08-16",
-        "title": "India and Iran : A Tightrope Walk in a Changing Middle East",
-        "domain": "countercurrents.org",
-        "url": "https://countercurrents.org/2026/08/india-and-iran-a-tightrope-walk-in-a-changing-middle-east/"
-      },
-      {
-        "date": "2026-08-14",
-        "title": "U . S . accuses Chinese firms of avoiding tariffs by shipping through other countries",
-        "domain": "upi.com",
-        "url": "https://www.upi.com/Top_News/US/2026/08/14/china-transshipment-scam-tariffs/2941786713398/"
-      },
-      {
-        "date": "2026-08-14",
-        "title": "Restrictions on Foreign Fund Flow to Christian Organizations in India Complicate India - US Ties",
-        "domain": "thediplomat.com",
-        "url": "https://thediplomat.com/2026/08/restrictions-on-foreign-fund-flow-to-christian-organizations-in-india-complicate-india-us-ties/"
-      }
-    ],
-    "fetched": "2026-08-18"
+    "india_us": [],
+    "fetched": "2026-08-19"
   }
 }
