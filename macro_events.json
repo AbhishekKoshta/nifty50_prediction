@@ -1,17 +1,9 @@
 {
-  "last_updated": "2026-08-19",
+  "last_updated": "2026-08-20",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
   "calendar": [
-    {
-      "date": "2026-08-12",
-      "name": "US CPI (Jul data)",
-      "category": "Data",
-      "importance": "high",
-      "impact": "Hot print → down (rate fears); soft → up. 6PM IST",
-      "nifty_session": "hits NIFTY on Aug 13 open"
-    },
     {
       "date": "2026-09-16",
       "name": "US FOMC rate decision + dot plot",
@@ -82,59 +74,63 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": [
-      {
-        "date": "2026-08-19",
-        "kind": "hawkish",
-        "weight": "weak",
-        "note": "GDELT tone: 1 hawkish vs 0 dovish headlines (3d)",
-        "source": "gdelt-heuristic"
-      }
-    ]
+    "signals": []
   },
   "market": {
     "brent": {
-      "last": 91.83,
-      "chg_pct": 1.06
+      "last": 91.93,
+      "chg_pct": 1.0
     },
     "usdinr": {
-      "last": 95.67,
-      "chg_pct": -0.03
+      "last": 95.74,
+      "chg_pct": -0.08
     },
     "indiavix": {
-      "last": 11.33,
-      "chg_pct": 0.18
+      "last": 11.32,
+      "chg_pct": -0.61
     },
-    "fetched": "2026-08-19"
+    "fetched": "2026-08-20"
   },
   "headlines": {
-    "iran": [
+    "iran": [],
+    "india_us": [
       {
         "date": "2026-08-19",
-        "title": "We will correct delusions of this deluded man : Iran hits back at the US administration assertion over Hormuz as NEW U . S . Territory",
-        "domain": "mainemirror.com",
-        "url": "http://www.mainemirror.com/news/279250174/we-will-correct-delusions-of-this-deluded-man-iran-hits-back-at-trump-assertion-over-hormuz-as-new-us-territory"
+        "title": "From Taco Tuesday to Fitting Friday : the US administration puts Canada tariffs on ice for 72 hours",
+        "domain": "timesofindia.indiatimes.com",
+        "url": "https://timesofindia.indiatimes.com/world/us/from-taco-tuesday-to-fitting-friday-trump-puts-canada-tariffs-on-ice-for-72-hours/articleshow/133353857.cms"
       },
       {
         "date": "2026-08-19",
-        "title": "the US administration says no talks planned with Iran , Tehran says Strait of Hormuz still shut",
-        "domain": "asiaone.com",
-        "url": "https://www.asiaone.com/world/trump-says-no-talks-planned-iran-tehran-says-strait-hormuz-still-shut"
+        "title": "India should not rush into US trade deal , must protect national interests : EAC - PM Member Sanjeev Sanyal",
+        "domain": "calcuttanews.net",
+        "url": "http://www.calcuttanews.net/news/279251489/india-should-not-rush-into-us-trade-deal-must-protect-national-interests-eac-pm-member-sanjeev-sanyal"
       },
       {
         "date": "2026-08-19",
-        "title": "Oil edges up on uncertainty over exports through Hormuz",
-        "domain": "finance.yahoo.com",
-        "url": "https://finance.yahoo.com/news/oil-edges-uncertainty-over-exports-003901978.html"
+        "title": "India should not rush into US trade deal , must protect national interest : EAC - PM Member Sanjeev Sanyal",
+        "domain": "economictimes.indiatimes.com",
+        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/india-should-not-rush-into-us-trade-deal-must-protect-national-interests-eac-pm-member-sanjeev-sanyal/articleshow/133340483.cms"
       },
       {
         "date": "2026-08-19",
-        "title": "Iran Calls MOU Irrelevant as Oman Stays Silent on the US administration Bomb Threat and Egypt Backs Hormuz Deal",
-        "domain": "hngn.com",
-        "url": "https://www.hngn.com/articles/272667/20260818/iran-parliament-panel-advances-bill-control-hormuz-us-presses-arms-makers-war-footing.htm"
+        "title": "US Envoy Sergio Gor Pushes Stronger India - US Ties , Eyes $500 Billion Trade",
+        "domain": "siliconindia.com",
+        "url": "https://www.siliconindia.com/news/general/us-envoy-sergio-gor-pushes-stronger-indiaus-ties-eyes-500-billion-trade-nid-241963-cid-1.html"
+      },
+      {
+        "date": "2026-08-19",
+        "title": "Sask . businesses bracing for U . S . tariffs as Wednesday deadline approaches",
+        "domain": "ckom.com",
+        "url": "https://www.ckom.com/2026/08/17/sask-businesses-bracing-for-u-s-tariffs-as-wednesday-deadline-approaches/"
+      },
+      {
+        "date": "2026-08-18",
+        "title": "​Time to push back : on India and the continuing U . S . pressure",
+        "domain": "thehindu.com",
+        "url": "https://www.thehindu.com/opinion/editorial/time-to-push-back-on-india-and-the-continuing-us-pressure/article71360916.ece"
       }
     ],
-    "india_us": [],
-    "fetched": "2026-08-19"
+    "fetched": "2026-08-20"
   }
 }
