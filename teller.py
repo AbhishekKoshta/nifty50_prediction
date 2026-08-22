@@ -484,6 +484,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
     ret = float(t["ret"])
     uptrend20 = bool(close > t["sma20"]) if not np.isnan(t["sma20"]) else False
     below50 = bool(close < t["sma50"]) if not np.isnan(t["sma50"]) else False
+    above50 = bool(close > t["sma50"]) if not np.isnan(t["sma50"]) else False
     above200 = bool(close > t["sma200"]) if not np.isnan(t["sma200"]) else False
     rsi2 = float(t["rsi2"])
     squeeze = (not np.isnan(t["span5_thr"])) and bool(t["span5"] <= t["span5_thr"])
@@ -618,6 +619,37 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             headline="Not oversold-in-uptrend → RSI2 swing idle",
             trigger="; ".join(why) if why else "conditions not met",
             stats="GO · PF ~3.3 · ~80% win · 81% win (all) · +165 (0.7%) pt/win · 0.7d hold (2024+)",
+        ))
+
+    # ---- R2: RSI2 mean-reversion, 50-DMA regime (faster filter) ---------------
+    # Robustness check (2026-08-22): regime SMA 50/100/150/200/250 all pass walk-forward
+    # (both halves net+, PF>1.2, win>=50%) at RSI2<10 — the edge isn't 200-DMA-specific.
+    # Kept as a separate signal (not a replacement) since it's a different, less-tested
+    # regime state: fewer trades/yr (~7.8) but higher win/PF (85%, PF 4.67) in-sample.
+    if above50 and rsi2 < RSI2_TH:
+        sigs.append(Signal(
+            key="R2", name="RSI2 mean-rev (50DMA)", side="LONG", horizon="swing", status="ARMED",
+            headline=f"Oversold in a 50DMA uptrend (RSI2 {rsi2:.1f}) → BUY tomorrow's open (swing)",
+            trigger=f"close>50DMA ✔  and  RSI(2) {rsi2:.1f} < {RSI2_TH:.0f}  ✔ armed",
+            entry="BUY at next day's open",
+            stop="none (50-DMA regime is the risk control)",
+            target="exit on the FIRST UP-CLOSE (preferred variant), 10-day time-stop backstop",
+            note="Faster regime filter than the validated 200DMA version (R) — fires when 200DMA "
+                 "is off but price already reclaimed the shorter-term trend. Fewer trades/yr, higher "
+                 "win%/PF in-sample; treat as a secondary confirmation, not a replacement for R.",
+            stats="GO (robustness check) · PF ~4.67 · ~85% win · ~7.8/yr",
+        ))
+    else:
+        why2 = []
+        if not above50:
+            why2.append(f"close {close:,.0f} ≤ 50DMA {t['sma50']:,.0f}")
+        if not (rsi2 < RSI2_TH):
+            why2.append(f"RSI2 {rsi2:.1f} ≥ {RSI2_TH:.0f}")
+        sigs.append(Signal(
+            key="R2", name="RSI2 mean-rev (50DMA)", side="LONG", horizon="swing", status="IDLE",
+            headline="Not oversold-in-50DMA-uptrend → RSI2 (50DMA) swing idle",
+            trigger="; ".join(why2) if why2 else "conditions not met",
+            stats="GO (robustness check) · PF ~4.67 · ~85% win · ~7.8/yr",
         ))
 
     # ---- D: BearRallyFade (swing short) — fade a bear-rally pop below the 50-DMA -
@@ -952,6 +984,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
         "rsi2": rsi2,
         "uptrend20": uptrend20,
         "below50": below50,
+        "above50": above50,
         "above200": above200,
         "squeeze": squeeze,
         "gap_up_levels": {
