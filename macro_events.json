@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-21",
+  "last_updated": "2026-08-22",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -78,59 +78,53 @@
   },
   "market": {
     "brent": {
-      "last": 93.74,
-      "chg_pct": 2.31
+      "last": 93.87,
+      "chg_pct": 0.1
     },
     "usdinr": {
       "last": 95.69,
       "chg_pct": 0.2
     },
     "indiavix": {
-      "last": 10.76,
-      "chg_pct": -4.95
+      "last": 11.2,
+      "chg_pct": 4.09
     },
-    "fetched": "2026-08-21"
+    "fetched": "2026-08-22"
   },
   "headlines": {
     "iran": [],
     "india_us": [
       {
-        "date": "2026-08-19",
-        "title": "From Taco Tuesday to Fitting Friday : the US administration puts Canada tariffs on ice for 72 hours",
-        "domain": "timesofindia.indiatimes.com",
-        "url": "https://timesofindia.indiatimes.com/world/us/from-taco-tuesday-to-fitting-friday-trump-puts-canada-tariffs-on-ice-for-72-hours/articleshow/133353857.cms"
+        "date": "2026-08-22",
+        "title": "Japan and India Build a Defense Network Around China",
+        "domain": "chiangraitimes.com",
+        "url": "https://www.chiangraitimes.com/news-asia/japan-and-india-build-a-defense/"
       },
       {
-        "date": "2026-08-19",
-        "title": "India should not rush into US trade deal , must protect national interests : EAC - PM Member Sanjeev Sanyal",
-        "domain": "calcuttanews.net",
-        "url": "http://www.calcuttanews.net/news/279251489/india-should-not-rush-into-us-trade-deal-must-protect-national-interests-eac-pm-member-sanjeev-sanyal"
+        "date": "2026-08-21",
+        "title": "India goods trade deficit hits 6 - month high as imports rise amid Gulf war",
+        "domain": "business-standard.com",
+        "url": "https://www.business-standard.com/economy/news/india-s-goods-trade-deficit-hits-6-month-high-as-imports-rise-amid-gulf-war-126081301364_1.html"
       },
       {
-        "date": "2026-08-19",
-        "title": "India should not rush into US trade deal , must protect national interest : EAC - PM Member Sanjeev Sanyal",
+        "date": "2026-08-21",
+        "title": "ETMarkets Smart Talk | India next growth leaders ? Bajaj Alt Jitendra Gohil bets on electronics , solar , defence",
         "domain": "economictimes.indiatimes.com",
-        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/india-should-not-rush-into-us-trade-deal-must-protect-national-interests-eac-pm-member-sanjeev-sanyal/articleshow/133340483.cms"
+        "url": "https://economictimes.indiatimes.com/markets/expert-view/etmarkets-smart-talk-indias-next-growth-leaders-bajaj-alts-jitendra-gohil-bets-on-electronics-solar-defence/articleshow/133391126.cms"
       },
       {
-        "date": "2026-08-19",
-        "title": "US Envoy Sergio Gor Pushes Stronger India - US Ties , Eyes $500 Billion Trade",
-        "domain": "siliconindia.com",
-        "url": "https://www.siliconindia.com/news/general/us-envoy-sergio-gor-pushes-stronger-indiaus-ties-eyes-500-billion-trade-nid-241963-cid-1.html"
+        "date": "2026-08-20",
+        "title": "Acting east : Foreign policy analyst Dhruva Indian officials on why India is widening its Pacific ambitions",
+        "domain": "rnz.co.nz",
+        "url": "https://www.rnz.co.nz/news/indonz_featured/1071827/acting-east-foreign-policy-analyst-dhruva-jaishankar-on-why-india-is-widening-its-pacific-ambitions"
       },
       {
-        "date": "2026-08-19",
-        "title": "Sask . businesses bracing for U . S . tariffs as Wednesday deadline approaches",
-        "domain": "ckom.com",
-        "url": "https://www.ckom.com/2026/08/17/sask-businesses-bracing-for-u-s-tariffs-as-wednesday-deadline-approaches/"
-      },
-      {
-        "date": "2026-08-18",
-        "title": "​Time to push back : on India and the continuing U . S . pressure",
-        "domain": "thehindu.com",
-        "url": "https://www.thehindu.com/opinion/editorial/time-to-push-back-on-india-and-the-continuing-us-pressure/article71360916.ece"
+        "date": "2026-08-20",
+        "title": "ET World Leaders Forum : India set to be a growth market , but companies must up their game",
+        "domain": "economictimes.indiatimes.com",
+        "url": "https://economictimes.indiatimes.com/news/company/corporate-trends/et-world-leaders-forum-india-set-to-be-a-growth-market-but-companies-must-up-their-game/articleshow/133386649.cms"
       }
     ],
-    "fetched": "2026-08-20"
+    "fetched": "2026-08-22"
   }
 }
