@@ -436,8 +436,8 @@ try:
 except Exception:  # noqa: BLE001
     _mac_data = None
 
-_tab_macro, _tab_dash, _tab_move = st.tabs(
-    ["🌍 Macro & Events", "📊 Probability Dashboard", "🔮 Next-Day Move Model"])
+_tab_macro, _tab_fake_bo, _tab_dash, _tab_move = st.tabs(
+    ["🌍 Macro & Events", "🪤 Fake Breakout Watch", "📊 Probability Dashboard", "🔮 Next-Day Move Model"])
 
 with _tab_macro:
     try:
@@ -446,6 +446,13 @@ with _tab_macro:
         render_macro(_ml() if _mac_data is None else _mac_data, _mt())
     except Exception as _macro_err:  # noqa: BLE001
         st.error(f"Macro & Events tab unavailable: {_macro_err}")
+
+with _tab_fake_bo:
+    try:
+        from fake_breakout_signal import render_fake_breakout
+        render_fake_breakout(load_daily())
+    except Exception as _fb_err:  # noqa: BLE001
+        st.error(f"Fake Breakout Watch tab unavailable: {_fb_err}")
 
 with _tab_move:
     render_move_model()
