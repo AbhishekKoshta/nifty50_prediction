@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-23",
+  "last_updated": "2026-08-24",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -76,7 +76,7 @@
     "hold_prob": 0.38,
     "signals": [
       {
-        "date": "2026-08-23",
+        "date": "2026-08-24",
         "kind": "hawkish",
         "weight": "weak",
         "note": "GDELT tone: 2 hawkish vs 0 dovish headlines (3d)",
@@ -86,59 +86,59 @@
   },
   "market": {
     "brent": {
-      "last": 94.39,
-      "chg_pct": 0.65
+      "last": 92.99,
+      "chg_pct": -1.48
     },
     "usdinr": {
-      "last": 95.71,
-      "chg_pct": -0.06
+      "last": 95.68,
+      "chg_pct": -0.1
     },
     "indiavix": {
       "last": 11.2,
       "chg_pct": 4.09
     },
-    "fetched": "2026-08-23"
+    "fetched": "2026-08-24"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-08-23",
-        "title": "Israelis worry about weakening connection with younger Jewish Americans",
-        "domain": "wral.com",
-        "url": "https://www.wral.com/news/ap/92625-israelis-worry-about-weakening-connection-with-younger-jewish-americans/"
+        "date": "2026-08-24",
+        "title": "Syria , Israel hold US - mediated talks to ease tensions , Syria news agency says",
+        "domain": "koreaherald.com",
+        "url": "https://www.koreaherald.com/article/10849735"
       },
       {
         "date": "2026-08-23",
-        "title": "Iran security chief threatens neighbors against economic measures , and other Mideast developments",
-        "domain": "wandtv.com",
-        "url": "https://www.wandtv.com/news/national/iran-security-chief-threatens-neighbors-against-economic-measures-and-other-mideast-developments/article_ce0b5bcd-4cc8-50e1-b64c-8e1b536a59fe.html"
+        "title": "Pakistan Army Chief to Visit Tehran Amid Heightened US - Iran",
+        "domain": "dailyk2.com",
+        "url": "https://dailyk2.com/pakistan-army-chief-to-visit-tehran-amid-heightened-us-iran-tensions/"
       },
       {
         "date": "2026-08-23",
-        "title": "World News : Action urged over Israel erasure of Palestine",
-        "domain": "gdnonline.com",
-        "url": "https://www.gdnonline.com:443/Details/1404199/Action-urged-over-Israel%E2%80%99s-%E2%80%98erasure%E2%80%99-of-Palestine"
+        "title": "IRAN THREATENS WORLD : Countries Backing U . S . Sanctions Will Be Considered Enemies – The Yeshiva World",
+        "domain": "theyeshivaworld.com",
+        "url": "https://www.theyeshivaworld.com/news/israel-news/2588840/iran-threatens-world-countries-backing-u-s-sanctions-will-be-considered-enemies.html"
       },
       {
         "date": "2026-08-23",
-        "title": "Why did Donald the US administration stop when Iran could have been defeated ?",
-        "domain": "jpost.com",
-        "url": "http://www.jpost.com/opinion/article-905970"
+        "title": "Iran warns neighbours against joining US economic war",
+        "domain": "muscatdaily.com",
+        "url": "https://www.muscatdaily.com/2026/08/23/iran-warns-neighbours-against-joining-us-economic-war/"
       },
       {
-        "date": "2026-08-22",
-        "title": "Iran warns US over toughest - ever sanctions",
-        "domain": "2lt.com.au",
-        "url": "https://www.2lt.com.au/iran-warns-us-over-toughest-ever-sanctions/"
+        "date": "2026-08-23",
+        "title": "Israeli Military Warns Israel Will Escalate Wars to Postpone Upcoming Elections",
+        "domain": "news.antiwar.com",
+        "url": "https://news.antiwar.com/2026/08/23/israeli-military-warns-netanyahu-will-escalate-wars-to-postpone-upcoming-elections/"
       },
       {
-        "date": "2026-08-22",
-        "title": "Iran warns of crushing response to US threats",
-        "domain": "japanherald.com",
-        "url": "http://www.japanherald.com/news/279256711/iran-threatens-tough-response-to-new-us-sanctions"
+        "date": "2026-08-23",
+        "title": "Iran president says US memorandum is best path out of stalled war ,",
+        "domain": "wtvr.com",
+        "url": "https://www.wtvr.com/us-news/iran-war/irans-president-says-us-memorandum-is-best-path-out-of-stalled-war"
       }
     ],
     "india_us": [],
-    "fetched": "2026-08-23"
+    "fetched": "2026-08-24"
   }
 }
