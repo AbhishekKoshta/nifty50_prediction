@@ -64,6 +64,8 @@ from dataclasses import dataclass, asdict
 import numpy as np
 import pandas as pd
 
+from fake_breakout_signal import compute_regime as _fb_compute_regime
+
 # Daily OHLC lives next to this file in the deploy repo.
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Nifty_Features.csv")
 OPEN_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "today_open.json")
@@ -332,6 +334,8 @@ def _resolve_against_open(sigs: list[Signal], open_px: float, close: float, atr:
             s.stop = f"{open_px + BEARFADE_ATR_MULT * atr:,.0f}  (open + 2×ATR14, ATR={atr:,.0f})"
         elif k == "C" and s.status == "ARMED":
             s.status = "ACTIVATED"  # squeeze confirmed; OR high/low still print ~09:45
+        elif k == "V" and s.status == "ARMED":
+            s.status = "ACTIVATED"  # quiet-day filter confirmed; the OR itself prints ~10:15
         elif k == "B" and s.status == "CONDITIONAL":
             if uptrend20 and open_px >= b_level:
                 s.status = "ACTIVATED"
@@ -905,6 +909,39 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
             headline="No overbought bearish-reversal candle → idle",
             trigger="; ".join(why) if why else "conditions not met",
             stats="MARGINAL · PF 2.03 · 64% win · ~2.5/yr · 2024-concentrated · 64% win (all) · +340 (1.4%) pt/win · 5.0d hold (2024+)",
+        ))
+
+    # ---- V: FakeBreakoutFade (both sides, intraday) — false 60-min OR break -----
+    # 54_ORB_HighVolBreakout: fading a false opening-range breakout works on days
+    # whose PREDECESSOR was quiet (bottom-tercile ATR14 true-range, trailing 100d)
+    # -- not a volatile one. Reuses the exact causal classifier from the standalone
+    # Fake Breakout Watch tab so both places agree by construction.
+    fb = _fb_compute_regime(daily)
+    V_STATS = "MARGINAL-GO · PF 1.50 net · 64% win · every yr 2023-26 + · 73 trades, ~21/yr (2023+)"
+    if fb.get("available") and fb["armed"]:
+        sigs.append(Signal(
+            key="V", name="FakeBreakoutFade", side="BOTH", horizon="intraday", status="ARMED",
+            headline="Yesterday was QUIET → watch the 09:15-10:15 range for a false breakout",
+            trigger=f"yesterday's ATR14(true range), trailing-100d percentile {fb['pct_rank']:.0%} "
+                    f"< 33rd pct  ✔ armed (quiet predecessor day)",
+            entry="Wait for a break of ONE side of the 09:15-10:15 opening range, then a reversal "
+                  "through the OTHER side (before 15:00) → enter in the direction of the SECOND break",
+            stop="the extreme reached during the failed first move (swing high/low of the reversed break)",
+            target="none — ride to 15:25 square-off",
+            note="Direction is NOT predicted by this filter (~51% coin flip either way) — it only "
+                 "says today is more likely to produce a fakeout worth fading. Thin sample "
+                 "(~21 trades/yr) — paper-trade before sizing up.",
+            stats=V_STATS,
+        ))
+    else:
+        pr = fb.get("pct_rank")
+        pr_txt = f"{pr:.0%}" if pr is not None else "n/a (not enough history)"
+        regime = fb.get("regime", "n/a")
+        sigs.append(Signal(
+            key="V", name="FakeBreakoutFade", side="BOTH", horizon="intraday", status="IDLE",
+            headline="Yesterday was NOT quiet → fake-breakout-fade not armed today",
+            trigger=f"needs yesterday's ATR14 trailing-100d percentile < 33%; today {pr_txt} ({regime}-vol)",
+            stats=V_STATS,
         ))
 
     # ---- resolve against today's real open, if the morning run captured it -----
