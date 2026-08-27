@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-26",
+  "last_updated": "2026-08-27",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -78,59 +78,41 @@
   },
   "market": {
     "brent": {
-      "last": 85.3,
-      "chg_pct": -7.45
+      "last": 87.41,
+      "chg_pct": -0.49
     },
     "usdinr": {
-      "last": 95.4,
-      "chg_pct": -0.34
+      "last": 95.53,
+      "chg_pct": 2.12
     },
     "indiavix": {
-      "last": 11.08,
-      "chg_pct": -3.9
+      "last": 11.07,
+      "chg_pct": 4.71
     },
-    "fetched": "2026-08-26"
+    "fetched": "2026-08-27"
   },
   "headlines": {
     "iran": [],
     "india_us": [
       {
-        "date": "2026-08-24",
-        "title": "Saurav Dutt unpacks the US administration and Indian officials in Balance of Power",
-        "domain": "desiblitz.com",
-        "url": "https://www.desiblitz.com/content/saurav-dutt-unpacks-trump-and-modi-in-balance-of-power"
+        "date": "2026-08-27",
+        "title": "The reform booster shot that transformed India into pharmacy of the world",
+        "domain": "business-standard.com",
+        "url": "https://www.business-standard.com/economy/news/the-reform-booster-shot-that-transformed-india-into-pharmacy-of-the-world-126072801770_1.html"
       },
       {
-        "date": "2026-08-24",
-        "title": "Most Stupid Trade Fight in History : U . S . & Canadian Workers Stand to Lose in the US administration New Tariff War",
-        "domain": "democracynow.org",
-        "url": "https://www.democracynow.org/2026/8/24/us_canada_trade_war"
+        "date": "2026-08-26",
+        "title": "India - Bangladesh : A Costly Gamble",
+        "domain": "slguardian.org",
+        "url": "https://slguardian.org/india-bangladesh-a-costly-gamble/"
       },
       {
-        "date": "2026-08-24",
-        "title": "Finance Minister Indian officials to embark on 9 - day visit to Canada , US to boost trade ties and deepen investment linkages",
-        "domain": "aninews.in",
-        "url": "https://aninews.in/news/business/finance-minister-sitharaman-to-embark-on-9-day-visit-to-canada-us-to-boost-trade-ties-and-deepen-investment-linkages20260824195424/"
-      },
-      {
-        "date": "2026-08-22",
-        "title": "US imposes 50 % tariffs on Canadian goods as trade talks collapse",
-        "domain": "dailysabah.com",
-        "url": "https://www.dailysabah.com/business/economy/us-imposes-50-tariffs-on-canadian-goods-as-trade-talks-collapse"
-      },
-      {
-        "date": "2026-08-22",
-        "title": "US imposes 50 % tariffs on Canadian goods after negotiations collapse",
-        "domain": "yahoo.com",
-        "url": "https://www.yahoo.com/news/politics/articles/us-imposes-50-tariffs-canadian-141424385.html"
-      },
-      {
-        "date": "2026-08-22",
-        "title": "Harvard , NYU to come to India next year ? Sergio Gor says top US universities interested amid demand : What he said",
-        "domain": "livemint.com",
-        "url": "https://www.livemint.com/news/india/harvard-nyu-to-come-to-india-next-year-sergio-gor-says-top-us-universities-interested-amid-demand-what-he-said-11787396857715.html"
+        "date": "2026-08-26",
+        "title": "Decided between two DGMOs : Former CDS Gen Anil Chauhan on the US administration claim on India - Pakistan ceasefire during Operation Sindoor",
+        "domain": "asiabulletin.com",
+        "url": "http://www.asiabulletin.com/news/279265226/decided-between-two-dgmos-former-cds-gen-anil-chauhan-on-trump-claim-on-india-pakistan-ceasefire-during-operation-sindoor"
       }
     ],
-    "fetched": "2026-08-25"
+    "fetched": "2026-08-27"
   }
 }
