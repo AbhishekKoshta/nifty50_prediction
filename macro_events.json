@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-27",
+  "last_updated": "2026-08-28",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -74,45 +74,71 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-08-28",
+        "kind": "dovish",
+        "weight": "weak",
+        "note": "GDELT tone: 0 hawkish vs 2 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 87.41,
-      "chg_pct": -0.49
+      "last": 87.53,
+      "chg_pct": -2.42
     },
     "usdinr": {
-      "last": 95.53,
-      "chg_pct": 2.12
+      "last": 95.37,
+      "chg_pct": -0.07
     },
     "indiavix": {
-      "last": 11.07,
-      "chg_pct": 4.71
+      "last": 10.68,
+      "chg_pct": -3.52
     },
-    "fetched": "2026-08-27"
+    "fetched": "2026-08-28"
   },
   "headlines": {
-    "iran": [],
-    "india_us": [
+    "iran": [
       {
-        "date": "2026-08-27",
-        "title": "The reform booster shot that transformed India into pharmacy of the world",
-        "domain": "business-standard.com",
-        "url": "https://www.business-standard.com/economy/news/the-reform-booster-shot-that-transformed-india-into-pharmacy-of-the-world-126072801770_1.html"
+        "date": "2026-08-28",
+        "title": "Middle East altered after six months of war as Iran endures and the US administration signals new deal terms",
+        "domain": "bankingnews.gr",
+        "url": "https://www.bankingnews.gr/diethni/articles/896160/middle-east-altered-after-six-months-of-war-as-iran-endures-and-trump-signals-new-deal-terms"
       },
       {
-        "date": "2026-08-26",
-        "title": "India - Bangladesh : A Costly Gamble",
-        "domain": "slguardian.org",
-        "url": "https://slguardian.org/india-bangladesh-a-costly-gamble/"
+        "date": "2026-08-28",
+        "title": "UK warns against Israel removing it from Gaza ceasefire center , and other news in the Middle East",
+        "domain": "standard-journal.com",
+        "url": "https://www.standard-journal.com/ap/business/uk-warns-against-israel-removing-it-from-gaza-ceasefire-center-and-other-news-in-the/article_f16e9861-907e-5fbd-9827-6a8e6dda5cad.html"
       },
       {
-        "date": "2026-08-26",
-        "title": "Decided between two DGMOs : Former CDS Gen Anil Chauhan on the US administration claim on India - Pakistan ceasefire during Operation Sindoor",
-        "domain": "asiabulletin.com",
-        "url": "http://www.asiabulletin.com/news/279265226/decided-between-two-dgmos-former-cds-gen-anil-chauhan-on-trump-claim-on-india-pakistan-ceasefire-during-operation-sindoor"
+        "date": "2026-08-28",
+        "title": "Timeline : U . S .- Israel - Iran war -- key events of past 6 months - Xinhua",
+        "domain": "english.news.cn",
+        "url": "https://english.news.cn/20260828/234c5a4a5ddc4c9eb4e45bf445bc3ddc/c.html"
+      },
+      {
+        "date": "2026-08-28",
+        "title": "Iran warns Washington that pressure doesnt work",
+        "domain": "bssnews.net",
+        "url": "https://www.bssnews.net/international/418788"
+      },
+      {
+        "date": "2026-08-28",
+        "title": "Iran says still open to diplomacy as war with US hits six months",
+        "domain": "bssnews.net",
+        "url": "https://www.bssnews.net/international/418781"
+      },
+      {
+        "date": "2026-08-28",
+        "title": "Iran war mediators step up efforts to reopen Strait of Hormuz",
+        "domain": "theglobeandmail.com",
+        "url": "https://www.theglobeandmail.com/world/article-us-iran-war-mediators-strait-of-hormuz/"
       }
     ],
-    "fetched": "2026-08-27"
+    "india_us": [],
+    "fetched": "2026-08-28"
   }
 }
