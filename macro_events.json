@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-29",
+  "last_updated": "2026-08-30",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -78,59 +78,47 @@
   },
   "market": {
     "brent": {
-      "last": NaN,
-      "chg_pct": NaN
+      "last": 88.1,
+      "chg_pct": -1.78
     },
     "usdinr": {
       "last": 95.38,
       "chg_pct": -0.09
     },
     "indiavix": {
-      "last": 11.07,
-      "chg_pct": 4.73
+      "last": 10.68,
+      "chg_pct": -3.52
     },
-    "fetched": "2026-08-29"
+    "fetched": "2026-08-30"
   },
   "headlines": {
-    "iran": [
+    "iran": [],
+    "india_us": [
       {
-        "date": "2026-08-29",
-        "title": "War weighs on Iran economy as US intensifies sanctions",
-        "domain": "dunyanews.tv",
-        "url": "https://dunyanews.tv/en/World/970265-war-weighs-on-irans-economy-as-us-intensifies-sanctions"
+        "date": "2026-08-27",
+        "title": "the US administration trade : Canada replaces seafood in U . S . counter - tariffs",
+        "domain": "am800cklw.com",
+        "url": "https://www.am800cklw.com/news/canada-replacing-seafood-counter-tariffs-with-taxes-on-other-items-amid-ongoing-trade-war-with-us/"
       },
       {
-        "date": "2026-08-29",
-        "title": "Six months later : Iran war far from settled and in very dangerous period",
-        "domain": "ktvl.com",
-        "url": "https://ktvl.com/news/nation-world/six-months-later-iran-war-far-from-settled-and-in-very-dangerous-period"
+        "date": "2026-08-27",
+        "title": "Files suggest Scotland Office had no input on removal of US whisky tariffs",
+        "domain": "thenational.scot",
+        "url": "https://www.thenational.scot/news/26501940.files-show-scotland-office-no-input-removal-us-whisky-tariff/"
       },
       {
-        "date": "2026-08-29",
-        "title": "Iran , Oman Agree on Hormuz Shipping Route , Await US Commitments",
-        "domain": "en.tempo.co",
-        "url": "https://en.tempo.co/read/2118506/iran-oman-agree-on-hormuz-shipping-route-await-us-commitments"
+        "date": "2026-08-27",
+        "title": "the US administration Freewheeling India Envoy Muddles South Asia Policy",
+        "domain": "foreignpolicy.com",
+        "url": "https://foreignpolicy.com/2026/08/27/sergio-gor-trump-modi-india-ambassador-south-asia-pakistan/"
       },
       {
-        "date": "2026-08-29",
-        "title": "The US and Israel tried to topple Iran government . Six months on , new leaders are defying them – Taylorville Daily News",
-        "domain": "taylorvilledailynews.com",
-        "url": "https://www.taylorvilledailynews.com/the-us-and-israel-tried-to-topple-irans-government-six-months-on-new-leaders-are-defying-them/"
-      },
-      {
-        "date": "2026-08-29",
-        "title": "The US and Israel tried to topple Iran government . Six months on , new leaders are defying them",
-        "domain": "niagarafallsreview.ca",
-        "url": "https://www.niagarafallsreview.ca/news/world/middle-east/the-us-and-israel-tried-to-topple-irans-government-six-months-on-new-leaders-are-defying-them/article_aba1690d-8ab0-5399-b6be-f9f071bf34de.html"
-      },
-      {
-        "date": "2026-08-29",
-        "title": "Iran grapples with 35 % drop in trade as war drags on amid tightening US restraints",
-        "domain": "geo.tv",
-        "url": "https://www.geo.tv/latest/679702-iran-grapples-with-35-drop-in-trade-as-middle-east-war-drags-on-and-us-sanctions-tighten"
+        "date": "2026-08-27",
+        "title": "Wonderful time in India - Canada relation : Finance Minister Indian officials",
+        "domain": "aninews.in",
+        "url": "https://aninews.in/news/business/wonderful-time-in-india-canada-relations-finance-minister-sitharaman20260827202748/"
       }
     ],
-    "india_us": [],
-    "fetched": "2026-08-29"
+    "fetched": "2026-08-30"
   }
 }
