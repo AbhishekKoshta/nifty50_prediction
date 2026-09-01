@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-08-31",
+  "last_updated": "2026-09-01",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -74,51 +74,71 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-09-01",
+        "kind": "hawkish",
+        "weight": "weak",
+        "note": "GDELT tone: 1 hawkish vs 0 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 90.39,
-      "chg_pct": 1.21
+      "last": 88.91,
+      "chg_pct": -1.75
     },
     "usdinr": {
-      "last": 95.4,
-      "chg_pct": -0.08
+      "last": 94.86,
+      "chg_pct": -0.54
     },
     "indiavix": {
-      "last": 11.14,
-      "chg_pct": 4.31
+      "last": 10.99,
+      "chg_pct": -1.74
     },
-    "fetched": "2026-08-31"
+    "fetched": "2026-09-01"
   },
   "headlines": {
-    "iran": [],
-    "india_us": [
+    "iran": [
       {
-        "date": "2026-08-27",
-        "title": "the US administration trade : Canada replaces seafood in U . S . counter - tariffs",
-        "domain": "am800cklw.com",
-        "url": "https://www.am800cklw.com/news/canada-replacing-seafood-counter-tariffs-with-taxes-on-other-items-amid-ongoing-trade-war-with-us/"
+        "date": "2026-09-01",
+        "title": "The View From India newsletter : Israel strategic predicaments",
+        "domain": "thehindu.com",
+        "url": "https://www.thehindu.com/news/international/the-view-from-india-israels-strategic-predicaments/article71410688.ece"
       },
       {
-        "date": "2026-08-27",
-        "title": "Files suggest Scotland Office had no input on removal of US whisky tariffs",
-        "domain": "thenational.scot",
-        "url": "https://www.thenational.scot/news/26501940.files-show-scotland-office-no-input-removal-us-whisky-tariff/"
+        "date": "2026-09-01",
+        "title": "US Attacks Iran After A Month Of Inactivity , Iran Retaliates",
+        "domain": "kysdc.com",
+        "url": "https://kysdc.com/5736485/us-attacks-iran-retaliates-ongoing-war/"
       },
       {
-        "date": "2026-08-27",
-        "title": "the US administration Freewheeling India Envoy Muddles South Asia Policy",
-        "domain": "foreignpolicy.com",
-        "url": "https://foreignpolicy.com/2026/08/27/sergio-gor-trump-modi-india-ambassador-south-asia-pakistan/"
+        "date": "2026-09-01",
+        "title": "Iran , U . S . trade fire in first exchange for a month",
+        "domain": "calgarysun.com",
+        "url": "https://calgarysun.com/news/world/iran-u-s-trade-fire-in-first-exchange-for-a-month/wcm/39747aee-2947-41bb-8d6a-df4bab3198fc"
       },
       {
-        "date": "2026-08-27",
-        "title": "Wonderful time in India - Canada relation : Finance Minister Indian officials",
-        "domain": "aninews.in",
-        "url": "https://aninews.in/news/business/wonderful-time-in-india-canada-relations-finance-minister-sitharaman20260827202748/"
+        "date": "2026-09-01",
+        "title": "Closed - door the US administration talk at GOP Jewish gathering a chance to define , introduce himself to Jews before possible 2028 run , Matt Brooks says - Israel & Jewish News",
+        "domain": "jns.org",
+        "url": "https://www.jns.org/news/u-s-news/closed-door-vance-talk-at-gop-jewish-gathering-a-chance-to-define-introduce-himself-to-jews-before-possible-2028-run-matt-brooks-says"
+      },
+      {
+        "date": "2026-09-01",
+        "title": "the US administration vows to hit Iran hard",
+        "domain": "samaa.tv",
+        "url": "https://www.samaa.tv/2087356084-trump-vows-to-hit-iran-hard"
+      },
+      {
+        "date": "2026-08-31",
+        "title": "Iran FM : US must honor Islamabad MoU it signed , or war continues",
+        "domain": "presstv.co.uk",
+        "url": "https://www.presstv.co.uk/Detail/2026/08/31/775442/Iran-FM--US-must-honor-Islamabad-MoU-it-signed,-or-war-continues"
       }
     ],
-    "fetched": "2026-08-30"
+    "india_us": [],
+    "fetched": "2026-09-01"
   }
 }
