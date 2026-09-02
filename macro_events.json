@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-01",
+  "last_updated": "2026-09-02",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -74,71 +74,51 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": [
-      {
-        "date": "2026-09-01",
-        "kind": "hawkish",
-        "weight": "weak",
-        "note": "GDELT tone: 1 hawkish vs 0 dovish headlines (3d)",
-        "source": "gdelt-heuristic"
-      }
-    ]
+    "signals": []
   },
   "market": {
     "brent": {
-      "last": 88.91,
-      "chg_pct": -1.75
+      "last": 95.43,
+      "chg_pct": 0.82
     },
     "usdinr": {
-      "last": 94.86,
-      "chg_pct": -0.54
+      "last": 94.95,
+      "chg_pct": -0.17
     },
     "indiavix": {
-      "last": 10.99,
-      "chg_pct": -1.74
+      "last": 11.88,
+      "chg_pct": 3.39
     },
-    "fetched": "2026-09-01"
+    "fetched": "2026-09-02"
   },
   "headlines": {
-    "iran": [
+    "iran": [],
+    "india_us": [
       {
         "date": "2026-09-01",
-        "title": "The View From India newsletter : Israel strategic predicaments",
-        "domain": "thehindu.com",
-        "url": "https://www.thehindu.com/news/international/the-view-from-india-israels-strategic-predicaments/article71410688.ece"
+        "title": "Brazil South Africa Trade Alliance Grows as Tariffs Bite",
+        "domain": "riotimesonline.com",
+        "url": "https://www.riotimesonline.com/brazil-south-africa-trade-alliance-2026/"
       },
       {
         "date": "2026-09-01",
-        "title": "US Attacks Iran After A Month Of Inactivity , Iran Retaliates",
-        "domain": "kysdc.com",
-        "url": "https://kysdc.com/5736485/us-attacks-iran-retaliates-ongoing-war/"
+        "title": "How eco - localism differs from tariff terrorism",
+        "domain": "resilience.org",
+        "url": "https://www.resilience.org/stories/2026-09-01/how-eco-localism-differs-from-tariff-terrorism/"
       },
       {
         "date": "2026-09-01",
-        "title": "Iran , U . S . trade fire in first exchange for a month",
-        "domain": "calgarysun.com",
-        "url": "https://calgarysun.com/news/world/iran-u-s-trade-fire-in-first-exchange-for-a-month/wcm/39747aee-2947-41bb-8d6a-df4bab3198fc"
+        "title": "China , Russia , India gather at summit | The Arkansas Democrat - Gazette",
+        "domain": "arkansasonline.com",
+        "url": "https://www.arkansasonline.com/news/2026/sep/01/china-russia-india-gather-at-summit/"
       },
       {
         "date": "2026-09-01",
-        "title": "Closed - door the US administration talk at GOP Jewish gathering a chance to define , introduce himself to Jews before possible 2028 run , Matt Brooks says - Israel & Jewish News",
-        "domain": "jns.org",
-        "url": "https://www.jns.org/news/u-s-news/closed-door-vance-talk-at-gop-jewish-gathering-a-chance-to-define-introduce-himself-to-jews-before-possible-2028-run-matt-brooks-says"
-      },
-      {
-        "date": "2026-09-01",
-        "title": "the US administration vows to hit Iran hard",
-        "domain": "samaa.tv",
-        "url": "https://www.samaa.tv/2087356084-trump-vows-to-hit-iran-hard"
-      },
-      {
-        "date": "2026-08-31",
-        "title": "Iran FM : US must honor Islamabad MoU it signed , or war continues",
-        "domain": "presstv.co.uk",
-        "url": "https://www.presstv.co.uk/Detail/2026/08/31/775442/Iran-FM--US-must-honor-Islamabad-MoU-it-signed,-or-war-continues"
+        "title": "Leaders of China , Russia and India are among heads of state meeting to counter US influence",
+        "domain": "idahostatejournal.com",
+        "url": "http://www.idahostatejournal.com/news/national/leaders-of-china-russia-and-india-are-among-heads-of-state-meeting-to-counter-us/article_b68b96f4-3c44-5d05-b0aa-fd88796195b1.html"
       }
     ],
-    "india_us": [],
-    "fetched": "2026-09-01"
+    "fetched": "2026-09-02"
   }
 }
