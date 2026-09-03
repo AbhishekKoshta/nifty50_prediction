@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-02",
+  "last_updated": "2026-09-03",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -74,51 +74,84 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-09-03",
+        "kind": "hawkish",
+        "weight": "medium",
+        "note": "GDELT tone: 4 hawkish vs 0 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 95.43,
-      "chg_pct": 0.82
+      "last": 94.42,
+      "chg_pct": -1.27
     },
     "usdinr": {
-      "last": 94.95,
-      "chg_pct": -0.17
+      "last": 94.45,
+      "chg_pct": -0.53
     },
     "indiavix": {
-      "last": 11.88,
-      "chg_pct": 3.39
+      "last": 11.14,
+      "chg_pct": -3.9
     },
-    "fetched": "2026-09-02"
+    "fetched": "2026-09-03"
   },
   "headlines": {
-    "iran": [],
-    "india_us": [
+    "iran": [
       {
-        "date": "2026-09-01",
-        "title": "Brazil South Africa Trade Alliance Grows as Tariffs Bite",
-        "domain": "riotimesonline.com",
-        "url": "https://www.riotimesonline.com/brazil-south-africa-trade-alliance-2026/"
+        "date": "2026-09-03",
+        "title": "Middle East news : Iran targets U . S . Gulf allies",
+        "domain": "cp24.com",
+        "url": "https://www.cp24.com/news/world/2026/09/03/iran-targets-us-allies-in-gulf-after-overnight-attacks-and-other-mideast-news/"
       },
       {
-        "date": "2026-09-01",
-        "title": "How eco - localism differs from tariff terrorism",
-        "domain": "resilience.org",
-        "url": "https://www.resilience.org/stories/2026-09-01/how-eco-localism-differs-from-tariff-terrorism/"
+        "date": "2026-09-03",
+        "title": "Israel says prepared to respond with great force if Iran attacks – The Frontier Post",
+        "domain": "thefrontierpost.com",
+        "url": "https://thefrontierpost.com/israel-says-prepared-to-respond-with-great-force-if-iran-attacks/"
       },
       {
-        "date": "2026-09-01",
-        "title": "China , Russia , India gather at summit | The Arkansas Democrat - Gazette",
-        "domain": "arkansasonline.com",
-        "url": "https://www.arkansasonline.com/news/2026/sep/01/china-russia-india-gather-at-summit/"
+        "date": "2026-09-03",
+        "title": "Sanctions and Bombs wont end the war in Iran . the US administration is running out of Options against an intractable Foe",
+        "domain": "juancole.com",
+        "url": "https://www.juancole.com/2026/09/sanctions-running-intractable.html"
       },
       {
-        "date": "2026-09-01",
-        "title": "Leaders of China , Russia and India are among heads of state meeting to counter US influence",
-        "domain": "idahostatejournal.com",
-        "url": "http://www.idahostatejournal.com/news/national/leaders-of-china-russia-and-india-are-among-heads-of-state-meeting-to-counter-us/article_b68b96f4-3c44-5d05-b0aa-fd88796195b1.html"
+        "date": "2026-09-03",
+        "title": "Pakistan hopeful despite US - Iran escalation , will continue to strive for dialogue and diplomacy : FO",
+        "domain": "asianews.network",
+        "url": "https://asianews.network/pakistan-hopeful-despite-us-iran-escalation-will-continue-to-strive-for-dialogue-and-diplomacy-fo/"
+      },
+      {
+        "date": "2026-09-03",
+        "title": "Kuwaiti Army Says Its Air Defense Confronting Hostile Missile And Drone Attack From Iran | LIVE BLOG",
+        "domain": "i24news.tv",
+        "url": "https://www.i24news.tv/en/news/international/artc-kuwaiti-army-says-its-air-defense-confronting-hostile-missile-and-drone-attack-from-iran-live-blog"
+      },
+      {
+        "date": "2026-09-03",
+        "title": "Israel Israel : Gaza forced migration plan remains on table",
+        "domain": "albawaba.net",
+        "url": "https://www.albawaba.net/news/israel-katz-gaza-%E2%80%98forced-migration%E2%80%99-plan-1636312"
       }
     ],
-    "fetched": "2026-09-02"
+    "india_us": [
+      {
+        "date": "2026-09-03",
+        "title": "the US administration says he doesnt think India and Iran have a trade deal , warns against helping Tehran evade sanctions",
+        "domain": "moneycontrol.com",
+        "url": "https://www.moneycontrol.com/world/rubio-says-no-india-iran-trade-talks-at-modi-pezeshkian-meet-warns-nations-against-evading-iran-sanctions-article-14021303.html"
+      },
+      {
+        "date": "2026-09-02",
+        "title": "Intelligence : Israeli Indian Intelligence Cooperation",
+        "domain": "strategypage.com",
+        "url": "http://www.strategypage.com/%5Chtmw%5Chtintel%5Carticles%5C2026090153754.aspx"
+      }
+    ],
+    "fetched": "2026-09-03"
   }
 }
