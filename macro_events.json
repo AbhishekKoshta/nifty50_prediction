@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-03",
+  "last_updated": "2026-09-04",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -74,84 +74,63 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": [
-      {
-        "date": "2026-09-03",
-        "kind": "hawkish",
-        "weight": "medium",
-        "note": "GDELT tone: 4 hawkish vs 0 dovish headlines (3d)",
-        "source": "gdelt-heuristic"
-      }
-    ]
+    "signals": []
   },
   "market": {
     "brent": {
-      "last": 94.42,
-      "chg_pct": -1.27
+      "last": 95.5,
+      "chg_pct": -0.14
     },
     "usdinr": {
-      "last": 94.45,
-      "chg_pct": -0.53
+      "last": 94.49,
+      "chg_pct": 0.01
     },
     "indiavix": {
-      "last": 11.14,
-      "chg_pct": -3.9
+      "last": 10.74,
+      "chg_pct": -7.29
     },
-    "fetched": "2026-09-03"
+    "fetched": "2026-09-04"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-09-03",
-        "title": "Middle East news : Iran targets U . S . Gulf allies",
-        "domain": "cp24.com",
-        "url": "https://www.cp24.com/news/world/2026/09/03/iran-targets-us-allies-in-gulf-after-overnight-attacks-and-other-mideast-news/"
+        "date": "2026-09-04",
+        "title": "the US administration says Iran fight isnt a war",
+        "domain": "wdbo.com",
+        "url": "https://www.wdbo.com/news/politics/vance-says-iran/RHPFWUXTQE3HVME3SBAMC4MEPQ/"
       },
       {
-        "date": "2026-09-03",
-        "title": "Israel says prepared to respond with great force if Iran attacks – The Frontier Post",
-        "domain": "thefrontierpost.com",
-        "url": "https://thefrontierpost.com/israel-says-prepared-to-respond-with-great-force-if-iran-attacks/"
+        "date": "2026-09-04",
+        "title": "Iran hits US military targets in the region as Washington probes deadly wedding strike",
+        "domain": "euronews.com",
+        "url": "https://www.euronews.com/2026/09/04/iran-hits-us-military-targets-in-the-region-as-washington-probes-deadly-wedding-strike"
       },
       {
-        "date": "2026-09-03",
-        "title": "Sanctions and Bombs wont end the war in Iran . the US administration is running out of Options against an intractable Foe",
-        "domain": "juancole.com",
-        "url": "https://www.juancole.com/2026/09/sanctions-running-intractable.html"
+        "date": "2026-09-04",
+        "title": "the US administration says Iran fight isnt a war as the US administration tries to navigate unpopular conflict as election nears",
+        "domain": "gjsentinel.com",
+        "url": "https://www.gjsentinel.com/news/us/vance-says-iran-fight-isnt-a-war-as-trump-tries-to-navigate-unpopular-conflict-as/article_73037a25-bd3d-5ede-8127-fcb242f00c01.html"
       },
       {
-        "date": "2026-09-03",
-        "title": "Pakistan hopeful despite US - Iran escalation , will continue to strive for dialogue and diplomacy : FO",
-        "domain": "asianews.network",
-        "url": "https://asianews.network/pakistan-hopeful-despite-us-iran-escalation-will-continue-to-strive-for-dialogue-and-diplomacy-fo/"
+        "date": "2026-09-04",
+        "title": "JD the US administration says Iran conflict isnt a war",
+        "domain": "edition.cnn.com",
+        "url": "https://edition.cnn.com/2026/09/03/politics/jd-vance-iran-war"
       },
       {
-        "date": "2026-09-03",
-        "title": "Kuwaiti Army Says Its Air Defense Confronting Hostile Missile And Drone Attack From Iran | LIVE BLOG",
-        "domain": "i24news.tv",
-        "url": "https://www.i24news.tv/en/news/international/artc-kuwaiti-army-says-its-air-defense-confronting-hostile-missile-and-drone-attack-from-iran-live-blog"
+        "date": "2026-09-04",
+        "title": "the US administration Saudi Nuclear Agreement May Prolong the Iran War",
+        "domain": "original.antiwar.com",
+        "url": "https://original.antiwar.com/trita-parsi/2026/09/03/trumps-saudi-nuclear-agreement-may-prolong-the-iran-war/"
       },
       {
-        "date": "2026-09-03",
-        "title": "Israel Israel : Gaza forced migration plan remains on table",
-        "domain": "albawaba.net",
-        "url": "https://www.albawaba.net/news/israel-katz-gaza-%E2%80%98forced-migration%E2%80%99-plan-1636312"
+        "date": "2026-09-04",
+        "title": "US rejects war label as Iran conflict weighs on midterms",
+        "domain": "siasat.com",
+        "url": "https://www.siasat.com/us-rejects-war-label-as-iran-conflict-weighs-on-midterms-3536014/"
       }
     ],
-    "india_us": [
-      {
-        "date": "2026-09-03",
-        "title": "the US administration says he doesnt think India and Iran have a trade deal , warns against helping Tehran evade sanctions",
-        "domain": "moneycontrol.com",
-        "url": "https://www.moneycontrol.com/world/rubio-says-no-india-iran-trade-talks-at-modi-pezeshkian-meet-warns-nations-against-evading-iran-sanctions-article-14021303.html"
-      },
-      {
-        "date": "2026-09-02",
-        "title": "Intelligence : Israeli Indian Intelligence Cooperation",
-        "domain": "strategypage.com",
-        "url": "http://www.strategypage.com/%5Chtmw%5Chtintel%5Carticles%5C2026090153754.aspx"
-      }
-    ],
-    "fetched": "2026-09-03"
+    "india_us": [],
+    "fetched": "2026-09-04"
   }
 }
