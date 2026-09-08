@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-07",
+  "last_updated": "2026-09-08",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -74,63 +74,71 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-09-08",
+        "kind": "hawkish",
+        "weight": "weak",
+        "note": "GDELT tone: 2 hawkish vs 0 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 96.28,
-      "chg_pct": 0.0
+      "last": 98.35,
+      "chg_pct": 2.15
     },
     "usdinr": {
-      "last": 94.44,
-      "chg_pct": -0.06
+      "last": 94.7,
+      "chg_pct": 0.29
     },
     "indiavix": {
-      "last": 11.28,
-      "chg_pct": 5.59
+      "last": 11.17,
+      "chg_pct": 0.09
     },
-    "fetched": "2026-09-07"
+    "fetched": "2026-09-08"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-09-04",
-        "title": "the US administration says Iran fight isnt a war",
-        "domain": "wdbo.com",
-        "url": "https://www.wdbo.com/news/politics/vance-says-iran/RHPFWUXTQE3HVME3SBAMC4MEPQ/"
+        "date": "2026-09-08",
+        "title": "Israeli airstrikes on Lebanese village kill 12 , plus other key Mideast developments",
+        "domain": "journalgazette.net",
+        "url": "https://www.journalgazette.net/news/world/israeli-airstrikes-on-lebanese-village-kill-12-plus-other-key-mideast-developments/article_c2d5a614-a05a-5291-a3ae-cfd96fc94eee.html"
       },
       {
-        "date": "2026-09-04",
-        "title": "Iran hits US military targets in the region as Washington probes deadly wedding strike",
-        "domain": "euronews.com",
-        "url": "https://www.euronews.com/2026/09/04/iran-hits-us-military-targets-in-the-region-as-washington-probes-deadly-wedding-strike"
+        "date": "2026-09-08",
+        "title": "Labour to announce sanctions over Israeli West Bank settlements in reset",
+        "domain": "barryanddistrictnews.co.uk",
+        "url": "https://www.barryanddistrictnews.co.uk/news/national/26529967.labour-announce-sanctions-israeli-west-bank-settlements-reset/"
       },
       {
-        "date": "2026-09-04",
-        "title": "the US administration says Iran fight isnt a war as the US administration tries to navigate unpopular conflict as election nears",
-        "domain": "gjsentinel.com",
-        "url": "https://www.gjsentinel.com/news/us/vance-says-iran-fight-isnt-a-war-as-trump-tries-to-navigate-unpopular-conflict-as/article_73037a25-bd3d-5ede-8127-fcb242f00c01.html"
+        "date": "2026-09-08",
+        "title": "Iran warns US energy assets in Gulf are vulnerable after latest clashes",
+        "domain": "rappler.com",
+        "url": "https://www.rappler.com/world/middle-east/iran-warns-us-energy-assets-gulf-vulnerable-after-clashes-september-2026/"
       },
       {
-        "date": "2026-09-04",
-        "title": "JD the US administration says Iran conflict isnt a war",
-        "domain": "edition.cnn.com",
-        "url": "https://edition.cnn.com/2026/09/03/politics/jd-vance-iran-war"
+        "date": "2026-09-08",
+        "title": "Israel strikes Lebanon , accuses Hezbollah of truce violations – Daily Trust",
+        "domain": "dailytrust.com",
+        "url": "https://dailytrust.com/israel-strikes-lebanon-accuses-hezbollah-of-truce-violations/"
       },
       {
-        "date": "2026-09-04",
-        "title": "the US administration Saudi Nuclear Agreement May Prolong the Iran War",
-        "domain": "original.antiwar.com",
-        "url": "https://original.antiwar.com/trita-parsi/2026/09/03/trumps-saudi-nuclear-agreement-may-prolong-the-iran-war/"
+        "date": "2026-09-08",
+        "title": "Iran says it plans new Gulf exclusion zone , threatens US with new missiles",
+        "domain": "thehindubusinessline.com",
+        "url": "https://www.thehindubusinessline.com/news/world/iran-says-it-plans-new-gulf-exclusion-zone-threatens-us-with-new-missiles/article71441119.ece"
       },
       {
-        "date": "2026-09-04",
-        "title": "US rejects war label as Iran conflict weighs on midterms",
-        "domain": "siasat.com",
-        "url": "https://www.siasat.com/us-rejects-war-label-as-iran-conflict-weighs-on-midterms-3536014/"
+        "date": "2026-09-08",
+        "title": "Labour to announce sanctions over Israeli West Bank settlements in reset | Dumbarton and Vale of Leven Reporter",
+        "domain": "dumbartonreporter.co.uk",
+        "url": "https://www.dumbartonreporter.co.uk/news/national/26529967.labour-announce-sanctions-israeli-west-bank-settlements-reset/"
       }
     ],
     "india_us": [],
-    "fetched": "2026-09-04"
+    "fetched": "2026-09-08"
   }
 }
