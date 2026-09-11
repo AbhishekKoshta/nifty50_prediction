@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-10",
+  "last_updated": "2026-09-11",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -78,59 +78,41 @@
   },
   "market": {
     "brent": {
-      "last": 100.47,
-      "chg_pct": -0.73
+      "last": 105.89,
+      "chg_pct": -1.62
     },
     "usdinr": {
-      "last": 95.19,
-      "chg_pct": 0.39
+      "last": 95.72,
+      "chg_pct": 0.64
     },
     "indiavix": {
-      "last": 11.75,
-      "chg_pct": -1.43
+      "last": 12.33,
+      "chg_pct": 4.51
     },
-    "fetched": "2026-09-10"
+    "fetched": "2026-09-11"
   },
   "headlines": {
-    "iran": [
+    "iran": [],
+    "india_us": [
       {
-        "date": "2026-09-08",
-        "title": "Israeli airstrikes on Lebanese village kill 12 , plus other key Mideast developments",
-        "domain": "journalgazette.net",
-        "url": "https://www.journalgazette.net/news/world/israeli-airstrikes-on-lebanese-village-kill-12-plus-other-key-mideast-developments/article_c2d5a614-a05a-5291-a3ae-cfd96fc94eee.html"
+        "date": "2026-09-10",
+        "title": "India needs stronger export push as energy imports drive trade deficits with BRICS nations : BRICS CCI Chairman",
+        "domain": "pakistantelegraph.com",
+        "url": "http://www.pakistantelegraph.com/news/279299159/india-needs-stronger-export-push-as-energy-imports-drive-trade-deficits-with-brics-nations-brics-cci-chairman"
       },
       {
-        "date": "2026-09-08",
-        "title": "Labour to announce sanctions over Israeli West Bank settlements in reset",
-        "domain": "barryanddistrictnews.co.uk",
-        "url": "https://www.barryanddistrictnews.co.uk/news/national/26529967.labour-announce-sanctions-israeli-west-bank-settlements-reset/"
+        "date": "2026-09-10",
+        "title": "Can India Salvage A Fractured Brics ?",
+        "domain": "deccanchronicle.com",
+        "url": "https://www.deccanchronicle.com/opinion/columnists/can-india-salvage-a-fractured-brics-1986557"
       },
       {
-        "date": "2026-09-08",
-        "title": "Iran warns US energy assets in Gulf are vulnerable after latest clashes",
-        "domain": "rappler.com",
-        "url": "https://www.rappler.com/world/middle-east/iran-warns-us-energy-assets-gulf-vulnerable-after-clashes-september-2026/"
-      },
-      {
-        "date": "2026-09-08",
-        "title": "Israel strikes Lebanon , accuses Hezbollah of truce violations – Daily Trust",
-        "domain": "dailytrust.com",
-        "url": "https://dailytrust.com/israel-strikes-lebanon-accuses-hezbollah-of-truce-violations/"
-      },
-      {
-        "date": "2026-09-08",
-        "title": "Iran says it plans new Gulf exclusion zone , threatens US with new missiles",
-        "domain": "thehindubusinessline.com",
-        "url": "https://www.thehindubusinessline.com/news/world/iran-says-it-plans-new-gulf-exclusion-zone-threatens-us-with-new-missiles/article71441119.ece"
-      },
-      {
-        "date": "2026-09-08",
-        "title": "Labour to announce sanctions over Israeli West Bank settlements in reset | Dumbarton and Vale of Leven Reporter",
-        "domain": "dumbartonreporter.co.uk",
-        "url": "https://www.dumbartonreporter.co.uk/news/national/26529967.labour-announce-sanctions-israeli-west-bank-settlements-reset/"
+        "date": "2026-09-10",
+        "title": "BRICS Summit in New Delhi : How Xi Jinping First India Visit in Seven Years Could Reset Ties with PM Narendra Indian officials After the Galwan Clash",
+        "domain": "openthemagazine.com",
+        "url": "https://openthemagazine.com/india/brics-summit-why-xi-jinpings-india-visit-could-reset-ties-with-pm-narendra-modi"
       }
     ],
-    "india_us": [],
-    "fetched": "2026-09-08"
+    "fetched": "2026-09-11"
   }
 }
