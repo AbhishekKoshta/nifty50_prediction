@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-12",
+  "last_updated": "2026-09-13",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -82,37 +82,37 @@
       "chg_pct": -2.81
     },
     "usdinr": {
-      "last": 95.54,
-      "chg_pct": -0.16
+      "last": 95.55,
+      "chg_pct": -0.15
     },
     "indiavix": {
       "last": 12.29,
       "chg_pct": 4.15
     },
-    "fetched": "2026-09-12"
+    "fetched": "2026-09-13"
   },
   "headlines": {
-    "iran": [],
-    "india_us": [
+    "iran": [
       {
-        "date": "2026-09-10",
-        "title": "India needs stronger export push as energy imports drive trade deficits with BRICS nations : BRICS CCI Chairman",
-        "domain": "pakistantelegraph.com",
-        "url": "http://www.pakistantelegraph.com/news/279299159/india-needs-stronger-export-push-as-energy-imports-drive-trade-deficits-with-brics-nations-brics-cci-chairman"
+        "date": "2026-09-13",
+        "title": "UAE Crown Prince Meets Putin At BRICS Summit As Bloc Navigates Iran - UAE Divide",
+        "domain": "i24news.tv",
+        "url": "https://www.i24news.tv/en/news/international/artc-uae-s-crown-prince-meets-putin-at-brics-summit-as-bloc-navigates-iran-uae-divide"
       },
       {
-        "date": "2026-09-10",
-        "title": "Can India Salvage A Fractured Brics ?",
-        "domain": "deccanchronicle.com",
-        "url": "https://www.deccanchronicle.com/opinion/columnists/can-india-salvage-a-fractured-brics-1986557"
+        "date": "2026-09-13",
+        "title": "People fleeing Iran - backed rebel advance in Yemen describe a hysterical panic – KTBB News , Weather , Talk",
+        "domain": "ktbb.com",
+        "url": "https://ktbb.com/post/?p=1541079"
       },
       {
-        "date": "2026-09-10",
-        "title": "BRICS Summit in New Delhi : How Xi Jinping First India Visit in Seven Years Could Reset Ties with PM Narendra Indian officials After the Galwan Clash",
-        "domain": "openthemagazine.com",
-        "url": "https://openthemagazine.com/india/brics-summit-why-xi-jinpings-india-visit-could-reset-ties-with-pm-narendra-modi"
+        "date": "2026-09-13",
+        "title": "People fleeing Iran - backed rebel advance in Yemen describe a hysterical panic",
+        "domain": "reflector.com",
+        "url": "http://www.reflector.com/news/national/people-fleeing-iran-backed-rebels-advance-in-yemen-describe-a-hysterical-panic/article_3f812951-067f-53a4-b6e0-0930a17ae41e.html"
       }
     ],
-    "fetched": "2026-09-11"
+    "india_us": [],
+    "fetched": "2026-09-13"
   }
 }
