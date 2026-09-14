@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-13",
+  "last_updated": "2026-09-14",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -78,41 +78,59 @@
   },
   "market": {
     "brent": {
-      "last": 104.61,
-      "chg_pct": -2.81
+      "last": 106.89,
+      "chg_pct": 2.18
     },
     "usdinr": {
-      "last": 95.55,
-      "chg_pct": -0.15
+      "last": 95.54,
+      "chg_pct": -0.16
     },
     "indiavix": {
       "last": 12.29,
       "chg_pct": 4.15
     },
-    "fetched": "2026-09-13"
+    "fetched": "2026-09-14"
   },
   "headlines": {
-    "iran": [
+    "iran": [],
+    "india_us": [
       {
-        "date": "2026-09-13",
-        "title": "UAE Crown Prince Meets Putin At BRICS Summit As Bloc Navigates Iran - UAE Divide",
-        "domain": "i24news.tv",
-        "url": "https://www.i24news.tv/en/news/international/artc-uae-s-crown-prince-meets-putin-at-brics-summit-as-bloc-navigates-iran-uae-divide"
+        "date": "2026-09-12",
+        "title": "Two - state solution for Palestine , concerns over unilateral tariff : Highlights from BRICS New Delhi declaration",
+        "domain": "hindustantimes.com",
+        "url": "https://www.hindustantimes.com/india-news/twostate-solution-for-palestine-concerns-over-unilateral-tariff-highlights-from-brics-summit-new-delhi-declaration-101789231282226.html"
       },
       {
-        "date": "2026-09-13",
-        "title": "People fleeing Iran - backed rebel advance in Yemen describe a hysterical panic – KTBB News , Weather , Talk",
-        "domain": "ktbb.com",
-        "url": "https://ktbb.com/post/?p=1541079"
+        "date": "2026-09-12",
+        "title": "India trading arrangements with ASEAN – Deepening ASEAN - India Alliance Part I By Hemant K Batra",
+        "domain": "legallyindia.com",
+        "url": "https://www.legallyindia.com/Blogs/indiaa-s-trading-arrangements-with-asean-a-a-deepening-asean-india-alliancea-part-i-by-hemant-k-batra-html/"
       },
       {
-        "date": "2026-09-13",
-        "title": "People fleeing Iran - backed rebel advance in Yemen describe a hysterical panic",
-        "domain": "reflector.com",
-        "url": "http://www.reflector.com/news/national/people-fleeing-iran-backed-rebels-advance-in-yemen-describe-a-hysterical-panic/article_3f812951-067f-53a4-b6e0-0930a17ae41e.html"
+        "date": "2026-09-12",
+        "title": "Xi , Putin and Indian officials meet at BRICS summit amid the US administration pressure",
+        "domain": "cnbc.com",
+        "url": "https://www.cnbc.com/2026/09/12/brics-summit-xi-putin-modi-trump.html"
+      },
+      {
+        "date": "2026-09-12",
+        "title": "India - Peru FTA talks enter final stretch , Peru hopes to sign deal in 2027",
+        "domain": "moneycontrol.com",
+        "url": "https://www.moneycontrol.com/news/india/india-peru-fta-talks-enter-final-stretch-peru-hopes-to-sign-deal-in-2027-14028274.html"
+      },
+      {
+        "date": "2026-09-11",
+        "title": "India and Russia are building something big in space",
+        "domain": "beijingbulletin.com",
+        "url": "http://www.beijingbulletin.com/news/279300639/india-and-russia-are-building-something-big-in-space"
+      },
+      {
+        "date": "2026-09-11",
+        "title": "Peru awaits India response as trade talks near end , minister says",
+        "domain": "economictimes.indiatimes.com",
+        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/peru-awaits-india-response-as-trade-talks-near-end-minister-says/articleshow/134080925.cms"
       }
     ],
-    "india_us": [],
-    "fetched": "2026-09-13"
+    "fetched": "2026-09-14"
   }
 }
