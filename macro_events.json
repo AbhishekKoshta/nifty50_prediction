@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-16",
+  "last_updated": "2026-09-17",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -78,18 +78,18 @@
   },
   "market": {
     "brent": {
-      "last": 108.22,
-      "chg_pct": -0.49
+      "last": 104.67,
+      "chg_pct": -1.1
     },
     "usdinr": {
-      "last": 95.93,
-      "chg_pct": 0.1
+      "last": 95.89,
+      "chg_pct": -0.1
     },
     "indiavix": {
-      "last": 13.24,
-      "chg_pct": -1.4
+      "last": 12.51,
+      "chg_pct": -5.05
     },
-    "fetched": "2026-09-16"
+    "fetched": "2026-09-17"
   },
   "headlines": {
     "iran": [],
@@ -131,6 +131,6 @@
         "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/peru-awaits-india-response-as-trade-talks-near-end-minister-says/articleshow/134080925.cms"
       }
     ],
-    "fetched": "2026-09-16"
+    "fetched": "2026-09-17"
   }
 }
