@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-21",
+  "last_updated": "2026-09-22",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -74,63 +74,65 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-09-22",
+        "kind": "hawkish",
+        "weight": "weak",
+        "note": "GDELT tone: 2 hawkish vs 0 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 97.79,
-      "chg_pct": -5.85
+      "last": 97.8,
+      "chg_pct": -2.53
     },
     "usdinr": {
-      "last": 95.82,
-      "chg_pct": 0.02
+      "last": 95.81,
+      "chg_pct": -0.21
     },
     "indiavix": {
-      "last": 11.38,
-      "chg_pct": -0.09
+      "last": 11.2,
+      "chg_pct": -0.42
     },
-    "fetched": "2026-09-21"
+    "fetched": "2026-09-22"
   },
   "headlines": {
-    "iran": [],
-    "india_us": [
+    "iran": [
       {
-        "date": "2026-09-12",
-        "title": "Two - state solution for Palestine , concerns over unilateral tariff : Highlights from BRICS New Delhi declaration",
-        "domain": "hindustantimes.com",
-        "url": "https://www.hindustantimes.com/india-news/twostate-solution-for-palestine-concerns-over-unilateral-tariff-highlights-from-brics-summit-new-delhi-declaration-101789231282226.html"
+        "date": "2026-09-22",
+        "title": "Opinion : AIPAC and the Israel lobby",
+        "domain": "ctmirror.org",
+        "url": "https://ctmirror.org/2026/09/22/aipac-and-the-israel-lobby/"
       },
       {
-        "date": "2026-09-12",
-        "title": "India trading arrangements with ASEAN – Deepening ASEAN - India Alliance Part I By Hemant K Batra",
-        "domain": "legallyindia.com",
-        "url": "https://www.legallyindia.com/Blogs/indiaa-s-trading-arrangements-with-asean-a-a-deepening-asean-india-alliancea-part-i-by-hemant-k-batra-html/"
+        "date": "2026-09-22",
+        "title": "Unifil counts eight fortified bases among 30 Israeli military positions in south Lebanon",
+        "domain": "thenationalnews.com",
+        "url": "https://www.thenationalnews.com/news/mena/2026/09/22/unifil-counts-eight-fortified-bases-among-30-israeli-military-positions-in-south-lebanon/"
       },
       {
-        "date": "2026-09-12",
-        "title": "Xi , Putin and Indian officials meet at BRICS summit amid the US administration pressure",
-        "domain": "cnbc.com",
-        "url": "https://www.cnbc.com/2026/09/12/brics-summit-xi-putin-modi-trump.html"
+        "date": "2026-09-22",
+        "title": "Iran issues fresh warning to US over possible new offensive",
+        "domain": "pmnewsnigeria.com",
+        "url": "https://pmnewsnigeria.com/2026/09/21/middle-east-tension-iran-issues-fresh-warning-to-us-over-possible-new-offensive/"
       },
       {
-        "date": "2026-09-12",
-        "title": "India - Peru FTA talks enter final stretch , Peru hopes to sign deal in 2027",
-        "domain": "moneycontrol.com",
-        "url": "https://www.moneycontrol.com/news/india/india-peru-fta-talks-enter-final-stretch-peru-hopes-to-sign-deal-in-2027-14028274.html"
+        "date": "2026-09-22",
+        "title": "Houthi escalating attacks on Saudi Arabia give Iran leverage in the Middle East",
+        "domain": "abcnews.com",
+        "url": "https://abcnews.com/Politics/houthis-escalating-attacks-saudi-arabia-give-iran-leverage/story?id=136621129"
       },
       {
-        "date": "2026-09-11",
-        "title": "India and Russia are building something big in space",
-        "domain": "beijingbulletin.com",
-        "url": "http://www.beijingbulletin.com/news/279300639/india-and-russia-are-building-something-big-in-space"
-      },
-      {
-        "date": "2026-09-11",
-        "title": "Peru awaits India response as trade talks near end , minister says",
-        "domain": "economictimes.indiatimes.com",
-        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/peru-awaits-india-response-as-trade-talks-near-end-minister-says/articleshow/134080925.cms"
+        "date": "2026-09-22",
+        "title": "Well consider you complicit ! – Iran military HQ issues severe warning to Middle East nations",
+        "domain": "wrp.org.uk",
+        "url": "https://wrp.org.uk/features/well-consider-you-complicit-irans-military-hq-issues-severe-warning-to-middle-east-nations/"
       }
     ],
-    "fetched": "2026-09-18"
+    "india_us": [],
+    "fetched": "2026-09-22"
   }
 }
