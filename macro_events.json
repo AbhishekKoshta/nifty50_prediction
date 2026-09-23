@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-22",
+  "last_updated": "2026-09-23",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -76,63 +76,100 @@
     "hold_prob": 0.38,
     "signals": [
       {
-        "date": "2026-09-22",
+        "date": "2026-09-23",
         "kind": "hawkish",
         "weight": "weak",
-        "note": "GDELT tone: 2 hawkish vs 0 dovish headlines (3d)",
+        "note": "GDELT tone: 1 hawkish vs 0 dovish headlines (3d)",
         "source": "gdelt-heuristic"
       }
     ]
   },
   "market": {
     "brent": {
-      "last": 97.8,
-      "chg_pct": -2.53
+      "last": 98.33,
+      "chg_pct": -0.93
     },
     "usdinr": {
-      "last": 95.81,
-      "chg_pct": -0.21
+      "last": 95.68,
+      "chg_pct": -0.03
     },
     "indiavix": {
-      "last": 11.2,
-      "chg_pct": -0.42
+      "last": 10.36,
+      "chg_pct": -7.89
     },
-    "fetched": "2026-09-22"
+    "fetched": "2026-09-23"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-09-22",
-        "title": "Opinion : AIPAC and the Israel lobby",
-        "domain": "ctmirror.org",
-        "url": "https://ctmirror.org/2026/09/22/aipac-and-the-israel-lobby/"
+        "date": "2026-09-23",
+        "title": "Annihilate the Islamic Republic : Explosions heard near Iran Qeshm island as the US administration signals talks",
+        "domain": "moneycontrol.com",
+        "url": "https://www.moneycontrol.com/world/annihilate-the-islamic-republic-explosions-heard-near-iran-s-qeshm-island-as-trump-signals-talks-article-14036018.html"
       },
       {
-        "date": "2026-09-22",
-        "title": "Unifil counts eight fortified bases among 30 Israeli military positions in south Lebanon",
-        "domain": "thenationalnews.com",
-        "url": "https://www.thenationalnews.com/news/mena/2026/09/22/unifil-counts-eight-fortified-bases-among-30-israeli-military-positions-in-south-lebanon/"
+        "date": "2026-09-23",
+        "title": "the US administration threatens Iran with hell but reveals fresh talks",
+        "domain": "jacarandafm.com",
+        "url": "https://www.jacarandafm.com/news/news/trump-threatens-iran-with-hell-but-reveals-fresh-talks/"
       },
       {
-        "date": "2026-09-22",
-        "title": "Iran issues fresh warning to US over possible new offensive",
-        "domain": "pmnewsnigeria.com",
-        "url": "https://pmnewsnigeria.com/2026/09/21/middle-east-tension-iran-issues-fresh-warning-to-us-over-possible-new-offensive/"
+        "date": "2026-09-23",
+        "title": "As Iran War Drains Its Arsenal , Egypt , Turkey And Pakistan Rearm Sudan Army - OpEd",
+        "domain": "eurasiareview.com",
+        "url": "https://www.eurasiareview.com/23092026-as-irans-war-drains-its-arsenal-egypt-turkey-and-pakistan-rearm-sudans-army/"
       },
       {
-        "date": "2026-09-22",
-        "title": "Houthi escalating attacks on Saudi Arabia give Iran leverage in the Middle East",
-        "domain": "abcnews.com",
-        "url": "https://abcnews.com/Politics/houthis-escalating-attacks-saudi-arabia-give-iran-leverage/story?id=136621129"
+        "date": "2026-09-23",
+        "title": "Carney , the UN call for two - state solution at UN meeting on lasting Israel - Palestine peace",
+        "domain": "aninews.in",
+        "url": "https://aninews.in/news/world/us/carney-guterres-call-for-two-state-solution-at-un-meeting-on-lasting-israel-palestine-peace20260923100736/"
       },
       {
-        "date": "2026-09-22",
-        "title": "Well consider you complicit ! – Iran military HQ issues severe warning to Middle East nations",
-        "domain": "wrp.org.uk",
-        "url": "https://wrp.org.uk/features/well-consider-you-complicit-irans-military-hq-issues-severe-warning-to-middle-east-nations/"
+        "date": "2026-09-23",
+        "title": "the US administration says US and Iranian officials met Tuesday , shortly after warning he may annihilate Iran",
+        "domain": "wbrz.com",
+        "url": "https://www.wbrz.com/news/trump-says-us-and-iranian-officials-met-tuesday-shortly-after-warning-he-may-annihilate-iran"
       }
     ],
-    "india_us": [],
-    "fetched": "2026-09-22"
+    "india_us": [
+      {
+        "date": "2026-09-23",
+        "title": "Mark Carney says Canada , India aim to wrap up trade talks by G20 ahead of PM Indian officials visit",
+        "domain": "thehindu.com",
+        "url": "https://www.thehindu.com/news/international/mark-carney-says-canada-india-aim-to-wrap-up-trade-talks-by-g20-ahead-of-pm-modi-visit/article71498251.ece"
+      },
+      {
+        "date": "2026-09-23",
+        "title": "India - Canada Trade Talks Progressing , Aim for G20 Deal : Carney",
+        "domain": "dailypioneer.com",
+        "url": "https://dailypioneer.com/news/india-canada-trade-talks-g20-summit-carney-modi"
+      },
+      {
+        "date": "2026-09-23",
+        "title": "PM Indian officials to visit Canada in December to sign new trade deal : Mark Carney",
+        "domain": "moneycontrol.com",
+        "url": "https://www.moneycontrol.com/news/india/pm-modi-likely-to-visit-canada-in-december-to-sign-trade-deal-says-report-14035834.html"
+      },
+      {
+        "date": "2026-09-23",
+        "title": "Canada , India aim to wrap up trade talks by G20 ahead of Indian officials visit : Carney",
+        "domain": "business-standard.com",
+        "url": "https://www.business-standard.com/external-affairs-defence-security/news/canada-india-aim-to-wrap-up-trade-talks-by-g20-ahead-of-modi-visit-carney-126092300068_1.html"
+      },
+      {
+        "date": "2026-09-23",
+        "title": "Canada , India Aim to Wrap Up Trade Talks by G20 : Carney",
+        "domain": "deccanchronicle.com",
+        "url": "https://www.deccanchronicle.com/world/pm-modi-likely-to-visit-canada-in-december-carney-1989792"
+      },
+      {
+        "date": "2026-09-23",
+        "title": "Carney says Canada and India aim to wrap up trade talks by G20 ahead of Indian officials visit",
+        "domain": "wboc.com",
+        "url": "https://www.wboc.com/news/international/carney-says-canada-and-india-aim-to-wrap-up-trade-talks-by-g20-ahead-of/article_13dc5119-f3c7-58d6-bd40-0c1666b1fac8.html"
+      }
+    ],
+    "fetched": "2026-09-23"
   }
 }
