@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-24",
+  "last_updated": "2026-09-25",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -66,45 +66,71 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-09-25",
+        "kind": "hawkish",
+        "weight": "weak",
+        "note": "GDELT tone: 1 hawkish vs 0 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 98.17,
-      "chg_pct": -4.76
+      "last": 105.33,
+      "chg_pct": -1.19
     },
     "usdinr": {
-      "last": 95.9,
-      "chg_pct": 0.22
+      "last": 95.89,
+      "chg_pct": 0.15
     },
     "indiavix": {
-      "last": 11.32,
-      "chg_pct": 9.37
+      "last": 12.45,
+      "chg_pct": -1.85
     },
-    "fetched": "2026-09-24"
+    "fetched": "2026-09-25"
   },
   "headlines": {
-    "iran": [],
-    "india_us": [
+    "iran": [
       {
-        "date": "2026-09-24",
-        "title": "US must pivot from tariffs to Quad partnership with India : Former US NSA John Bolton",
-        "domain": "economictimes.indiatimes.com",
-        "url": "https://economictimes.indiatimes.com/news/india/us-must-pivot-from-tariffs-to-quad-partnership-with-india-former-us-nsa-john-bolton/articleshow/134450891.cms"
+        "date": "2026-09-25",
+        "title": "US must choose whether to end war : Iran president to Fox News",
+        "domain": "arynews.tv",
+        "url": "https://arynews.tv/us-must-choose-whether-to-end-war-iran-president-to-fox-news"
       },
       {
-        "date": "2026-09-24",
-        "title": "PM Indian officials likely to visit Canada in December : What on agenda as Carney eyes India - Canada trade deal around G20",
-        "domain": "livemint.com",
-        "url": "https://www.livemint.com/news/india/pm-modi-likely-to-visit-canada-in-december-what-s-on-the-agenda-as-carney-eyes-india-canada-trade-around-g20-11790216152075.html"
+        "date": "2026-09-25",
+        "title": "Israel delivers genocidal tirade at the United Nations as Mamdani police arrest more than 100 protesters",
+        "domain": "wsws.org",
+        "url": "https://www.wsws.org/en/articles/2026/09/25/rxna-s25.html"
       },
       {
-        "date": "2026-09-24",
-        "title": "Former US NSA John Bolton says US must pivot from tariffs to Quad partnership with India",
-        "domain": "beijingbulletin.com",
-        "url": "http://www.beijingbulletin.com/news/279327014/former-us-nsa-john-bolton-says-us-must-pivot-from-tariffs-to-quad-partnership-with-india"
+        "date": "2026-09-25",
+        "title": "Iran offers the US administration deal before US elections",
+        "domain": "newyorkstatesman.com",
+        "url": "http://www.newyorkstatesman.com/news/279330075/iran-offers-trump-deal-before-us-elections"
+      },
+      {
+        "date": "2026-09-25",
+        "title": "US - China Summit : the US administration and Xi Talk Trade , AI and Iran Amid Rising Superpower Rivalry",
+        "domain": "gulfnews.com",
+        "url": "https://gulfnews.com/world/americas/us-china-summit-trump-xi-talks-on-trade-ai-and-iran-what-to-know-1.500687173"
+      },
+      {
+        "date": "2026-09-25",
+        "title": "Israel Israel , at UN , calls accusations of genocide in Gaza the biggest lie of the century",
+        "domain": "abccolumbia.com",
+        "url": "https://www.abccolumbia.com/2026/09/24/israels-netanyahu-at-un-calls-accusations-of-genocide-in-gaza-the-biggest-lie-of-the-century/"
+      },
+      {
+        "date": "2026-09-25",
+        "title": "UPDATES : US War on Iran , Day 211 - Houthis Fire Missiles on Saudi Arabia",
+        "domain": "eaworldview.com",
+        "url": "https://eaworldview.com/2026/09/us-war-iran-houthis-saudi-arabia/"
       }
     ],
-    "fetched": "2026-09-24"
+    "india_us": [],
+    "fetched": "2026-09-25"
   }
 }
