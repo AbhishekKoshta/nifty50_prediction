@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-25",
+  "last_updated": "2026-09-26",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -66,30 +66,22 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": [
-      {
-        "date": "2026-09-25",
-        "kind": "hawkish",
-        "weight": "weak",
-        "note": "GDELT tone: 1 hawkish vs 0 dovish headlines (3d)",
-        "source": "gdelt-heuristic"
-      }
-    ]
+    "signals": []
   },
   "market": {
     "brent": {
-      "last": 105.33,
-      "chg_pct": -1.19
+      "last": 104.32,
+      "chg_pct": -2.14
     },
     "usdinr": {
-      "last": 95.89,
-      "chg_pct": 0.15
+      "last": 95.82,
+      "chg_pct": -0.35
     },
     "indiavix": {
-      "last": 12.45,
-      "chg_pct": -1.85
+      "last": 12.16,
+      "chg_pct": -4.18
     },
-    "fetched": "2026-09-25"
+    "fetched": "2026-09-26"
   },
   "headlines": {
     "iran": [
