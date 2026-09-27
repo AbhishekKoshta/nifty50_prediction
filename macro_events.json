@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-26",
+  "last_updated": "2026-09-27",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -66,12 +66,20 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-09-27",
+        "kind": "dovish",
+        "weight": "weak",
+        "note": "GDELT tone: 0 hawkish vs 1 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 104.32,
-      "chg_pct": -2.14
+      "last": 97.44,
+      "chg_pct": -8.59
     },
     "usdinr": {
       "last": 95.82,
@@ -81,48 +89,48 @@
       "last": 12.16,
       "chg_pct": -4.18
     },
-    "fetched": "2026-09-26"
+    "fetched": "2026-09-27"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-09-25",
-        "title": "US must choose whether to end war : Iran president to Fox News",
-        "domain": "arynews.tv",
-        "url": "https://arynews.tv/us-must-choose-whether-to-end-war-iran-president-to-fox-news"
+        "date": "2026-09-27",
+        "title": "the US administration Rejects Iran Proposal To Open Strait Of Hormuz",
+        "domain": "1430kasi.iheart.com",
+        "url": "https://1430kasi.iheart.com/content/2026-09-27-trump-rejects-irans-proposal-to-open-strait-of-hormuz/"
       },
       {
-        "date": "2026-09-25",
-        "title": "Israel delivers genocidal tirade at the United Nations as Mamdani police arrest more than 100 protesters",
-        "domain": "wsws.org",
-        "url": "https://www.wsws.org/en/articles/2026/09/25/rxna-s25.html"
+        "date": "2026-09-27",
+        "title": "Iran stands firm on Hormuz plan after US rejection",
+        "domain": "omanobserver.om",
+        "url": "https://www.omanobserver.om/article/1196824/world/region/iran-stands-firm-on-hormuz-plan-after-us-rejection"
       },
       {
-        "date": "2026-09-25",
-        "title": "Iran offers the US administration deal before US elections",
-        "domain": "newyorkstatesman.com",
-        "url": "http://www.newyorkstatesman.com/news/279330075/iran-offers-trump-deal-before-us-elections"
+        "date": "2026-09-27",
+        "title": "Will stand until our last breath : Prez Iran's leadership says Iran will not retreat as the US administration rejects ceasefire proposal",
+        "domain": "kenyastar.com",
+        "url": "http://www.kenyastar.com/news/279334870/will-stand-until-our-last-breath-prez-pezeshkian-says-iran-will-not-retreat-as-trump-rejects-ceasefire-proposal"
       },
       {
-        "date": "2026-09-25",
-        "title": "US - China Summit : the US administration and Xi Talk Trade , AI and Iran Amid Rising Superpower Rivalry",
-        "domain": "gulfnews.com",
-        "url": "https://gulfnews.com/world/americas/us-china-summit-trump-xi-talks-on-trade-ai-and-iran-what-to-know-1.500687173"
+        "date": "2026-09-27",
+        "title": "the US administration Rejects Iran Proposal To Open Strait Of Hormuz | NewsTalk WMEQ",
+        "domain": "wmeq.iheart.com",
+        "url": "https://wmeq.iheart.com/content/2026-09-27-trump-rejects-irans-proposal-to-open-strait-of-hormuz/"
       },
       {
-        "date": "2026-09-25",
-        "title": "Israel Israel , at UN , calls accusations of genocide in Gaza the biggest lie of the century",
-        "domain": "abccolumbia.com",
-        "url": "https://www.abccolumbia.com/2026/09/24/israels-netanyahu-at-un-calls-accusations-of-genocide-in-gaza-the-biggest-lie-of-the-century/"
+        "date": "2026-09-27",
+        "title": "the US administration Rejects Iran Proposal To Open Strait Of Hormuz | NewsRadio WKCY",
+        "domain": "newsradiowkcy.iheart.com",
+        "url": "https://newsradiowkcy.iheart.com/content/2026-09-27-trump-rejects-irans-proposal-to-open-strait-of-hormuz/"
       },
       {
-        "date": "2026-09-25",
-        "title": "UPDATES : US War on Iran , Day 211 - Houthis Fire Missiles on Saudi Arabia",
-        "domain": "eaworldview.com",
-        "url": "https://eaworldview.com/2026/09/us-war-iran-houthis-saudi-arabia/"
+        "date": "2026-09-27",
+        "title": "the US administration Rejects Iran Plan to Reopen Strait of Hormuz in Seven Days – THISDAYLIVE",
+        "domain": "thisdaylive.com",
+        "url": "https://www.thisdaylive.com/2026/09/27/trump-rejects-irans-plan-to-reopen-strait-of-hormuz-in-seven-days/"
       }
     ],
     "india_us": [],
-    "fetched": "2026-09-25"
+    "fetched": "2026-09-27"
   }
 }
