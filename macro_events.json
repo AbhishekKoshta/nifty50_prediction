@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-30",
+  "last_updated": "2026-10-01",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -66,63 +66,65 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-10-01",
+        "kind": "dovish",
+        "weight": "weak",
+        "note": "GDELT tone: 0 hawkish vs 1 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 96.55,
-      "chg_pct": -5.89
+      "last": 98.76,
+      "chg_pct": -4.61
     },
     "usdinr": {
-      "last": 95.97,
-      "chg_pct": -0.01
+      "last": 96.11,
+      "chg_pct": 0.06
     },
     "indiavix": {
-      "last": 13.1,
-      "chg_pct": -2.27
+      "last": 14.7,
+      "chg_pct": 8.97
     },
-    "fetched": "2026-09-30"
+    "fetched": "2026-10-01"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-09-27",
-        "title": "the US administration Rejects Iran Proposal To Open Strait Of Hormuz",
-        "domain": "1430kasi.iheart.com",
-        "url": "https://1430kasi.iheart.com/content/2026-09-27-trump-rejects-irans-proposal-to-open-strait-of-hormuz/"
+        "date": "2026-10-01",
+        "title": "Iran indicates it received a US response on its war - ending proposal , with details still unclear",
+        "domain": "idahostatejournal.com",
+        "url": "https://www.idahostatejournal.com/news/national/iran-indicates-it-received-a-us-response-on-its-war-ending-proposal-with-details-still/article_bb3bdd18-6546-5125-8494-d9fcff4861e4.html"
       },
       {
-        "date": "2026-09-27",
-        "title": "Iran stands firm on Hormuz plan after US rejection",
-        "domain": "omanobserver.om",
-        "url": "https://www.omanobserver.om/article/1196824/world/region/iran-stands-firm-on-hormuz-plan-after-us-rejection"
+        "date": "2026-10-01",
+        "title": "Iran says it receives US response to latest proposal as Washington pulls out of Iraq",
+        "domain": "asiaone.com",
+        "url": "https://www.asiaone.com/world/iran-says-it-receives-us-response-latest-proposal-washington-pulls-out-iraq"
       },
       {
-        "date": "2026-09-27",
-        "title": "Will stand until our last breath : Prez Iran's leadership says Iran will not retreat as the US administration rejects ceasefire proposal",
-        "domain": "kenyastar.com",
-        "url": "http://www.kenyastar.com/news/279334870/will-stand-until-our-last-breath-prez-pezeshkian-says-iran-will-not-retreat-as-trump-rejects-ceasefire-proposal"
+        "date": "2026-10-01",
+        "title": "Oil dips as recovering Gulf exports ease supply fears , US - Iran diplomacy in focus",
+        "domain": "aol.com",
+        "url": "https://www.aol.com/articles/oil-prices-barely-changed-investors-010653000.html"
       },
       {
-        "date": "2026-09-27",
-        "title": "the US administration Rejects Iran Proposal To Open Strait Of Hormuz | NewsTalk WMEQ",
-        "domain": "wmeq.iheart.com",
-        "url": "https://wmeq.iheart.com/content/2026-09-27-trump-rejects-irans-proposal-to-open-strait-of-hormuz/"
+        "date": "2026-10-01",
+        "title": "Live Updates : Latest from Israel , Iran , and the Middle East",
+        "domain": "jpost.com",
+        "url": "http://www.jpost.com/middle-east/iran-news/2026-10-01/live-updates-910250"
       },
       {
-        "date": "2026-09-27",
-        "title": "the US administration Rejects Iran Proposal To Open Strait Of Hormuz | NewsRadio WKCY",
-        "domain": "newsradiowkcy.iheart.com",
-        "url": "https://newsradiowkcy.iheart.com/content/2026-09-27-trump-rejects-irans-proposal-to-open-strait-of-hormuz/"
-      },
-      {
-        "date": "2026-09-27",
-        "title": "the US administration Rejects Iran Plan to Reopen Strait of Hormuz in Seven Days – THISDAYLIVE",
-        "domain": "thisdaylive.com",
-        "url": "https://www.thisdaylive.com/2026/09/27/trump-rejects-irans-plan-to-reopen-strait-of-hormuz-in-seven-days/"
+        "date": "2026-10-01",
+        "title": "The Destruction of Iran Civilian Infrastructure – NIAC",
+        "domain": "niacouncil.org",
+        "url": "https://niacouncil.org/the-destruction-of-irans-civilian-infrastructure/"
       }
     ],
     "india_us": [],
-    "fetched": "2026-09-27"
+    "fetched": "2026-10-01"
   }
 }
