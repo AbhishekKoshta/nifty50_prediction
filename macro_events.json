@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-02",
+  "last_updated": "2026-10-03",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -66,57 +66,108 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-10-03",
+        "kind": "hawkish",
+        "weight": "weak",
+        "note": "GDELT tone: 1 hawkish vs 0 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 101.39,
-      "chg_pct": -0.9
+      "last": 102.25,
+      "chg_pct": -0.06
     },
     "usdinr": {
       "last": 96.3,
-      "chg_pct": 0.39
+      "chg_pct": 0.08
     },
     "indiavix": {
       "last": 14.46,
       "chg_pct": 7.19
     },
-    "fetched": "2026-10-02"
+    "fetched": "2026-10-03"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-10-01",
-        "title": "Iran indicates it received a US response on its war - ending proposal , with details still unclear",
-        "domain": "idahostatejournal.com",
-        "url": "https://www.idahostatejournal.com/news/national/iran-indicates-it-received-a-us-response-on-its-war-ending-proposal-with-details-still/article_bb3bdd18-6546-5125-8494-d9fcff4861e4.html"
+        "date": "2026-10-02",
+        "title": "the US administration is mum on Israel reelection bids | The Arkansas Democrat - Gazette",
+        "domain": "arkansasonline.com",
+        "url": "https://www.arkansasonline.com/news/2026/oct/02/trump-is-mum-on-netanyahu-reelection-bids/"
       },
       {
-        "date": "2026-10-01",
-        "title": "Iran says it receives US response to latest proposal as Washington pulls out of Iraq",
-        "domain": "asiaone.com",
-        "url": "https://www.asiaone.com/world/iran-says-it-receives-us-response-latest-proposal-washington-pulls-out-iraq"
+        "date": "2026-10-02",
+        "title": "Iran scolds US , allies for abusing UNSC to advance own political agendas",
+        "domain": "presstv.co.uk",
+        "url": "https://www.presstv.co.uk/Detail/2026/10/02/777431/Iran-blasts-US-abusing-UNSC-political-agendas"
       },
       {
-        "date": "2026-10-01",
-        "title": "Oil dips as recovering Gulf exports ease supply fears , US - Iran diplomacy in focus",
-        "domain": "aol.com",
-        "url": "https://www.aol.com/articles/oil-prices-barely-changed-investors-010653000.html"
+        "date": "2026-10-02",
+        "title": "US Waives Egypt Military Aid Conditions Over Iran War Role",
+        "domain": "econotimes.com",
+        "url": "http://www.econotimes.com/US-Waives-Egypt-Military-Aid-Conditions-Over-Iran-War-Role-1753779"
       },
       {
-        "date": "2026-10-01",
-        "title": "Live Updates : Latest from Israel , Iran , and the Middle East",
-        "domain": "jpost.com",
-        "url": "http://www.jpost.com/middle-east/iran-news/2026-10-01/live-updates-910250"
+        "date": "2026-10-02",
+        "title": "US cites Egypt Iran war role in lifting military aid conditions",
+        "domain": "middle-east-online.com",
+        "url": "https://www.middle-east-online.com/en/us-cites-egypt%E2%80%99s-iran-war-role-lifting-military-aid-conditions"
       },
       {
-        "date": "2026-10-01",
-        "title": "The Destruction of Iran Civilian Infrastructure – NIAC",
-        "domain": "niacouncil.org",
-        "url": "https://niacouncil.org/the-destruction-of-irans-civilian-infrastructure/"
+        "date": "2026-10-02",
+        "title": "US is moving thousands of troops aboard ships to the Mideast as the US administration weighs new strikes on Iran",
+        "domain": "lockhaven.com",
+        "url": "https://www.lockhaven.com/news/local-news/2026/10/us-is-moving-thousands-of-troops-aboard-ships-to-the-mideast-as-trump-weighs-new-strikes-on-iran/"
+      },
+      {
+        "date": "2026-10-02",
+        "title": "US to send third aircraft carrier towards Iran : US official to Al Jazeera - Grenada Chronicle – Daily Grenada And Caribbean News",
+        "domain": "grenadachronicle.com",
+        "url": "https://grenadachronicle.com/us-to-send-third-aircraft-carrier-towards-iran-us-official-to-al-jazeera/"
       }
     ],
-    "india_us": [],
-    "fetched": "2026-10-01"
+    "india_us": [
+      {
+        "date": "2026-10-02",
+        "title": "Nothing imminent : US Trade Representative Greer on India trade deal ; Indian officials , the US administration to talk soon",
+        "domain": "thehindubusinessline.com",
+        "url": "https://www.thehindubusinessline.com/news/nothing-imminent-us-trade-representative-greer-on-india-trade-deal-modi-trump-to-talk-soon/article71536059.ece"
+      },
+      {
+        "date": "2026-10-02",
+        "title": "US trade deal with India not imminent despite constructive Indian officials - the US administration call , says USTR Greer ( INDA : BATS )",
+        "domain": "seekingalpha.com",
+        "url": "https://seekingalpha.com/news/4649714-us-trade-deal-with-india-not-imminent-despite-constructive-modi-trump-call-says-ustr-greer"
+      },
+      {
+        "date": "2026-10-02",
+        "title": "Indian officials and Greer hold productive talk on India - US trade deal",
+        "domain": "hindustantimes.com",
+        "url": "https://www.hindustantimes.com/india-news/goyal-and-greer-hold-productive-talks-on-india-us-trade-deal-101790880081429.html"
+      },
+      {
+        "date": "2026-10-02",
+        "title": "U . S . trade representative Greer says deal with India not imminent after Indian officials - the US administration call",
+        "domain": "cnbc.com",
+        "url": "https://www.cnbc.com/2026/10/02/us-india-trade-modi-trump-russia-oil.html"
+      },
+      {
+        "date": "2026-10-02",
+        "title": "India - US trade deal not imminent , PM Indian officials - the US administration may hold another call soon : US trade representative",
+        "domain": "timesofindia.indiatimes.com",
+        "url": "https://timesofindia.indiatimes.com/business/india-business/india-us-trade-deal-not-imminent-pm-modi-trump-may-hold-another-call-soon-us-trade-representative/articleshow/134630697.cms"
+      },
+      {
+        "date": "2026-10-02",
+        "title": "India - US trade deal enters",
+        "domain": "southeastasiapost.com",
+        "url": "http://www.southeastasiapost.com/news/279346460/india-us-trade-deal-enters-short-strokes-modi-and-trump-to-speak-again-soon"
+      }
+    ],
+    "fetched": "2026-10-03"
   }
 }
