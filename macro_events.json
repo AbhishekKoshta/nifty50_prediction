@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-03",
+  "last_updated": "2026-10-04",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -68,7 +68,7 @@
     "hold_prob": 0.38,
     "signals": [
       {
-        "date": "2026-10-03",
+        "date": "2026-10-04",
         "kind": "hawkish",
         "weight": "weak",
         "note": "GDELT tone: 1 hawkish vs 0 dovish headlines (3d)",
@@ -89,7 +89,7 @@
       "last": 14.46,
       "chg_pct": 7.19
     },
-    "fetched": "2026-10-03"
+    "fetched": "2026-10-04"
   },
   "headlines": {
     "iran": [
@@ -130,44 +130,7 @@
         "url": "https://grenadachronicle.com/us-to-send-third-aircraft-carrier-towards-iran-us-official-to-al-jazeera/"
       }
     ],
-    "india_us": [
-      {
-        "date": "2026-10-02",
-        "title": "Nothing imminent : US Trade Representative Greer on India trade deal ; Indian officials , the US administration to talk soon",
-        "domain": "thehindubusinessline.com",
-        "url": "https://www.thehindubusinessline.com/news/nothing-imminent-us-trade-representative-greer-on-india-trade-deal-modi-trump-to-talk-soon/article71536059.ece"
-      },
-      {
-        "date": "2026-10-02",
-        "title": "US trade deal with India not imminent despite constructive Indian officials - the US administration call , says USTR Greer ( INDA : BATS )",
-        "domain": "seekingalpha.com",
-        "url": "https://seekingalpha.com/news/4649714-us-trade-deal-with-india-not-imminent-despite-constructive-modi-trump-call-says-ustr-greer"
-      },
-      {
-        "date": "2026-10-02",
-        "title": "Indian officials and Greer hold productive talk on India - US trade deal",
-        "domain": "hindustantimes.com",
-        "url": "https://www.hindustantimes.com/india-news/goyal-and-greer-hold-productive-talks-on-india-us-trade-deal-101790880081429.html"
-      },
-      {
-        "date": "2026-10-02",
-        "title": "U . S . trade representative Greer says deal with India not imminent after Indian officials - the US administration call",
-        "domain": "cnbc.com",
-        "url": "https://www.cnbc.com/2026/10/02/us-india-trade-modi-trump-russia-oil.html"
-      },
-      {
-        "date": "2026-10-02",
-        "title": "India - US trade deal not imminent , PM Indian officials - the US administration may hold another call soon : US trade representative",
-        "domain": "timesofindia.indiatimes.com",
-        "url": "https://timesofindia.indiatimes.com/business/india-business/india-us-trade-deal-not-imminent-pm-modi-trump-may-hold-another-call-soon-us-trade-representative/articleshow/134630697.cms"
-      },
-      {
-        "date": "2026-10-02",
-        "title": "India - US trade deal enters",
-        "domain": "southeastasiapost.com",
-        "url": "http://www.southeastasiapost.com/news/279346460/india-us-trade-deal-enters-short-strokes-modi-and-trump-to-speak-again-soon"
-      }
-    ],
-    "fetched": "2026-10-03"
+    "india_us": [],
+    "fetched": "2026-10-04"
   }
 }
