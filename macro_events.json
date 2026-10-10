@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-09",
+  "last_updated": "2026-10-10",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -70,18 +70,18 @@
   },
   "market": {
     "brent": {
-      "last": 103.31,
-      "chg_pct": -0.93
+      "last": 104.72,
+      "chg_pct": 0.42
     },
     "usdinr": {
-      "last": 96.72,
-      "chg_pct": -0.04
+      "last": 96.73,
+      "chg_pct": -0.1
     },
     "indiavix": {
-      "last": 14.64,
-      "chg_pct": -4.22
+      "last": 14.38,
+      "chg_pct": -5.89
     },
-    "fetched": "2026-10-09"
+    "fetched": "2026-10-10"
   },
   "headlines": {
     "iran": [],
