@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-11",
+  "last_updated": "2026-10-12",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -70,29 +70,29 @@
   },
   "market": {
     "brent": {
-      "last": 104.72,
-      "chg_pct": 0.42
+      "last": 104.43,
+      "chg_pct": -0.28
     },
     "usdinr": {
-      "last": 96.73,
-      "chg_pct": -0.1
+      "last": 95.76,
+      "chg_pct": -1.1
     },
     "indiavix": {
-      "last": 14.38,
-      "chg_pct": -5.89
+      "last": 15.39,
+      "chg_pct": 7.01
     },
-    "fetched": "2026-10-11"
+    "fetched": "2026-10-12"
   },
   "headlines": {
-    "iran": [],
-    "india_us": [
+    "iran": [
       {
-        "date": "2026-10-02",
-        "title": "Nothing imminent : US Trade Representative Greer on India trade deal ; Indian officials , the US administration to talk soon",
-        "domain": "thehindubusinessline.com",
-        "url": "https://www.thehindubusinessline.com/news/nothing-imminent-us-trade-representative-greer-on-india-trade-deal-modi-trump-to-talk-soon/article71536059.ece"
+        "date": "2026-10-10",
+        "title": "Live Updates : Latest from Israel , Iran , and the Middle East",
+        "domain": "jpost.com",
+        "url": "http://www.jpost.com/middle-east/2026-10-10/live-updates-911203"
       }
     ],
-    "fetched": "2026-10-09"
+    "india_us": [],
+    "fetched": "2026-10-12"
   }
 }
