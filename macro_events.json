@@ -1,18 +1,9 @@
 {
-  "last_updated": "2026-10-14",
+  "last_updated": "2026-10-15",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
-  "calendar": [
-    {
-      "date": "2026-10-07",
-      "name": "RBI MPC rate decision",
-      "category": "CenBank",
-      "importance": "high",
-      "impact": "Rate path for H2; banks sensitive",
-      "nifty_session": "same day"
-    }
-  ],
+  "calendar": [],
   "earnings_band": {
     "active": true,
     "label": "Q1 FY27 earnings season",
@@ -70,18 +61,18 @@
   },
   "market": {
     "brent": {
-      "last": 106.15,
-      "chg_pct": 0.44
+      "last": 104.52,
+      "chg_pct": -1.45
     },
     "usdinr": {
-      "last": 94.95,
-      "chg_pct": -0.86
+      "last": 95.08,
+      "chg_pct": -0.21
     },
     "indiavix": {
-      "last": 14.44,
-      "chg_pct": 2.27
+      "last": 14.83,
+      "chg_pct": 1.38
     },
-    "fetched": "2026-10-14"
+    "fetched": "2026-10-15"
   },
   "headlines": {
     "iran": [
