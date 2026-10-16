@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-15",
+  "last_updated": "2026-10-16",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -61,29 +61,59 @@
   },
   "market": {
     "brent": {
-      "last": 104.52,
-      "chg_pct": -1.45
+      "last": 105.26,
+      "chg_pct": -0.62
     },
     "usdinr": {
-      "last": 95.08,
-      "chg_pct": -0.21
+      "last": 94.94,
+      "chg_pct": -0.22
     },
     "indiavix": {
-      "last": 14.83,
-      "chg_pct": 1.38
+      "last": 14.03,
+      "chg_pct": -0.02
     },
-    "fetched": "2026-10-15"
+    "fetched": "2026-10-16"
   },
   "headlines": {
-    "iran": [
+    "iran": [],
+    "india_us": [
       {
-        "date": "2026-10-10",
-        "title": "Live Updates : Latest from Israel , Iran , and the Middle East",
-        "domain": "jpost.com",
-        "url": "http://www.jpost.com/middle-east/2026-10-10/live-updates-911203"
+        "date": "2026-10-16",
+        "title": "India reiterates call to end Gulf conflict",
+        "domain": "ianslive.in",
+        "url": "https://ianslive.in/india-reiterates-call-to-end-gulf-conflict--20261016090903"
+      },
+      {
+        "date": "2026-10-16",
+        "title": "International Business : India - US trade deal on track",
+        "domain": "gdnonline.com",
+        "url": "https://www.gdnonline.com:443/Details/1409858/India-US-trade-deal-%E2%80%98on-track%E2%80%99"
+      },
+      {
+        "date": "2026-10-15",
+        "title": "India - New Zealand FTA Takes Effect October 20 ; Canada Trade Deal Expected by Year - End",
+        "domain": "openthemagazine.com",
+        "url": "https://openthemagazine.com/world/india-new-zealand-fta-comes-into-force-on-october-20-canada-deal-targeted-by-year-end"
+      },
+      {
+        "date": "2026-10-15",
+        "title": "Graham Act deadline nears , no word on India tariffs",
+        "domain": "morungexpress.com",
+        "url": "https://morungexpress.com/graham-act-deadline-nears-no-word-on-india-tariffs"
+      },
+      {
+        "date": "2026-10-15",
+        "title": "India - US Trade Agreement Nears Completion Ahead of Secretary the US administration Visit",
+        "domain": "indianewengland.com",
+        "url": "https://indianewengland.com/india-us-trade-agreement-nears-completion-ahead-of-secretary-rubios-visit/"
+      },
+      {
+        "date": "2026-10-15",
+        "title": "the US administration to take call on Russia sanctions law in 10 days as India awaits clarity : Sergio Gor",
+        "domain": "europesun.com",
+        "url": "http://www.europesun.com/news/279375475/trump-to-take-call-on-russia-sanctions-law-in-10-days-as-india-awaits-clarity-sergio-gor"
       }
     ],
-    "india_us": [],
-    "fetched": "2026-10-12"
+    "fetched": "2026-10-16"
   }
 }
