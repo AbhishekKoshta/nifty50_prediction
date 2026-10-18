@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-17",
+  "last_updated": "2026-10-18",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -57,7 +57,15 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-10-18",
+        "kind": "hawkish",
+        "weight": "weak",
+        "note": "GDELT tone: 1 hawkish vs 0 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
@@ -72,48 +80,73 @@
       "last": 14.06,
       "chg_pct": 0.21
     },
-    "fetched": "2026-10-17"
+    "fetched": "2026-10-18"
   },
   "headlines": {
-    "iran": [],
-    "india_us": [
+    "iran": [
       {
-        "date": "2026-10-16",
-        "title": "India reiterates call to end Gulf conflict",
-        "domain": "ianslive.in",
-        "url": "https://ianslive.in/india-reiterates-call-to-end-gulf-conflict--20261016090903"
+        "date": "2026-10-18",
+        "title": "the US administration asserts Iran war will end",
+        "domain": "middleeaststar.com",
+        "url": "http://www.middleeaststar.com/news/279382138/trump-asserts-iran-war-will-end-very-quickly-touts-military-strikes-on-tehran-nuclear-sites"
       },
       {
-        "date": "2026-10-16",
-        "title": "International Business : India - US trade deal on track",
-        "domain": "gdnonline.com",
-        "url": "https://www.gdnonline.com:443/Details/1409858/India-US-trade-deal-%E2%80%98on-track%E2%80%99"
+        "date": "2026-10-18",
+        "title": "Live Updates : Latest from Israel , Iran , and the Middle East",
+        "domain": "jpost.com",
+        "url": "http://www.jpost.com/middle-east/iran-news/2026-10-18/live-updates-911999"
       },
       {
-        "date": "2026-10-15",
-        "title": "India - New Zealand FTA Takes Effect October 20 ; Canada Trade Deal Expected by Year - End",
-        "domain": "openthemagazine.com",
-        "url": "https://openthemagazine.com/world/india-new-zealand-fta-comes-into-force-on-october-20-canada-deal-targeted-by-year-end"
+        "date": "2026-10-18",
+        "title": "the US administration asserts Iran war will end very quickly ; touts military strikes on Tehran nuclear sites",
+        "domain": "aninews.in",
+        "url": "https://aninews.in/news/world/us/trump-asserts-iran-war-will-end-very-quickly-touts-military-strikes-on-tehrans-nuclear-sites20261018055742/"
       },
       {
-        "date": "2026-10-15",
-        "title": "Graham Act deadline nears , no word on India tariffs",
-        "domain": "morungexpress.com",
-        "url": "https://morungexpress.com/graham-act-deadline-nears-no-word-on-india-tariffs"
+        "date": "2026-10-17",
+        "title": "Iran FM says Tehran ready for dialogue based on mutual respect , credible guarantees",
+        "domain": "iraqsun.com",
+        "url": "http://www.iraqsun.com/news/279381409/iran-fm-says-tehran-ready-for-dialogue-based-on-mutual-respect-credible-guarantees"
       },
       {
-        "date": "2026-10-15",
-        "title": "India - US Trade Agreement Nears Completion Ahead of Secretary the US administration Visit",
-        "domain": "indianewengland.com",
-        "url": "https://indianewengland.com/india-us-trade-agreement-nears-completion-ahead-of-secretary-rubios-visit/"
-      },
-      {
-        "date": "2026-10-15",
-        "title": "the US administration to take call on Russia sanctions law in 10 days as India awaits clarity : Sergio Gor",
-        "domain": "europesun.com",
-        "url": "http://www.europesun.com/news/279375475/trump-to-take-call-on-russia-sanctions-law-in-10-days-as-india-awaits-clarity-sergio-gor"
+        "date": "2026-10-17",
+        "title": "China urges Israel to rethink its policies",
+        "domain": "chinanationalnews.com",
+        "url": "http://www.chinanationalnews.com/news/279381059/china-urges-israel-to-rethink-its-policies"
       }
     ],
-    "fetched": "2026-10-16"
+    "india_us": [
+      {
+        "date": "2026-10-17",
+        "title": "US - India trade deal wont be signed without preferential treatment : Former diplomat Veena Sikri",
+        "domain": "indiagazette.com",
+        "url": "http://www.indiagazette.com/news/279381447/us-india-trade-deal-wont-be-signed-without-preferential-treatment-former-diplomat-veena-sikri"
+      },
+      {
+        "date": "2026-10-17",
+        "title": "Maninder Sidhu : Canada aims for India trade deal by year - end",
+        "domain": "financialpost.com",
+        "url": "https://financialpost.com/news/canada-india-trade-deal-year-end-sidhu"
+      },
+      {
+        "date": "2026-10-17",
+        "title": "US tariff waiver on Russian crude a comforting relief , but trade uncertainties persist : CareEdge Chief Economist Rajani Sinha",
+        "domain": "middleeaststar.com",
+        "url": "http://www.middleeaststar.com/news/279380865/us-tariff-waiver-on-russian-crude-a-comforting-relief-but-trade-uncertainties-persist-careedge-chief-economist-rajani-sinha"
+      },
+      {
+        "date": "2026-10-17",
+        "title": "India - US Trade Deal Nears Completion with Just 1 - 2 % Left , Tells US Official",
+        "domain": "sentinelassam.com",
+        "url": "https://www.sentinelassam.com/more-news/international/india-us-trade-deal-nears-completion-with-just-1-2-left-tells-us-official"
+      },
+      {
+        "date": "2026-10-17",
+        "title": "Relief for India as the US administration waives sanctions related to Russian fuel purchase under Lindsey Graham Act",
+        "domain": "batonrougepost.com",
+        "url": "http://www.batonrougepost.com/news/279380386/relief-for-india-as-trump-waives-sanctions-related-to-russian-fuel-purchase-under-lindsey-graham-act"
+      }
+    ],
+    "fetched": "2026-10-18"
   }
 }
