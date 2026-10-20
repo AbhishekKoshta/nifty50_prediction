@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-19",
+  "last_updated": "2026-10-20",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -61,84 +61,59 @@
   },
   "market": {
     "brent": {
-      "last": 107.69,
-      "chg_pct": -1.98
+      "last": 110.94,
+      "chg_pct": 1.27
     },
     "usdinr": {
-      "last": 94.77,
-      "chg_pct": 0.26
+      "last": 94.92,
+      "chg_pct": -0.06
     },
     "indiavix": {
-      "last": 14.55,
-      "chg_pct": 3.5
+      "last": 14.77,
+      "chg_pct": 5.05
     },
-    "fetched": "2026-10-19"
+    "fetched": "2026-10-20"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-10-18",
-        "title": "the US administration asserts Iran war will end",
-        "domain": "middleeaststar.com",
-        "url": "http://www.middleeaststar.com/news/279382138/trump-asserts-iran-war-will-end-very-quickly-touts-military-strikes-on-tehran-nuclear-sites"
+        "date": "2026-10-20",
+        "title": "Can the US administration and Iran Ever Reach a Deal Again ?",
+        "domain": "original.antiwar.com",
+        "url": "https://original.antiwar.com/trita-parsi/2026/10/19/can-trump-and-iran-ever-reach-a-deal-again/"
       },
       {
-        "date": "2026-10-18",
-        "title": "Live Updates : Latest from Israel , Iran , and the Middle East",
-        "domain": "jpost.com",
-        "url": "http://www.jpost.com/middle-east/iran-news/2026-10-18/live-updates-911999"
+        "date": "2026-10-20",
+        "title": "the US administration endorses embattled Israeli Prime Minister Benjamin Israel for reelection",
+        "domain": "ijpr.org",
+        "url": "https://www.ijpr.org/npr-news/2026-10-18/trump-endorses-embattled-israeli-prime-minister-benjamin-netanyahu-for-reelection"
       },
       {
-        "date": "2026-10-18",
-        "title": "the US administration asserts Iran war will end very quickly ; touts military strikes on Tehran nuclear sites",
-        "domain": "aninews.in",
-        "url": "https://aninews.in/news/world/us/trump-asserts-iran-war-will-end-very-quickly-touts-military-strikes-on-tehrans-nuclear-sites20261018055742/"
+        "date": "2026-10-20",
+        "title": "Iran war : How Yemen Houthi militia is ruining Saudi Arabia plans",
+        "domain": "vox.com",
+        "url": "https://www.vox.com/podcasts/506853/saudi-arabia-airport-houthis-yemen-iran-war"
       },
       {
-        "date": "2026-10-17",
-        "title": "Iran FM says Tehran ready for dialogue based on mutual respect , credible guarantees",
-        "domain": "iraqsun.com",
-        "url": "http://www.iraqsun.com/news/279381409/iran-fm-says-tehran-ready-for-dialogue-based-on-mutual-respect-credible-guarantees"
+        "date": "2026-10-19",
+        "title": "How much will the US administration endorsement help Israel ? | US & World News",
+        "domain": "jewishaz.com",
+        "url": "https://www.jewishaz.com/us_worldnews/how-much-will-trump-s-endorsement-help-netanyahu/article_66c75162-e173-4970-b482-affd4b55fcf6.html"
       },
       {
-        "date": "2026-10-17",
-        "title": "China urges Israel to rethink its policies",
-        "domain": "chinanationalnews.com",
-        "url": "http://www.chinanationalnews.com/news/279381059/china-urges-israel-to-rethink-its-policies"
+        "date": "2026-10-19",
+        "title": "Israel basks in the US administration endorsement week before election",
+        "domain": "freemalaysiatoday.com",
+        "url": "https://www.freemalaysiatoday.com/category/highlight/2026/10/20/netanyahu-basks-in-trump-s-endorsement-week-before-election"
+      },
+      {
+        "date": "2026-10-19",
+        "title": "Iran's leadership : US bases in region bring no benefit , only fuel insecurity",
+        "domain": "presstv.co.uk",
+        "url": "https://www.presstv.co.uk/Detail/2026/10/19/778735/Iran-Russia-Pezeshkian-Lavrov%20class=column-beyond-headlines-h-p"
       }
     ],
-    "india_us": [
-      {
-        "date": "2026-10-17",
-        "title": "US - India trade deal wont be signed without preferential treatment : Former diplomat Veena Sikri",
-        "domain": "indiagazette.com",
-        "url": "http://www.indiagazette.com/news/279381447/us-india-trade-deal-wont-be-signed-without-preferential-treatment-former-diplomat-veena-sikri"
-      },
-      {
-        "date": "2026-10-17",
-        "title": "Maninder Sidhu : Canada aims for India trade deal by year - end",
-        "domain": "financialpost.com",
-        "url": "https://financialpost.com/news/canada-india-trade-deal-year-end-sidhu"
-      },
-      {
-        "date": "2026-10-17",
-        "title": "US tariff waiver on Russian crude a comforting relief , but trade uncertainties persist : CareEdge Chief Economist Rajani Sinha",
-        "domain": "middleeaststar.com",
-        "url": "http://www.middleeaststar.com/news/279380865/us-tariff-waiver-on-russian-crude-a-comforting-relief-but-trade-uncertainties-persist-careedge-chief-economist-rajani-sinha"
-      },
-      {
-        "date": "2026-10-17",
-        "title": "India - US Trade Deal Nears Completion with Just 1 - 2 % Left , Tells US Official",
-        "domain": "sentinelassam.com",
-        "url": "https://www.sentinelassam.com/more-news/international/india-us-trade-deal-nears-completion-with-just-1-2-left-tells-us-official"
-      },
-      {
-        "date": "2026-10-17",
-        "title": "Relief for India as the US administration waives sanctions related to Russian fuel purchase under Lindsey Graham Act",
-        "domain": "batonrougepost.com",
-        "url": "http://www.batonrougepost.com/news/279380386/relief-for-india-as-trump-waives-sanctions-related-to-russian-fuel-purchase-under-lindsey-graham-act"
-      }
-    ],
-    "fetched": "2026-10-18"
+    "india_us": [],
+    "fetched": "2026-10-20"
   }
 }
