@@ -35,6 +35,7 @@ jobs:
         run: |
           python update_data.py
           python update_trade_logs.py    # log the latest intraday triggers (squeeze/gap/down-day), if any
+          python update_last_hour.py || true   # 14:30-15:30 candle for the Strategy Book's GOLD 09:15 bias
           rm -f today_open.json
 
       - name: Commit changes (if any)
@@ -44,6 +45,7 @@ jobs:
           git add Nifty50_till2025.csv Nifty_Features.csv
           git add trade_logs 2>/dev/null || true
           git add today_open.json 2>/dev/null || true
+          git add last_hour.json 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else

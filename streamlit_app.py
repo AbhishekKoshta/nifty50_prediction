@@ -436,8 +436,16 @@ try:
 except Exception:  # noqa: BLE001
     _mac_data = None
 
-_tab_macro, _tab_fake_bo, _tab_dash, _tab_move = st.tabs(
-    ["🌍 Macro & Events", "🪤 Fake Breakout Watch", "📊 Probability Dashboard", "🔮 Next-Day Move Model"])
+_tab_book, _tab_macro, _tab_fake_bo, _tab_dash, _tab_move = st.tabs(
+    ["🎯 Strategy Book", "🌍 Macro & Events", "🪤 Fake Breakout Watch", "📊 Probability Dashboard",
+     "🔮 Next-Day Move Model"])
+
+with _tab_book:   # auto-discovers strategy_book/strategies/*.py — add a strategy there, not here
+    try:
+        from strategy_book.view import render_strategy_book
+        render_strategy_book(load_daily(), load_today_open())
+    except Exception as _sb_err:  # noqa: BLE001
+        st.error(f"Strategy Book tab unavailable: {_sb_err}")
 
 with _tab_macro:
     try:
