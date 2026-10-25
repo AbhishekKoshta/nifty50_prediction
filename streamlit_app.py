@@ -436,9 +436,16 @@ try:
 except Exception:  # noqa: BLE001
     _mac_data = None
 
-_tab_book, _tab_macro, _tab_fake_bo, _tab_dash, _tab_move = st.tabs(
-    ["🎯 Strategy Book", "🌍 Macro & Events", "🪤 Fake Breakout Watch", "📊 Probability Dashboard",
+_tab_book, _tab_aft, _tab_macro, _tab_fake_bo, _tab_dash, _tab_move = st.tabs(
+    ["🎯 Strategy Book", "🕛 Afternoon Move", "🌍 Macro & Events", "🪤 Fake Breakout Watch", "📊 Probability Dashboard",
      "🔮 Next-Day Move Model"])
+
+with _tab_aft:   # 68_AfternoonMove checklist + 67 expiry options checklist — self-contained (own Upstox fetch)
+    try:
+        from afternoon_checklist import render_afternoon_checklist
+        render_afternoon_checklist()
+    except Exception as _aft_err:  # noqa: BLE001
+        st.error(f"Afternoon Move tab unavailable: {_aft_err}")
 
 with _tab_book:   # auto-discovers strategy_book/strategies/*.py — add a strategy there, not here
     try:

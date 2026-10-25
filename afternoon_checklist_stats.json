@@ -1,0 +1,356 @@
+{
+ "source": "Algo_Nifty50/strategies/68_AfternoonMove (Upstox NIFTY 5m 2022-01 -> 2026-10-23, 1,186 sessions)",
+ "base": {
+  "n": 1183,
+  "p_big": 0.386,
+  "p_quiet": 0.215,
+  "p_net": 0.21,
+  "p_with": 0.205,
+  "p_against": 0.189,
+  "p_net_with": 0.109
+ },
+ "score": {
+  "-2": {
+   "n": 77,
+   "p_big": 0.091,
+   "p_quiet": 0.455,
+   "p_net": 0.052,
+   "p_with": 0.052,
+   "p_against": 0.039,
+   "p_net_with": 0.026
+  },
+  "-1": {
+   "n": 116,
+   "p_big": 0.207,
+   "p_quiet": 0.405,
+   "p_net": 0.147,
+   "p_with": 0.112,
+   "p_against": 0.095,
+   "p_net_with": 0.095
+  },
+  "0": {
+   "n": 244,
+   "p_big": 0.213,
+   "p_quiet": 0.311,
+   "p_net": 0.107,
+   "p_with": 0.102,
+   "p_against": 0.111,
+   "p_net_with": 0.045
+  },
+  "1": {
+   "n": 289,
+   "p_big": 0.398,
+   "p_quiet": 0.18,
+   "p_net": 0.204,
+   "p_with": 0.215,
+   "p_against": 0.183,
+   "p_net_with": 0.1
+  },
+  "2": {
+   "n": 200,
+   "p_big": 0.475,
+   "p_quiet": 0.095,
+   "p_net": 0.27,
+   "p_with": 0.24,
+   "p_against": 0.24,
+   "p_net_with": 0.14
+  },
+  "3": {
+   "n": 141,
+   "p_big": 0.589,
+   "p_quiet": 0.135,
+   "p_net": 0.298,
+   "p_with": 0.348,
+   "p_against": 0.255,
+   "p_net_with": 0.177
+  },
+  "4": {
+   "n": 116,
+   "p_big": 0.698,
+   "p_quiet": 0.052,
+   "p_net": 0.405,
+   "p_with": 0.353,
+   "p_against": 0.388,
+   "p_net_with": 0.198
+  }
+ },
+ "trend_and_score2": {
+  "n": 74,
+  "p_big": 0.635,
+  "p_quiet": 0.068,
+  "p_net": 0.351,
+  "p_with": 0.432,
+  "p_against": 0.216,
+  "p_net_with": 0.23
+ },
+ "trend_not_score2": {
+  "n": 71,
+  "p_big": 0.338,
+  "p_quiet": 0.183,
+  "p_net": 0.211,
+  "p_with": 0.211,
+  "p_against": 0.127,
+  "p_net_with": 0.113
+ },
+ "patterns": {
+  "wide_morning": {
+   "n": 189,
+   "p_big": 0.714,
+   "p_quiet": 0.032,
+   "lift": 1.85,
+   "its_way": null,
+   "against": null
+  },
+  "vix_ge16": {
+   "n": 358,
+   "p_big": 0.587,
+   "p_quiet": 0.075,
+   "lift": 1.52,
+   "its_way": null,
+   "against": null
+  },
+  "gap_ge_0p5": {
+   "n": 272,
+   "p_big": 0.504,
+   "p_quiet": 0.121,
+   "lift": 1.3,
+   "its_way": 0.45,
+   "against": 0.52
+  },
+  "atr_top_tercile": {
+   "n": 417,
+   "p_big": 0.501,
+   "p_quiet": 0.151,
+   "lift": 1.3,
+   "its_way": null,
+   "against": null
+  },
+  "bear_flag": {
+   "n": 89,
+   "p_big": 0.494,
+   "p_quiet": 0.146,
+   "lift": 1.28,
+   "its_way": 0.61,
+   "against": 0.36
+  },
+  "trend_morning": {
+   "n": 145,
+   "p_big": 0.49,
+   "p_quiet": 0.124,
+   "lift": 1.27,
+   "its_way": 0.65,
+   "against": 0.34
+  },
+  "v_bottom": {
+   "n": 74,
+   "p_big": 0.486,
+   "p_quiet": 0.081,
+   "lift": 1.26,
+   "its_way": 0.42,
+   "against": 0.56
+  },
+  "at_morning_low": {
+   "n": 144,
+   "p_big": 0.479,
+   "p_quiet": 0.167,
+   "lift": 1.24,
+   "its_way": 0.57,
+   "against": 0.42
+  },
+  "inv_cup_handle": {
+   "n": 361,
+   "p_big": 0.471,
+   "p_quiet": 0.136,
+   "lift": 1.22,
+   "its_way": 0.52,
+   "against": 0.46
+  },
+  "expiry_day": {
+   "n": 250,
+   "p_big": 0.452,
+   "p_quiet": 0.236,
+   "lift": 1.17,
+   "its_way": null,
+   "against": null
+  },
+  "prev_day_big": {
+   "n": 399,
+   "p_big": 0.454,
+   "p_quiet": 0.175,
+   "lift": 1.17,
+   "its_way": null,
+   "against": null
+  },
+  "v_top": {
+   "n": 49,
+   "p_big": 0.449,
+   "p_quiet": 0.102,
+   "lift": 1.16,
+   "its_way": 0.36,
+   "against": 0.59
+  },
+  "double_bottom_W": {
+   "n": 542,
+   "p_big": 0.446,
+   "p_quiet": 0.172,
+   "lift": 1.15,
+   "its_way": 0.44,
+   "against": 0.54
+  },
+  "cup_handle": {
+   "n": 445,
+   "p_big": 0.443,
+   "p_quiet": 0.16,
+   "lift": 1.14,
+   "its_way": 0.49,
+   "against": 0.5
+  },
+  "double_top_M": {
+   "n": 535,
+   "p_big": 0.422,
+   "p_quiet": 0.2,
+   "lift": 1.09,
+   "its_way": 0.52,
+   "against": 0.46
+  },
+  "beyond_pdh_pdl": {
+   "n": 621,
+   "p_big": 0.406,
+   "p_quiet": 0.23,
+   "lift": 1.05,
+   "its_way": 0.48,
+   "against": 0.5
+  },
+  "bull_flag": {
+   "n": 55,
+   "p_big": 0.4,
+   "p_quiet": 0.164,
+   "lift": 1.03,
+   "its_way": 0.55,
+   "against": 0.45
+  },
+  "inside_15m_last": {
+   "n": 177,
+   "p_big": 0.395,
+   "p_quiet": 0.22,
+   "lift": 1.02,
+   "its_way": null,
+   "against": null
+  },
+  "at_morning_high": {
+   "n": 163,
+   "p_big": 0.387,
+   "p_quiet": 0.239,
+   "lift": 1.0,
+   "its_way": 0.48,
+   "against": 0.51
+  },
+  "coil_last60": {
+   "n": 399,
+   "p_big": 0.376,
+   "p_quiet": 0.211,
+   "lift": 0.97,
+   "its_way": null,
+   "against": null
+  },
+  "monday": {
+   "n": 237,
+   "p_big": 0.367,
+   "p_quiet": 0.241,
+   "lift": 0.95,
+   "its_way": null,
+   "against": null
+  },
+  "nr_last_hour": {
+   "n": 874,
+   "p_big": 0.358,
+   "p_quiet": 0.228,
+   "lift": 0.93,
+   "its_way": null,
+   "against": null
+  },
+  "inside_hour_11": {
+   "n": 294,
+   "p_big": 0.354,
+   "p_quiet": 0.248,
+   "lift": 0.91,
+   "its_way": null,
+   "against": null
+  },
+  "desc_triangle": {
+   "n": 50,
+   "p_big": 0.34,
+   "p_quiet": 0.24,
+   "lift": 0.88,
+   "its_way": 0.59,
+   "against": 0.41
+  },
+  "prev_inside_day": {
+   "n": 122,
+   "p_big": 0.328,
+   "p_quiet": 0.205,
+   "lift": 0.85,
+   "its_way": null,
+   "against": null
+  },
+  "prev_nr7": {
+   "n": 192,
+   "p_big": 0.318,
+   "p_quiet": 0.245,
+   "lift": 0.82,
+   "its_way": null,
+   "against": null
+  },
+  "squeeze_bbw_5m": {
+   "n": 252,
+   "p_big": 0.238,
+   "p_quiet": 0.377,
+   "lift": 0.62,
+   "its_way": null,
+   "against": null
+  },
+  "rectangle_box": {
+   "n": 71,
+   "p_big": 0.225,
+   "p_quiet": 0.324,
+   "lift": 0.58,
+   "its_way": null,
+   "against": null
+  },
+  "quiet_morning": {
+   "n": 174,
+   "p_big": 0.161,
+   "p_quiet": 0.408,
+   "lift": 0.42,
+   "its_way": null,
+   "against": null
+  },
+  "asc_triangle": {
+   "n": 75,
+   "p_big": 0.147,
+   "p_quiet": 0.387,
+   "lift": 0.38,
+   "its_way": 0.64,
+   "against": 0.36
+  }
+ },
+ "trade": {
+  "rule": "trend morning & score>=2 -> at 12:00 go with the morning; stop 0.25-0.35%; hold to 15:20",
+  "n": 74,
+  "win": 0.49,
+  "pf": 1.76,
+  "net_pts": 1499,
+  "h1": 989,
+  "h2": 511,
+  "yrs": "5/5",
+  "verdict": "MARGINAL-GO (paper first; data-derived)"
+ },
+ "expiry_options": {
+  "rule": "expiry: ATR top tercile + >=0.5% from open by 12:00 + beyond PDH/PDL same side -> first 12:00-14:00 break of the morning range -> buy ~Rs30-50 OTM that side, sell 4x else exit 15:25",
+  "n": 20,
+  "win": 0.5,
+  "pnl_per_lot": 23293,
+  "roi": 0.47,
+  "verdict": "MARGINAL-GO (paper first; data-derived) - 67_ExpiryOTMLottery"
+ }
+}
