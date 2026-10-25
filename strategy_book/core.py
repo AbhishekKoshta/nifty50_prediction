@@ -54,6 +54,7 @@ class TodaySignal:
     instrument: str = ""             # e.g. "CE · next weekly 2026-11-03 · 1-ITM"
     steps: list[str] = field(default_factory=list)   # execution checklist for today
     why: str = ""                    # the inputs that produced the call
+    recent_trades: object = None     # optional DataFrame of the latest closed trades (newest first)
 
 
 @dataclass

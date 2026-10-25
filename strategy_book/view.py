@@ -64,12 +64,32 @@ def _signal_block(sig):
         st.caption("Inputs → " + sig.why)
 
 
+_TRADE_COL_NAMES = {"signal_ts": "Signal candle", "entry_ts": "Entry time", "exit_ts": "Exit time", "side": "Side",
+                    "entry": "Entry", "stop": "Initial stop", "exit": "Exit", "exit_reason": "Exit reason",
+                    "net_pts": "Net pts", "R": "R", "net_rs": "Net ₹/lot", "lots": "Lots", "gap_pct": "Day gap %"}
+
+
+def _recent_trades(s, sig):
+    """Previous 5 closed trades: live (from the signal engine) when available, else the bundled backtest log."""
+    t = getattr(sig, "recent_trades", None) if sig is not None else None
+    src = "live replay"
+    if t is None or len(t) == 0:
+        log = load_trades(s.trade_log)
+        if log is None or not len(log):
+            return
+        t, src = log.tail(5).iloc[::-1], "backtest log"
+    cols = [c for c in _TRADE_COL_NAMES if c in t.columns] or list(t.columns)
+    st.markdown(f"**Previous 5 trades** <small>({src})</small>", unsafe_allow_html=True)
+    st.dataframe(t.head(5)[cols].rename(columns=_TRADE_COL_NAMES), hide_index=True, width="stretch")
+
+
 def _card(s, sig):
     st.markdown(f"#### {s.name}")
     st.caption(f"{_VERDICT.get(s.verdict, s.verdict)} · {s.horizon} · {s.instrument} · `{s.id}`")
     st.write(s.summary)
     if sig is not None:
         _signal_block(sig)
+    _recent_trades(s, sig)
     t1, t2, t3 = st.tabs(["📜 Rules", "📈 Backtest", "⚠️ Caveats"])
     with t1:
         st.markdown("\n".join(f"{i}. {r}" for i, r in enumerate(s.rules, 1)))
