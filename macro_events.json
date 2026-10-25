@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-24",
+  "last_updated": "2026-10-25",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
   "nse_holidays": [],
@@ -57,20 +57,12 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": [
-      {
-        "date": "2026-10-24",
-        "kind": "hawkish",
-        "weight": "medium",
-        "note": "GDELT tone: 4 hawkish vs 0 dovish headlines (3d)",
-        "source": "gdelt-heuristic"
-      }
-    ]
+    "signals": []
   },
   "market": {
     "brent": {
-      "last": 116.72,
-      "chg_pct": 3.14
+      "last": 111.7,
+      "chg_pct": -1.3
     },
     "usdinr": {
       "last": 94.94,
@@ -80,48 +72,18 @@
       "last": 16.86,
       "chg_pct": 6.98
     },
-    "fetched": "2026-10-24"
+    "fetched": "2026-10-25"
   },
   "headlines": {
     "iran": [
       {
         "date": "2026-10-24",
-        "title": "Regional , European countries warn against new attacks on Iran , call for reopening of Hormuz",
-        "domain": "iranherald.com",
-        "url": "http://www.iranherald.com/news/279395130/regional-european-countries-warn-against-new-attacks-on-iran-call-for-reopening-of-hormuz"
-      },
-      {
-        "date": "2026-10-24",
-        "title": "Attack in the West Bank kills 2 Israeli soldiers , and other Mideast news",
-        "domain": "wral.com",
-        "url": "https://www.wral.com/news/ap/6424d-attack-in-the-west-bank-kills-2-israeli-soldiers-and-other-mideast-news/"
-      },
-      {
-        "date": "2026-10-23",
-        "title": "On Lebanon border , Israeli support for Israel drops before election",
-        "domain": "naharnet.com",
-        "url": "https://www.naharnet.com/stories/en/323286-on-lebanon-s-border-israelis-support-for-netanyahu-drops-before-election"
-      },
-      {
-        "date": "2026-10-23",
-        "title": "Israel says it thwarted terror attack , and other Middle East news",
-        "domain": "fortmorgantimes.com",
-        "url": "https://www.fortmorgantimes.com/2026/10/23/israel-thwarted-terror-attack-middle-east-news/"
-      },
-      {
-        "date": "2026-10-23",
-        "title": "Israel says it thwarted terror attack , and other Middle East developments",
-        "domain": "clickorlando.com",
-        "url": "https://www.clickorlando.com/news/world/2026/10/23/israel-says-it-thwarted-terror-attack-and-other-middle-east-developments/"
-      },
-      {
-        "date": "2026-10-23",
-        "title": "Yemen , Bab al - Mandab and Saudi Arabia : Tehran strategic calculus in the balance",
-        "domain": "middleeasteye.net",
-        "url": "https://www.middleeasteye.net/news/yemen-bab-al-mandab-and-saudi-arabia-tehrans-strategic-calculus"
+        "title": "Israelis hold final rally against Israel before election , and other Mideast news",
+        "domain": "chicagotribune.com",
+        "url": "https://www.chicagotribune.com/2026/10/24/israelis-hold-rally-against-netanyahu-before-election/"
       }
     ],
     "india_us": [],
-    "fetched": "2026-10-24"
+    "fetched": "2026-10-25"
   }
 }
