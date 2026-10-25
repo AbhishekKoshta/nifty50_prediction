@@ -21,26 +21,15 @@ def _rs(x: float) -> str:
 
 
 def _manual_inputs(ctx_probe) -> dict:
-    """Optional overrides: today's open (before the 09:10 capture lands) and yesterday's last-hour
-    candle (if the CI feed missed it). Blank = use the feed."""
+    """Optional override: today's open (before the 09:10 capture lands). 0 = use the feed."""
     man = {}
-    need_lh = ctx_probe.last_hour is None
-    label = "✍️ Inputs" + (" — yesterday's last-hour candle is missing, enter it for GOLD 09:15" if need_lh else "")
-    with st.expander(label, expanded=need_lh):
-        c = st.columns(5)
-        op = c[0].number_input(f"Open {ctx_probe.next_session}", min_value=0.0, value=0.0, step=1.0,
-                               help="Leave 0 to use the auto-captured open (09:10 IST run).", key="sb_open")
+    with st.expander("✍️ Inputs"):
+        op = st.number_input(f"Open {ctx_probe.next_session}", min_value=0.0, value=0.0, step=1.0,
+                             help="Leave 0 to use the auto-captured open (09:10 IST run).", key="sb_open")
         if op > 0:
             man["open"] = op
-        lh = ctx_probe.last_hour or {}
-        vals = [c[i + 1].number_input(f"{ctx_probe.last_date} 14:30–15:30 {k.upper()[0]}", min_value=0.0,
-                                      value=float(lh.get(k, 0.0)), step=1.0, key=f"sb_lh_{k}")
-                for i, k in enumerate(("open", "high", "low", "close"))]
-        if all(v > 0 for v in vals) and (not lh or vals != [lh[k] for k in ("open", "high", "low", "close")]):
-            man["last_hour"] = dict(zip(("open", "high", "low", "close"), vals))
-        lh_txt = f"✅ {lh.get('session')} ({lh.get('bars')} bars)" if lh else "❌ not available"
         op_txt = f"✅ {fmt(ctx_probe.today_open)}" if ctx_probe.today_open else "⏳ not yet captured"
-        st.caption(f"Last-hour feed: {lh_txt} · Today's open: {op_txt}")
+        st.caption(f"Today's open: {op_txt}")
     return man
 
 

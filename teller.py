@@ -84,7 +84,7 @@ _TRADE_LOGS = {                       # signal key -> bundled log filename (no .
     # swing
     "R": "RSI2", "D": "BearRallyFade", "T": "Donchian", "N": "MomentumCarryBook",
     "E": "EMA5BreakdownShort", "K": "Breakdown20DMAShort", "S": "BearShootingStar",
-    "O": "OverboughtReversalFade", "G": "CarryFwdMomentum",
+    "O": "OverboughtReversalFade", "G": "CarryFwdMomentum", "R0": "RSI2_NoFilter",
 }
 _EXIT_WORDS = {"sl": "SL hit", "target": "target hit", "tgt": "target hit",
                "eod": "EOD close", "": "EOD close",
@@ -963,6 +963,16 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
         except Exception:  # noqa: BLE001 — a bad open file must never break the plan
             open_info = None
 
+    # ---- Y GOLD 09:15 + R0 RSI2 no-filter (extra_edges.py) — read the open themselves -----
+    try:
+        import extra_edges as _xe
+        _opx = open_info["open"] if open_info else None
+        for _fn in (_xe.gold_signal, _xe.rsi2_nofilter_signal):
+            sigs.append(Signal(**_fn(d[["open", "high", "low", "close"]], _opx)))
+    except Exception as _xe_err:  # noqa: BLE001 — an extra edge must never break the plan
+        sigs.append(Signal(key="X", name="extra edges", side="BOTH", horizon="intraday", status="IDLE",
+                           headline="GOLD 09:15 / RSI2 (no filter) unavailable", trigger=str(_xe_err)))
+
     # ---- G: CarryFwdMomentum — which side to CARRY overnight (long vs short) ----
     # Validated 32_CarryFwdMomentum is LONG-only: a momentum burst IN AN UPTREND
     # continues over the next days; carrying SHORT has no edge on NIFTY (momentum
@@ -1035,7 +1045,7 @@ def build_plan(daily: pd.DataFrame, today_open: dict | None = None) -> dict:
     carry_open_date = carry["entry_date"].strftime("%Y-%m-%d") if carry else None
     for s in sigs:
         excl = carry_open_date if s.key == "N" else None
-        s.last_trade = last_trade_line(s.key, s.side, s.horizon, exclude_date=excl)
+        s.last_trade = last_trade_line(s.key, s.side, s.horizon, exclude_date=excl) or s.last_trade
 
     return {"context": context, "signals": [s.as_dict() for s in sigs]}
 
