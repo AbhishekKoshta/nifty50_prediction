@@ -125,20 +125,20 @@
   },
   "market": {
     "brent": {
-      "last": 109.72,
-      "chg_pct": -6.0
+      "last": 109.83,
+      "chg_pct": -5.9
     },
     "usdinr": {
-      "last": 95.18,
-      "chg_pct": 0.25
+      "last": 95.12,
+      "chg_pct": 0.19
     },
     "indiavix": {
       "last": 17.16,
       "chg_pct": 1.78
     },
     "dxy": {
-      "last": 102.05,
-      "chg_pct": 0.23
+      "last": 102.06,
+      "chg_pct": 0.24
     },
     "us10y": {
       "last": 4.99,
@@ -1226,11 +1226,42 @@
       },
       {
         "date": "2026-10-27",
+        "title": "ETMarkets Smart Talk: Bond yields may rise further over the next few months; avoid aggressive duration and credit bets: Suyash Choudhary",
+        "url": "https://economictimes.indiatimes.com/markets/expert-view/etmarkets-smart-talk-bond-yields-may-rise-further-over-the-next-few-months-avoid-aggressive-duration-and-credit-bets-suyash-choudhary/articleshow/135223491.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Wipro Share Price Live Updates: Wipro's Remarkable Monthly Returns",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/wipro-share-price-today-live-27-oct-2026/liveblog/135223168.cms",
+        "source": "ET markets",
+        "sectors": [
+          "IT",
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
         "title": "JSW Steel among 5 stocks showing the White Marubozu pattern",
         "url": "https://economictimes.indiatimes.com/markets/stocks/news/jsw-steel-among-5-stocks-showing-the-white-marubozu-pattern/slideshow/135223206.cms",
         "source": "ET markets",
         "sectors": [
           "Metals & mining"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Titan Company Share Price Live Updates: Titan Company trading volume insights",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/titan-company-share-price-live-updates-27-oct-2026/liveblog/135223134.cms",
+        "source": "ET markets",
+        "sectors": [
+          "FMCG & agri"
         ],
         "tone": "·"
       },
@@ -1255,6 +1286,16 @@
           "Capital markets"
         ],
         "tone": "−"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "SBI Share Price Live Updates: SBI Trading Volume Overview",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/sbi-share-price-live-updates-27-oct-2026/liveblog/135222890.cms",
+        "source": "ET markets",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
       },
       {
         "date": "2026-10-27",
@@ -1797,31 +1838,11 @@
       },
       {
         "date": "2026-10-26",
-        "title": "Anthropic's filing for blockbuster US IPO shows key executives and board",
-        "url": "https://economictimes.indiatimes.com/markets/us-stocks/news/anthropics-filing-for-blockbuster-us-ipo-shows-key-executives-and-board/articleshow/135213686.cms",
-        "source": "ET markets",
+        "title": "Almost half of domestic coal-based power plants have critical stocks",
+        "url": "https://www.thehindubusinessline.com/markets/commodities/almost-half-of-domestic-coal-based-power-plants-have-critical-stocks/article71627830.ece",
+        "source": "BusinessLine economy",
         "sectors": [
-          "Capital markets"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "US stocks today: US stocks rise as Anthropic IPO puts AI spending under scrutiny",
-        "url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-today-us-stocks-open-higher-as-anthropics-ipo-filing-sharpens-ai-focus/articleshow/135213224.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Capital markets"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Anthropic files for US IPO amid AI boom, rising costs and safety concerns",
-        "url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-opens-books-on-ais-explosive-growth-and-staggering-costs/articleshow/135212999.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Capital markets"
+          "Power & renewables"
         ],
         "tone": "·"
       },
@@ -1854,16 +1875,6 @@
           "Textiles & exports"
         ],
         "tone": "+"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Almost half of domestic coal-based power plants have critical stocks",
-        "url": "https://www.thehindubusinessline.com/markets/commodities/almost-half-of-domestic-coal-based-power-plants-have-critical-stocks/article71627830.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Power & renewables"
-        ],
-        "tone": "·"
       },
       {
         "date": "2026-10-26",
@@ -1949,22 +1960,17 @@
           "Railways"
         ],
         "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Gujarat declares four districts drought-hit, announces crop-loss aid for farmers",
-        "url": "https://www.thehindubusinessline.com/economy/agri-business/gujarat-declares-4-districts-drought-hit-announces-farm-relief/article71626275.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
       }
     ]
   },
   "rbi_releases": {
     "fetched": "2026-10-27",
     "press": [
+      {
+        "date": "2026-10-27",
+        "title": "Money Market Operations as on October 26, 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63869"
+      },
       {
         "date": "2026-10-26",
         "title": "Auction of Government of India Dated Securities",
@@ -1996,12 +2002,12 @@
         "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63863"
       },
       {
-        "date": "2026-10-23",
+        "date": "2026-10-24",
         "title": "RBI to conduct 4-day Variable Rate Repo (VRR) auction under LAF on October 26, 2026",
         "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63861"
       },
       {
-        "date": "2026-10-23",
+        "date": "2026-10-24",
         "title": "Auction of State Government Securities",
         "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63860"
       }
@@ -2023,7 +2029,7 @@
         "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13740&Mode=0"
       },
       {
-        "date": "2026-10-12",
+        "date": "2026-10-13",
         "title": "Risk Management and Inter-Bank Dealings",
         "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13739&Mode=0"
       },
