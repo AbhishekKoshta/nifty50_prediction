@@ -1,39 +1,103 @@
 {
-  "last_updated": "2026-10-26",
+  "last_updated": "2026-10-27",
   "updated_by": "auto-refresh",
-  "note": "Facts only. The daily 7AM-IST refresh agent rewrites this file; macro_events.py holds the logic and does all date math live, so D-1/D-0 flags and the peace model advance by themselves.",
-  "nse_holidays": [],
-  "calendar": [],
-  "earnings_band": {
-    "active": true,
-    "label": "Q1 FY27 earnings season",
-    "note": "Underway (TCS reported Jul 9); rolls through Aug. Stock/sector-specific, not a single date."
-  },
+  "note": "Facts only. The daily 7AM-IST refresh rewrites this file; macro_events.py holds the logic and does all date math live (recurring prints, D-1/D-0 flags, the peace model). v2 keys: schedule, calendar, pending, sector_policy, earnings, sector_news, rbi_releases, index_members, rates. No personal names of officials anywhere (institution/role only).",
+  "nse_holidays": [
+    "2026-01-15",
+    "2026-01-26",
+    "2026-02-15",
+    "2026-03-03",
+    "2026-03-21",
+    "2026-03-26",
+    "2026-03-31",
+    "2026-04-03",
+    "2026-04-14",
+    "2026-05-01",
+    "2026-05-28",
+    "2026-06-26",
+    "2026-08-15",
+    "2026-09-14",
+    "2026-10-02",
+    "2026-10-20",
+    "2026-11-08",
+    "2026-11-10",
+    "2026-11-24",
+    "2026-12-25"
+  ],
+  "calendar": [
+    {
+      "date": "2026-11-03",
+      "name": "US midterm elections (results through Nov 4 IST)",
+      "category": "Politics",
+      "importance": "high",
+      "ist_time": "overnight",
+      "nifty_session": "Nov 4",
+      "impact": "Risk-sentiment + tariff/fiscal path repricing; FII flow swing",
+      "source": "https://www.usa.gov/midterm-elections"
+    },
+    {
+      "date": "2026-11-11",
+      "name": "MSCI Nov index review — announcement (effective Dec 1; India adds/deletes)",
+      "category": "Flows",
+      "importance": "med",
+      "ist_time": "after US close",
+      "nifty_session": "Nov 12 (flows at Nov 30 close)",
+      "impact": "Passive inflow/outflow per stock; India weight change",
+      "source": "https://www.msci.com/eqb/pressreleases/archive/ir_dates.pdf"
+    },
+    {
+      "date": "2026-12-01",
+      "name": "MSCI Nov review changes effective (rebalance trades at Nov 30 close)",
+      "category": "Flows",
+      "importance": "med",
+      "ist_time": "Nov 30 close",
+      "nifty_session": "Nov 30",
+      "impact": "Mechanical passive flows in added/deleted names"
+    },
+    {
+      "date": "2026-12-16",
+      "name": "India–EU FTA signing (reported target date; EU Council approval pending)",
+      "category": "Trade",
+      "importance": "med",
+      "ist_time": "—",
+      "nifty_session": "same day / next",
+      "impact": "↑ textiles, gems, auto components, chemicals, pharma; ↓ nothing index-level",
+      "source": "https://www.aninews.in/news/business/india-eu-fta-may-become-operational-in-next-4-5-months-signing-expected-before-year-end-goyal20261022211002/"
+    },
+    {
+      "date": "2027-02-01",
+      "name": "Union Budget FY28 (11:00 IST, market open)",
+      "category": "Policy",
+      "importance": "high",
+      "ist_time": "11:00",
+      "nifty_session": "same day",
+      "impact": "Capex, fiscal deficit path, capital-gains/STT (levies under review), sector schemes"
+    }
+  ],
   "dynamic": [
     {
       "id": "india_us_deal",
       "name": "India-US trade deal (1st tranche)",
-      "status": "“99% / last 1%” done; partial relief already live (reciprocal cut 25→18%, +25% Russia-oil tariff removed by EO). No signed pact yet.",
-      "next_catalyst": "2026-07-24",
+      "status": "First tranche finalised and in legal drafting (commerce ministry, Oct 15); 'fine-tuning' after concluding most talks (Oct 26). Effective US tariff on Indian goods ~18% (penal Russia-oil tariff removed; IEEPA tariffs struck down Feb 2026). No signed text yet.",
+      "next_catalyst": "any day — see Pending",
       "direction": "Deal/relief → NIFTY up; snap-back → down",
       "prob": {
-        "p_announce_full": 0.33,
-        "p_announce_relief_or_extension": 0.65,
+        "p_announce_full": 0.45,
         "p_implement_given_announce": 0.78,
-        "p_snapback": 0.18
+        "p_snapback": 0.12
       },
-      "combined": "Full pact ~0.26 · avoid-snapback ~0.55",
-      "watch": "Interim text publication; Indian-side pullback risk (happened once after a negotiation round)"
+      "combined": "Full pact ~0.35 · snap-back tail ~0.1",
+      "watch": "Joint statement / USTR notice; Indian-side pullback on agri-dairy; new US demands on tariffs"
     },
     {
       "id": "iran_war",
       "name": "Iran-US war (crude / Strait of Hormuz)",
-      "status": "Active, escalating — renewed phase from Jul 8 (2nd ceasefire collapsed); ~9th night of US strikes as of Jul 19.",
+      "status": "Active: US naval blockade of Iranian ports, Hormuz constrained, Brent ~$110. A 7-day ceasefire proposal (blockade end, oil-sanction relief, Hormuz reopening, nuclear talks) is 'on the table'; the US administration rejected it and wants extra clauses; indirect talks continued through Oct 21.",
       "next_catalyst": "rolling — see time-to-peace model",
       "direction": "Ceasefire → crude down → NIFTY up; Hormuz closure → crude spike → NIFTY down",
       "prob": {
         "p_ceasefire_hold_if_announced": 0.38,
-        "p_hormuz_closure_tail": 0.11
+        "p_hormuz_closure_tail": 0.15
       },
       "combined": "See peace model for time-phased P(ceasefire/talks announced)",
       "watch": "Brent crude is the real-time NIFTY channel (India imports ~85% oil)"
@@ -41,7 +105,7 @@
   ],
   "peace_model": {
     "phase_start": "2026-07-08",
-    "phase_note": "2nd ceasefire collapsed here; renewed nightly strikes",
+    "phase_note": "2nd ceasefire collapsed Jul 8; blockade + strikes since; 7-day ceasefire proposal under indirect negotiation (Oct)",
     "conflicts": {
       "Twelve-Day War (Iran-Israel-US, Jun 2025)": 12,
       "Yom Kippur War (1973)": 19,
@@ -61,29 +125,2502 @@
   },
   "market": {
     "brent": {
-      "last": 109.66,
-      "chg_pct": -6.05
+      "last": 109.72,
+      "chg_pct": -6.0
     },
     "usdinr": {
-      "last": 95.14,
-      "chg_pct": 0.45
+      "last": 95.18,
+      "chg_pct": 0.25
     },
     "indiavix": {
-      "last": 17.55,
-      "chg_pct": 4.08
+      "last": 17.16,
+      "chg_pct": 1.78
     },
-    "fetched": "2026-10-26"
+    "dxy": {
+      "last": 102.05,
+      "chg_pct": 0.23
+    },
+    "us10y": {
+      "last": 4.99,
+      "chg_pct": -0.04
+    },
+    "fetched": "2026-10-27"
   },
   "headlines": {
-    "iran": [
+    "iran": [],
+    "india_us": [
       {
         "date": "2026-10-24",
-        "title": "Israelis hold final rally against Israel before election , and other Mideast news",
-        "domain": "chicagotribune.com",
-        "url": "https://www.chicagotribune.com/2026/10/24/israelis-hold-rally-against-netanyahu-before-election/"
+        "title": "Five Indian stocks offering dividend yields up to 10 %",
+        "domain": "livemint.com",
+        "url": "https://www.livemint.com/market/stock-market-news/five-indian-stocks-offering-dividend-yields-up-to-10-11792769464534.html"
+      },
+      {
+        "date": "2026-10-23",
+        "title": "Scotch Exports to India Face Testing and Customs Hurdles",
+        "domain": "thewhiskeywash.com",
+        "url": "https://thewhiskeywash.com/whiskey-articles/scotchs-india-trade-deal-halved-the-tariff-but-bulk-whisky-still-faces-two-checks-at-the-border/"
+      },
+      {
+        "date": "2026-10-22",
+        "title": "It never done till it done , says EAM the external affairs minister on India - US trade deal",
+        "domain": "russiaherald.com",
+        "url": "http://www.russiaherald.com/news/279392738/it-never-done-till-it-done-says-eam-jaishankar-on-india-us-trade-deal"
       }
     ],
-    "india_us": [],
-    "fetched": "2026-10-25"
+    "fetched": "2026-10-27"
+  },
+  "schema": 2,
+  "rates": {
+    "as_of": "2026-10-27",
+    "rbi_repo": 5.5,
+    "rbi_last_move": "+25 bp on 2026-10-07 (first hike since Feb 2023), 6-0 vote; stance → calibrated tightening; FY27 CPI projection raised 5.0→5.2%",
+    "rbi_bias": "cuts off the table; next = hike or pause (Dec 4)",
+    "fed_funds": "3.75–4.00%",
+    "fed_last_move": "+25 bp in Sep 2026 (first hike since 2023)",
+    "fed_bias": "Oct 28: hold ~90% priced; Dec 9 hike ~74% priced",
+    "india_cpi": {
+      "period": "Sep 2026",
+      "value": 5.54,
+      "prev": 4.83,
+      "note": "highest since Oct 2024; food 7.74%"
+    },
+    "sources": [
+      "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=62422",
+      "https://www.cnbc.com/2026/10/26/fed-decision-expectations-october-meeting.html"
+    ]
+  },
+  "schedule": {
+    "rbi_mpc_decisions": [
+      "2026-12-04",
+      "2027-02-05"
+    ],
+    "rbi_minutes_lag_days": 14,
+    "fomc_decisions": [
+      "2026-10-28",
+      "2026-12-09",
+      "2027-01-27",
+      "2027-03-17",
+      "2027-04-28",
+      "2027-06-09",
+      "2027-07-28",
+      "2027-09-15",
+      "2027-10-27",
+      "2027-12-08"
+    ],
+    "fomc_sep": [
+      "2026-12-09",
+      "2027-03-17",
+      "2027-06-09",
+      "2027-09-15",
+      "2027-12-08"
+    ],
+    "fomc_minutes_lag_days": 21,
+    "us_cpi": [
+      "2026-11-10",
+      "2026-12-10"
+    ],
+    "us_nfp": [
+      "2026-11-06",
+      "2026-12-04"
+    ],
+    "india_cpi_dom": 12,
+    "india_wpi_dom": 14,
+    "india_iip_dom": 28,
+    "india_gdp": [
+      {
+        "date": "2026-11-30",
+        "label": "GDP Q2 FY27 (Jul–Sep)"
+      },
+      {
+        "date": "2027-01-07",
+        "label": "First Advance Estimates of FY27 GDP"
+      },
+      {
+        "date": "2027-02-26",
+        "label": "GDP Q3 FY27 (Oct–Dec)",
+        "approx": true
+      }
+    ],
+    "union_budget": "2027-02-01",
+    "sources": {
+      "rbi_mpc": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=62422",
+      "fomc": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm",
+      "bls": "https://www.bls.gov/schedule/2026/home.htm",
+      "mospi": "https://www.mospi.gov.in/uploads/documents/releaseCalender/1791356248513-ARC_2026_27_Sept_2026.pdf"
+    }
+  },
+  "pending": [
+    {
+      "id": "india_us_tranche1",
+      "name": "India–US trade deal: 1st tranche signed / published",
+      "category": "Trade",
+      "p_30d": 0.45,
+      "updated": "2026-10-27",
+      "status": "First tranche finalised and in legal drafting per the commerce ministry (Oct 15); both sides 'fine-tuning' after concluding most talks (Oct 26). US tariff on Indian goods already down to ~18% effective (penal Russia-oil tariff removed). Still no signed text — 'imminent' claims have slipped since July.",
+      "direction": "Signing → NIFTY ↑ (IT, pharma, textiles, gems, auto comps; INR ↑). Collapse / new US demands → ↓",
+      "sectors": [
+        "IT",
+        "Pharma",
+        "Textiles & exports",
+        "Auto"
+      ],
+      "watch": "Joint statement; USTR Federal Register notice; any Indian-side pullback on agri/dairy",
+      "source": "https://economictimes.indiatimes.com/news/economy/foreign-trade/india-and-us-fine-tune-trade-pact-after-concluding-most-talks/articleshow/126035500.cms"
+    },
+    {
+      "id": "iran_ceasefire",
+      "name": "Iran–US ceasefire / Strait of Hormuz reopening",
+      "category": "Geo",
+      "p_source": "peace_model",
+      "updated": "2026-10-27",
+      "status": "7-day ceasefire proposal (end of US naval blockade, oil-sanctions relief, Hormuz reopens day 6, talks day 7) remains 'on the table'; the US administration rejected it and is seeking extra clauses; indirect talks continue (Oct 21). Brent ~$110.",
+      "direction": "Ceasefire → crude ↓ → NIFTY ↑ (OMCs, paints, aviation, tyres ↑; ONGC/Oil India ↓). Hormuz escalation → crude spike → ↓",
+      "sectors": [
+        "Oil & gas",
+        "Aviation & travel",
+        "Paints/chemicals"
+      ],
+      "watch": "Brent is the real-time channel; any mediator-hosted round; blockade status",
+      "source": "https://www.cbsnews.com/live-updates/iran-war-us-trump-talks-strait-of-hormuz/"
+    },
+    {
+      "id": "rbi_rupee_measures",
+      "name": "RBI: further rupee-defence measures",
+      "category": "Rupee",
+      "p_30d": 0.5,
+      "updated": "2026-10-27",
+      "status": "Oct 10 package = strongest action since 2013: special dollar window for state-run oil companies, a 20% Foreign Exchange Risk Reserve on large INR-derivative purchases, no re-booking of cancelled INR derivative contracts. USD/INR still ~95 (record low). Next steps historically: FCNR(B)/NRI deposit schemes, ECB easing, more derivative curbs.",
+      "direction": "New measures → INR ↑ short-term, ↑ importers/OMCs/airlines, banks neutral-to-↑; ↓ IT/pharma exporters marginally",
+      "sectors": [
+        "Banks & NBFC",
+        "IT",
+        "Oil & gas"
+      ],
+      "watch": "RBI press releases after 17:00 IST; Friday FX-reserves print; forward premia",
+      "source": "https://www.bloomberg.com/news/articles/2026-10-10/rbi-announces-special-oil-window-regulatory-steps-for-rupee"
+    },
+    {
+      "id": "rbi_liquidity",
+      "name": "RBI liquidity ops (OMO purchase / VRR) — or an off-cycle move",
+      "category": "CenBank",
+      "p_30d": 0.7,
+      "updated": "2026-10-27",
+      "status": "Cash conditions tightened after the Oct 7 hike; RBI stepping up liquidity support as borrowing rates rise (Oct 27). Off-cycle rate action itself is a low-probability tail (~5%).",
+      "direction": "OMO/VRR → bond yields ↓, banks/NBFCs ↑. Off-cycle hike → ↓ rate-sensitives (realty, autos, NBFCs)",
+      "sectors": [
+        "Banks & NBFC",
+        "Realty & infra",
+        "Auto"
+      ],
+      "watch": "RBI 'Money Market Operations' + OMO calendar releases; overnight call vs repo",
+      "source": "https://economictimes.indiatimes.com/news/economy/finance/rssfeeds/1373380680.cms"
+    },
+    {
+      "id": "cabinet_pipeline",
+      "name": "Cabinet / CCEA Wednesday decisions (sector schemes)",
+      "category": "Policy",
+      "p_30d": 0.8,
+      "updated": "2026-10-27",
+      "status": "Recent: Green Energy Corridor-III ₹1.86 lakh cr + Rabi MSP 2027-28 (Sep 30); DAC cleared ₹2.12 lakh cr capital-acquisition proposals, 82% domestic (Oct 26). Pipeline talk: PLI tranches (electronics components, semis), EV-manufacturing policy applications, rail/metro projects, further Hormuz-linked energy steps.",
+      "direction": "Sector-specific ↑ on the approved theme (defence, T&D, renewables, rail, electronics)",
+      "sectors": [
+        "Defence",
+        "Power & renewables",
+        "Railways",
+        "Electronics & PLI"
+      ],
+      "watch": "Cabinet briefing ~16:00–17:00 IST on Wednesdays (PIB); DAC meets ~monthly",
+      "source": "https://indianinfrastructure.com/2026/10/01/cabinet-approves-rs-1-86-trillion-green-energy-corridor-phase-iii-scheme/"
+    },
+    {
+      "id": "winter_session",
+      "name": "Parliament Winter Session — dates + bill list",
+      "category": "Policy",
+      "p_30d": 0.85,
+      "updated": "2026-10-27",
+      "status": "Not yet announced (2025 session ran Dec 1–19; 2024 Nov 25–Dec 20). Announcement usually lands early–mid Nov; the legislative list is what moves sectors.",
+      "direction": "Depends on bills listed (financial-sector amendments, labour-code rollout, land/mining) — usually sector-specific, not index-level",
+      "sectors": [
+        "Banks & NBFC",
+        "Insurance",
+        "Mining & metals"
+      ],
+      "watch": "Cabinet Committee on Parliamentary Affairs recommendation; PRS session alert",
+      "source": "https://prsindia.org/sessiontrack"
+    },
+    {
+      "id": "us_tariff_actions",
+      "name": "US tariff / trade actions touching India (Section 232 / 301, post-IEEPA)",
+      "category": "Trade",
+      "p_30d": 0.3,
+      "updated": "2026-10-27",
+      "status": "IEEPA tariffs were struck down by the US Supreme Court (Feb 20, 2026) and terminated Feb 24; refunds via the Court of International Trade are ongoing. Section 232 pharma: 100% on patented drugs from Sep 29, generics/biosimilars excluded, India got 0% on select specialty drugs. New 232/301 actions (semis, services, remittances) remain the live risk.",
+      "direction": "New India-relevant duty → ↓ pharma/IT/textiles; relief bundled into the trade deal → ↑",
+      "sectors": [
+        "Pharma",
+        "IT",
+        "Textiles & exports"
+      ],
+      "watch": "Federal Register proclamations; Commerce Dept 232 investigations list",
+      "source": "https://www.whitecase.com/insight-alert/united-states-terminates-ieepa-based-tariffs-following-supreme-court-decision"
+    },
+    {
+      "id": "sugar_ethanol",
+      "name": "Sugar/ethanol: ESY 2026-27 feedstock order + export policy",
+      "category": "Sector",
+      "p_30d": 0.6,
+      "updated": "2026-10-27",
+      "status": "OMC ethanol tender for the supply year starting Nov 1 excludes sugarcane-juice / B-heavy molasses ethanol (grain/maize/FCI-rice only), to protect domestic sugar supply; DGFT moved sugar exports to 'prohibited' (quota/TRQ exemptions only). Formal notifications and the 2026-27 export stance are the pending prints.",
+      "direction": "↓ sugar mills (Balrampur, Shree Renuka, Dhampur, Triveni, Dalmia Sugar); ↑ grain-based distillers; neutral index",
+      "sectors": [
+        "Sugar & agri"
+      ],
+      "watch": "Food ministry / DFPD notifications; OMC tender allocation results; cane FRP",
+      "source": "https://www.motorbeam.com/india-sugar-based-ethanol-ban-2026-27-tender/"
+    },
+    {
+      "id": "sebi_board",
+      "name": "SEBI board meeting / F&O weekly-expiry decision; LTCG-STT levy review",
+      "category": "Markets",
+      "p_30d": 0.4,
+      "updated": "2026-10-27",
+      "status": "SEBI has been working toward a consultation on ending weekly index-option expiries (glide path to monthly). Separately the finance ministry is seeking investor/expert views on LTCG and STT as it reviews capital-market levies (Oct 27) — a Budget FY28 input.",
+      "direction": "Weekly-expiry end → ↓ exchanges/brokers/depositories (BSE, Angel One, CDSL, MCX); a levy cut → ↑ the same names + sentiment",
+      "sectors": [
+        "Capital markets"
+      ],
+      "watch": "SEBI press releases (board meets ~quarterly); DEA consultation note",
+      "source": "https://economictimes.indiatimes.com/industry/rssfeeds/13352306.cms"
+    },
+    {
+      "id": "gst_council_58",
+      "name": "58th GST Council meeting (date TBA)",
+      "category": "Policy",
+      "p_30d": 0.2,
+      "updated": "2026-10-27",
+      "status": "57th met Oct 8 (first in ~a year): blocked-ITC, inverted-duty refunds, registration simplification, post-GST-2.0 state revenue review. No next date announced; notice usually ~10 days ahead.",
+      "direction": "Rate/ITC changes are sector-specific (insurance, autos, cement, consumer durables, online gaming)",
+      "sectors": [
+        "Auto",
+        "Cement & infra",
+        "Insurance",
+        "Consumer"
+      ],
+      "watch": "GST Council secretariat notice; PIB",
+      "source": "https://taxo.online/latest-news/06-10-2026-57th-gst-council-meeting-rescheduled-for-october-8-from-october-7-to-be-held-at-bharat-mandapam-in-new-delhi/"
+    },
+    {
+      "id": "india_eu_council",
+      "name": "India–EU FTA: EU Council approval for signature",
+      "category": "Trade",
+      "p_30d": 0.5,
+      "updated": "2026-10-27",
+      "status": "Concluded Jan 27, 2026; Commission has proposed it to the Council for signature (Sep); signing reportedly targeted Dec 16; European Parliament consent after → in force 2027. (India–UK FTA already in force since Jul 15, 2026.)",
+      "direction": "↑ textiles, leather, gems, auto comps, chemicals, pharma (EU is India's #2 export market)",
+      "sectors": [
+        "Textiles & exports",
+        "Auto",
+        "Pharma",
+        "Chemicals"
+      ],
+      "watch": "Council agenda; joint signing-date confirmation",
+      "source": "https://www.india-briefing.com/news/india-fta-tracker-2026-updates-42864.html/"
+    },
+    {
+      "id": "opec_plus",
+      "name": "OPEC+ 8-country monthly output decision",
+      "category": "Geo",
+      "p_30d": 0.95,
+      "updated": "2026-10-27",
+      "status": "The 8-member group meets monthly (usually the first weekend). With Hormuz constrained and Brent ~$110, quota changes move the crude channel directly.",
+      "direction": "Output hike → crude ↓ → NIFTY ↑ (OMCs, aviation, paints); cut/pause → ↓",
+      "sectors": [
+        "Oil & gas",
+        "Aviation & travel",
+        "Paints/chemicals"
+      ],
+      "watch": "OPEC press statement (Sunday evening IST) → Monday open",
+      "source": "https://www.opec.org/"
+    },
+    {
+      "id": "rating_action",
+      "name": "Sovereign rating / outlook action on India",
+      "category": "Macro",
+      "p_30d": 0.1,
+      "updated": "2026-10-27",
+      "status": "Low-probability tail. Twin pressures (rupee at record low, oil import bill, calibrated tightening) are the arguments for a negative outlook; strong growth (Q1 FY27 +7.8%) and fiscal consolidation argue against.",
+      "direction": "Upgrade → ↑ banks/bonds/INR; negative outlook → ↓",
+      "sectors": [
+        "Banks & NBFC"
+      ],
+      "watch": "Moody's/Fitch/S&P India review dates (unscheduled)",
+      "source": ""
+    }
+  ],
+  "sector_policy": [
+    {
+      "sector": "Defence",
+      "stance": "+",
+      "date": "2026-10-26",
+      "driver": "DAC cleared ₹2.12 lakh cr capital-acquisition proposals (helicopters, air defence, artillery, UAS, naval platforms), 82% from Indian industry",
+      "names": "HAL, BEL, BDL, Mazagon Dock, GRSE, BEML",
+      "source": "https://www.zeebiz.com/market-news/news-big-update-for-defence-stocks-dac-clears-rs-212-lakh-crore-proposals-heres-why-hal-bel-bdl-others-could-benefit-404557"
+    },
+    {
+      "sector": "Power & renewables",
+      "stance": "+",
+      "date": "2026-09-30",
+      "driver": "Cabinet approved Green Energy Corridor-III (₹1,86,405 cr) — intra-state transmission to evacuate 135 GW of renewables by 2032-33",
+      "names": "Power Grid, KEC, Kalpataru, CG Power, Hitachi Energy, Siemens, ABB; solar OEMs",
+      "source": "https://indianinfrastructure.com/2026/10/01/cabinet-approves-rs-1-86-trillion-green-energy-corridor-phase-iii-scheme/"
+    },
+    {
+      "sector": "Sugar & agri",
+      "stance": "-",
+      "date": "2026-10-20",
+      "driver": "Sugar-based ethanol excluded from the ESY 2026-27 OMC tender (from Nov 1); sugar exports moved to 'prohibited' by DGFT — supply protection over mills' margins",
+      "names": "↓ Balrampur, Shree Renuka, Dhampur, Triveni, Dalmia Sugar; ↑ grain-based distillers",
+      "source": "https://www.motorbeam.com/india-sugar-based-ethanol-ban-2026-27-tender/"
+    },
+    {
+      "sector": "FMCG & rural",
+      "stance": "+",
+      "date": "2026-09-30",
+      "driver": "Rabi MSP 2027-28 raised (wheat ₹2,610/qtl, +₹25; six crops, ₹90,962 cr payout) — rural income support",
+      "names": "Tractors (M&M, Escorts), agri inputs (PI, Coromandel), rural FMCG",
+      "source": "https://businesstoday.in/latest/economy/story/cabinet-clears-rs2-79-lakh-crore-package-rabi-msp-hike-pm-dhara-and-delhi-traffic-system-558824-2026-09-30"
+    },
+    {
+      "sector": "Banks & NBFC",
+      "stance": "±",
+      "date": "2026-10-07",
+      "driver": "Repo +25 bp to 5.50%, stance 'calibrated tightening', cuts off the table; RBI now adding liquidity (OMO/VRR) as cash tightens. Floating-rate lenders get NIM support near-term; NBFCs/realty/autos face costlier funding",
+      "names": "↑ large private banks; ↓ NBFCs, HFCs, realty",
+      "source": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=62422"
+    },
+    {
+      "sector": "Oil & gas",
+      "stance": "±",
+      "date": "2026-10-10",
+      "driver": "RBI special dollar window for state-run oil companies eases their FX funding; Brent ~$110 with the Hormuz blockade — upstream gains, OMC marketing margins and crude-consumers squeezed",
+      "names": "↑ ONGC, Oil India; ↓ IOC/BPCL/HPCL margins, paints, aviation, tyres",
+      "source": "https://www.bloomberg.com/news/articles/2026-10-10/rbi-announces-special-oil-window-regulatory-steps-for-rupee"
+    },
+    {
+      "sector": "Pharma",
+      "stance": "+",
+      "date": "2026-09-29",
+      "driver": "US Section 232: 100% duty on patented drugs from Sep 29, but generics & biosimilars excluded and India granted 0% on select specialty drugs — the generic export engine is spared",
+      "names": "Sun Pharma, Dr Reddy's, Cipla, Lupin, Aurobindo, Zydus",
+      "source": "https://www.thehansindia.com/news/international/india-gets-us-speciality-drug-tariff-relief-1126458"
+    },
+    {
+      "sector": "IT",
+      "stance": "±",
+      "date": "2026-10-27",
+      "driver": "Rupee at ~95 = translation tailwind; US trade-deal first tranche would lift sentiment; risks = US services-tariff/visa moves and client AI-capex reallocation",
+      "names": "TCS, Infosys, HCLTech, Wipro, Tech Mahindra",
+      "source": "https://www.newsbytesapp.com/news/business/why-india-us-trade-deal-is-stuck-despite-rubio-s-optimism/story"
+    },
+    {
+      "sector": "Capital markets",
+      "stance": "±",
+      "date": "2026-10-27",
+      "driver": "Finance ministry reviewing capital-market levies (LTCG, STT) and seeking views — a cut = ↑; SEBI's move to end weekly index-option expiries = ↓ volumes",
+      "names": "BSE, Angel One, CDSL, MCX, Nuvama, 360 ONE",
+      "source": "https://economictimes.indiatimes.com/industry/rssfeeds/13352306.cms"
+    },
+    {
+      "sector": "Textiles & exports",
+      "stance": "+",
+      "date": "2026-10-22",
+      "driver": "India–UK FTA in force (Jul 15); India–EU FTA signing targeted Dec 16; US first tranche in legal drafting — three export-tariff tailwinds lining up",
+      "names": "Welspun Living, Gokaldas, Arvind, KPR Mill, Titan/Kalyan (gems), auto comps",
+      "source": "https://www.india-briefing.com/news/india-fta-tracker-2026-updates-42864.html/"
+    }
+  ],
+  "earnings": {
+    "season": "Q2 FY27",
+    "fetched": "2026-10-27",
+    "upcoming": [
+      {
+        "date": "2026-10-27",
+        "symbol": "BAJAJ-AUTO",
+        "company": "Bajaj Auto Ltd.",
+        "industry": "Automobile and Auto Components",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-27",
+        "symbol": "CIPLA",
+        "company": "Cipla Ltd.",
+        "industry": "Healthcare",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-27",
+        "symbol": "LT",
+        "company": "Larsen & Toubro Ltd.",
+        "industry": "Construction",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-27",
+        "symbol": "MARUTI",
+        "company": "Maruti Suzuki India Ltd.",
+        "industry": "Automobile and Auto Components",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-27",
+        "symbol": "SBILIFE",
+        "company": "SBI Life Insurance Company Ltd.",
+        "industry": "Financial Services",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-27",
+        "symbol": "TATASTEEL",
+        "company": "Tata Steel Ltd.",
+        "industry": "Metals & Mining",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-27",
+        "symbol": "MAZDOCK",
+        "company": "Mazagoan Dock Shipbuilders Ltd.",
+        "industry": "Capital Goods",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-10-27",
+        "symbol": "TATACAP",
+        "company": "Tata Capital Ltd.",
+        "industry": "Financial Services",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-10-28",
+        "symbol": "ADANIENT",
+        "company": "Adani Enterprises Ltd.",
+        "industry": "Metals & Mining",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-28",
+        "symbol": "ADANIPORTS",
+        "company": "Adani Ports and Special Economic Zone Ltd.",
+        "industry": "Services",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-28",
+        "symbol": "HINDUNILVR",
+        "company": "Hindustan Unilever Ltd.",
+        "industry": "Fast Moving Consumer Goods",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-28",
+        "symbol": "CHOLAFIN",
+        "company": "Cholamandalam Investment and Finance Company Ltd.",
+        "industry": "Financial Services",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-10-28",
+        "symbol": "HYUNDAI",
+        "company": "Hyundai Motor India Ltd.",
+        "industry": "Automobile and Auto Components",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-10-28",
+        "symbol": "PIDILITIND",
+        "company": "Pidilite Industries Ltd.",
+        "industry": "Chemicals",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-10-28",
+        "symbol": "TVSMOTOR",
+        "company": "TVS Motor Company Ltd.",
+        "industry": "Automobile and Auto Components",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-10-28",
+        "symbol": "VAML",
+        "company": "Vedanta Aluminium Metal Ltd.",
+        "industry": "Metals & Mining",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-10-28",
+        "symbol": "VEDL",
+        "company": "Vedanta Ltd.",
+        "industry": "Metals & Mining",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-10-29",
+        "symbol": "ASIANPAINT",
+        "company": "Asian Paints Ltd.",
+        "industry": "Consumer Durables",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-29",
+        "symbol": "COALINDIA",
+        "company": "Coal India Ltd.",
+        "industry": "Oil Gas & Consumable Fuels",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-29",
+        "symbol": "INDIGO",
+        "company": "InterGlobe Aviation Ltd.",
+        "industry": "Services",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-29",
+        "symbol": "TRENT",
+        "company": "Trent Ltd.",
+        "industry": "Consumer Services",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-29",
+        "symbol": "AMBUJACEM",
+        "company": "Ambuja Cements Ltd.",
+        "industry": "Construction Materials",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-10-29",
+        "symbol": "GODREJCP",
+        "company": "Godrej Consumer Products Ltd.",
+        "industry": "Fast Moving Consumer Goods",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-10-30",
+        "symbol": "BEL",
+        "company": "Bharat Electronics Ltd.",
+        "industry": "Capital Goods",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-30",
+        "symbol": "MAXHEALTH",
+        "company": "Max Healthcare Institute Ltd.",
+        "industry": "Healthcare",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-30",
+        "symbol": "SUNPHARMA",
+        "company": "Sun Pharmaceutical Industries Ltd.",
+        "industry": "Healthcare",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-30",
+        "symbol": "BANKBARODA",
+        "company": "Bank of Baroda",
+        "industry": "Financial Services",
+        "index": "BANK"
+      },
+      {
+        "date": "2026-10-30",
+        "symbol": "GAIL",
+        "company": "GAIL (India) Ltd.",
+        "industry": "Oil Gas & Consumable Fuels",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-10-30",
+        "symbol": "IOC",
+        "company": "Indian Oil Corporation Ltd.",
+        "industry": "Oil Gas & Consumable Fuels",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-10-30",
+        "symbol": "VBL",
+        "company": "Varun Beverages Ltd.",
+        "industry": "Fast Moving Consumer Goods",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-10-31",
+        "symbol": "NTPC",
+        "company": "NTPC Ltd.",
+        "industry": "Power",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-11-02",
+        "symbol": "ITC",
+        "company": "ITC Ltd.",
+        "industry": "Fast Moving Consumer Goods",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-11-03",
+        "symbol": "BAJAJFINSV",
+        "company": "Bajaj Finserv Ltd.",
+        "industry": "Financial Services",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-11-03",
+        "symbol": "SBIN",
+        "company": "State Bank of India",
+        "industry": "Financial Services",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-11-03",
+        "symbol": "BAJAJHLDNG",
+        "company": "Bajaj Holdings & Investment Ltd.",
+        "industry": "Financial Services",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-11-04",
+        "symbol": "APOLLOHOSP",
+        "company": "Apollo Hospitals Enterprise Ltd.",
+        "industry": "Healthcare",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-11-04",
+        "symbol": "BSE",
+        "company": "BSE Ltd.",
+        "industry": "Financial Services",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-11-04",
+        "symbol": "CUMMINSIND",
+        "company": "Cummins India Ltd.",
+        "industry": "Capital Goods",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-11-04",
+        "symbol": "ZYDUSLIFE",
+        "company": "Zydus Lifesciences Ltd.",
+        "industry": "Healthcare",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-11-05",
+        "symbol": "BHARTIARTL",
+        "company": "Bharti Airtel Ltd.",
+        "industry": "Telecommunication",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-11-05",
+        "symbol": "M&M",
+        "company": "Mahindra & Mahindra Ltd.",
+        "industry": "Automobile and Auto Components",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-11-05",
+        "symbol": "ONGC",
+        "company": "Oil & Natural Gas Corporation Ltd.",
+        "industry": "Oil Gas & Consumable Fuels",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-11-05",
+        "symbol": "TITAN",
+        "company": "Titan Company Ltd.",
+        "industry": "Consumer Durables",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-11-05",
+        "symbol": "BRITANNIA",
+        "company": "Britannia Industries Ltd.",
+        "industry": "Fast Moving Consumer Goods",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-11-05",
+        "symbol": "MOTHERSON",
+        "company": "Samvardhana Motherson International Ltd.",
+        "industry": "Automobile and Auto Components",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-11-06",
+        "symbol": "HINDALCO",
+        "company": "Hindalco Industries Ltd.",
+        "industry": "Metals & Mining",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-11-06",
+        "symbol": "BOSCHLTD",
+        "company": "Bosch Ltd.",
+        "industry": "Automobile and Auto Components",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-11-07",
+        "symbol": "TATASTEEL",
+        "company": "Tata Steel Ltd.",
+        "industry": "Metals & Mining",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-11-07",
+        "symbol": "DIVISLAB",
+        "company": "Divi's Laboratories Ltd.",
+        "industry": "Healthcare",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-11-11",
+        "symbol": "TATAPOWER",
+        "company": "Tata Power Co. Ltd.",
+        "industry": "Power",
+        "index": "NIFTYNEXT50"
+      },
+      {
+        "date": "2026-11-13",
+        "symbol": "TMPV",
+        "company": "Tata Motors Passenger Vehicles Ltd.",
+        "industry": "Automobile and Auto Components",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-11-13",
+        "symbol": "ABB",
+        "company": "ABB India Ltd.",
+        "industry": "Capital Goods",
+        "index": "NIFTYNEXT50"
+      }
+    ],
+    "load": {
+      "2026-10-27": 79,
+      "2026-10-28": 107,
+      "2026-10-29": 113,
+      "2026-10-30": 107,
+      "2026-10-31": 39,
+      "2026-11-02": 87,
+      "2026-11-03": 81,
+      "2026-11-04": 78,
+      "2026-11-05": 64,
+      "2026-11-06": 24,
+      "2026-11-07": 5,
+      "2026-11-10": 4,
+      "2026-11-11": 5,
+      "2026-11-12": 7,
+      "2026-11-13": 9,
+      "2026-11-14": 1,
+      "2026-11-16": 1
+    },
+    "reported": [
+      {
+        "date": "2026-10-26",
+        "symbol": "TATACONSUM",
+        "company": "Tata Consumer Products Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/Sukhvinder_26102026163912_RESULTS.pdf"
+      },
+      {
+        "date": "2026-10-26",
+        "symbol": "ADANIGREEN",
+        "company": "Adani Green Energy Ltd.",
+        "index": "NIFTYNEXT50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/ADANIGREEN_26102026125605_Letter.pdf"
+      },
+      {
+        "date": "2026-10-24",
+        "symbol": "TATACAP",
+        "company": "Tata Capital Ltd.",
+        "index": "NIFTYNEXT50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/TATACAPITAL_24102026203415_SEIntimationEarningsCCallOctobersigned.pdf"
+      },
+      {
+        "date": "2026-10-24",
+        "symbol": "IDFCFIRSTB",
+        "company": "IDFC First Bank Ltd.",
+        "index": "BANK",
+        "pdf": "https://nsearchives.nseindia.com/corporate/IDFCFIRSTB_24102026170906_BM_Press_Release_Q2FY27.pdf"
+      },
+      {
+        "date": "2026-10-24",
+        "symbol": "AUBANK",
+        "company": "AU Small Finance Bank Ltd.",
+        "index": "BANK",
+        "pdf": "https://nsearchives.nseindia.com/corporate/SUMIT1_24102026152913_Press_Release.pdf"
+      },
+      {
+        "date": "2026-10-24",
+        "symbol": "KOTAKBANK",
+        "company": "Kotak Mahindra Bank Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/KMBLTAB_24102026132632_MediareleaseBMOct242026SIGNED.pdf"
+      },
+      {
+        "date": "2026-10-24",
+        "symbol": "INDUSINDBK",
+        "company": "IndusInd Bank Ltd.",
+        "index": "BANK",
+        "pdf": "https://nsearchives.nseindia.com/corporate/INDUSINDBK3_24102026114939_SEDisclosure_NewspaperAdv24102026.pdf"
+      },
+      {
+        "date": "2026-10-23",
+        "symbol": "YESBANK",
+        "company": "Yes Bank Ltd.",
+        "index": "BANK",
+        "pdf": "https://nsearchives.nseindia.com/corporate/YESBANK_23102026214522_SE_Intimation_signed_23102026.pdf"
+      },
+      {
+        "date": "2026-10-23",
+        "symbol": "BPCL",
+        "company": "Bharat Petroleum Corporation Ltd.",
+        "index": "NIFTYNEXT50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/BPCL26_23102026191050_stexintimationoutcome231026s.pdf"
+      },
+      {
+        "date": "2026-10-23",
+        "symbol": "ICICIBANK",
+        "company": "ICICI Bank Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/ICICI2022_23102026175603_NSEBSE23102026.pdf"
+      },
+      {
+        "date": "2026-10-23",
+        "symbol": "DRREDDY",
+        "company": "Dr. Reddy's Laboratories Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/DRREDDY_23102026172921_SE_Intimation_results_23102026.pdf"
+      },
+      {
+        "date": "2026-10-23",
+        "symbol": "TORNTPHARM",
+        "company": "Torrent Pharmaceuticals Ltd.",
+        "index": "NIFTYNEXT50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/TORNTPHARM_23102026165000_outcome.pdf"
+      },
+      {
+        "date": "2026-10-23",
+        "symbol": "INFY",
+        "company": "Infosys Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/Infosys_23102026160704_BM_Outcome_Oct232026_1.pdf"
+      },
+      {
+        "date": "2026-10-23",
+        "symbol": "TMCV",
+        "company": "Tata Motors Ltd.",
+        "index": "NIFTYNEXT50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/TMLCOMMERCIAL_23102026154330_NSEBSELETTER.pdf"
+      },
+      {
+        "date": "2026-10-23",
+        "symbol": "JINDALSTEL",
+        "company": "Jindal Steel Ltd.",
+        "index": "NIFTYNEXT50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/JINDALSTEL_23102026151136_STX23102026.pdf"
+      },
+      {
+        "date": "2026-10-23",
+        "symbol": "CGPOWER",
+        "company": "CG Power and Industrial Solutions Ltd.",
+        "index": "NIFTYNEXT50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/CGPOWER_23102026145423_SEDisclosure_PressRelease.pdf"
+      },
+      {
+        "date": "2026-10-23",
+        "symbol": "JSWSTEEL",
+        "company": "JSW Steel Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/jessydenny_23102026145014_Results.pdf"
+      },
+      {
+        "date": "2026-10-23",
+        "symbol": "SHRIRAMFIN",
+        "company": "Shriram Finance Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/Mathew_23102026143441_OutcomeofBoardMeetingOct23.pdf"
+      },
+      {
+        "date": "2026-10-23",
+        "symbol": "ADANIPOWER",
+        "company": "Adani Power Ltd.",
+        "index": "NIFTYNEXT50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/ADANIPOWER_23102026143517_APLoutcomeBM23102026final.pdf"
+      },
+      {
+        "date": "2026-10-23",
+        "symbol": "ADANIENSOL",
+        "company": "Adani Energy Solutions Ltd.",
+        "index": "NIFTYNEXT50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/ADANITRANS_23102026000657_Presentation_-_H1.pdf"
+      },
+      {
+        "date": "2026-10-22",
+        "symbol": "JIOFIN",
+        "company": "Jio Financial Services Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/JIOFINANCIAL_22102026153806_Transcript_of_Presentation_on_Unaudited_Financial_Results_Q2_2026-27.pdf"
+      },
+      {
+        "date": "2026-10-19",
+        "symbol": "BAJFINANCE",
+        "company": "Bajaj Finance Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/BAJFINANCE_19102026172017_BMOutcome_19102026.pdf"
+      },
+      {
+        "date": "2026-10-19",
+        "symbol": "HINDZINC",
+        "company": "Hindustan Zinc Ltd.",
+        "index": "NIFTYNEXT50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/HINDZINCNSE_19102026153330_Finaloutcome.pdf"
+      },
+      {
+        "date": "2026-10-19",
+        "symbol": "ULTRACEMCO",
+        "company": "UltraTech Cement Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/ULTRACEMCO1_19102026134508_Outcome_of_BM_-_Financial_Results.pdf"
+      },
+      {
+        "date": "2026-10-19",
+        "symbol": "UNIONBANK",
+        "company": "Union Bank of India",
+        "index": "BANK",
+        "pdf": "https://nsearchives.nseindia.com/corporate/UNIONBANK_19102026122544_Press_Release_Sept2026.pdf"
+      },
+      {
+        "date": "2026-10-17",
+        "symbol": "DLF",
+        "company": "DLF Ltd.",
+        "index": "NIFTYNEXT50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/DLF_17102026143218_Letter.pdf"
+      },
+      {
+        "date": "2026-10-17",
+        "symbol": "HDFCBANK",
+        "company": "HDFC Bank Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/HDFCBANK_17102026135520_OutcomeofBMResults_17oct2026.pdf"
+      },
+      {
+        "date": "2026-10-17",
+        "symbol": "AXISBANK",
+        "company": "Axis Bank Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/AXISBANK1_17102026125236_AxisBank_Q2FY27_results.pdf"
+      }
+    ]
+  },
+  "sector_news": {
+    "fetched": "2026-10-27",
+    "items": [
+      {
+        "date": "2026-10-27",
+        "title": "Govt seeks investor and expert views on LTCG and STT as it reviews capital market levies amid FPI exodus",
+        "url": "https://economictimes.indiatimes.com/industry/banking/finance/govt-seeks-investor-and-expert-views-on-ltcg-and-stt-as-it-reviews-capital-market-levies-amid-fpi-exodus/articleshow/135218874.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Capital markets"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "India earns nearly 50% more from fuel exports in April-September as costlier oil and weak rupee outweigh lower volumes",
+        "url": "https://economictimes.indiatimes.com/industry/energy/oil-gas/india-earns-nearly-50-more-from-fuel-exports-in-april-september-as-costlier-oil-and-weak-rupee-outweigh-lower-volumes/articleshow/135218784.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Rupee & FX",
+          "Oil & gas",
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Wary of RBI, banks back off from forex deals",
+        "url": "https://economictimes.indiatimes.com/industry/banking/finance/banking/wary-of-rbi-banks-back-off-from-forex-deals/articleshow/135218946.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Banks & NBFC",
+          "Rupee & FX"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Amid supply chain issues, India's strategic mining in critical state",
+        "url": "https://economictimes.indiatimes.com/industry/indl-goods/svs/metals-mining/amid-supply-chain-issues-indias-strategic-mining-in-critical-state/articleshow/135218819.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Metals & mining"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Jakson Group plans to invest Rs 6.8k crore in Andhra Pradesh solar wafer &amp; cell plant",
+        "url": "https://economictimes.indiatimes.com/industry/renewables/jakson-group-plans-to-invest-rs-6-8k-crore-in-andhra-pradesh-solar-wafer-cell-plant/articleshow/135218325.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Power & renewables"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Gujarat gets 1.6 GW extra power from central stations amid high demand, Tamil Nadu and J&amp;K also get additional allocation",
+        "url": "https://economictimes.indiatimes.com/industry/energy/power/gujarat-gets-1-6-gw-extra-power-from-central-stations-amid-high-demand-tamil-nadu-and-jk-also-get-additional-allocation/articleshow/135218093.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Power & renewables"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Centre working on integrated tax framework for textile sector to ease duty burden on raw materials and machinery",
+        "url": "https://economictimes.indiatimes.com/industry/cons-products/garments-/-textiles/centre-works-on-integrated-tax-framework-for-textile-sector-to-ease-duty-burden-on-raw-materials-and-machinery/articleshow/135218027.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "RBI steps up liquidity support as tighter cash conditions push up borrowing rates: Report",
+        "url": "https://economictimes.indiatimes.com/news/economy/policy/rbi-steps-up-liquidity-support-as-tighter-cash-conditions-push-up-borrowing-rates-report/articleshow/135222948.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Cotton shortage set to worsen as new deals drive export demand",
+        "url": "https://economictimes.indiatimes.com/news/economy/agriculture/cotton-shortage-set-to-worsen-as-new-deals-drive-export-demand/articleshow/135218241.cms",
+        "source": "ET economy",
+        "sectors": [
+          "FMCG & agri",
+          "Textiles & exports"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "JSW Steel among 5 stocks showing the White Marubozu pattern",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/jsw-steel-among-5-stocks-showing-the-white-marubozu-pattern/slideshow/135223206.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Metals & mining"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "HDFC Bank Share Price Live Updates: HDFC Bank's Weekly Returns Dip",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hdfc-bank-ltd-stock-price-today-live-27-oct-2026/liveblog/135222980.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Banks & NBFC",
+          "FMCG & agri"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "SFC Environmental Technologies IPO opens today: GMP at 9%; check price band, lot size and key details",
+        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/sfc-environmental-technologies-ipo-opens-today-gmp-at-9-check-price-band-lot-size-and-key-details/articleshow/135222860.cms",
+        "source": "ET markets",
+        "sectors": [
+          "FMCG & agri",
+          "Capital markets"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Yen slips ahead of central bank bonanza, dollar firms on tech rebound",
+        "url": "https://economictimes.indiatimes.com/markets/forex/forex-news/yen-slips-ahead-of-central-bank-bonanza-dollar-firms-on-tech-rebound/articleshow/135222721.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Banks & NBFC",
+          "Rupee & FX"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Oil Price Today (October 27): Crude oil below $115 amid peace talk hopes but attacks continue. What are experts saying?",
+        "url": "https://economictimes.indiatimes.com/markets/commodities/news/oil-price-today-october-27-crude-oil-below-115-amid-peace-talk-hopes-but-attacks-continue-what-are-experts-saying/articleshow/135222687.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Oil & gas",
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Gold eases as stronger dollar weighs, Fed meeting in focus",
+        "url": "https://economictimes.indiatimes.com/markets/commodities/news/gold-eases-as-stronger-dollar-weighs-fed-meeting-in-focus/articleshow/135222653.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Rupee & FX",
+          "Macro"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Oil eases on Middle East diplomacy hopes, Saudi attacks keep supply worries alive",
+        "url": "https://economictimes.indiatimes.com/markets/commodities/news/oil-eases-on-middle-east-diplomacy-hopes-saudi-attacks-keep-supply-worries-alive/articleshow/135222639.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Oil & gas"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Mankind Pharma Q2 profit rises 38% to Rs 716 crore",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/earnings/mankind-pharma-q2-profit-rises-38-to-rs-716-crore/articleshow/135222585.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Pharma"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Tata consumer Q2 net profit up despite higher costs, weak tea demand",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/earnings/tata-consumer-q2-net-profit-up-despite-higher-costs-weak-tea-demand/articleshow/135222523.cms",
+        "source": "ET markets",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "NBFCs curb fresh loans in rural markets as weak monsoon raises repayment risks",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/nbfcs-curb-fresh-loans-in-rural-markets-as-weak-monsoon-raises-repayment-risks/articleshow/135222291.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Banks & NBFC",
+          "FMCG & agri"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Can SFC Environmental Technologies IPO deliver long-term growth for high-risk investors?",
+        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/can-sfc-environmental-technologies-ipo-deliver-long-term-growth-for-high-risk-investors/articleshow/135222205.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Capital markets"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Global Market Today: Wall Street gains lift Asian stocks as Fed decision looms",
+        "url": "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-today-wall-street-gains-lift-asian-stocks-as-fed-decision-looms/articleshow/135222218.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Rupee slips below to 95.18 against dollar on elevated oil prices",
+        "url": "https://economictimes.indiatimes.com/markets/forex/rupee-slips-below-to-95-18-against-dollar-on-elevated-oil-prices/articleshow/135222166.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Rupee & FX",
+          "Oil & gas",
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Jio IPO delivers smaller payday for bankers than other mega offerings",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/jio-ipo-brings-a-smaller-payday-for-bankers-than-other-large-offers/articleshow/135222126.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Banks & NBFC",
+          "Telecom",
+          "Capital markets"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Indian markets rebound, but rising oil prices keep investors cautious",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/d-st-makes-a-comeback-after-weeks-of-decline-yet-investors-remain-cautious-amid-ongoing-market-concerns/articleshow/135221724.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Oil & gas",
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Rising concentration in AI stocks poses a risk: Kunal Kapoor, Morningstar CEO",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/rising-concentration-in-ai-stocks-poses-a-risk-kunal-kapoor-morningstar-ceo/articleshow/135221935.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "US Markets Today: S&amp;P, Nasdaq end higher as Anthropic IPO filing revives AI optimism; Tesla hits 3 month high",
+        "url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-markets-today-us-stocks-end-higher-as-anthropic-ipo-filing-revives-ai-optimism-tesla-hits-3-month-high/articleshow/135219329.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Capital markets"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Anthropic halts AI training for over a month over security concerns as models breach testing systems ahead of IPO",
+        "url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-ipo-halts-ai-training-for-over-a-month-over-security-concerns-as-models-breach-testing-systems/articleshow/135218073.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Telecom",
+          "Capital markets"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "This week could help decide whether the Fed raises interest rates in December",
+        "url": "https://www.livemint.com/economy/this-week-could-help-decide-whether-the-fed-raises-interest-rates-in-december-11793062472223.html",
+        "source": "Mint economy",
+        "sectors": [
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Vande Bharat Sleeper trains to cut travel time on Mumbai-Bengaluru, Delhi-Varanasi routes: Check launch dates, timings, stops and more",
+        "url": "https://economictimes.indiatimes.com/industry/transportation/railways/vande-bharat-sleeper-trains-to-cut-travel-time-on-mumbai-bengaluru-delhi-varanasi-routes-check-launch-dates-timings-stops-and-more/articleshow/135217391.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Railways",
+          "Telecom"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "SBI opens cyber CoE, announces training for 1.8 lakh staff in cybersecurity",
+        "url": "https://economictimes.indiatimes.com/industry/banking/finance/banking/sbi-opens-cyber-coe-announces-training-for-1-8-lakh-staff-in-cybersecurity/articleshow/135216394.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Telecom"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Railway Board flags safety concerns, grants conditional approval to RCF-made Vande Bharat chair car",
+        "url": "https://economictimes.indiatimes.com/industry/transportation/railways/railway-board-flags-safety-concerns-grants-conditional-approval-to-rcf-made-vande-bharat-chair-car/articleshow/135215338.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Railways"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Nearly half of Indian two-wheeler buyers eye EVs: BCG report",
+        "url": "https://economictimes.indiatimes.com/industry/renewables/nearly-half-of-indian-two-wheeler-buyers-eye-evs-bcg-report/articleshow/135215170.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Banks & NBFC",
+          "Auto"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Kerten Hospitality aims to operate 5,000-7,000 keys in India over the next five years: CEO",
+        "url": "https://economictimes.indiatimes.com/industry/services/hotels-/-restaurants/kerten-hospitality-aims-to-operate-5000-7000-keys-in-india-over-the-next-five-years-ceo/articleshow/135214048.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Pharma"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "1st charter flight from Kazakhstan with 177 tourists arrives at Goa's Mopa airport",
+        "url": "https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/1st-charter-flight-from-kazakhstan-with-177-tourists-arrives-at-goas-mopa-airport/articleshow/135213723.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Aviation & travel"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Boost for green energy projects: Maharashtra govt waives 25 pc land transfer fee",
+        "url": "https://economictimes.indiatimes.com/industry/renewables/boost-for-green-energy-projects-maharashtra-govt-waives-25-pc-land-transfer-fee/articleshow/135213400.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Power & renewables"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Power to empower must include the power to stay well",
+        "url": "https://economictimes.indiatimes.com/industry/healthcare/biotech/healthcare/power-to-empower-must-include-the-power-to-stay-well/articleshow/135212047.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Power & renewables"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Raymond Realty raises Rs 210 cr from ICICI Prudential Real Estate Development Fund",
+        "url": "https://economictimes.indiatimes.com/industry/services/property-/-cstruction/raymond-realty-raises-rs-210-cr-from-icici-prudential-real-estate-development-fund/articleshow/135212087.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Realty"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Mankind Pharma shares key business developments from Q2 &amp; H1 of FY27",
+        "url": "https://economictimes.indiatimes.com/industry/healthcare/biotech/pharmaceuticals/mankind-pharma-shares-key-business-developments-from-q2-h1-of-fy27/articleshow/135211681.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Pharma"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Rail passengers opting for 45-paise travel insurance at counters must pay digitally from Oct 27",
+        "url": "https://economictimes.indiatimes.com/industry/transportation/railways/rail-passengers-opting-for-45-paise-travel-insurance-at-counters-must-pay-digitally-from-oct-27/articleshow/135210810.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Railways",
+          "Insurance"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Mumbai, Marketplace, Moscow: Three 'M's for Russian exports to India",
+        "url": "https://economictimes.indiatimes.com/industry/services/retail/mumbai-marketplace-moscow-three-ms-for-russian-exports-to-india/articleshow/135210953.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "'National interest, safety' outweigh disclosure: CIC upholds denial of Ashok Hotel structural report",
+        "url": "https://economictimes.indiatimes.com/industry/services/hotels-/-restaurants/national-interest-safety-outweigh-disclosure-cic-upholds-denial-of-ashok-hotel-structural-report/articleshow/135210070.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Banks & NBFC",
+          "Aviation & travel"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Life beyond a metro: India's festive shoppers boost Myntra's orders by nearly 2X in key categories",
+        "url": "https://economictimes.indiatimes.com/industry/services/retail/myntras-big-fashion-festival-nearly-doubles-orders-as-festive-demand-spreads-beyond-metros/articleshow/135208429.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Railways"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "India Jewellery Park in Navi Mumbai to generate 1 lakh jobs: Maharashtra CM Fadnavis",
+        "url": "https://economictimes.indiatimes.com/industry/cons-products/fashion-/-cosmetics-/-jewellery/india-jewellery-park-in-navi-mumbai-to-generate-1-lakh-jobs-maharashtra-cm-fadnavis/articleshow/135208361.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "TRAI recommends light-touch regulatory framework for internet-based TV services",
+        "url": "https://economictimes.indiatimes.com/industry/telecom/telecom-news/trai-recommends-light-touch-regulatory-framework-for-internet-based-tv-services/articleshow/135208239.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Telecom"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "India's textile industry targets $350 billion by 2030 as exports rebound, costs rise: Report",
+        "url": "https://economictimes.indiatimes.com/industry/cons-products/garments-/-textiles/indias-textile-industry-targets-350-billion-by-2030-as-exports-rebound-costs-rise-report/articleshow/135207872.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Banks & NBFC",
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Tata Communications to plug Rs 4,350 crore in AI super highway",
+        "url": "https://economictimes.indiatimes.com/industry/telecom/telecom-news/tata-communications-to-build-ai-super-highway-with-rs-4350-crore-investment-data-centre/articleshow/135207029.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Cement & infra"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Govt amends motor vehicle rules to allow E100 fuel for flex-fuel vehicles, clarifies E20 vehicles unaffected",
+        "url": "https://economictimes.indiatimes.com/industry/renewables/govt-amends-motor-vehicle-rules-to-allow-e100-fuel-for-flex-fuel-vehicles/articleshow/135206748.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Auto"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "India appears better stocked for West Asia crisis, but oil shock threatens",
+        "url": "https://economictimes.indiatimes.com/industry/energy/oil-gas/india-appear-better-stocked-for-west-asia-crisis-but-oil-shock-threatens/articleshow/135206475.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Oil & gas"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "India and US fine-tune trade pact after concluding most talks, says the commerce minister",
+        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/india-and-us-fine-tune-trade-pact-after-concluding-most-talks-says-piyush-goyal/articleshow/135218011.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "FTA with India will be a game changer in supply chain management: EU ambassador to India",
+        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/fta-with-india-will-be-a-game-changer-in-supply-chain-management-eu-ambassador-to-india/articleshow/135217927.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "ISMA says 107 sugar mills begin crushing operations so far, enough stock to meet domestic demand",
+        "url": "https://economictimes.indiatimes.com/news/economy/agriculture/isma-says-107-sugar-mills-begin-crushing-operations-so-far-enough-stock-to-meet-domestic-demand/articleshow/135214445.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Sugar & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "CBDT receives around 1,100 applications under foreign assets disclosure scheme",
+        "url": "https://economictimes.indiatimes.com/news/economy/policy/cbdt-receives-around-1100-applications-under-foreign-assets-disclosure-scheme/articleshow/135214097.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Electronics & PLI"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "India-US trade deal enters fine-tuning stage as most talks conclude, says the commerce minister",
+        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/india-us-trade-deal-enters-fine-tuning-stage-as-most-talks-conclude-says-piyush-goyal/articleshow/135211604.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Exporters get six more months of risk cover amid West Asia turmoil",
+        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/exporters-get-six-more-months-of-risk-cover-amid-west-asia-turmoil/articleshow/135211390.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Oil & gas",
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "the finance minister reaffirms govt's fiscal discipline push, puts public debt target at 50% of GDP by 2030",
+        "url": "https://economictimes.indiatimes.com/news/economy/policy/nirmala-sitharaman-reaffirms-govts-fiscal-discipline-push-puts-public-debt-target-at-50-of-gdp-by-2030/articleshow/135209048.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Electronics & PLI",
+          "Insurance",
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "India expected to extend duty-free cotton imports through December, sources say",
+        "url": "https://economictimes.indiatimes.com/news/economy/agriculture/india-expected-to-extend-duty-free-cotton-imports-through-december-sources-say/articleshow/135208493.cms",
+        "source": "ET economy",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Ind AS 118: India Inc gears up for big changes to financial reporting",
+        "url": "https://economictimes.indiatimes.com/news/economy/finance/india-inc-braces-for-financial-reporting-overhaul-with-ind-as-118-key-changes-and-impacts/articleshow/135197446.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Sunteck Realty H1FY27 net profit rises 20%, pre-sales up 19%",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/earnings/sunteck-realty-h1fy27-net-profit-rises-20-pre-sales-up-19/articleshow/135217893.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Realty"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Tamilnad Mercantile Bank Q2 Results: Net profit rises 42% to record Rs 451 crore on high net interest income",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/earnings/tamilnad-mercantile-bank-q2-results-net-profit-rises-42-to-record-rs-451-crore-on-high-net-interest-income/articleshow/135214844.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Indian Overseas Bank to raise $500 million as Q2 profit jumps 56%",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/indian-overseas-bank-to-raise-500-million-as-q2-profit-jumps-56/articleshow/135214567.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "MMT reports net profit of $1.8 million in Q2, revenues at $ 235.2 million",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/earnings/mmt-reports-net-profit-of-1-8-million-in-q2-revenues-at-235-2-million/articleshow/135214497.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Bank of Maharashtra Q2 profit jumps 41.5% as bad loans decline",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/earnings/bank-of-maharashtra-q2-profit-jumps-41-5-as-bad-loans-decline/articleshow/135214440.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Anthropic IPO: 5 jaw-dropping numbers investors need to know about $1.5 trillion public offer",
+        "url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-ipo-5-jaw-dropping-numbers-investors-need-to-know-about-1-5-trillion-public-offer/articleshow/135214380.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Capital markets",
+          "Insurance"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Anthropic IPO puts AI spending under the spotlight as losses mount",
+        "url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-ipo-rising-costs-risks-rapid-growth-market-ai-frontrunner/articleshow/135213738.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Capital markets"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Anthropic's filing for blockbuster US IPO shows key executives and board",
+        "url": "https://economictimes.indiatimes.com/markets/us-stocks/news/anthropics-filing-for-blockbuster-us-ipo-shows-key-executives-and-board/articleshow/135213686.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Capital markets"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "US stocks today: US stocks rise as Anthropic IPO puts AI spending under scrutiny",
+        "url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/us-stocks-today-us-stocks-open-higher-as-anthropics-ipo-filing-sharpens-ai-focus/articleshow/135213224.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Capital markets"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Anthropic files for US IPO amid AI boom, rising costs and safety concerns",
+        "url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/anthropic-opens-books-on-ais-explosive-growth-and-staggering-costs/articleshow/135212999.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Capital markets"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Cyclone Arnab: Affected people in AP can report emergencies via Mana Mitra WhatsApp service",
+        "url": "https://www.thehindubusinessline.com/news/national/cyclone-arnab-affected-people-in-ap-can-report-emergencies-via-mana-mitra-whatsapp-service/article71627821.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "LANXESS, Hindustan Colas join hands for latest road construction technologies",
+        "url": "https://www.thehindubusinessline.com/economy/logistics/lanxess-hindustan-colas-join-hands-for-latest-road-construction-technologies/article71627517.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Cement & infra"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Govt extends RELIEF scheme for exporters till March 2027 amid West Asia crisis",
+        "url": "https://www.thehindubusinessline.com/economy/govt-extends-relief-scheme-for-exporters-till-march-2027-amid-west-asia-crisis/article71627910.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Textiles & exports"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Almost half of domestic coal-based power plants have critical stocks",
+        "url": "https://www.thehindubusinessline.com/markets/commodities/almost-half-of-domestic-coal-based-power-plants-have-critical-stocks/article71627830.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Power & renewables"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Pratt & Whitney signs over $40 million in supply agreements with Indian firms",
+        "url": "https://www.thehindubusinessline.com/economy/logistics/pratt-whitney-signs-over-40-million-in-supply-agreements-with-indian-firms/article71627491.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Telecom"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Imported coal costs jump 50% for Adani Power; tariff recovery to take over 6 months",
+        "url": "https://www.thehindubusinessline.com/economy/imported-coal-costs-jump-50-for-adani-power-tariff-recovery-to-take-over-6-months/article71626139.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Power & renewables",
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "India-US trade deal: Most discussions concluded, agreement being fine-tuned",
+        "url": "https://www.thehindubusinessline.com/economy/india-us-trade-deal-most-discussions-concluded-agreement-being-fine-tuned/article71626904.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Telecom",
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Indian Railways extends optional travel insurance to counter-ticket buyers, mandates digital payment",
+        "url": "https://www.thehindubusinessline.com/economy/logistics/indian-railways-extends-optional-travel-insurance-to-counter-ticket-buyers-mandates-digital-payment/article71626740.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Railways",
+          "Insurance"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "CMFRI supplies 5 lakh green mussel seeds to coastal fisher-folk in Maharashtra",
+        "url": "https://www.thehindubusinessline.com/economy/agri-business/cmfri-supply-5-lakh-green-mussel-seeds-to-coastal-fisher-folk-in-maharashtra/article71619358.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Electronics & PLI"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "India permits E100 ethanol fuel for compatible flex-fuel vehicles",
+        "url": "https://www.thehindubusinessline.com/economy/policy/india-permits-e100-ethanol-fuel-for-compatible-flex-fuel-vehicles/article71626846.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Auto",
+          "Sugar & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Government extends RELIEF scheme for exporters by six months to March 2027",
+        "url": "https://www.thehindubusinessline.com/economy/policy/government-extends-relief-scheme-for-exporters-by-six-months-to-march-2027/article71626766.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Textiles & exports"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "DP World launches double-stack rail services linking JNPA with NCR and Ahmedabad",
+        "url": "https://www.thehindubusinessline.com/economy/logistics/dp-world-launches-double-stack-rail-services-linking-jnpa-with-ncr-and-ahmedabad/article71626572.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Banks & NBFC",
+          "Railways"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Gujarat declares four districts drought-hit, announces crop-loss aid for farmers",
+        "url": "https://www.thehindubusinessline.com/economy/agri-business/gujarat-declares-4-districts-drought-hit-announces-farm-relief/article71626275.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      }
+    ]
+  },
+  "rbi_releases": {
+    "fetched": "2026-10-27",
+    "press": [
+      {
+        "date": "2026-10-26",
+        "title": "Auction of Government of India Dated Securities",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63868"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Overseas Direct Investment for September 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63867"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Money Market Operations as on October 25, 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63866"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Money Market Operations as on October 24, 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63865"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Result of the 4-day Variable Rate Repo (VRR) auction held on October 26, 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63864"
+      },
+      {
+        "date": "2026-10-26",
+        "title": "Money Market Operations as on October 23, 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63863"
+      },
+      {
+        "date": "2026-10-23",
+        "title": "RBI to conduct 4-day Variable Rate Repo (VRR) auction under LAF on October 26, 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63861"
+      },
+      {
+        "date": "2026-10-23",
+        "title": "Auction of State Government Securities",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63860"
+      }
+    ],
+    "notifications": [
+      {
+        "date": "2026-10-23",
+        "title": "Delegation of Compounding of certain Contraventions under FEMA, 1999 to Regional Offices of the Reserve Bank",
+        "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13745&Mode=0"
+      },
+      {
+        "date": "2026-10-19",
+        "title": "Reserve Bank of India (Small Finance Banks - Miscellaneous) Amendment Directions, 2026",
+        "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13741&Mode=0"
+      },
+      {
+        "date": "2026-10-19",
+        "title": "Reserve Bank of India (Commercial Banks - Miscellaneous) Second Amendment Directions, 2026",
+        "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13740&Mode=0"
+      },
+      {
+        "date": "2026-10-12",
+        "title": "Risk Management and Inter-Bank Dealings",
+        "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13739&Mode=0"
+      },
+      {
+        "date": "2026-10-10",
+        "title": "Risk Management and Inter-Bank Dealings - Foreign Exchange Risk Reserve",
+        "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13738&Mode=0"
+      },
+      {
+        "date": "2026-10-10",
+        "title": "Risk Management and Inter-Bank Dealings",
+        "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13737&Mode=0"
+      },
+      {
+        "date": "2026-10-09",
+        "title": "Section 42(1) of the Reserve Bank of India Act, 1934 - Change in Daily Minimum Cash Reserve Maintenance Requirement",
+        "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13736&Mode=0"
+      }
+    ]
+  },
+  "index_members": {
+    "fetched": "2026-10-27",
+    "NIFTY50": [
+      {
+        "symbol": "ADANIENT",
+        "company": "Adani Enterprises Ltd.",
+        "industry": "Metals & Mining"
+      },
+      {
+        "symbol": "ADANIPORTS",
+        "company": "Adani Ports and Special Economic Zone Ltd.",
+        "industry": "Services"
+      },
+      {
+        "symbol": "APOLLOHOSP",
+        "company": "Apollo Hospitals Enterprise Ltd.",
+        "industry": "Healthcare"
+      },
+      {
+        "symbol": "ASIANPAINT",
+        "company": "Asian Paints Ltd.",
+        "industry": "Consumer Durables"
+      },
+      {
+        "symbol": "AXISBANK",
+        "company": "Axis Bank Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "BSE",
+        "company": "BSE Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "BAJAJ-AUTO",
+        "company": "Bajaj Auto Ltd.",
+        "industry": "Automobile and Auto Components"
+      },
+      {
+        "symbol": "BAJFINANCE",
+        "company": "Bajaj Finance Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "company": "Bajaj Finserv Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "BEL",
+        "company": "Bharat Electronics Ltd.",
+        "industry": "Capital Goods"
+      },
+      {
+        "symbol": "BHARTIARTL",
+        "company": "Bharti Airtel Ltd.",
+        "industry": "Telecommunication"
+      },
+      {
+        "symbol": "CIPLA",
+        "company": "Cipla Ltd.",
+        "industry": "Healthcare"
+      },
+      {
+        "symbol": "COALINDIA",
+        "company": "Coal India Ltd.",
+        "industry": "Oil Gas & Consumable Fuels"
+      },
+      {
+        "symbol": "DRREDDY",
+        "company": "Dr. Reddy's Laboratories Ltd.",
+        "industry": "Healthcare"
+      },
+      {
+        "symbol": "EICHERMOT",
+        "company": "Eicher Motors Ltd.",
+        "industry": "Automobile and Auto Components"
+      },
+      {
+        "symbol": "ETERNAL",
+        "company": "Eternal Ltd.",
+        "industry": "Consumer Services"
+      },
+      {
+        "symbol": "GRASIM",
+        "company": "Grasim Industries Ltd.",
+        "industry": "Construction Materials"
+      },
+      {
+        "symbol": "HCLTECH",
+        "company": "HCL Technologies Ltd.",
+        "industry": "Information Technology"
+      },
+      {
+        "symbol": "HDFCBANK",
+        "company": "HDFC Bank Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "HDFCLIFE",
+        "company": "HDFC Life Insurance Company Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "HINDALCO",
+        "company": "Hindalco Industries Ltd.",
+        "industry": "Metals & Mining"
+      },
+      {
+        "symbol": "HINDUNILVR",
+        "company": "Hindustan Unilever Ltd.",
+        "industry": "Fast Moving Consumer Goods"
+      },
+      {
+        "symbol": "ICICIBANK",
+        "company": "ICICI Bank Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "ITC",
+        "company": "ITC Ltd.",
+        "industry": "Fast Moving Consumer Goods"
+      },
+      {
+        "symbol": "INFY",
+        "company": "Infosys Ltd.",
+        "industry": "Information Technology"
+      },
+      {
+        "symbol": "INDIGO",
+        "company": "InterGlobe Aviation Ltd.",
+        "industry": "Services"
+      },
+      {
+        "symbol": "JSWSTEEL",
+        "company": "JSW Steel Ltd.",
+        "industry": "Metals & Mining"
+      },
+      {
+        "symbol": "JIOFIN",
+        "company": "Jio Financial Services Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "KOTAKBANK",
+        "company": "Kotak Mahindra Bank Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "LT",
+        "company": "Larsen & Toubro Ltd.",
+        "industry": "Construction"
+      },
+      {
+        "symbol": "M&M",
+        "company": "Mahindra & Mahindra Ltd.",
+        "industry": "Automobile and Auto Components"
+      },
+      {
+        "symbol": "MARUTI",
+        "company": "Maruti Suzuki India Ltd.",
+        "industry": "Automobile and Auto Components"
+      },
+      {
+        "symbol": "MAXHEALTH",
+        "company": "Max Healthcare Institute Ltd.",
+        "industry": "Healthcare"
+      },
+      {
+        "symbol": "NTPC",
+        "company": "NTPC Ltd.",
+        "industry": "Power"
+      },
+      {
+        "symbol": "NESTLEIND",
+        "company": "Nestle India Ltd.",
+        "industry": "Fast Moving Consumer Goods"
+      },
+      {
+        "symbol": "ONGC",
+        "company": "Oil & Natural Gas Corporation Ltd.",
+        "industry": "Oil Gas & Consumable Fuels"
+      },
+      {
+        "symbol": "POWERGRID",
+        "company": "Power Grid Corporation of India Ltd.",
+        "industry": "Power"
+      },
+      {
+        "symbol": "RELIANCE",
+        "company": "Reliance Industries Ltd.",
+        "industry": "Oil Gas & Consumable Fuels"
+      },
+      {
+        "symbol": "SBILIFE",
+        "company": "SBI Life Insurance Company Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "SHRIRAMFIN",
+        "company": "Shriram Finance Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "SBIN",
+        "company": "State Bank of India",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "company": "Sun Pharmaceutical Industries Ltd.",
+        "industry": "Healthcare"
+      },
+      {
+        "symbol": "TCS",
+        "company": "Tata Consultancy Services Ltd.",
+        "industry": "Information Technology"
+      },
+      {
+        "symbol": "TATACONSUM",
+        "company": "Tata Consumer Products Ltd.",
+        "industry": "Fast Moving Consumer Goods"
+      },
+      {
+        "symbol": "TMPV",
+        "company": "Tata Motors Passenger Vehicles Ltd.",
+        "industry": "Automobile and Auto Components"
+      },
+      {
+        "symbol": "TATASTEEL",
+        "company": "Tata Steel Ltd.",
+        "industry": "Metals & Mining"
+      },
+      {
+        "symbol": "TECHM",
+        "company": "Tech Mahindra Ltd.",
+        "industry": "Information Technology"
+      },
+      {
+        "symbol": "TITAN",
+        "company": "Titan Company Ltd.",
+        "industry": "Consumer Durables"
+      },
+      {
+        "symbol": "TRENT",
+        "company": "Trent Ltd.",
+        "industry": "Consumer Services"
+      },
+      {
+        "symbol": "ULTRACEMCO",
+        "company": "UltraTech Cement Ltd.",
+        "industry": "Construction Materials"
+      }
+    ],
+    "NIFTYNEXT50": [
+      {
+        "symbol": "ABB",
+        "company": "ABB India Ltd.",
+        "industry": "Capital Goods"
+      },
+      {
+        "symbol": "ADANIENSOL",
+        "company": "Adani Energy Solutions Ltd.",
+        "industry": "Power"
+      },
+      {
+        "symbol": "ADANIGREEN",
+        "company": "Adani Green Energy Ltd.",
+        "industry": "Power"
+      },
+      {
+        "symbol": "ADANIPOWER",
+        "company": "Adani Power Ltd.",
+        "industry": "Power"
+      },
+      {
+        "symbol": "AMBUJACEM",
+        "company": "Ambuja Cements Ltd.",
+        "industry": "Construction Materials"
+      },
+      {
+        "symbol": "DMART",
+        "company": "Avenue Supermarts Ltd.",
+        "industry": "Consumer Services"
+      },
+      {
+        "symbol": "BAJAJHLDNG",
+        "company": "Bajaj Holdings & Investment Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "BANKBARODA",
+        "company": "Bank of Baroda",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "BPCL",
+        "company": "Bharat Petroleum Corporation Ltd.",
+        "industry": "Oil Gas & Consumable Fuels"
+      },
+      {
+        "symbol": "BOSCHLTD",
+        "company": "Bosch Ltd.",
+        "industry": "Automobile and Auto Components"
+      },
+      {
+        "symbol": "BRITANNIA",
+        "company": "Britannia Industries Ltd.",
+        "industry": "Fast Moving Consumer Goods"
+      },
+      {
+        "symbol": "CGPOWER",
+        "company": "CG Power and Industrial Solutions Ltd.",
+        "industry": "Capital Goods"
+      },
+      {
+        "symbol": "CANBK",
+        "company": "Canara Bank",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "CHOLAFIN",
+        "company": "Cholamandalam Investment and Finance Company Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "CUMMINSIND",
+        "company": "Cummins India Ltd.",
+        "industry": "Capital Goods"
+      },
+      {
+        "symbol": "DLF",
+        "company": "DLF Ltd.",
+        "industry": "Realty"
+      },
+      {
+        "symbol": "DIVISLAB",
+        "company": "Divi's Laboratories Ltd.",
+        "industry": "Healthcare"
+      },
+      {
+        "symbol": "GAIL",
+        "company": "GAIL (India) Ltd.",
+        "industry": "Oil Gas & Consumable Fuels"
+      },
+      {
+        "symbol": "GODREJCP",
+        "company": "Godrej Consumer Products Ltd.",
+        "industry": "Fast Moving Consumer Goods"
+      },
+      {
+        "symbol": "HDFCAMC",
+        "company": "HDFC Asset Management Company Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "HAL",
+        "company": "Hindustan Aeronautics Ltd.",
+        "industry": "Capital Goods"
+      },
+      {
+        "symbol": "HINDZINC",
+        "company": "Hindustan Zinc Ltd.",
+        "industry": "Metals & Mining"
+      },
+      {
+        "symbol": "POWERINDIA",
+        "company": "Hitachi Energy India Ltd.",
+        "industry": "Capital Goods"
+      },
+      {
+        "symbol": "HYUNDAI",
+        "company": "Hyundai Motor India Ltd.",
+        "industry": "Automobile and Auto Components"
+      },
+      {
+        "symbol": "IOC",
+        "company": "Indian Oil Corporation Ltd.",
+        "industry": "Oil Gas & Consumable Fuels"
+      },
+      {
+        "symbol": "IRFC",
+        "company": "Indian Railway Finance Corporation Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "JINDALSTEL",
+        "company": "Jindal Steel Ltd.",
+        "industry": "Metals & Mining"
+      },
+      {
+        "symbol": "LTM",
+        "company": "LTM Ltd.",
+        "industry": "Information Technology"
+      },
+      {
+        "symbol": "MAZDOCK",
+        "company": "Mazagoan Dock Shipbuilders Ltd.",
+        "industry": "Capital Goods"
+      },
+      {
+        "symbol": "MUTHOOTFIN",
+        "company": "Muthoot Finance Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "PIDILITIND",
+        "company": "Pidilite Industries Ltd.",
+        "industry": "Chemicals"
+      },
+      {
+        "symbol": "POLYCAB",
+        "company": "Polycab India Ltd.",
+        "industry": "Capital Goods"
+      },
+      {
+        "symbol": "PFC",
+        "company": "Power Finance Corporation Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "PNB",
+        "company": "Punjab National Bank",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "MOTHERSON",
+        "company": "Samvardhana Motherson International Ltd.",
+        "industry": "Automobile and Auto Components"
+      },
+      {
+        "symbol": "ENRIN",
+        "company": "Siemens Energy India Ltd.",
+        "industry": "Capital Goods"
+      },
+      {
+        "symbol": "SIEMENS",
+        "company": "Siemens Ltd.",
+        "industry": "Capital Goods"
+      },
+      {
+        "symbol": "SOLARINDS",
+        "company": "Solar Industries India Ltd.",
+        "industry": "Chemicals"
+      },
+      {
+        "symbol": "TVSMOTOR",
+        "company": "TVS Motor Company Ltd.",
+        "industry": "Automobile and Auto Components"
+      },
+      {
+        "symbol": "TATACAP",
+        "company": "Tata Capital Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "TMCV",
+        "company": "Tata Motors Ltd.",
+        "industry": "Capital Goods"
+      },
+      {
+        "symbol": "TATAPOWER",
+        "company": "Tata Power Co. Ltd.",
+        "industry": "Power"
+      },
+      {
+        "symbol": "TORNTPHARM",
+        "company": "Torrent Pharmaceuticals Ltd.",
+        "industry": "Healthcare"
+      },
+      {
+        "symbol": "UNIONBANK",
+        "company": "Union Bank of India",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "VBL",
+        "company": "Varun Beverages Ltd.",
+        "industry": "Fast Moving Consumer Goods"
+      },
+      {
+        "symbol": "VAML",
+        "company": "Vedanta Aluminium Metal Ltd.",
+        "industry": "Metals & Mining"
+      },
+      {
+        "symbol": "VEDL",
+        "company": "Vedanta Ltd.",
+        "industry": "Metals & Mining"
+      },
+      {
+        "symbol": "IDEA",
+        "company": "Vodafone Idea Ltd.",
+        "industry": "Telecommunication"
+      },
+      {
+        "symbol": "WIPRO",
+        "company": "Wipro Ltd.",
+        "industry": "Information Technology"
+      },
+      {
+        "symbol": "ZYDUSLIFE",
+        "company": "Zydus Lifesciences Ltd.",
+        "industry": "Healthcare"
+      }
+    ],
+    "BANK": [
+      {
+        "symbol": "AUBANK",
+        "company": "AU Small Finance Bank Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "AXISBANK",
+        "company": "Axis Bank Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "BANKBARODA",
+        "company": "Bank of Baroda",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "CANBK",
+        "company": "Canara Bank",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "FEDERALBNK",
+        "company": "Federal Bank Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "HDFCBANK",
+        "company": "HDFC Bank Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "ICICIBANK",
+        "company": "ICICI Bank Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "IDFCFIRSTB",
+        "company": "IDFC First Bank Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "INDUSINDBK",
+        "company": "IndusInd Bank Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "KOTAKBANK",
+        "company": "Kotak Mahindra Bank Ltd.",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "PNB",
+        "company": "Punjab National Bank",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "SBIN",
+        "company": "State Bank of India",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "UNIONBANK",
+        "company": "Union Bank of India",
+        "industry": "Financial Services"
+      },
+      {
+        "symbol": "YESBANK",
+        "company": "Yes Bank Ltd.",
+        "industry": "Financial Services"
+      }
+    ]
   }
 }
