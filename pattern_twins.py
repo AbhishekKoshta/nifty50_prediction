@@ -32,7 +32,7 @@ CANDLE_F = ["body", "uw", "lw", "rng_atr", "ret_atr", "gap_atr"]
 TREND_F = ["d_fast", "d_slow", "d_long", "slope_fast", "slope_slow", "rsi", "pos20", "dd_hi", "roc5", "roc20"]
 UP, DN = "#26a69a", "#ef5350"
 MATCH_C, NEXT_C = "#3d5a80", "#e07a1f"
-RANGE_BAND, LEVEL, INK = "#f2f3f5", "#9c7a3c", "#2b2d42"
+RANGE_BAND, LEVEL, INK = "#f8f9fa", "#9c7a3c", "#2b2d42"
 
 
 # ----------------------------------------------------------------------------- data
@@ -260,21 +260,11 @@ def _panel(ax, bars, title, hi, lo, days, fmt, step, next_open, band_labels=True
         ax.vlines(i, r.low, r.high, color=c, lw=0.6 if n > 300 else 1.1, zorder=2)
         ax.add_patch(Rectangle((i - width / 2, min(r.open, r.close)), width, max(abs(r.close - r.open), 1e-9),
                                color=c, lw=0, zorder=3))
-    for y, lab in [(hi, f"Match HIGH {hi:,.1f}"), (lo, f"Match LOW {lo:,.1f}")]:
+    # levels only — every text annotation lives in the bold header line at the top of the figure (user rule 2026-10-28)
+    for y in (hi, lo):
         ax.hlines(y, -1, n - 0.5, color=LEVEL, ls=(0, (5, 3)), lw=1.3, zorder=4)
-        ax.text(n - 0.5, y, f"  {lab}", va="center", fontsize=9.5, color=LEVEL, fontweight="bold")
-    if days[0] in first:
-        x0 = first[days[0]] - 0.5
-        ax.annotate("", xy=(x0, hi), xytext=(x0, lo), arrowprops=dict(arrowstyle="<->", color=LEVEL, lw=1.5))
-        ax.text(x0, (hi + lo) / 2, f" Match range {hi - lo:,.0f} pt ", fontsize=10, color=INK, va="center",
-                ha="right" if x0 > n / 2 else "left", fontweight="bold",
-                bbox=dict(boxstyle="round,pad=0.35", fc="white", ec=LEVEL, lw=0.8), zorder=6)
     if days[1] in first:
-        xo = first[days[1]]
-        ax.plot(xo - 0.6, next_open[0], marker=">", color=NEXT_C, ms=9, zorder=6)
-        ax.text(xo + 0.015 * n, 0.04, f"Open {next_open[0]:,.0f}  (gap {next_open[1]:+.0f})", transform=tr,
-                fontsize=9, color=NEXT_C, fontweight="bold", zorder=6,
-                bbox=dict(boxstyle="round,pad=0.3", fc="white", ec=NEXT_C, lw=0.8))
+        ax.plot(first[days[1]] - 0.6, next_open[0], marker=">", color=NEXT_C, ms=9, zorder=6)
     ticks = list(range(0, n, step))
     ax.set_xticks(ticks)
     ax.set_xticklabels([bars.index[i].strftime(fmt) for i in ticks], fontsize=8, color="#555")
@@ -283,7 +273,7 @@ def _panel(ax, bars, title, hi, lo, days, fmt, step, next_open, band_labels=True
         ax.spines[sp].set_visible(False)
     for sp in ("left", "bottom"):
         ax.spines[sp].set_color("#bbb")
-    ax.set_xlim(-1, n + n * 0.13)
+    ax.set_xlim(-1, n + 0.5)
     lo_y, hi_y = min(bars["low"].min(), lo), max(bars["high"].max(), hi)
     pad = 0.05 * (hi_y - lo_y)
     ax.set_ylim(lo_y - pad, hi_y + pad)
@@ -319,11 +309,14 @@ def match_figure(d: pd.DataFrame, t: pd.Timestamp, anchor: pd.Timestamp):
     where = "INSIDE" if lo <= o <= hi else ("ABOVE" if o > hi else "BELOW")
     broke = [s for s, ok in [(f"high +{nd['high'].max() - hi:.0f}", nd["high"].max() > hi),
                              (f"low −{lo - nd['low'].min():.0f}", nd["low"].min() < lo)] if ok]
-    fig.suptitle(f"NIFTY — twin of {anchor:%a %d %b %Y}:  {t:%a %d %b %Y} (match day)  →  {nxt:%a %d %b %Y} (next day)\n"
-                 f"Match candle H {hi:,.1f} / L {lo:,.1f} / C {pc:,.1f}, range {hi - lo:,.0f} pt.   Next day: open {o:,.1f} "
-                 f"(gap {o - pc:+.0f}, {where} the match range), high {nd['high'].max():,.1f}, low {nd['low'].min():,.1f}, "
-                 f"close {c:,.1f} ({c - pc:+.0f}); broke match {', '.join(broke) if broke else 'neither side'}",
-                 fontsize=13, y=0.955, color=INK)
+    fig.text(0.5, 0.975, f"NIFTY — twin of {anchor:%a %d %b %Y}:  {t:%a %d %b %Y} (match day)  →  {nxt:%a %d %b %Y} (next day)",
+             ha="center", va="center", fontsize=13, color=INK)
+    fig.text(0.5, 0.958, f"Match High {hi:,.1f}     ·     Match Low {lo:,.1f}     ·     Match range {hi - lo:,.0f} pt     ·     "
+             f"Open gap {o - pc:+.0f}  (open {o:,.1f}, {where.lower()} the range)",
+             ha="center", va="center", fontsize=13.5, fontweight="bold", color=INK)
+    fig.text(0.5, 0.943, f"Next day: high {nd['high'].max():,.1f}, low {nd['low'].min():,.1f}, close {c:,.1f} ({c - pc:+.0f}); "
+             f"broke match {', '.join(broke) if broke else 'neither side'}   |   match close {pc:,.1f}",
+             ha="center", va="center", fontsize=11, color="#555")
     return fig
 
 
