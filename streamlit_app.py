@@ -436,16 +436,23 @@ try:
 except Exception:  # noqa: BLE001
     _mac_data = None
 
-_tab_book, _tab_aft, _tab_twins, _tab_macro, _tab_fake_bo, _tab_dash, _tab_move = st.tabs(
-    ["🎯 Strategy Book", "🕛 Afternoon Move", "🔁 Pattern Twins", "🌍 Macro & Events", "🪤 Fake Breakout Watch",
-     "📊 Probability Dashboard", "🔮 Next-Day Move Model"])
+_tab_book, _tab_aft, _tab_twins, _tab_twins2, _tab_macro, _tab_fake_bo, _tab_dash, _tab_move = st.tabs(
+    ["🎯 Strategy Book", "🕛 Afternoon Move", "🔁 Pattern Twins", "🔁 Twins · 2 candles", "🌍 Macro & Events",
+     "🪤 Fake Breakout Watch", "📊 Probability Dashboard", "🔮 Next-Day Move Model"])
 
-with _tab_twins:   # 75_PatternTwins — similar past days (daily+weekly candle & trend) + 1m..1d charts; own Upstox fetch
+with _tab_twins:   # Observe_Pattern/NIFTY_PatternTwins — similar past days (daily+weekly candle & trend) + 1m..1d charts; own Upstox fetch
     try:
         from pattern_twins import render_pattern_twins
         render_pattern_twins()
     except Exception as _pt_err:  # noqa: BLE001
         st.error(f"Pattern Twins tab unavailable: {_pt_err}")
+
+with _tab_twins2:   # same research, two-candle gate (day + day before + their overlay); reuses pattern_twins loaders
+    try:
+        from pattern_twins2 import render_pattern_twins2
+        render_pattern_twins2()
+    except Exception as _pt2_err:  # noqa: BLE001
+        st.error(f"Twins · 2 candles tab unavailable: {_pt2_err}")
 
 with _tab_aft:   # 68_AfternoonMove checklist + 67 expiry options checklist — self-contained (own Upstox fetch)
     try:

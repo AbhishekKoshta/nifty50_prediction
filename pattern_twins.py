@@ -2,7 +2,7 @@
 
 Pick any day; find the past days (2022 onward, so 1-min charts exist) whose DAILY and WEEKLY candle + trend look
 like it, and chart each match day + the session after it on 1m / 5m / 15m / 1h / 1d.
-Research copy: `Algo_Nifty50/strategies/75_PatternTwins/twins.py` (+ `latest_match_chart.py`) — keep the rules identical.
+Research copy: `~/Trading/Observe_Pattern/NIFTY_PatternTwins/twins.py` (+ `latest_match_chart.py`) — keep the rules identical.
 
 Similarity
   * Candle gate (hard): on the anchor bar, body %, upper-wick % and lower-wick % of the range each within ±tol of the
@@ -350,7 +350,7 @@ def render_pattern_twins():
     st.subheader("🔁 Pattern Twins — past days that looked like this one")
     st.caption("Pick a day. Finds 2022+ days whose daily and weekly candle (body / wick % within a tolerance, same "
                "colour) and trend (vs 20/50/200-DMA and 10/20/40-week averages, RSI, momentum) match it, then charts each "
-               "match day and the session after it. Research: `75_PatternTwins`. Context only — not a signal.")
+               "match day and the session after it. Research: `Observe_Pattern/NIFTY_PatternTwins`. Context only — not a signal.")
     today = datetime.now(IST).date()
     with st.spinner("Loading NIFTY daily data from Upstox…"):
         d = load_daily(today)
