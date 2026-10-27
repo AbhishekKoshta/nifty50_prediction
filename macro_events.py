@@ -413,7 +413,8 @@ if __name__ == "__main__":  # quick CLI sanity check
           f"signal_mult={pm['signal_mult']}x ({len(pm['signals'])} active); P(30d)={peace_p_within(pm, t)}")
     print("\nPENDING (sorted by P):")
     for p in build_pending(t, d, pm):
-        print(f"  {p['p'] if p['p'] is None else f'{p['p']:.0%}':>4}  {p['name']}")
+        ps = "n/a" if p["p"] is None else f"{p['p']:.0%}"
+        print(f"  {ps:>4}  {p['name']}")
     ew = earnings_window(t, d, 14)
     print(f"\nEARNINGS next 14d: {len(ew)} index names; sector_news items: "
           f"{len(sector_news(t, d))}; holidays: {len(d.get('nse_holidays', []))}")
