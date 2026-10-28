@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-27",
+  "last_updated": "2026-10-28",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh rewrites this file; macro_events.py holds the logic and does all date math live (recurring prints, D-1/D-0 flags, the peace model). v2 keys: schedule, calendar, pending, sector_policy, earnings, sector_news, rbi_releases, index_members, rates. No personal names of officials anywhere (institution/role only).",
   "nse_holidays": [
@@ -121,78 +121,33 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": [
-      {
-        "date": "2026-10-27",
-        "kind": "dovish",
-        "weight": "weak",
-        "note": "GDELT tone: 0 hawkish vs 1 dovish headlines (3d)",
-        "source": "gdelt-heuristic"
-      }
-    ]
+    "signals": []
   },
   "market": {
     "brent": {
-      "last": 110.19,
-      "chg_pct": -4.85
+      "last": 111.26,
+      "chg_pct": -2.3
     },
     "usdinr": {
-      "last": 95.17,
-      "chg_pct": 0.25
+      "last": 95.2,
+      "chg_pct": 0.01
     },
     "indiavix": {
-      "last": 16.73,
-      "chg_pct": -2.53
+      "last": 16.43,
+      "chg_pct": 0.21
     },
     "dxy": {
-      "last": 102.08,
-      "chg_pct": 0.12
+      "last": 102.45,
+      "chg_pct": 0.13
     },
     "us10y": {
       "last": 4.99,
-      "chg_pct": -0.04
+      "chg_pct": 0.14
     },
-    "fetched": "2026-10-27"
+    "fetched": "2026-10-28"
   },
   "headlines": {
-    "iran": [
-      {
-        "date": "2026-10-27",
-        "title": "Iran hosts Makkah Pact trio for rare talks",
-        "domain": "tribune.com.pk",
-        "url": "https://tribune.com.pk/story/2637105/iran-hosts-makkah-pact-trio-for-rare-talks"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Saudi Arabia offered Houthis $1 bn in Iran - brokered ceasefire deal : Israeli media",
-        "domain": "myanmarnews.net",
-        "url": "http://www.myanmarnews.net/news/279399157/saudi-arabia-offered-houthis-1-bn-in-iran-brokered-ceasefire-deal-israeli-media"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "A look at the main issues in Israeli elections seen as a referendum on Israel's leadership",
-        "domain": "lancasteronline.com",
-        "url": "https://lancasteronline.com/news/world/a-look-at-the-main-issues-in-israeli-elections-seen-as-a-referendum-on-netanyahu/article_6c1784bf-9b18-59f0-8cf9-eb015534bb3d.html"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "A look at main issues in Israel elections seen as referendum on Israel's leadership",
-        "domain": "dailyexcelsior.com",
-        "url": "https://www.dailyexcelsior.com/a-look-at-main-issues-in-israel-elections-seen-as-referendum-on-netanyahu/"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Arab News | US touts role in Gulf oil exports as CENTCOM chief flies over Hormuz Strait",
-        "domain": "arabnews.com",
-        "url": "https://www.arabnews.com/middle-east/us-touts-role-in-gulf-oil-exports-as-centcom-chief-flies-over-hormuz-strait-3008237"
-      },
-      {
-        "date": "2026-10-25",
-        "title": "Israel's leadership pitch : Can Israel use crypto to evade economic sanctions ? - Grenada Chronicle – Daily Grenada And Caribbean News",
-        "domain": "grenadachronicle.com",
-        "url": "https://grenadachronicle.com/netanyahus-pitch-can-israel-use-crypto-to-evade-economic-sanctions/"
-      }
-    ],
+    "iran": [],
     "india_us": [
       {
         "date": "2026-10-24",
@@ -213,7 +168,7 @@
         "url": "http://www.russiaherald.com/news/279392738/it-never-done-till-it-done-says-eam-jaishankar-on-india-us-trade-deal"
       }
     ],
-    "fetched": "2026-10-27"
+    "fetched": "2026-10-28"
   },
   "schema": 2,
   "rates": {
@@ -587,64 +542,8 @@
   ],
   "earnings": {
     "season": "Q2 FY27",
-    "fetched": "2026-10-27",
+    "fetched": "2026-10-28",
     "upcoming": [
-      {
-        "date": "2026-10-27",
-        "symbol": "BAJAJ-AUTO",
-        "company": "Bajaj Auto Ltd.",
-        "industry": "Automobile and Auto Components",
-        "index": "NIFTY50"
-      },
-      {
-        "date": "2026-10-27",
-        "symbol": "CIPLA",
-        "company": "Cipla Ltd.",
-        "industry": "Healthcare",
-        "index": "NIFTY50"
-      },
-      {
-        "date": "2026-10-27",
-        "symbol": "LT",
-        "company": "Larsen & Toubro Ltd.",
-        "industry": "Construction",
-        "index": "NIFTY50"
-      },
-      {
-        "date": "2026-10-27",
-        "symbol": "MARUTI",
-        "company": "Maruti Suzuki India Ltd.",
-        "industry": "Automobile and Auto Components",
-        "index": "NIFTY50"
-      },
-      {
-        "date": "2026-10-27",
-        "symbol": "SBILIFE",
-        "company": "SBI Life Insurance Company Ltd.",
-        "industry": "Financial Services",
-        "index": "NIFTY50"
-      },
-      {
-        "date": "2026-10-27",
-        "symbol": "TATASTEEL",
-        "company": "Tata Steel Ltd.",
-        "industry": "Metals & Mining",
-        "index": "NIFTY50"
-      },
-      {
-        "date": "2026-10-27",
-        "symbol": "MAZDOCK",
-        "company": "Mazagoan Dock Shipbuilders Ltd.",
-        "industry": "Capital Goods",
-        "index": "NIFTYNEXT50"
-      },
-      {
-        "date": "2026-10-27",
-        "symbol": "TATACAP",
-        "company": "Tata Capital Ltd.",
-        "industry": "Financial Services",
-        "index": "NIFTYNEXT50"
-      },
       {
         "date": "2026-10-28",
         "symbol": "ADANIENT",
@@ -762,6 +661,13 @@
         "symbol": "MAXHEALTH",
         "company": "Max Healthcare Institute Ltd.",
         "industry": "Healthcare",
+        "index": "NIFTY50"
+      },
+      {
+        "date": "2026-10-30",
+        "symbol": "RELIANCE",
+        "company": "Reliance Industries Ltd.",
+        "industry": "Oil Gas & Consumable Fuels",
         "index": "NIFTY50"
       },
       {
@@ -947,6 +853,13 @@
         "index": "NIFTYNEXT50"
       },
       {
+        "date": "2026-11-12",
+        "symbol": "HAL",
+        "company": "Hindustan Aeronautics Ltd.",
+        "industry": "Capital Goods",
+        "index": "NIFTYNEXT50"
+      },
+      {
         "date": "2026-11-13",
         "symbol": "TMPV",
         "company": "Tata Motors Passenger Vehicles Ltd.",
@@ -962,26 +875,82 @@
       }
     ],
     "load": {
-      "2026-10-27": 79,
       "2026-10-28": 107,
-      "2026-10-29": 113,
-      "2026-10-30": 107,
-      "2026-10-31": 41,
+      "2026-10-29": 114,
+      "2026-10-30": 120,
+      "2026-10-31": 47,
       "2026-11-01": 1,
-      "2026-11-02": 92,
-      "2026-11-03": 86,
-      "2026-11-04": 80,
-      "2026-11-05": 65,
-      "2026-11-06": 24,
+      "2026-11-02": 117,
+      "2026-11-03": 119,
+      "2026-11-04": 114,
+      "2026-11-05": 91,
+      "2026-11-06": 27,
       "2026-11-07": 5,
       "2026-11-10": 4,
       "2026-11-11": 5,
-      "2026-11-12": 8,
+      "2026-11-12": 16,
       "2026-11-13": 11,
-      "2026-11-14": 1,
-      "2026-11-16": 1
+      "2026-11-14": 2,
+      "2026-11-16": 1,
+      "2026-12-05": 1
     },
     "reported": [
+      {
+        "date": "2026-10-27",
+        "symbol": "RELIANCE",
+        "company": "Reliance Industries Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/kavinavora_27102026220855_RIL_SELETTER_271026.pdf"
+      },
+      {
+        "date": "2026-10-27",
+        "symbol": "SBILIFE",
+        "company": "SBI Life Insurance Company Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/SBILIFE_27102026185210_SEBM27102026_signed.pdf"
+      },
+      {
+        "date": "2026-10-27",
+        "symbol": "LT",
+        "company": "Larsen & Toubro Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/PAM_27102026171156_LTSep2026.pdf"
+      },
+      {
+        "date": "2026-10-27",
+        "symbol": "TATACAP",
+        "company": "Tata Capital Ltd.",
+        "index": "NIFTYNEXT50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/TATACAPITAL_27102026165929_TCLQ2FY27PressReleasvFSigned.pdf"
+      },
+      {
+        "date": "2026-10-27",
+        "symbol": "MARUTI",
+        "company": "Maruti Suzuki India Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/MARUTI_27102026153704_STxIntimation_PR_27Oct2026.pdf"
+      },
+      {
+        "date": "2026-10-27",
+        "symbol": "BAJAJ-AUTO",
+        "company": "Bajaj Auto Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/lkwalimbe_bajajauto_co_in_27102026152127_Q2Fy27Results.pdf"
+      },
+      {
+        "date": "2026-10-27",
+        "symbol": "MAZDOCK",
+        "company": "Mazagoan Dock Shipbuilders Ltd.",
+        "index": "NIFTYNEXT50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/MAZDOCK_27102026143906_Outcome_of_BM_27102026.pdf"
+      },
+      {
+        "date": "2026-10-27",
+        "symbol": "CIPLA",
+        "company": "Cipla Ltd.",
+        "index": "NIFTY50",
+        "pdf": "https://nsearchives.nseindia.com/corporate/CIPLA_27102026133323_SE_Intimation_Press_Release_20261027_Signed.pdf"
+      },
       {
         "date": "2026-10-26",
         "symbol": "TATACONSUM",
@@ -995,13 +964,6 @@
         "company": "Adani Green Energy Ltd.",
         "index": "NIFTYNEXT50",
         "pdf": "https://nsearchives.nseindia.com/corporate/ADANIGREEN_26102026125605_Letter.pdf"
-      },
-      {
-        "date": "2026-10-24",
-        "symbol": "TATACAP",
-        "company": "Tata Capital Ltd.",
-        "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/TATACAPITAL_24102026203415_SEIntimationEarningsCCallOctobersigned.pdf"
       },
       {
         "date": "2026-10-24",
@@ -1156,125 +1118,821 @@
         "company": "Union Bank of India",
         "index": "BANK",
         "pdf": "https://nsearchives.nseindia.com/corporate/UNIONBANK_19102026122544_Press_Release_Sept2026.pdf"
-      },
-      {
-        "date": "2026-10-17",
-        "symbol": "DLF",
-        "company": "DLF Ltd.",
-        "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/DLF_17102026143218_Letter.pdf"
-      },
-      {
-        "date": "2026-10-17",
-        "symbol": "HDFCBANK",
-        "company": "HDFC Bank Ltd.",
-        "index": "NIFTY50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/HDFCBANK_17102026135520_OutcomeofBMResults_17oct2026.pdf"
-      },
-      {
-        "date": "2026-10-17",
-        "symbol": "AXISBANK",
-        "company": "Axis Bank Ltd.",
-        "index": "NIFTY50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/AXISBANK1_17102026125236_AxisBank_Q2FY27_results.pdf"
       }
     ]
   },
   "sector_news": {
-    "fetched": "2026-10-27",
+    "fetched": "2026-10-28",
     "items": [
       {
-        "date": "2026-10-27",
-        "title": "Big relief for IT employees: 17 stations of Pune Metro Line 3 to open on November 3; PM the Prime Minister to inaugurate Hinjewadi-Shivajinagar corridor",
-        "url": "https://economictimes.indiatimes.com/industry/transportation/railways/big-relief-for-it-employees-17-stations-of-pune-metro-line-3-to-open-on-november-3-pm-modi-to-inaugurate-hinjewadi-shivajinagar-corridor/articleshow/135225758.cms",
+        "date": "2026-10-28",
+        "title": "'No water in train toilets': Railways told to pay Rs 15,000 to passenger travelling from Bengaluru to Shivamogga",
+        "url": "https://economictimes.indiatimes.com/industry/transportation/railways/no-water-in-train-toilets-no-help-from-station-master-railways-told-to-pay-rs-15000-to-passenger-travelling-from-bengaluru-to-shivamogga-with-23-relatives/articleshow/135254512.cms",
         "source": "ET industry",
         "sectors": [
-          "Railways"
+          "Railways",
+          "Telecom"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Forgot your charger, shoes or laptop on a train? Delhi RPF gets 54% more calls from passengers in 2026; check how to recover lost items",
+        "url": "https://economictimes.indiatimes.com/industry/transportation/railways/forgot-your-charger-shoes-or-laptop-on-a-train-delhi-rpf-gets-54-more-calls-from-passengers-in-2026-check-how-to-recover-lost-items/articleshow/135253850.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Telecom"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "GAIL India to invest $63 million in heating unit at Ratnagiri LNG terminal, executive says",
+        "url": "https://economictimes.indiatimes.com/industry/energy/oil-gas/gail-india-to-invest-63-million-in-heating-unit-at-ratnagiri-lng-terminal-executive-says/articleshow/135253852.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Oil & gas"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Akash Ambani vows to take Jio to new heights after blockbuster IPO",
+        "url": "https://economictimes.indiatimes.com/industry/telecom/telecom-news/akash-ambani-vows-to-take-jio-to-new-heights-after-blockbuster-ipo/articleshow/135252895.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Telecom",
+          "Capital markets"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "HUL reports highest sales growth in 14 quarters as volumes pick up",
+        "url": "https://economictimes.indiatimes.com/industry/cons-products/fmcg/hul-reports-highest-sales-growth-in-14-quarters-as-volumes-pick-up-priya-nair/articleshow/135252127.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Hindustan Unilever looks to stronger FY27, but commodity inflation threatens to squeeze margins",
+        "url": "https://economictimes.indiatimes.com/industry/cons-products/fmcg/hindustan-unilever-looks-to-stronger-fy27-but-commodity-inflation-threatens-to-squeeze-margins/articleshow/135251794.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "the railways & IT minister says mobile PLI scheme generated Rs 25,000 crore in direct taxes, employs 12 lakh people",
+        "url": "https://economictimes.indiatimes.com/industry/cons-products/electronics/ashwini-vaishnaw-says-mobile-pli-scheme-generated-rs-25000-crore-in-direct-taxes-employs-12-lakh-people/articleshow/135249680.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Railways",
+          "Electronics & PLI"
         ],
         "tone": "+"
       },
       {
-        "date": "2026-10-27",
-        "title": "Air India issues travel advisory as Cyclone Arnab threatens flights to Visakhapatnam, Vijayawada",
-        "url": "https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/air-india-issues-travel-advisory-as-cyclone-arnab-threatens-flights-to-visakhapatnam-vijayawada/articleshow/135225232.cms",
+        "date": "2026-10-28",
+        "title": "India jewellers hold off gold buying, betting prices will drop",
+        "url": "https://economictimes.indiatimes.com/industry/cons-products/fashion-/-cosmetics-/-jewellery/india-jewellers-hold-off-gold-buying-betting-prices-will-drop/articleshow/135249545.cms",
         "source": "ET industry",
         "sectors": [
-          "IT",
-          "Aviation & travel"
+          "FMCG & agri"
         ],
         "tone": "·"
       },
       {
-        "date": "2026-10-27",
-        "title": "Indian startups can redefine how we fly, says aviation minister Rammohan Naidu after meeting indigenous eVTOL maker",
-        "url": "https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/indian-startups-can-redefine-how-we-fly-says-aviation-minister-after-meeting-indigenous-evtol-maker/articleshow/135224427.cms",
+        "date": "2026-10-28",
+        "title": "Kirana stores make room for new generation FMCG brands as they muscle past legacy giants",
+        "url": "https://economictimes.indiatimes.com/industry/cons-products/fmcg/new-age-brands-win-over-kirana-stores-by-taking-share-from-legacy-fmcg-players-as-they-push-beyond-online/articleshow/135244240.cms",
         "source": "ET industry",
         "sectors": [
-          "Defence",
-          "Aviation & travel"
+          "FMCG & agri"
         ],
         "tone": "·"
       },
       {
-        "date": "2026-10-27",
-        "title": "India earns nearly 50% more from fuel exports in April-September as costlier oil and weak rupee outweigh lower volumes",
-        "url": "https://economictimes.indiatimes.com/industry/energy/oil-gas/india-earns-nearly-50-more-from-fuel-exports-in-april-september-as-costlier-oil-and-weak-rupee-outweigh-lower-volumes/articleshow/135218784.cms",
+        "date": "2026-10-28",
+        "title": "AWL Agri Business experiences 2% profit drop, emphasises growth in packaged food and exports",
+        "url": "https://economictimes.indiatimes.com/industry/cons-products/food/awl-agri-business-experiences-2-profit-drop-emphasises-growth-in-packaged-food-and-exports/articleshow/135245525.cms",
         "source": "ET industry",
         "sectors": [
-          "Rupee & FX",
-          "Oil & gas",
+          "FMCG & agri",
+          "Telecom",
+          "Textiles & exports"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Cancer drug price cuts leave costly brands untouched",
+        "url": "https://economictimes.indiatimes.com/industry/healthcare/biotech/pharmaceuticals/cancer-drug-price-cuts-leave-costly-brands-untouched/articleshow/135244832.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Pharma",
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Credit card additions hit second-highest monthly level in 2026 as banks gear up for festive season",
+        "url": "https://economictimes.indiatimes.com/industry/banking/finance/banking/credit-card-additions-hit-second-highest-monthly-level-in-2026-as-banks-gear-up-for-festive-season/articleshow/135244463.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Cipla sets sights on first-wave gains from rollout of Keytruda Biosimilar",
+        "url": "https://economictimes.indiatimes.com/industry/healthcare/biotech/pharmaceuticals/cipla-sets-sights-on-first-wave-gains-from-rollout-of-keytruda-biosimilar/articleshow/135244225.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Pharma"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Dynamic pricing's unacceptable in insurance, big payouts erode value: IRDAI chief Ajay Seth",
+        "url": "https://economictimes.indiatimes.com/industry/banking/finance/insure/dynamic-pricings-unacceptable-in-insurance-big-payouts-erode-value-irdai-chief-ajay-seth/articleshow/135243985.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Insurance"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "GST clarification on foreign investor brokerage offers sentiment boost, analysts say",
+        "url": "https://economictimes.indiatimes.com/news/economy/policy/gst-clarification-on-foreign-investor-brokerage-offers-sentiment-boost-analysts-say/articleshow/135254003.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Capital markets",
+          "Macro"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "India, Mexico sign terms of reference to kickstart trade pact negotiations",
+        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/india-mexico-sign-terms-of-reference-to-kickstart-trade-pact-negotiations/articleshow/135253148.cms",
+        "source": "ET economy",
+        "sectors": [
           "Textiles & exports"
         ],
         "tone": "·"
       },
       {
-        "date": "2026-10-27",
-        "title": "Wary of RBI, banks back off from forex deals",
-        "url": "https://economictimes.indiatimes.com/industry/banking/finance/banking/wary-of-rbi-banks-back-off-from-forex-deals/articleshow/135218946.cms",
-        "source": "ET industry",
+        "date": "2026-10-28",
+        "title": "Global Market: Japan bond yields rise as investors eye BOJ policy meeting",
+        "url": "https://economictimes.indiatimes.com/markets/us-stocks/news/global-market-japan-bond-yields-rise-as-investors-eye-boj-policy-meeting/articleshow/135254632.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "TCS, Vedanta among 10 companies offering dividend yield of up to 7%. Do you own any?",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/tcs-vedanta-among-10-companies-offering-dividend-yield-of-up-to-7-do-you-own-any/slideshow/135254303.cms",
+        "source": "ET markets",
+        "sectors": [
+          "IT"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Subros shares surge 10% after securing Rs 1,225 crore HVAC supply order from Maruti Suzuki",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/subros-shares-surge-10-after-securing-rs-1225-crore-hvac-supply-order-from-maruti-suzuki/articleshow/135253915.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Auto"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "India bonds sink on oil spike before Fed decision",
+        "url": "https://economictimes.indiatimes.com/markets/bonds/india-bonds-sink-on-oil-spike-before-fed-decision/articleshow/135253447.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Oil & gas",
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Gold, silver prices crash up to 53% from January peak. Time to buy before Dhanteras, festive season?",
+        "url": "https://economictimes.indiatimes.com/markets/commodities/news/gold-silver-prices-crash-up-to-53-from-january-peak-time-to-buy-before-dhanteras-festive-season/articleshow/135253262.cms",
+        "source": "ET markets",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Jio Platforms shares get 3 Buy calls on Day 1 as Nomura, Motilal and Elara initiate coverage. Check target price",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/jio-platforms-shares-get-3-buy-calls-on-day-1-as-nomura-motilal-and-elara-initiate-coverage-check-target-price/articleshow/135253093.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Oil & gas",
+          "FMCG & agri",
+          "Telecom"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "L&amp;T shares rally 6% after Q2 net profit jumps 33% YoY. Why Jefferies cut target price?",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/lt-shares-rally-6-after-q2-net-profit-jumps-33-yoy-why-jefferies-cut-target-price/articleshow/135252953.cms",
+        "source": "ET markets",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Jio Platforms listing at BSE: 'Will create value for decades to come', says Akash Ambani",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/jio-platforms-listing-at-bse-will-create-value-for-decades-to-come-says-akash-ambani/videoshow/135252918.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Oil & gas",
+          "Telecom"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Jio makes its D-Street debut: What it means for Reliance Industries investors and the road ahead",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/jio-makes-its-d-street-debut-what-it-means-for-reliance-industries-investors-and-the-road-ahead/articleshow/135252754.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Telecom"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Jio after listing: 5 factors that could drive big returns for long-term investors",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/jio-after-listing-5-factors-that-could-drive-big-returns-for-long-term-investors/articleshow/135252625.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Telecom"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "EAAA India Alternatives IPO Day 3: Check GMP, subscription status and key details",
+        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/eaaa-india-alternatives-ipo-day-3-check-gmp-subscription-status-and-key-details/articleshow/135252160.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Capital markets"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Two SME IPOs open today: Ajwa Projects, Carver Roboweld. Check price band and key details",
+        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/two-sme-ipos-open-today-ajwa-projects-carver-roboweld-check-price-band-and-key-details/articleshow/135252002.cms",
+        "source": "ET markets",
+        "sectors": [
+          "FMCG & agri",
+          "Capital markets"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Bajaj Finserv Share Price Live Updates: Bajaj Finserv's Financial Overview",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/bajaj-finserv-share-price-today-live-28-oct-2026/liveblog/135252103.cms",
+        "source": "ET markets",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Jio Platforms shares list at 21% premium over IPO price. Should investors buy, sell or hold the stock?",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/jio-platforms-share-price-lists-at-21-premium-over-ipo-price-should-investors-buy-sell-or-hold-the-stock/articleshow/135251796.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Oil & gas",
+          "FMCG & agri",
+          "Telecom",
+          "Capital markets"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Rupee rises 4 paise to 95.03 against US dollar in early trade",
+        "url": "https://economictimes.indiatimes.com/markets/forex/rupee-rises-4-paise-to-95-03-against-us-dollar-in-early-trade/articleshow/135251622.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Rupee & FX"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "TD Power Systems among 3 stocks close crossing below VWAP",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/td-power-systems-among-3-stocks-close-crossing-below-vwap/slideshow/135251464.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Power & renewables"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "M.K. Sons Fine Jewels IPO opens today: Check GMP, key details. Should you subscribe?",
+        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/m-k-sons-fine-jewels-ipo-opens-today-check-gmp-key-details-should-you-subscribe/articleshow/135251159.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Capital markets"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Ambani pulls off a blockbuster: Jio IPO makes 13 records, rewrites Dalal Street history",
+        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/ambani-pulls-off-a-blockbuster-jio-ipo-makes-13-records-rewrites-dalal-street-history/articleshow/135251207.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Telecom",
+          "Capital markets"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "IndusInd Bank Share Price Live Updates: IndusInd Bank's Current Price and Performance Overview",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/indusind-bank-stock-price-livestock-price-today-live-updates-28-oct-2026/liveblog/135250954.cms",
+        "source": "ET markets",
         "sectors": [
           "Banks & NBFC",
-          "Rupee & FX"
+          "FMCG & agri"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "UltraTech Cem Share Price Live Updates: UltraTech Cement's Price Movement Today",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ultratech-cem-stock-price-livestock-price-today-live-updates-28-oct-2026/liveblog/135250944.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Cement & infra",
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "SIFs offer a middle ground between arbitrage and equity risk: AlphaGrep MF CEO Bhautik Ambani",
+        "url": "https://economictimes.indiatimes.com/markets/expert-view/sifs-offer-a-middle-ground-between-arbitrage-and-equity-risk-alphagrep-mf-ceo-bhautik-ambani/articleshow/135250236.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Banks & NBFC",
+          "Telecom"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "HDFC Life Share Price Live Updates: HDFC Life's Market Update",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hdfc-life-share-price-today-live-updates-28-oct-2026/liveblog/135250697.cms",
+        "source": "ET markets",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Eicher Motors Share Price Live Updates: Eicher Motors shows minor gains today",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/eicher-motors-stock-price-today-live-28-oct-2026/liveblog/135250687.cms",
+        "source": "ET markets",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Hero MotoCorp Share Price Live Updates: Hero MotoCorp Stock Details",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hero-motocorp-share-price-today-live-updates-28-oct-2026/liveblog/135250489.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Auto",
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "SBI Share Price Live Updates: SBI's Current Trading Status",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/sbi-stock-price-livestock-price-today-live-updates-28-oct-2026/liveblog/135250486.cms",
+        "source": "ET markets",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Jio IPO Listing Live: Jio Platforms shares trade flat after listing at 21% on NSE, BSE. Check brokerage views",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/live-blog/jio-platforms-share-price-live-updates-check-jio-ipo-listing-time-on-nse-bse-gmp-allotment-latest-jio-ipo-shares-news/liveblog/135250655.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Oil & gas",
+          "Telecom",
+          "Capital markets"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Jio Platforms shares to be available under MTF from Day 1. What should investors know?",
+        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/jio-platforms-shares-to-be-available-under-mtf-from-day-1-what-should-investors-know/articleshow/135250221.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Oil & gas",
+          "Telecom"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "SBI Life Share Price Live Updates: SBI Life's Daily Gain Amidst Longer-Term Decline",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/sbi-life-share-price-live-28-oct-2026/liveblog/135250248.cms",
+        "source": "ET markets",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "ICICI Bank Share Price Live Updates: ICICI Bank Stock Details",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/icici-bank-share-price-live-updates-28-oct-2026/liveblog/135250160.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Banks & NBFC",
+          "FMCG & agri"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Divis Labs Share Price Live Updates: Divis Labs Stock Update",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/divis-labs-share-price-live-updates-28-oct-2026/liveblog/135250155.cms",
+        "source": "ET markets",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "Govt asks airlines to have qualified crew, realistic flight schedules for upcoming fog season",
+        "url": "https://www.thehindubusinessline.com/economy/logistics/govt-asks-airlines-to-have-qualified-crew-realistic-flight-schedules-for-upcoming-fog-season/article71634200.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Aviation & travel"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-28",
+        "title": "India could have achieved over 8% GDP growth without external shocks: RBI Deputy Governor",
+        "url": "https://www.thehindubusinessline.com/economy/india-could-have-achieved-over-8-gdp-growth-without-external-shocks-rbi-deputy-governor/article71633214.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Banks & NBFC",
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "JLR looks to narrow gap with BMW in India on local Defender assembly and price cuts of up to Rs 34 lakh",
+        "url": "https://economictimes.indiatimes.com/industry/auto/cars-uvs/jlr-looks-to-narrow-gap-with-bmw-in-india-on-local-defender-assembly-and-price-cuts-of-up-to-rs-34-lakh/articleshow/135243667.cms",
+        "source": "ET industry",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Regional rural banks to set up cybersecurity centres, develop threat intel",
+        "url": "https://economictimes.indiatimes.com/industry/banking/finance/banking/regional-rural-banks-to-set-up-cybersecurity-centres-develop-threat-intel/articleshow/135243325.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Banks & NBFC"
         ],
         "tone": "−"
       },
       {
         "date": "2026-10-27",
-        "title": "Amid supply chain issues, India's strategic mining in critical state",
-        "url": "https://economictimes.indiatimes.com/industry/indl-goods/svs/metals-mining/amid-supply-chain-issues-indias-strategic-mining-in-critical-state/articleshow/135218819.cms",
+        "title": "Railways to launch door-to-door parcel services",
+        "url": "https://economictimes.indiatimes.com/industry/transportation/railways/railways-to-launch-door-to-door-parcel-services/articleshow/135243107.cms",
         "source": "ET industry",
         "sectors": [
-          "Metals & mining"
+          "Railways"
         ],
         "tone": "·"
       },
       {
         "date": "2026-10-27",
-        "title": "Jakson Group plans to invest Rs 6.8k crore in Andhra Pradesh solar wafer &amp; cell plant",
-        "url": "https://economictimes.indiatimes.com/industry/renewables/jakson-group-plans-to-invest-rs-6-8k-crore-in-andhra-pradesh-solar-wafer-cell-plant/articleshow/135218325.cms",
+        "title": "Textile PLI scheme likely to be extended by four years with easier norms for MSMEs",
+        "url": "https://economictimes.indiatimes.com/industry/cons-products/garments-/-textiles/textile-pli-scheme-likely-to-be-extended-by-four-years-with-easier-norms-for-msmes/articleshow/135242883.cms",
         "source": "ET industry",
         "sectors": [
-          "Power & renewables"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Gujarat gets 1.6 GW extra power from central stations amid high demand, Tamil Nadu and J&amp;K also get additional allocation",
-        "url": "https://economictimes.indiatimes.com/industry/energy/power/gujarat-gets-1-6-gw-extra-power-from-central-stations-amid-high-demand-tamil-nadu-and-jk-also-get-additional-allocation/articleshow/135218093.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Power & renewables"
+          "Textiles & exports",
+          "Electronics & PLI"
         ],
         "tone": "+"
       },
       {
         "date": "2026-10-27",
-        "title": "Centre working on integrated tax framework for textile sector to ease duty burden on raw materials and machinery",
-        "url": "https://economictimes.indiatimes.com/industry/cons-products/garments-/-textiles/centre-works-on-integrated-tax-framework-for-textile-sector-to-ease-duty-burden-on-raw-materials-and-machinery/articleshow/135218027.cms",
+        "title": "India's growth momentum stays resilient despite global headwinds: RBI Deputy Governor Poonam Gupta",
+        "url": "https://economictimes.indiatimes.com/industry/banking/finance/banking/indias-growth-momentum-stays-resilient-despite-global-headwinds-rbi-deputy-governor-poonam-gupta/articleshow/135241385.cms",
         "source": "ET industry",
         "sectors": [
+          "Banks & NBFC",
+          "Power & renewables"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Mumbai airport operations disrupted due to system outage, 327 flights delayed",
+        "url": "https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/mumbai-airport-operations-disrupted-due-to-system-outage-327-flights-delayed/articleshow/135241221.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Aviation & travel"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Airlines flew fewer passengers in Sep; traffic falls 6.5% on annual basis",
+        "url": "https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/airlines-flew-fewer-passengers-in-sep-traffic-falls-6-5-on-annual-basis/articleshow/135239018.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Aviation & travel"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Bajaj Auto CFO flags production crunch for electric two-wheelers and three-wheelers",
+        "url": "https://economictimes.indiatimes.com/industry/auto/auto-news/bajaj-auto-cfo-flags-production-crunch-for-electric-two-wheelers-and-three-wheelers/articleshow/135238235.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Auto"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Hyundai BAYON arrives in India: Price, engine, features, safety tech &amp; cabin explained",
+        "url": "https://economictimes.indiatimes.com/industry/auto/hyundai-bayon-arrives-in-india-price-engine-features-safety-tech-cabin-explained/videoshow/135236517.cms",
+        "source": "ET industry",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "IIM Calcutta summer placements see 475 students secure 546 offers from 156 companies",
+        "url": "https://economictimes.indiatimes.com/industry/services/education/iim-calcutta-summer-placements-see-475-students-secure-546-offers-from-156-companies/articleshow/135235581.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Cement & infra"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "L&amp;T flags inflation, geopolitical risks, leans on its capabilities to navigate global uncertainty",
+        "url": "https://economictimes.indiatimes.com/industry/indl-goods/svs/engineering/lt-flags-inflation-geopolitical-risks-leans-on-its-capabilities-to-navigate-global-uncertainty/articleshow/135234451.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Jio, Airtel add nearly equal mobile subscribers in September",
+        "url": "https://economictimes.indiatimes.com/industry/telecom/jio-and-airtel-almost-tie-in-subscriber-growth-bsnl-outpaces-vi-in-september/articleshow/135234364.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Telecom",
+          "Electronics & PLI"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "India needs to build up shipping capacity to cash in on cheap crude, IOC chairman says",
+        "url": "https://economictimes.indiatimes.com/industry/energy/oil-gas/india-needs-to-build-up-shipping-capacity-to-cash-in-on-cheap-crude-ioc-chairman-says/articleshow/135233876.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Oil & gas"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Maruti Suzuki flags West Asia-linked commodity costs as margins come under pressure",
+        "url": "https://economictimes.indiatimes.com/industry/auto/auto-news/maruti-suzuki-flags-west-asia-linked-commodity-costs-as-margins-come-under-pressure/articleshow/135233688.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Auto"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Shaktikanta Das urges BFSI sector to lead infrastructure, high-tech manufacturing funding",
+        "url": "https://economictimes.indiatimes.com/industry/banking/finance/shaktikanta-das-calls-on-bfsi-sector-to-propel-indias-infrastructure-and-high-tech-manufacturing-growth/articleshow/135232860.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Cement & infra"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Wabtec bags Rs 839 crore orders for Vande Bharat Sleeper trains",
+        "url": "https://economictimes.indiatimes.com/industry/transportation/railways/wabtec-bags-rs-839-crore-orders-for-vande-bharat-sleeper-trains/articleshow/135232710.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Railways",
+          "Telecom"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "How to get maximum value when buying a budget-friendly used car",
+        "url": "https://economictimes.indiatimes.com/industry/auto/cars-uvs/how-to-get-maximum-value-when-buying-a-budget-friendly-used-car/articleshow/135232326.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Mahindra Lifespaces to develop North Bengaluru project with Rs 1,250 crore GDV",
+        "url": "https://economictimes.indiatimes.com/industry/services/property-/-cstruction/mahindra-lifespaces-launches-rs-1250-crore-luxury-residential-project-in-north-bengaluru/articleshow/135232210.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Auto"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "LANXESS, Hindustan Colas sign pact to advance innovative road construction technologies in India",
+        "url": "https://economictimes.indiatimes.com/industry/indl-goods/svs/chem-/-fertilisers/lanxess-hindustan-colas-sign-pact-to-advance-innovative-road-construction-technologies-in-india/articleshow/135232191.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Cement & infra"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "GST registration gets easier as CBIC drops Udyam proof, sets seven-day limit for approvals",
+        "url": "https://economictimes.indiatimes.com/news/economy/finance/gst-registration-gets-easier-as-cbic-drops-udyam-proof-sets-seven-day-limit-for-approvals/articleshow/135243010.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Centre eases GST rules for post-sales discounts, no prior agreement needed from November 1",
+        "url": "https://economictimes.indiatimes.com/news/economy/indicators/centre-eases-gst-rules-for-post-sales-discounts-no-prior-agreement-needed-from-november-1/articleshow/135243003.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Telecom",
+          "Macro"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "India to emerge as major exporter to China, ASEAN, get edge in US trade pact, says the commerce minister",
+        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/india-to-emerge-as-major-exporter-to-china-asean-get-edge-in-us-trade-pact-says-piyush-goyal/articleshow/135242679.cms",
+        "source": "ET economy",
+        "sectors": [
           "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Government mulls simplifying application process under Press Note 2 to ease FDI flow from border nations: Sources",
+        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/government-mulls-simplifying-application-process-under-press-note-2-to-ease-fdi-flow-from-border-nations-sources/articleshow/135241833.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Electronics & PLI"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "RBI Governor the RBI governor urges states to ensure quality spending, prudent borrowing",
+        "url": "https://economictimes.indiatimes.com/news/economy/finance/rbi-governor-sanjay-malhotra-urges-states-to-ensure-quality-spending-prudent-borrowing/articleshow/135238223.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "We will see India becoming major exporter of goods and services to China: the commerce minister",
+        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/we-will-see-india-becoming-major-exporter-of-goods-and-services-to-china-piyush-goyal/articleshow/135232787.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "IMF to India: Let the Rupee Be Your First Line of Defence | Krishna Srinivasan",
+        "url": "https://economictimes.indiatimes.com/news/economy/indicators/imf-to-india-let-the-rupee-be-your-first-line-of-defence-krishna-srinivasan/videoshow/135232807.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Rupee & FX",
+          "Defence"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "UP Cabinet clears Rs 17,542-cr plan for four link expressways",
+        "url": "https://economictimes.indiatimes.com/news/economy/infrastructure/uttar-pradesh-cabinet-approves-rs-17542-crore-plan-for-four-major-link-expressways/articleshow/135230997.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Macro"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "GST officers must prove intent to evade tax before invoking fraud provision: CBIC",
+        "url": "https://economictimes.indiatimes.com/news/economy/policy/gst-officers-must-prove-intent-to-evade-tax-before-invoking-fraud-provision-cbic/articleshow/135229488.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "RBI may raise repo rate to 6.25% by 2027 amid inflation risks: Deutsche Bank",
+        "url": "https://economictimes.indiatimes.com/news/economy/policy/rbi-may-raise-repo-rate-to-6-25-by-2027-amid-inflation-risks-deutsche-bank/articleshow/135229287.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Banks & NBFC",
+          "Macro"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "India to implement changes to GST from November 1",
+        "url": "https://economictimes.indiatimes.com/news/economy/policy/india-to-implement-changes-to-gst-from-november-1/articleshow/135229166.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Macro"
         ],
         "tone": "·"
       },
@@ -1297,724 +1955,37 @@
           "Banks & NBFC"
         ],
         "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Govt seeks investor and expert views on LTCG and STT as it reviews capital market levies amid FPI exodus",
-        "url": "https://economictimes.indiatimes.com/news/economy/policy/govt-seeks-investor-and-expert-views-on-ltcg-and-stt-as-it-reviews-capital-market-levies-amid-fpi-exodus/articleshow/135218874.cms",
-        "source": "ET economy",
-        "sectors": [
-          "Capital markets"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Cotton shortage set to worsen as new deals drive export demand",
-        "url": "https://economictimes.indiatimes.com/news/economy/agriculture/cotton-shortage-set-to-worsen-as-new-deals-drive-export-demand/articleshow/135218241.cms",
-        "source": "ET economy",
-        "sectors": [
-          "FMCG & agri",
-          "Textiles & exports"
-        ],
-        "tone": "−"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "AI stocks rally after Anthropic IPO filing, Nvidia gains nearly 3%",
-        "url": "https://economictimes.indiatimes.com/markets/us-stocks/wall-street-guide/ai-stocks-rally-after-anthropic-ipo-filing-nvidia-gains-nearly-3/articleshow/135225580.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Capital markets"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Indian bonds tick up on calm oil before Fed verdict",
-        "url": "https://economictimes.indiatimes.com/markets/bonds/indian-bonds-tick-up-on-calm-oil-before-fed-verdict/articleshow/135225679.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Oil & gas",
-          "Macro"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "TCS, Infosys, other IT stocks drop up to 3% as Anthropic IPO sparks rally in global AI stocks",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/news/tcs-infosys-other-it-stocks-drop-up-to-3-as-anthropic-ipo-sparks-rally-in-global-ai-stocks/articleshow/135225464.cms",
-        "source": "ET markets",
-        "sectors": [
-          "IT",
-          "Capital markets"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Sensex, Nifty extend gains despite oil hovering near $115/barrel. What lies ahead?",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/news/sensex-nifty-extend-gains-despite-oil-hovering-near-115/barrel-what-lies-ahead/articleshow/135224717.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Oil & gas"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Anthropic IPO: Why Wall Street is bracing for an AI market test",
-        "url": "https://economictimes.indiatimes.com/markets/us-stocks/news/anthropic-ipo-why-wall-street-is-bracing-for-an-ai-market-test/slideshow/135225314.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Capital markets"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Coal India Share Price Live Updates: Coal India Faces Slight Price Drop",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/coal-india-ltd-share-price-live-updates-27-oct-2026/liveblog/135224568.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Power & renewables",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Tata Steel Share Price Live Updates: Tata Steel Sees Positive Movement",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tata-steel-stock-price-live-updates-27-oct-2026/liveblog/135224524.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Metals & mining",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Gold prices dip Rs 500/10 grams; silver falls Rs 2,400/kg as traders eye US Fed meet this week. What should you do?",
-        "url": "https://economictimes.indiatimes.com/markets/commodities/news/gold-prices-dip-rs-500/10-grams-silver-falls-rs-2400/kg-as-traders-eye-us-fed-meet-this-week-what-should-you-do/articleshow/135224447.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri",
-          "Macro"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "EAAA India Alternatives IPO Day 2: Check GMP, subscription status and other key details",
-        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/eaaa-india-alternatives-ipo-day-2-check-gmp-subscription-status-and-other-key-details/articleshow/135224352.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Capital markets"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Wiscon Industries SME IPO opens today; check price band and other key details",
-        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/wiscon-industries-sme-ipo-opens-today-check-price-band-and-other-key-details/articleshow/135224316.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri",
-          "Capital markets"
-        ],
-        "tone": "−"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Q2 earnings done for HDFC Bank, ICICI, other private lenders. What's next?",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/news/q2-earnings-done-for-hdfc-bank-icici-other-private-lenders-whats-next/articleshow/135224155.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Banks & NBFC"
-        ],
-        "tone": "−"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Adani Ports SEZ Share Price Live Updates: Adani Ports SEZ Current Price Update",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/adani-ports-sez-stock-price-livestock-price-today-live-updates-27-oct-2026/liveblog/135224157.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Will Rs 5 lakh crore bet on Jio open floodgates for India's mega IPOs?",
-        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/will-rs-5-lakh-crore-bet-on-jio-open-floodgates-for-indias-mega-ipos/articleshow/135224079.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Telecom",
-          "Capital markets"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Tata Consumer shares rally over 4% after Q2 results. Why brokerages remain bullish despite target price cuts",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/news/tata-consumer-shares-in-focus-as-q2-net-profit-rises-16-yoy-why-jefferies-other-brokerages-are-bullish-despite-target-price-cuts/articleshow/135223973.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri",
-          "Capital markets"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "BLS Polymers IPO opens today; GMP signals 27% listing gain. Check key details",
-        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/bls-polymers-ipo-opens-today-gmp-signals-27-listing-gain-check-key-details/articleshow/135223848.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Capital markets"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "HAL, BEL, Paras Defence, other stocks rise up to 4% after DAC clears proposals worth Rs 2.12 lakh crore",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/news/hal-bel-paras-defence-other-stocks-in-focus-after-dac-clears-proposals-worth-rs-2-12-lakh-crore/articleshow/135223830.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Defence"
-        ],
-        "tone": "+"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Bharti Airtel Share Price Live Updates: Bharti Airtel's Current Trading Status",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/bharti-airtel-stock-price-live-updates-27-oct-2026/liveblog/135223743.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri",
-          "Telecom"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "HUL Share Price Live Updates: HUL's Current Market Position",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hul-stock-price-live-updates-27-oct-2026/liveblog/135223702.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Mankind Pharma among 5 F&amp;O stocks with a sharp rise in futures open interest",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/news/mankind-pharma-among-5-fampo-stocks-with-a-sharp-rise-in-futures-open-interest/slideshow/135223707.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Pharma"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "ETMarkets Smart Talk: Bond yields may rise further over the next few months; avoid aggressive duration and credit bets: Suyash Choudhary",
-        "url": "https://economictimes.indiatimes.com/markets/bonds/etmarkets-smart-talk-bond-yields-may-rise-further-over-the-next-few-months-avoid-aggressive-duration-and-credit-bets-suyash-choudhary/articleshow/135223491.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Macro"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "M&amp;M Share Price Live Updates: M&amp;M's Market Performance Overview",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/mm-share-price-live-27-oct-2026/liveblog/135223582.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "NTPC Share Price Live Updates: NTPC's Current Market Position",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ntpc-stock-price-livestock-price-today-live-updates-27-oct-2026/liveblog/135223450.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "LTIMindtree Share Price Live Updates: LTIMindtree Stock Details",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ltimindtree-stock-price-live-updates-27-oct-2026/liveblog/135223437.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "UPL Share Price Live Updates: UPL's Price Movement Today",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/upl-share-price-today-live-27-oct-2026/liveblog/135223388.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "SBI Life Share Price Live Updates: SBI Life's Current Market Position",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/sbi-life-share-price-today-live-27-oct-2026/liveblog/135223384.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "HCL Tech Share Price Live Updates: Market Performance of HCL Tech",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hcl-tech-stock-price-livestock-price-today-live-updates-27-oct-2026/liveblog/135223378.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "ONGC Share Price Live Updates: ONGC Stock Details",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ongc-stock-price-today-live-27-oct-2026/liveblog/135223325.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Oil & gas",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Eicher Motors Share Price Live Updates: Eicher Motors Stock Update",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/eicher-motors-share-price-live-updates-27-oct-2026/liveblog/135223306.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Tata Motors PV Share Price Live Updates: Tata Motors PV Stock Details",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tata-motors-pv-stock-price-livestock-price-today-live-updates-27-oct-2026/liveblog/135223272.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Auto",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "HDFC Life Share Price Live Updates: HDFC Life Stock Details",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hdfc-life-stock-price-livestock-price-today-live-updates-27-oct-2026/liveblog/135223263.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "UltraTech Cem Share Price Live Updates: UltraTech Cement's Price Decline and Volatility Insights",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ultratech-cem-stock-price-live-updates-27-oct-2026/liveblog/135223245.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Cement & infra",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Hero MotoCorp Share Price Live Updates: Hero MotoCorp's Stock Performance Overview",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hero-motocorp-share-price-today-live-27-oct-2026/liveblog/135223242.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Auto",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "L&amp;T Share Price Live Updates: L&amp;T Stock Details",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/lt-share-price-live-updates-27-oct-2026/liveblog/135223237.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Dr Reddys Share Price Live Updates: Dr. Reddys records a slight increase in stock price",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/dr-reddys-stock-price-today-live-27-oct-2026/liveblog/135223198.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Nestle India Share Price Live Updates: Nestle India Stock Update",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/nestle-india-share-price-live-updates-27-oct-2026/liveblog/135223185.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "India-Chile FTA talks 'quite ripe' for conclusion, Canada negotiations making progress: the commerce minister",
-        "url": "https://www.thehindubusinessline.com/economy/india-chile-fta-talks-quite-ripe-for-conclusion-canada-negotiations-making-progress-goyal/article71629817.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Textiles & exports"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "Wheat sowing lags at 11,000 ha so far amid deficient monsoon; rabi acreage down",
-        "url": "https://www.thehindubusinessline.com/economy/agri-business/wheat-sowing-lags-at-11000-ha-so-far-amid-deficient-monsoon-rabi-acreage-down/article71629712.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-27",
-        "title": "This week could help decide whether the Fed raises interest rates in December",
-        "url": "https://www.livemint.com/economy/this-week-could-help-decide-whether-the-fed-raises-interest-rates-in-december-11793062472223.html",
-        "source": "Mint economy",
-        "sectors": [
-          "Macro"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Vande Bharat Sleeper trains to cut travel time on Mumbai-Bengaluru, Delhi-Varanasi routes: Check launch dates, timings, stops and more",
-        "url": "https://economictimes.indiatimes.com/industry/transportation/railways/vande-bharat-sleeper-trains-to-cut-travel-time-on-mumbai-bengaluru-delhi-varanasi-routes-check-launch-dates-timings-stops-and-more/articleshow/135217391.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Railways",
-          "Telecom"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "SBI opens cyber CoE, announces training for 1.8 lakh staff in cybersecurity",
-        "url": "https://economictimes.indiatimes.com/industry/banking/finance/banking/sbi-opens-cyber-coe-announces-training-for-1-8-lakh-staff-in-cybersecurity/articleshow/135216394.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Telecom"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Railway Board flags safety concerns, grants conditional approval to RCF-made Vande Bharat chair car",
-        "url": "https://economictimes.indiatimes.com/industry/transportation/railways/railway-board-flags-safety-concerns-grants-conditional-approval-to-rcf-made-vande-bharat-chair-car/articleshow/135215338.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Railways"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Nearly half of Indian two-wheeler buyers eye EVs: BCG report",
-        "url": "https://economictimes.indiatimes.com/industry/renewables/nearly-half-of-indian-two-wheeler-buyers-eye-evs-bcg-report/articleshow/135215170.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Banks & NBFC",
-          "Auto"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Kerten Hospitality aims to operate 5,000-7,000 keys in India over the next five years: CEO",
-        "url": "https://economictimes.indiatimes.com/industry/services/hotels-/-restaurants/kerten-hospitality-aims-to-operate-5000-7000-keys-in-india-over-the-next-five-years-ceo/articleshow/135214048.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Pharma"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "1st charter flight from Kazakhstan with 177 tourists arrives at Goa's Mopa airport",
-        "url": "https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/1st-charter-flight-from-kazakhstan-with-177-tourists-arrives-at-goas-mopa-airport/articleshow/135213723.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Aviation & travel"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Boost for green energy projects: Maharashtra govt waives 25 pc land transfer fee",
-        "url": "https://economictimes.indiatimes.com/industry/renewables/boost-for-green-energy-projects-maharashtra-govt-waives-25-pc-land-transfer-fee/articleshow/135213400.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Power & renewables"
-        ],
-        "tone": "+"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Power to empower must include the power to stay well",
-        "url": "https://economictimes.indiatimes.com/industry/healthcare/biotech/healthcare/power-to-empower-must-include-the-power-to-stay-well/articleshow/135212047.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Power & renewables"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Raymond Realty raises Rs 210 cr from ICICI Prudential Real Estate Development Fund",
-        "url": "https://economictimes.indiatimes.com/industry/services/property-/-cstruction/raymond-realty-raises-rs-210-cr-from-icici-prudential-real-estate-development-fund/articleshow/135212087.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Realty"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Mankind Pharma shares key business developments from Q2 &amp; H1 of FY27",
-        "url": "https://economictimes.indiatimes.com/industry/healthcare/biotech/pharmaceuticals/mankind-pharma-shares-key-business-developments-from-q2-h1-of-fy27/articleshow/135211681.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Pharma"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Rail passengers opting for 45-paise travel insurance at counters must pay digitally from Oct 27",
-        "url": "https://economictimes.indiatimes.com/industry/transportation/railways/rail-passengers-opting-for-45-paise-travel-insurance-at-counters-must-pay-digitally-from-oct-27/articleshow/135210810.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Railways",
-          "Insurance"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Mumbai, Marketplace, Moscow: Three 'M's for Russian exports to India",
-        "url": "https://economictimes.indiatimes.com/industry/services/retail/mumbai-marketplace-moscow-three-ms-for-russian-exports-to-india/articleshow/135210953.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Textiles & exports"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "'National interest, safety' outweigh disclosure: CIC upholds denial of Ashok Hotel structural report",
-        "url": "https://economictimes.indiatimes.com/industry/services/hotels-/-restaurants/national-interest-safety-outweigh-disclosure-cic-upholds-denial-of-ashok-hotel-structural-report/articleshow/135210070.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Banks & NBFC",
-          "Aviation & travel"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Life beyond a metro: India's festive shoppers boost Myntra's orders by nearly 2X in key categories",
-        "url": "https://economictimes.indiatimes.com/industry/services/retail/myntras-big-fashion-festival-nearly-doubles-orders-as-festive-demand-spreads-beyond-metros/articleshow/135208429.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Railways"
-        ],
-        "tone": "+"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "India Jewellery Park in Navi Mumbai to generate 1 lakh jobs: Maharashtra CM Fadnavis",
-        "url": "https://economictimes.indiatimes.com/industry/cons-products/fashion-/-cosmetics-/-jewellery/india-jewellery-park-in-navi-mumbai-to-generate-1-lakh-jobs-maharashtra-cm-fadnavis/articleshow/135208361.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Textiles & exports"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "TRAI recommends light-touch regulatory framework for internet-based TV services",
-        "url": "https://economictimes.indiatimes.com/industry/telecom/telecom-news/trai-recommends-light-touch-regulatory-framework-for-internet-based-tv-services/articleshow/135208239.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Telecom"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "India's textile industry targets $350 billion by 2030 as exports rebound, costs rise: Report",
-        "url": "https://economictimes.indiatimes.com/industry/cons-products/garments-/-textiles/indias-textile-industry-targets-350-billion-by-2030-as-exports-rebound-costs-rise-report/articleshow/135207872.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Banks & NBFC",
-          "Textiles & exports"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "India and US fine-tune trade pact after concluding most talks, says the commerce minister",
-        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/india-and-us-fine-tune-trade-pact-after-concluding-most-talks-says-piyush-goyal/articleshow/135218011.cms",
-        "source": "ET economy",
-        "sectors": [
-          "Textiles & exports"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "FTA with India will be a game changer in supply chain management: EU ambassador to India",
-        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/fta-with-india-will-be-a-game-changer-in-supply-chain-management-eu-ambassador-to-india/articleshow/135217927.cms",
-        "source": "ET economy",
-        "sectors": [
-          "Textiles & exports"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "ISMA says 107 sugar mills begin crushing operations so far, enough stock to meet domestic demand",
-        "url": "https://economictimes.indiatimes.com/news/economy/agriculture/isma-says-107-sugar-mills-begin-crushing-operations-so-far-enough-stock-to-meet-domestic-demand/articleshow/135214445.cms",
-        "source": "ET economy",
-        "sectors": [
-          "Sugar & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "CBDT receives around 1,100 applications under foreign assets disclosure scheme",
-        "url": "https://economictimes.indiatimes.com/news/economy/policy/cbdt-receives-around-1100-applications-under-foreign-assets-disclosure-scheme/articleshow/135214097.cms",
-        "source": "ET economy",
-        "sectors": [
-          "Electronics & PLI"
-        ],
-        "tone": "+"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "India-US trade deal enters fine-tuning stage as most talks conclude, says the commerce minister",
-        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/india-us-trade-deal-enters-fine-tuning-stage-as-most-talks-conclude-says-piyush-goyal/articleshow/135211604.cms",
-        "source": "ET economy",
-        "sectors": [
-          "Textiles & exports"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Exporters get six more months of risk cover amid West Asia turmoil",
-        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/exporters-get-six-more-months-of-risk-cover-amid-west-asia-turmoil/articleshow/135211390.cms",
-        "source": "ET economy",
-        "sectors": [
-          "Oil & gas",
-          "Textiles & exports"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "the finance minister reaffirms govt's fiscal discipline push, puts public debt target at 50% of GDP by 2030",
-        "url": "https://economictimes.indiatimes.com/news/economy/policy/nirmala-sitharaman-reaffirms-govts-fiscal-discipline-push-puts-public-debt-target-at-50-of-gdp-by-2030/articleshow/135209048.cms",
-        "source": "ET economy",
-        "sectors": [
-          "Electronics & PLI",
-          "Insurance",
-          "Macro"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "India expected to extend duty-free cotton imports through December, sources say",
-        "url": "https://economictimes.indiatimes.com/news/economy/agriculture/india-expected-to-extend-duty-free-cotton-imports-through-december-sources-say/articleshow/135208493.cms",
-        "source": "ET economy",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Ind AS 118: India Inc gears up for big changes to financial reporting",
-        "url": "https://economictimes.indiatimes.com/news/economy/finance/india-inc-braces-for-financial-reporting-overhaul-with-ind-as-118-key-changes-and-impacts/articleshow/135197446.cms",
-        "source": "ET economy",
-        "sectors": [
-          "Banks & NBFC"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Almost half of domestic coal-based power plants have critical stocks",
-        "url": "https://www.thehindubusinessline.com/markets/commodities/almost-half-of-domestic-coal-based-power-plants-have-critical-stocks/article71627830.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Power & renewables"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Cyclone Arnab: Affected people in AP can report emergencies via Mana Mitra WhatsApp service",
-        "url": "https://www.thehindubusinessline.com/news/national/cyclone-arnab-affected-people-in-ap-can-report-emergencies-via-mana-mitra-whatsapp-service/article71627821.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Banks & NBFC"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "LANXESS, Hindustan Colas join hands for latest road construction technologies",
-        "url": "https://www.thehindubusinessline.com/economy/logistics/lanxess-hindustan-colas-join-hands-for-latest-road-construction-technologies/article71627517.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Cement & infra"
-        ],
-        "tone": "·"
       }
     ]
   },
   "rbi_releases": {
-    "fetched": "2026-10-27",
+    "fetched": "2026-10-28",
     "press": [
+      {
+        "date": "2026-10-28",
+        "title": "Money Market Operations as on October 27, 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63874"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Reserve Bank holds 36<sup>th</sup> Conference of State Finance Secretaries",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63873"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Premature redemption under Sovereign Gold Bond (SGB) Scheme - Redemption Price for premature redemption of SGB 2020-21 Series I due on October 28, 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63872"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "State Government Securities - Full Auction Result",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63871"
+      },
+      {
+        "date": "2026-10-27",
+        "title": "Result of Yield/Price Based Auction of State Government Securities",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63870"
+      },
       {
         "date": "2026-10-27",
         "title": "Money Market Operations as on October 26, 2026",
@@ -2039,26 +2010,6 @@
         "date": "2026-10-26",
         "title": "Money Market Operations as on October 24, 2026",
         "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63865"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Result of the 4-day Variable Rate Repo (VRR) auction held on October 26, 2026",
-        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63864"
-      },
-      {
-        "date": "2026-10-26",
-        "title": "Money Market Operations as on October 23, 2026",
-        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63863"
-      },
-      {
-        "date": "2026-10-24",
-        "title": "RBI to conduct 4-day Variable Rate Repo (VRR) auction under LAF on October 26, 2026",
-        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63861"
-      },
-      {
-        "date": "2026-10-24",
-        "title": "Auction of State Government Securities",
-        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63860"
       }
     ],
     "notifications": [
@@ -2081,21 +2032,11 @@
         "date": "2026-10-13",
         "title": "Risk Management and Inter-Bank Dealings",
         "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13739&Mode=0"
-      },
-      {
-        "date": "2026-10-10",
-        "title": "Risk Management and Inter-Bank Dealings - Foreign Exchange Risk Reserve",
-        "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13738&Mode=0"
-      },
-      {
-        "date": "2026-10-10",
-        "title": "Risk Management and Inter-Bank Dealings",
-        "url": "https://www.rbi.org.in/scripts/NotificationUser.aspx?Id=13737&Mode=0"
       }
     ]
   },
   "index_members": {
-    "fetched": "2026-10-27",
+    "fetched": "2026-10-28",
     "NIFTY50": [
       {
         "symbol": "ADANIENT",
