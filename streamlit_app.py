@@ -424,14 +424,16 @@ st.divider()
 
 # --- Macro event alert banner (D-0 / D-1) — defensive, never breaks the app ---
 try:
-    from macro_events import today_ist as _mac_today, load_data as _mac_load, alerts as _mac_alerts
+    from macro_events import (today_ist as _mac_today, load_data as _mac_load, alerts as _mac_alerts,
+                              alert_label as _mac_label)
     _mac_data = _mac_load()
-    _mac_al = _mac_alerts(_mac_today(), _mac_data)
+    _mac_t = _mac_today()
+    _mac_al = _mac_alerts(_mac_t, _mac_data)
     if _mac_al["today"]:
-        st.error("🔴 **EVENT TODAY:** " + " · ".join(e["name"] for e in _mac_al["today"])
+        st.error("🔴 **EVENT TODAY:** " + " · ".join(_mac_label(e, _mac_t) for e in _mac_al["today"])
                  + " — see the 🌍 Macro & Events tab.")
     if _mac_al["tomorrow"]:
-        st.warning("🟠 **EVENT TOMORROW:** " + " · ".join(e["name"] for e in _mac_al["tomorrow"])
+        st.warning("🟠 **EVENT TOMORROW:** " + " · ".join(_mac_label(e, _mac_t) for e in _mac_al["tomorrow"])
                    + " — see the 🌍 Macro & Events tab.")
 except Exception:  # noqa: BLE001
     _mac_data = None

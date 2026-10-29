@@ -14,10 +14,11 @@ from datetime import timedelta
 import pandas as pd
 import streamlit as st
 
-from macro_events import (alerts as _alerts, build_calendar, build_pending, earnings_window,
+from macro_events import (alert_label, alerts as _alerts, build_calendar, build_pending, earnings_window,
                           peace_model, sector_news)
 
-_FLAG = {"TODAY": "🔴 TODAY", "TOMORROW": "🟠 TOMORROW", "THIS WEEK": "🟡 this wk"}
+_FLAG = {"TODAY": "🔴 TODAY", "TONIGHT": "🟠 TONIGHT → tmrw", "TOMORROW": "🟠 TOMORROW",
+         "THIS WEEK": "🟡 this wk", "LANDED": "✅ landed"}
 _CAT = {"Trade": "🤝", "CenBank": "🏦", "Data-IN": "📊", "Data-US": "🇺🇸", "Expiry": "⏳", "Geo": "🌍",
         "Politics": "🗳️", "Flows": "🔁", "Earnings": "📈", "Policy": "🏛️", "Rupee": "💵", "Sector": "🏭",
         "Markets": "📉", "Macro": "🌐"}
@@ -35,7 +36,9 @@ _CSS = """<style>
 </style>"""
 
 
-def _when(r):
+def _when(r, today=None):
+    if r["flag"] == "TODAY" and today is not None and r.get("date") and r["date"] < today:
+        return "🔴 TODAY (overnight)"          # landed after yesterday's close; this session reacts
     return _FLAG.get(r["flag"]) or f"⚪ D-{r['days_until']}"
 
 
@@ -100,9 +103,9 @@ def render_macro(data, today, alerts_dict=None):
     if alerts_dict is None:
         alerts_dict = _alerts(today, data)
     if alerts_dict["today"]:
-        st.error("🔴 **TODAY:** " + " · ".join(e["name"] for e in alerts_dict["today"]))
+        st.error("🔴 **TODAY:** " + " · ".join(alert_label(e, today) for e in alerts_dict["today"]))
     if alerts_dict["tomorrow"]:
-        st.warning("🟠 **TOMORROW:** " + " · ".join(e["name"] for e in alerts_dict["tomorrow"]))
+        st.warning("🟠 **TOMORROW:** " + " · ".join(alert_label(e, today) for e in alerts_dict["tomorrow"]))
     if not alerts_dict["today"] and not alerts_dict["tomorrow"]:
         st.success("🟢 No high-impact scheduled event today or tomorrow.")
 
@@ -125,10 +128,11 @@ def render_macro(data, today, alerts_dict=None):
             continue
         if not show_low and r.get("importance") == "low":
             continue
-        rows.append({"When": _when(r), "Date": r["date"].strftime("%a %d %b"),
+        sd = r["session_date"]
+        rows.append({"When": _when(r, today), "Date": r["date"].strftime("%a %d %b"),
                      "Event": f"{_CAT.get(r['category'], '')} {r['name']}".strip(),
                      "Impact": _IMP.get(r.get("importance", "low"), ""),
-                     "NIFTY session": r.get("nifty_session", ""),
+                     "NIFTY session": sd.strftime("%a %d %b") + (" (next day)" if sd > r["date"] else ""),
                      "What it does to NIFTY": r.get("impact", ""),
                      "🔗": r.get("source") or None})
     if rows:
@@ -138,7 +142,8 @@ def render_macro(data, today, alerts_dict=None):
         st.info("Nothing scheduled in this window for the chosen categories.")
     st.caption("Recurring prints are generated from official calendars (RBI MPC FY27, Fed FOMC 2026-27, MOSPI ARC "
                "2026-27, BLS); weekend/holiday prints roll to the next working day. US times converted to IST "
-               "(EDT/EST aware); 'next day' = the NSE session that reacts.")
+               "(EDT/EST aware). Flags follow the **NSE session that reacts**: a post-close print (FOMC 23:30, "
+               "CPI 16:00) is 🟠 TONIGHT on its own date and 🔴 TODAY the next morning; ✅ landed = yesterday's.")
 
     # ================= 2. PENDING =================
     st.divider()

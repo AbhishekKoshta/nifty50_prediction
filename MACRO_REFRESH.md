@@ -35,6 +35,11 @@ them from NSE/RSS/yfinance and merges them back over whatever you output): `earn
    supersedes it; drop rows older than ~90 days unless still the live driver.
 4. **`rates{}`** — `rbi_repo`, `rbi_last_move`, `rbi_bias`, `fed_funds`, `fed_last_move`, `fed_bias`,
    `india_cpi{period,value,prev,note}`, `as_of`. Update on every RBI/Fed decision and CPI print.
+   **Check what landed since the last refresh first:** any `schedule` date ≤ today (RBI MPC, FOMC, India/US CPI)
+   has already printed — a US print lands overnight IST, so the morning after its US date the outcome is out.
+   Record the outcome (decision, vote split, guidance, value) and replace "priced"/"expected" wording with
+   what happened. The refresh runs ~07:00 IST, before any US print of the same day, so this catch-up is how
+   a 23:30-IST FOMC ever reaches the tab.
 5. **`calendar[]`** — ONE-OFF dated events only (elections, budget, off-cycle meetings, FTA signings,
    MSCI review dates, special summits). Recurring prints (RBI MPC, FOMC + minutes, India CPI/WPI/IIP/GDP,
    US CPI/NFP, GST, PMI, expiry, results deadlines) are GENERATED from `schedule` — do not add them here.

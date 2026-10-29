@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from datetime import date, datetime, timedelta, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -118,10 +119,36 @@ def _session(ist_hhmm: str) -> str:
     return "next day" if ist_hhmm >= "15:30" else "same day"
 
 
-def _flag(days_until: int) -> str:
-    return ("TODAY" if days_until == 0 else
-            "TOMORROW" if days_until == 1 else
-            "THIS WEEK" if days_until <= 6 else "UPCOMING")
+def _flag(days_until: int, lands_today: bool = False) -> str:
+    """Flag keyed on the NSE session that reacts (`days_until`), not on the print's clock date.
+    `lands_today` = the print lands today after the close, so the reacting session is tomorrow."""
+    if days_until < 0:
+        return "LANDED"
+    if days_until == 0:
+        return "TODAY"
+    if days_until == 1:
+        return "TONIGHT" if lands_today else "TOMORROW"
+    return "THIS WEEK" if days_until <= 6 else "UPCOMING"
+
+
+def reacts_next_day(ev: dict) -> bool:
+    """True when the print lands after the 15:30 close (IST), so the NEXT NSE session reacts.
+    Generated rows carry 'same day'/'next day'; one-off JSON rows may say 'overnight' / 'after US close'."""
+    s = str(ev.get("nifty_session") or "").strip().lower()
+    t = str(ev.get("ist_time") or "").strip().lower()
+    if s.startswith("next"):
+        return True
+    if s.startswith("same"):
+        return False
+    if any(w in t for w in ("overnight", "after us", "after close", "post-close")):
+        return True
+    return bool(re.match(r"^\d{2}:\d{2}$", t)) and t >= "15:30"
+
+
+def session_date(ev: dict, holidays=frozenset()) -> date:
+    """The NSE session that reacts to an event: the next trading day on/after its date, or the one after
+    when it lands post-close (a 23:30 IST FOMC → the next morning). Weekend/holiday prints roll forward."""
+    return next_trading_day(ev["date"], holidays, inclusive=not reacts_next_day(ev))
 
 
 # ---- recurring events, generated from `schedule` anchors ---------------------------
@@ -230,8 +257,13 @@ def recurring_events(today: date, data: dict, window_days: int = 120) -> list[di
     return rows
 
 
-def build_calendar(today: date, data: dict, window_days: int = 45) -> list[dict]:
-    """Merge one-off JSON events + generated recurring events; tag with days_until/flag; de-dupe."""
+def build_calendar(today: date, data: dict, window_days: int = 45, keep_landed_days: int = 1) -> list[dict]:
+    """Merge one-off JSON events + generated recurring events, de-dupe, and date each row by the NSE
+    SESSION that reacts (`session_date`): a print that lands after the close counts for the next morning,
+    so `days_until`/`flag` say TODAY on the day the market actually trades it (a 23:30 IST FOMC is
+    TONIGHT on its US date and TODAY the next morning). Rows stay `keep_landed_days` after their session
+    (flag LANDED) so yesterday's print is still visible."""
+    hol = holidays_set(data)
     rows: list[dict] = []
     for ev in data.get("calendar", []):
         d = _d(ev.get("date"))
@@ -240,13 +272,27 @@ def build_calendar(today: date, data: dict, window_days: int = 45) -> list[dict]
     rows += recurring_events(today, data, window_days)
     out, seen = [], set()
     for r in rows:
-        du = (r["date"] - today).days
+        sd = session_date(r, hol)
+        du = (sd - today).days
         key = (r["date"], r.get("name", "").lower())
-        if 0 <= du <= window_days and key not in seen:
+        if -keep_landed_days <= du <= window_days and key not in seen:
             seen.add(key)
-            out.append({**r, "days_until": du, "flag": _flag(du)})
-    out.sort(key=lambda r: (r["date"], IMPORTANCE_RANK.get(r.get("importance", "low"), 2), r.get("name", "")))
+            out.append({**r, "session_date": sd, "days_until": du,
+                        "flag": _flag(du, lands_today=(r["date"] == today))})
+    out.sort(key=lambda r: (r["session_date"], r["date"], IMPORTANCE_RANK.get(r.get("importance", "low"), 2),
+                            r.get("name", "")))
     return out
+
+
+def alert_label(e: dict, today: date) -> str:
+    """Banner text for a calendar/alert row: says when a post-close print actually lands."""
+    name = e.get("name", "")
+    if e.get("flag") == "TONIGHT":
+        return f"{name} (lands tonight, after the close)"
+    d = e.get("date")
+    if e.get("flag") == "TODAY" and isinstance(d, date) and d < today:
+        return f"{name} (landed overnight)"
+    return name
 
 
 # ---- earnings (auto-filled by update_macro.py from the NSE event calendar) ----------
@@ -406,8 +452,8 @@ if __name__ == "__main__":  # quick CLI sanity check
     print("ALERTS:", {k: [e['name'] for e in v] for k, v in alerts(t, d).items()}, "\n")
     print("CALENDAR (next 60d):")
     for r in build_calendar(t, d, 60):
-        print(f"  {r['date']}  D-{r['days_until']:<3} [{r['flag']:<9}] {r.get('importance','?'):<4} "
-              f"{r['category']:<8} {r['name']}")
+        print(f"  {r['date']} → {r['session_date']}  D-{r['days_until']:<3} [{r['flag']:<9}] "
+              f"{r.get('importance','?'):<4} {r['category']:<8} {r['name']}")
     pm = peace_model(t, d["peace_model"])
     print(f"\nPEACE MODEL: phase day {pm['elapsed']}, median {pm['median']}d, P(hold)={pm['hold_prob']}, "
           f"signal_mult={pm['signal_mult']}x ({len(pm['signals'])} active); P(30d)={peace_p_within(pm, t)}")

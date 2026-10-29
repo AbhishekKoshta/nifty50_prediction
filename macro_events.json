@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-10-28",
-  "updated_by": "auto-refresh",
+  "last_updated": "2026-10-29",
+  "updated_by": "manual (Fed outcome)",
   "note": "Facts only. The daily 7AM-IST refresh rewrites this file; macro_events.py holds the logic and does all date math live (recurring prints, D-1/D-0 flags, the peace model). v2 keys: schedule, calendar, pending, sector_policy, earnings, sector_news, rbi_releases, index_members, rates. No personal names of officials anywhere (institution/role only).",
   "nse_holidays": [
     "2026-01-15",
@@ -172,13 +172,13 @@
   },
   "schema": 2,
   "rates": {
-    "as_of": "2026-10-27",
+    "as_of": "2026-10-29",
     "rbi_repo": 5.5,
     "rbi_last_move": "+25 bp on 2026-10-07 (first hike since Feb 2023), 6-0 vote; stance → calibrated tightening; FY27 CPI projection raised 5.0→5.2%",
     "rbi_bias": "cuts off the table; next = hike or pause (Dec 4)",
     "fed_funds": "3.75–4.00%",
-    "fed_last_move": "+25 bp in Sep 2026 (first hike since 2023)",
-    "fed_bias": "Oct 28: hold ~90% priced; Dec 9 hike ~74% priced",
+    "fed_last_move": "held 3.75–4.00% on 2026-10-28 (10–2 vote, two dissents for +25 bp); last hike +25 bp on 2026-09-16 (first since 2023)",
+    "fed_bias": "post-Oct 28 hold: activity 'expanding at a strong pace', inflation 'remains elevated', awaiting 'accumulation of more information'; Dec 9 hike still live (~1 more 25 bp priced)",
     "india_cpi": {
       "period": "Sep 2026",
       "value": 5.54,
@@ -187,7 +187,7 @@
     },
     "sources": [
       "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=62422",
-      "https://www.cnbc.com/2026/10/26/fed-decision-expectations-october-meeting.html"
+      "https://www.cnbc.com/2026/10/28/fed-interest-rate-decision-october-2026.html"
     ]
   },
   "schedule": {
