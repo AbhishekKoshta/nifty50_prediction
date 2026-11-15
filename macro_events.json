@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-14",
+  "last_updated": "2026-11-15",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh rewrites this file; macro_events.py holds the logic and does all date math live (recurring prints, D-1/D-0 flags, the peace model). v2 keys: schedule, calendar, pending, sector_policy, earnings, sector_news, rbi_releases, index_members, rates. No personal names of officials anywhere (institution/role only).",
   "nse_holidays": [
@@ -111,7 +111,15 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-11-15",
+        "kind": "hawkish",
+        "weight": "weak",
+        "note": "GDELT tone: 2 hawkish vs 0 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
@@ -134,49 +142,44 @@
       "last": 5.15,
       "chg_pct": 1.0
     },
-    "fetched": "2026-11-14"
+    "fetched": "2026-11-15"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-11-11",
-        "title": "the US Secretary of State : No Need for Major Combat Operations Against Iran U . S . Achieving Same Objective by Economic Means",
-        "domain": "breitbart.com",
-        "url": "https://www.breitbart.com/politics/2026/11/10/rubio-no-need-major-combat-operations-against-iran/"
+        "date": "2026-11-14",
+        "title": "With shifting Iran rhetoric , the US President leaves Mideast in limbo",
+        "domain": "wisn.com",
+        "url": "https://www.wisn.com/article/iran-rhetoric-elections-trump-mideast-limbo/74431136"
       },
       {
-        "date": "2026-11-11",
-        "title": "the US President meets Qatar PM , believes Iran - US war is effectively over",
-        "domain": "theshillongtimes.com",
-        "url": "https://theshillongtimes.com/2026/11/11/trump-meets-qatar-pm-believes-iran-us-war-is-effectively-over/"
-      },
-      {
-        "date": "2026-11-11",
-        "title": "FOLD YOUR HAND : Iran Security Chief Tells President the US President To Surrender To Tehran Seven Conditions – The Yeshiva World",
+        "date": "2026-11-14",
+        "title": "IRAN SHOWDOWN : the US President Weighs Halting New Strikes Despite Israeli Pressure As U . S . Tightens Economic Blockade",
         "domain": "theyeshivaworld.com",
-        "url": "https://www.theyeshivaworld.com/news/israel-news/2621420/__trashed-128.html"
+        "url": "https://www.theyeshivaworld.com/news/israel-news/2623104/iran-showdown-trump-weighs-halting-new-strikes-despite-israeli-pressure-as-u-s-tightens-economic-blockade.html"
       },
       {
-        "date": "2026-11-11",
-        "title": "Iran economic pain will intensify , says US Secretary of State Marco the US Secretary of State",
-        "domain": "thehindubusinessline.com",
-        "url": "https://www.thehindubusinessline.com/news/world/irans-economic-pain-to-intensify-in-coming-months-says-marco-rubio/article71687530.ece"
+        "date": "2026-11-14",
+        "title": "Israeli drone strike kills 2 Palestinians in Gaza , and other Mideast news",
+        "domain": "bakersfieldnow.com",
+        "url": "https://bakersfieldnow.com/news/nation-world/israeli-drone-strike-kills-2-palestinians-in-gaza-and-other-mideast-news"
       },
       {
-        "date": "2026-11-11",
-        "title": "Israeli strikes and gunfire in Gaza kill 5 people , and other Mideast news",
-        "domain": "postregister.com",
-        "url": "http://www.postregister.com/news/national/israeli-strikes-and-gunfire-in-gaza-kill-5-people-and-other-mideast-news/article_a9b5fe4a-0fcd-5353-89fe-f8ddafa58df2.html"
-      },
-      {
-        "date": "2026-11-11",
-        "title": "the US Secretary of State : Why would we negotiate Lebanon with Iran ?",
-        "domain": "naharnet.com",
-        "url": "https://www.naharnet.com/stories/en/323686-rubio-why-would-we-negotiate-lebanon-with-iran"
+        "date": "2026-11-13",
+        "title": "Israel hits Gaza hospital and France turns away a settler leader , and other Mideast news",
+        "domain": "krmg.com",
+        "url": "https://krmg.com/2026/11/12/israel-hits-gaza-hospital-and-france-turns-away-a-settler-leader-and-other-mideast-news/"
       }
     ],
-    "india_us": [],
-    "fetched": "2026-11-11"
+    "india_us": [
+      {
+        "date": "2026-11-11",
+        "title": "US officials visit India to hold talks on proposed BTA",
+        "domain": "hindustantimes.com",
+        "url": "https://www.hindustantimes.com/india-news/us-officials-visit-india-to-hold-talks-on-proposed-bta-101794337288230.html"
+      }
+    ],
+    "fetched": "2026-11-15"
   },
   "schema": 2,
   "rates": {
@@ -550,11 +553,11 @@
   ],
   "earnings": {
     "season": "Q2 FY27",
-    "fetched": "2026-11-14",
+    "fetched": "2026-11-15",
     "upcoming": [],
     "load": {
-      "2026-11-14": 191,
       "2026-11-16": 1,
+      "2026-11-17": 1,
       "2026-11-18": 3,
       "2026-11-19": 2,
       "2026-11-20": 1,
@@ -563,185 +566,216 @@
     },
     "reported": [
       {
+        "date": "2026-11-14",
+        "symbol": "IDEA",
+        "company": "Vodafone Idea Ltd.",
+        "index": "NIFTYNEXT50",
+        "pdf": "https://nsearchives.nseindia.in/corporate/IDEA_14112026160257_SEIntimationNPBM12112026signed.pdf"
+      },
+      {
         "date": "2026-11-13",
         "symbol": "ABB",
         "company": "ABB India Ltd.",
         "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/ABB_13112026174803_Reg33QuartelryResultsQ32026signed.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/ABB_13112026174803_Reg33QuartelryResultsQ32026signed.pdf"
       },
       {
         "date": "2026-11-13",
         "symbol": "EICHERMOT",
         "company": "Eicher Motors Ltd.",
         "index": "NIFTY50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/EICHERMOT_13112026165043_EMLOutcomeofBM13112026SignedResults.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/EICHERMOT_13112026165043_EMLOutcomeofBM13112026SignedResults.pdf"
       },
       {
         "date": "2026-11-13",
         "symbol": "TMPV",
         "company": "Tata Motors Passenger Vehicles Ltd.",
         "index": "NIFTY50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/TATAMOTORSSJS_13112026161123_NSEBSEOutcome.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/TATAMOTORSSJS_13112026161123_NSEBSEOutcome.pdf"
       },
       {
         "date": "2026-11-13",
         "symbol": "GRASIM",
         "company": "Grasim Industries Ltd.",
         "index": "NIFTY50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/GRASIM2_13112026143135_SEintimation_Final_.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/GRASIM2_13112026143135_SEintimation_Final_.pdf"
       },
       {
         "date": "2026-11-12",
         "symbol": "BRITANNIA",
         "company": "Britannia Industries Ltd.",
         "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/BRITANNIA1_12112026200331_Intimation_Signed.pdf"
-      },
-      {
-        "date": "2026-11-12",
-        "symbol": "IDEA",
-        "company": "Vodafone Idea Ltd.",
-        "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/IDEA_12112026184039_SEIntimationFinancialResults12112026.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/BRITANNIA1_12112026200331_Intimation_Signed.pdf"
       },
       {
         "date": "2026-11-12",
         "symbol": "POWERINDIA",
         "company": "Hitachi Energy India Ltd.",
         "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/HitachiEnergy_12112026162640_outcome.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/HitachiEnergy_12112026162640_outcome.pdf"
       },
       {
         "date": "2026-11-12",
         "symbol": "TATAPOWER",
         "company": "Tata Power Co. Ltd.",
         "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/VPTPCL_12112026143001_new3.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/VPTPCL_12112026143001_new3.pdf"
       },
       {
         "date": "2026-11-12",
         "symbol": "HAL",
         "company": "Hindustan Aeronautics Ltd.",
         "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/HAL_12112026132915_IntegratedFinancial_30092026.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/HAL_12112026132915_IntegratedFinancial_30092026.pdf"
       },
       {
         "date": "2026-11-10",
         "symbol": "MARUTI",
         "company": "Maruti Suzuki India Ltd.",
         "index": "NIFTY50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/MARUTIASHISH_10112026115416_STxIntimation_SMCResults_FirstHalfYr_10Nov2026.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/MARUTIASHISH_10112026115416_STxIntimation_SMCResults_FirstHalfYr_10Nov2026.pdf"
       },
       {
         "date": "2026-11-07",
         "symbol": "SIEMENS",
         "company": "Siemens Ltd.",
         "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/SiemensRaj_07112026151028_SEIntimationNP.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/SiemensRaj_07112026151028_SEIntimationNP.pdf"
       },
       {
         "date": "2026-11-07",
         "symbol": "TATASTEEL",
         "company": "Tata Steel Ltd.",
         "index": "NIFTY50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/NIDHIFADNAVIS_07112026130531_BOARDOUTCOME-NOV7.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/NIDHIFADNAVIS_07112026130531_BOARDOUTCOME-NOV7.pdf"
       },
       {
         "date": "2026-11-07",
         "symbol": "DIVISLAB",
         "company": "Divi's Laboratories Ltd.",
         "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/DIVISLAB_07112026115520_Outcome_BoardMeeting_07112026_DivisLabs.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/DIVISLAB_07112026115520_Outcome_BoardMeeting_07112026_DivisLabs.pdf"
       },
       {
         "date": "2026-11-06",
         "symbol": "CUMMINSIND",
         "company": "Cummins India Ltd.",
         "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/CUMMINSIND_06112026172100_SEIntimationNewspaperFRfinal.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/CUMMINSIND_06112026172100_SEIntimationNewspaperFRfinal.pdf"
       },
       {
         "date": "2026-11-06",
         "symbol": "TITAN",
         "company": "Titan Company Ltd.",
         "index": "NIFTY50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/TITAN_06112026165556_SEnewspaperadresultQ2-combined.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/TITAN_06112026165556_SEnewspaperadresultQ2-combined.pdf"
       },
       {
         "date": "2026-11-06",
         "symbol": "MOTHERSON",
         "company": "Samvardhana Motherson International Ltd.",
         "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/MOTHERSON_06112026163759_Newspaper_Publication.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/MOTHERSON_06112026163759_Newspaper_Publication.pdf"
       },
       {
         "date": "2026-11-06",
         "symbol": "BOSCHLTD",
         "company": "Bosch Ltd.",
         "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/BOSCHLTD2025_06112026143420_Letter2SE06112026.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/BOSCHLTD2025_06112026143420_Letter2SE06112026.pdf"
       },
       {
         "date": "2026-11-06",
         "symbol": "PFC",
         "company": "Power Finance Corporation Ltd.",
         "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/PFC2023_06112026142830_INTI06112026Signed.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/PFC2023_06112026142830_INTI06112026Signed.pdf"
       },
       {
         "date": "2026-11-06",
         "symbol": "HINDALCO",
         "company": "Hindalco Industries Ltd.",
         "index": "NIFTY50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/HINDALCOIND_06112026134336_BM_Outcome_0611_signedfinal.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/HINDALCOIND_06112026134336_BM_Outcome_0611_signedfinal.pdf"
       },
       {
         "date": "2026-11-06",
         "symbol": "BHARTIARTL",
         "company": "Bharti Airtel Ltd.",
         "index": "NIFTY50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/BHARTIARTL_06112026130412_StxIntimationNewspaperAdv.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/BHARTIARTL_06112026130412_StxIntimationNewspaperAdv.pdf"
       },
       {
         "date": "2026-11-05",
         "symbol": "ONGC",
         "company": "Oil & Natural Gas Corporation Ltd.",
         "index": "NIFTY50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/ONGC_05112026172811_FS30092026SD.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/ONGC_05112026172811_FS30092026SD.pdf"
       },
       {
         "date": "2026-11-05",
         "symbol": "M&M",
         "company": "Mahindra & Mahindra Ltd.",
         "index": "NIFTY50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/ferozebaria_05112026130049_BoardMeetingPR05112026.pdf"
-      },
-      {
-        "date": "2026-11-04",
-        "symbol": "APOLLOHOSP",
-        "company": "Apollo Hospitals Enterprise Ltd.",
-        "index": "NIFTY50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/APOLLOHOSP_04112026181106_SE_Communication_04112026_s.pdf"
-      },
-      {
-        "date": "2026-11-04",
-        "symbol": "BSE",
-        "company": "BSE Ltd.",
-        "index": "NIFTY50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/BSE1_04112026175851_NSEINTIMATION.pdf"
-      },
-      {
-        "date": "2026-11-04",
-        "symbol": "ZYDUSLIFE",
-        "company": "Zydus Lifesciences Ltd.",
-        "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.com/corporate/Cadilahc_04112026121711_OutcomeofBM.pdf"
+        "pdf": "https://nsearchives.nseindia.in/corporate/ferozebaria_05112026130049_BoardMeetingPR05112026.pdf"
       }
     ]
   },
   "sector_news": {
-    "fetched": "2026-11-14",
+    "fetched": "2026-11-15",
     "items": [
+      {
+        "date": "2026-11-15",
+        "title": "Global Economy to grow 2.8% in 2027, buoyed by lower oil prices and AI investments: Goldman Sachs",
+        "url": "https://www.thehindubusinessline.com/economy/global-economy-to-grow-28-in-2027-buoyed-by-lower-oil-prices-and-ai-investments-goldman-sachs/article71704111.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Oil & gas",
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-15",
+        "title": "Single L3Harris router may have triggered US aviation system shutdown",
+        "url": "https://www.thehindubusinessline.com/economy/logistics/single-l3harris-router-may-have-triggered-us-aviation-system-shutdown/article71703978.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Aviation & travel"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-14",
+        "title": "Andhra Pradesh plans Visakhapatnam entertainment hub, Rana Daggubati to partner with state",
+        "url": "https://economictimes.indiatimes.com/industry/media/entertainment/andhra-pradesh-plans-visakhapatnam-entertainment-hub-rana-daggubati-to-partner-with-state/articleshow/135829434.cms",
+        "source": "ET industry",
+        "sectors": [
+          "IT"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-14",
+        "title": "Mufin Green Finance gets RBI licence to offer forex, remittance services",
+        "url": "https://economictimes.indiatimes.com/industry/banking/finance/mufin-green-finance-gets-rbi-licence-to-offer-forex-remittance-services/articleshow/135828522.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Banks & NBFC",
+          "Rupee & FX"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-14",
+        "title": "PM the Prime Minister summons telecom secretary over website takedowns, sources say",
+        "url": "https://economictimes.indiatimes.com/industry/telecom/telecom-news/pm-modi-summons-telecom-secretary-over-website-takedowns-sources-say/articleshow/135827007.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Telecom"
+        ],
+        "tone": "·"
+      },
       {
         "date": "2026-11-14",
         "title": "TN to buy power for summer demand, caps procurement at lowest monthly bids",
@@ -788,6 +822,27 @@
       },
       {
         "date": "2026-11-14",
+        "title": "India, US have resolved bulk of trade deal issues, pact could be sealed soon: the external affairs minister",
+        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/india-us-have-resolved-bulk-of-trade-deal-issues-pact-could-be-sealed-soon-jaishankar/articleshow/135829335.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-14",
+        "title": "India's consumption story remains strong, but rural demand faces inflation risks: Report",
+        "url": "https://economictimes.indiatimes.com/news/economy/indicators/indias-consumption-story-remains-strong-but-rural-demand-faces-inflation-risks-report/articleshow/135829300.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Banks & NBFC",
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-14",
         "title": "Five sectors account for 83% of India's record October merchandise export surge: Report",
         "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/five-sectors-account-for-83-of-indias-record-october-merchandise-export-surge-report/articleshow/135822055.cms",
         "source": "ET economy",
@@ -814,6 +869,38 @@
         "source": "ET economy",
         "sectors": [
           "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-14",
+        "title": "Yes Bank moves SC seeking review of order on writing off of Rs 8,415 cr AT-1 bonds",
+        "url": "https://economictimes.indiatimes.com/markets/bonds/yes-bank-moves-sc-seeking-review-of-order-on-writing-off-of-rs-8415-cr-at-1-bonds/articleshow/135830873.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-11-14",
+        "title": "Mahanadi Coalfields files RHP for proposed IPO worth nearly Rs 9,500 crore",
+        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/mahanadi-coalfields-files-rhp-for-proposed-ipo-worth-nearly-rs-9500-crore/articleshow/135829640.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Power & renewables",
+          "Capital markets"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-14",
+        "title": "Base metals lose momentum amid strong dollar and demand concerns",
+        "url": "https://economictimes.indiatimes.com/markets/commodities/news/base-metals-lose-momentum-amid-strong-dollar-and-demand-concerns/articleshow/135827655.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Rupee & FX",
+          "Metals & mining"
         ],
         "tone": "·"
       },
@@ -890,6 +977,46 @@
       },
       {
         "date": "2026-11-14",
+        "title": "Asia Pacific airlines seek govt support to mitigate cost pressures",
+        "url": "https://www.thehindubusinessline.com/economy/logistics/asia-pacific-airlines-seek-govt-support-to-mitigate-cost-pressures/article71701715.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Aviation & travel"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-14",
+        "title": "Bulk of issues resolved, India-US trade pact approaching 'finishing line': the external affairs minister",
+        "url": "https://www.thehindubusinessline.com/economy/bulk-of-issues-resolved-india-us-trade-pact-approaching-finishing-line-jaishankar/article71701461.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-14",
+        "title": "NCRTC to introduce fast Namo Bharat trains from Nov 16, Anand Vihar-Ghaziabad in 8 minutes",
+        "url": "https://www.thehindubusinessline.com/economy/logistics/ncrtc-to-introduce-fast-namo-bharat-trains-from-nov-16-anand-vihar-ghaziabad-in-8-minutes/article71701271.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Telecom"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-14",
+        "title": "DPIIT, commerce department authorised to issue defence industrial licences",
+        "url": "https://www.thehindubusinessline.com/economy/dpiit-commerce-department-authorised-to-issue-defence-industrial-licences/article71701059.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Defence"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-14",
         "title": "FAO national farmers health capital index",
         "url": "https://www.thehindubusinessline.com/economy/agri-business/fao-national-farmers-health-capital-index/article71698521.ece",
         "source": "BusinessLine economy",
@@ -916,6 +1043,18 @@
         "sectors": [
           "FMCG & agri",
           "Telecom"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-14",
+        "title": "Why your monthly grocery bill is rising: Onion prices jump 116%, garlic 61% as South India feels inflation heat",
+        "url": "https://www.livemint.com/economy/why-your-monthly-grocery-bill-is-rising-onion-prices-jump-116-garlic-61-as-south-india-feels-inflation-heat-11794655058440.html",
+        "source": "Mint economy",
+        "sectors": [
+          "FMCG & agri",
+          "Insurance",
+          "Macro"
         ],
         "tone": "·"
       },
@@ -1324,80 +1463,6 @@
       },
       {
         "date": "2026-11-13",
-        "title": "HUL Share Price Highlights: HUL Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hul-share-price-live-13-nov-2026/liveblog/135787956.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-13",
-        "title": "Infosys Share Price Highlights: Infosys Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/infosys-share-price-today-live-updates-13-nov-2026/liveblog/135787862.cms",
-        "source": "ET markets",
-        "sectors": [
-          "IT",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-13",
-        "title": "HDFC Bank Share Price Highlights: HDFC Bank Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hdfc-bank-stock-price-live-updates-13-nov-2026/liveblog/135787827.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Banks & NBFC",
-          "FMCG & agri"
-        ],
-        "tone": "−"
-      },
-      {
-        "date": "2026-11-13",
-        "title": "NTPC Share Price Highlights: NTPC Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ntpc-share-price-today-live-13-nov-2026/liveblog/135787712.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-13",
-        "title": "SBI Share Price Highlights: SBI Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/sbi-share-price-today-live-13-nov-2026/liveblog/135787707.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-13",
-        "title": "Power Grid Share Price Highlights: Power Grid Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/power-grid-share-price-today-live-13-nov-2026/liveblog/135787691.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Power & renewables",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-13",
-        "title": "Jio Financial Services Share Price Highlights: Jio Financial Services Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/jio-financial-services-stock-price-today-live-13-nov-2026/liveblog/135787655.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri",
-          "Telecom"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-13",
         "title": "Rabi nutrient-based subsidy hikes should help restore balance between DAP, complexes",
         "url": "https://www.thehindubusinessline.com/economy/agri-business/rabi-nutrient-based-subsidy-hikes-should-help-restore-balance-between-dap-complexes/article71698413.ece",
         "source": "BusinessLine economy",
@@ -1488,94 +1553,11 @@
           "Railways"
         ],
         "tone": "·"
-      },
-      {
-        "date": "2026-11-13",
-        "title": "Microsoft outage impacts IndiGo's email support services",
-        "url": "https://www.thehindubusinessline.com/economy/logistics/microsoft-outage-impacts-indigos-email-support-services/article71697132.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Aviation & travel"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-13",
-        "title": "Food inflation to remain high for next few months, RBI may raise 25 bps in Dec: ICICI Bank",
-        "url": "https://www.thehindubusinessline.com/economy/food-inflation-to-remain-high-for-next-few-months-rbi-may-raise-25-bps-in-dec-icici-bank/article71696598.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Banks & NBFC",
-          "FMCG & agri",
-          "Macro"
-        ],
-        "tone": "−"
-      },
-      {
-        "date": "2026-11-13",
-        "title": "October retail inflation surge may weigh on housing demand, raise rate hike concerns: Knight Frank, PHDCCI",
-        "url": "https://www.thehindubusinessline.com/economy/october-retail-inflation-surge-may-weigh-on-housing-demand-raise-rate-hike-concerns-knight-frank-phdcci/article71695274.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Realty",
-          "Macro"
-        ],
-        "tone": "±"
-      },
-      {
-        "date": "2026-11-13",
-        "title": "Trade deficit widens to 1-year high of $39.88 billion in October on record imports",
-        "url": "https://www.livemint.com/economy/trade-deficit-widens-to-1-year-high-of-39-88-billion-in-october-on-record-imports-11794566966101.html",
-        "source": "Mint economy",
-        "sectors": [
-          "Macro"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-12",
-        "title": "Civil aviation minister announces technical trilateral committee involving India, Oman, UAE",
-        "url": "https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/civil-aviation-minister-announces-technical-trilateral-committee-involving-india-oman-uae/articleshow/135779084.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Aviation & travel"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-12",
-        "title": "Shree Cement to invest Rs 7,000 crore in Andhra Pradesh; plans plants in 3 districts",
-        "url": "https://economictimes.indiatimes.com/industry/indl-goods/svs/cement/shree-cement-to-invest-rs-7000-crore-in-andhra-pradesh-plans-plants-in-3-districts/articleshow/135768051.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Cement & infra"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-12",
-        "title": "Airlines facing challenging times; skies were a lot rosier a year ago: AAPA DG",
-        "url": "https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/airlines-confront-crisis-soaring-fuel-prices-and-supply-chain-struggles-amidst-aapas-70th-assembly/articleshow/135766532.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Aviation & travel"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-12",
-        "title": "Oyster Renewable to complete Rs 350-crore wind-solar project in Andhra Pradesh by December",
-        "url": "https://economictimes.indiatimes.com/industry/renewables/oyster-renewable-to-complete-rs-350-crore-wind-solar-project-in-andhra-pradesh-by-december/articleshow/135766270.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Power & renewables"
-        ],
-        "tone": "·"
       }
     ]
   },
   "rbi_releases": {
-    "fetched": "2026-11-14",
+    "fetched": "2026-11-15",
     "press": [
       {
         "date": "2026-11-13",
@@ -1637,7 +1619,7 @@
     ]
   },
   "index_members": {
-    "fetched": "2026-11-14",
+    "fetched": "2026-11-15",
     "NIFTY50": [
       {
         "symbol": "ADANIENT",
