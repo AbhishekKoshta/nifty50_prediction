@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-21",
+  "last_updated": "2026-11-22",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh rewrites this file; macro_events.py holds the logic and does all date math live (recurring prints, D-1/D-0 flags, the peace model). v2 keys: schedule, calendar, pending, sector_policy, earnings, sector_news, rbi_releases, index_members, rates. No personal names of officials anywhere (institution/role only).",
   "nse_holidays": [
@@ -101,12 +101,20 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": []
+    "signals": [
+      {
+        "date": "2026-11-22",
+        "kind": "hawkish",
+        "weight": "weak",
+        "note": "GDELT tone: 2 hawkish vs 1 dovish headlines (3d)",
+        "source": "gdelt-heuristic"
+      }
+    ]
   },
   "market": {
     "brent": {
-      "last": 92.57,
-      "chg_pct": 0.64
+      "last": 89.95,
+      "chg_pct": -2.21
     },
     "usdinr": {
       "last": 92.67,
@@ -124,25 +132,49 @@
       "last": 4.91,
       "chg_pct": -2.77
     },
-    "fetched": "2026-11-21"
+    "fetched": "2026-11-22"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-11-20",
-        "title": "Iran not to accept continuation of war of attrition : IRGC spokesman",
-        "domain": "mangalorean.com",
-        "url": "https://www.mangalorean.com/iran-not-to-accept-continuation-of-war-of-attrition-irgc-spokesman/"
+        "date": "2026-11-21",
+        "title": "Iran strikes tankers and Israeli hit on food truck in Gaza kills 3",
+        "domain": "wdbo.com",
+        "url": "https://www.wdbo.com/news/world/iran-strikes-3/5DOQKPG6KUZP3LICC6KBHJWPF4/"
       },
       {
-        "date": "2026-11-18",
-        "title": "Is another US - Iran war looming ?",
-        "domain": "middleeaststar.com",
-        "url": "http://www.middleeaststar.com/news/279440849/is-another-us-iran-war-looming"
+        "date": "2026-11-21",
+        "title": "Iran strikes 3 tankers as it shows off missile launchers , and other Mideast news",
+        "domain": "idahopress.com",
+        "url": "http://www.idahopress.com/ap_news/us/iran-strikes-3-tankers-as-it-shows-off-missile-launchers-and-other-mideast-news/article_d69706d0-0aa1-5a72-85d7-55f28dbbb892.html"
+      },
+      {
+        "date": "2026-11-21",
+        "title": "Rickards : Hard Truths On Iran And Ukraine",
+        "domain": "zerohedge.com",
+        "url": "http://www.zerohedge.com/geopolitical/rickards-hard-truths-iran-and-ukraine"
+      },
+      {
+        "date": "2026-11-21",
+        "title": "Ominous reversal ! Iran issues nuclear ultimatum against US after downing 58 MQ drones as F - 16 sends SOS",
+        "domain": "bankingnews.gr",
+        "url": "https://www.bankingnews.gr/diethni/articles/912456/ominous-reversal-iran-issues-nuclear-ultimatum-against-us-after-downing-58-mq-drones-as-f-16-sends-sos"
+      },
+      {
+        "date": "2026-11-21",
+        "title": "US , Qatar intensify mediation efforts to end Iran conflict",
+        "domain": "samaa.tv",
+        "url": "https://www.samaa.tv/2087360717-us-qatar-intensify-mediation-efforts-to-end-iran-conflict"
+      },
+      {
+        "date": "2026-11-21",
+        "title": "Not every agreement is worth accepting to escape : Iran FM Iran's leadership lays out terms for US deal",
+        "domain": "southeastasiapost.com",
+        "url": "http://www.southeastasiapost.com/news/279446396/not-every-agreement-is-worth-accepting-to-escape-iran-fm-araghchi-lays-out-terms-for-us-deal"
       }
     ],
     "india_us": [],
-    "fetched": "2026-11-20"
+    "fetched": "2026-11-22"
   },
   "schema": 2,
   "rates": {
@@ -516,7 +548,7 @@
   ],
   "earnings": {
     "season": "Q2 FY27",
-    "fetched": "2026-11-21",
+    "fetched": "2026-11-22",
     "upcoming": [
       {
         "date": "2026-11-25",
@@ -614,8 +646,248 @@
     ]
   },
   "sector_news": {
-    "fetched": "2026-11-21",
+    "fetched": "2026-11-22",
     "items": [
+      {
+        "date": "2026-11-22",
+        "title": "Non-coal mining projects spread up to 500 hectares now to be appraised at state level",
+        "url": "https://economictimes.indiatimes.com/industry/indl-goods/svs/metals-mining/non-coal-mining-projects-spread-up-to-500-hectares-now-to-be-appraised-at-state-level/articleshow/136070257.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Power & renewables",
+          "Metals & mining"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "Shree Cement targets 100 MT capacity in 3-4 years on India growth bet",
+        "url": "https://economictimes.indiatimes.com/industry/indl-goods/svs/cement/shree-cement-targets-100-mt-capacity-in-3-4-years-on-india-growth-bet/articleshow/136069892.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Cement & infra"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "Chalet Hotels plans Rs 3,500 crore capex in 3 years; Delhi airport hotel to open 200 rooms: CEO",
+        "url": "https://economictimes.indiatimes.com/industry/services/hotels-/-restaurants/chalet-hotels-plans-rs-3500-crore-capex-in-3-years-delhi-airport-hotel-to-open-200-rooms-ceo/articleshow/136068753.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Cement & infra",
+          "Aviation & travel"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "Union Budget 2028: Aluminium product makers seek duty-free imports for primary metal",
+        "url": "https://economictimes.indiatimes.com/industry/indl-goods/svs/metals-mining/union-budget-2028-aluminium-product-makers-seek-duty-free-imports-for-primary-metal/articleshow/136068213.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Metals & mining",
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "India's oil, gas import bill jumps 60% in October as Brent nearly doubles; cooking-gas usage falls",
+        "url": "https://economictimes.indiatimes.com/industry/energy/oil-gas/indias-oil-gas-import-bill-jumps-60-pc-in-oct-as-brent-nearly-doubles-cooking-gas-usage-falls/articleshow/136068307.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Oil & gas"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "EV brand E-Went eyes mass market, to test sodium-ion batteries from December",
+        "url": "https://economictimes.indiatimes.com/industry/renewables/ev-brand-e-went-eyes-mass-market-to-test-sodium-ion-batteries-from-december/articleshow/136067784.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Auto"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "Government, corporate spending to sustain global growth in 2027 as inflation eases: JPMorgan",
+        "url": "https://economictimes.indiatimes.com/news/economy/indicators/government-corporate-spending-to-sustain-global-growth-in-2027-as-inflation-eases-jpmorgan/articleshow/136068673.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Macro"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "InvIT IPO rush gathers pace; 4-5 private trusts likely to go public by Mar 2027",
+        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/invit-ipo-rush-gathers-pace-4-5-private-trusts-likely-to-go-public-by-mar-2027/articleshow/136069094.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Capital markets",
+          "Insurance"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "India's oil, gas import bill jumps 60% in Oct as Brent nearly doubles; cooking-gas usage falls",
+        "url": "https://www.thehindubusinessline.com/economy/indias-oil-gas-import-bill-jumps-60-in-oct-as-brent-nearly-doubles-cooking-gas-usage-falls/article71730777.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Oil & gas"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "Standing Committee of Officers to soon consider measures for GST relief to genuine businesses",
+        "url": "https://www.thehindubusinessline.com/economy/standing-committee-of-officers-to-soon-consider-measures-for-gst-relief-to-genuine-businesses/article71730661.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Macro"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "Ashok Leyland expands EV push with order of 200 trucks for cement transport, eyes wider LCV market",
+        "url": "https://www.thehindubusinessline.com/companies/ashok-leyland-expands-ev-push-with-order-of-200-trucks-for-cement-transport-eyes-wider-lcv-market/article71729219.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Auto",
+          "Cement & infra"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "India weighs curbs on non-Basmati rice exports to cool domestic prices",
+        "url": "https://www.thehindubusinessline.com/markets/commodities/india-weighs-curbs-on-non-basmati-rice-exports-to-cool-domestic-prices/article71728177.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "FMCG & agri",
+          "Textiles & exports"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "The missing link in farm electrification: Why solarisation alone may not be enough",
+        "url": "https://www.thehindubusinessline.com/economy/agri-business/the-missing-link-in-farm-electrification-why-solarisation-alone-may-not-be-enough/article71728574.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Power & renewables",
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "CII proposes 15 priority reforms inputs for High-Level Committee on Banking for Viksit Bharat",
+        "url": "https://www.thehindubusinessline.com/economy/cii-proposes-15-priority-reforms-inputs-for-high-level-committee-on-banking-for-viksit-bharat/article71730587.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "NHAI Implements Multi-Lane Free Flow tolling system at Chennasamudram toll plaza in Ranipet district",
+        "url": "https://www.thehindubusinessline.com/economy/logistics/nhai-implements-multi-lane-free-flow-tolling-system-at-chennasamudram-toll-plaza-in-ranipet-district/article71730590.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Cement & infra"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "Mahanadi Coalfields IPO, credit growth, IFFI event: key highlights in the week ahead",
+        "url": "https://www.livemint.com/economy/market-events-rbi-data-us-gdp-inflation-mahanadi-ipo-11795328633595.html",
+        "source": "Mint economy",
+        "sectors": [
+          "Banks & NBFC",
+          "Power & renewables",
+          "Capital markets"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-21",
+        "title": "Gokul hikes buffalo milk price by Rs 6, cow milk by Rs 4 per litre; farmers say increase inadequate",
+        "url": "https://economictimes.indiatimes.com/industry/cons-products/food/gokul-hikes-buffalo-milk-price-by-rs-6-cow-milk-by-rs-4-per-litre-farmers-say-increase-inadequate/articleshow/136059491.cms",
+        "source": "ET industry",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-21",
+        "title": "RBI Guv the RBI governor urges banks to step up small-business lending for greater economic gains",
+        "url": "https://economictimes.indiatimes.com/industry/banking/finance/rbi-governor-sanjay-malhotra-calls-for-increased-small-business-lending-to-boost-economic-growth/articleshow/136058184.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-11-21",
+        "title": "Train service between Ayodhya, Janakpur Dham adds new dimension to India-Nepal longstanding partnership",
+        "url": "https://economictimes.indiatimes.com/industry/transportation/railways/new-ayodhya-janakpur-train-service-a-milestone-in-india-nepal-relations-enhancing-travel-and-trade/articleshow/136057072.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Telecom",
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-21",
+        "title": "Hero MotoCorp gets tribunal relief on Rs 27 crore income tax demand",
+        "url": "https://economictimes.indiatimes.com/industry/auto/auto-news/hero-motocorp-gets-tribunal-relief-on-rs-27-crore-income-tax-demand/articleshow/136056677.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Auto"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-11-21",
+        "title": "Retired Boeing 737-200 moved from Kolkata to Bengaluru for aircraft recovery training",
+        "url": "https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/retired-boeing-737-200-moved-from-kolkata-to-bengaluru-for-aircraft-recovery-training/articleshow/136056648.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Telecom"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-21",
+        "title": "USFDA issues 7 observations to NATCO Pharma's Hyderabad facility",
+        "url": "https://economictimes.indiatimes.com/industry/healthcare/biotech/pharmaceuticals/usfda-issues-7-observations-to-natco-pharmas-hyderabad-facility/articleshow/136049608.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Pharma"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-21",
+        "title": "US drug regulator classifies Aurobindo Pharma arm's Andhra facility as 'voluntary action indicated'",
+        "url": "https://economictimes.indiatimes.com/industry/healthcare/biotech/pharmaceuticals/us-drug-regulator-classifies-aurobindo-pharma-arms-andhra-facility-as-voluntary-action-indicated/articleshow/136048904.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Pharma"
+        ],
+        "tone": "·"
+      },
       {
         "date": "2026-11-21",
         "title": "OfBusiness to invest Rs 200 crore in Andhra Pradesh to scale up apparel manufacturing",
@@ -643,6 +915,17 @@
         "source": "ET industry",
         "sectors": [
           "Auto"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-21",
+        "title": "GST Network adds metro rail as fifth mode of transport in e-way bill system",
+        "url": "https://economictimes.indiatimes.com/news/economy/policy/gst-network-adds-metro-rail-as-fifth-mode-of-transport-in-e-way-bill-system/articleshow/136050476.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Railways",
+          "Macro"
         ],
         "tone": "·"
       },
@@ -697,6 +980,18 @@
           "Banks & NBFC"
         ],
         "tone": "−"
+      },
+      {
+        "date": "2026-11-21",
+        "title": "JNPA awards 8-yr contract to Gateway Distriparks for DFC-compliant common rail yard operations",
+        "url": "https://www.thehindubusinessline.com/economy/logistics/jnpa-awards-8-yr-contract-to-gateway-distriparks-for-dfc-compliant-common-rail-yard-operations/article71727841.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Banks & NBFC",
+          "Railways",
+          "Electronics & PLI"
+        ],
+        "tone": "·"
       },
       {
         "date": "2026-11-21",
@@ -1184,273 +1479,11 @@
           "FMCG & agri"
         ],
         "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Apollo Hospital Share Price Highlights: Apollo Hospital Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/apollo-hospital-share-price-live-updates-20-nov-2026/liveblog/136013439.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Pharma",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Maruti Suzuki Share Price Highlights: Maruti Suzuki Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/maruti-suzuki-share-price-live-updates-20-nov-2026/liveblog/136013436.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Auto",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "SBI Life Share Price Highlights: SBI Life Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/sbi-life-stock-price-today-live-20-nov-2026/liveblog/136013423.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "HDFC Bank Share Price Highlights: HDFC Bank Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hdfc-bank-share-price-today-live-20-nov-2026/liveblog/136013420.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Banks & NBFC",
-          "FMCG & agri"
-        ],
-        "tone": "−"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Power Grid Share Price Highlights: Power Grid Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/power-grid-stock-price-livestock-price-today-live-updates-20-nov-2026/liveblog/136013419.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Power & renewables",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Tata Steel Share Price Highlights: Tata Steel Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tata-steel-stock-price-livestock-price-today-live-updates-20-nov-2026/liveblog/136013415.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Metals & mining",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "UPL Share Price Highlights: UPL Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/upl-share-price-live-updates-20-nov-2026/liveblog/136013410.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "TCS Share Price Highlights: TCS Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tcs-share-price-live-updates-20-nov-2026/liveblog/136013408.cms",
-        "source": "ET markets",
-        "sectors": [
-          "IT",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "BPCL Share Price Highlights: BPCL Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/bpcl-share-price-live-20-nov-2026/liveblog/136013407.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Asian Paints Share Price Highlights: Asian Paints Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/asian-paints-share-price-live-20-nov-2026/liveblog/136013402.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Dr Reddys Share Price Highlights: Dr. Reddys Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/dr-reddys-share-price-live-updates-20-nov-2026/liveblog/136013398.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "India allows cut flower imports through Amritsar airport and Kandla seaport",
-        "url": "https://www.thehindubusinessline.com/economy/agri-business/india-allows-cut-flower-imports-through-amritsar-airport-and-kandla-seaport/article71725882.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Aviation & travel"
-        ],
-        "tone": "+"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Indian Agfoodtech attracts $701 million in 2025, says ThinkAg report",
-        "url": "https://www.thehindubusinessline.com/economy/agri-business/indian-agfoodtech-attracts-701-million-in-2025-says-thinkag-report/article71724995.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Banks & NBFC"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Air India board holds meeting; discusses operational matters, fuel cost challenges: Sources",
-        "url": "https://www.thehindubusinessline.com/economy/logistics/air-india-board-holds-meeting-discusses-operational-matters-fuel-cost-challenges-sources/article71724918.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Aviation & travel"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Oil Ministry to meet pump operators for finalising dealer margins by month-end",
-        "url": "https://www.thehindubusinessline.com/economy/oil-ministry-to-meet-pump-operators-for-finalising-dealer-margins-by-month-end/article71725274.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Oil & gas"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "India's growth story intact at 7%, but energy costs and twin deficits cloud the outlook: Report",
-        "url": "https://www.thehindubusinessline.com/markets/indias-growth-story-intact-at-7-but-energy-costs-and-twin-deficits-cloud-the-outlook-report/article71724821.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Banks & NBFC"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "US Navy ship Wally Schirra docks at L&T Kattupalli for routine repairs",
-        "url": "https://www.thehindubusinessline.com/economy/logistics/usns-wally-schirra-docks-at-lampt-kattupalli-for-routine-repairs-showcasing-indias-growing-naval-mro-capabilities/article71724563.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Defence"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "The soil, smoke, and changing monsoon: Understanding our agricultural ecosystem",
-        "url": "https://www.thehindubusinessline.com/economy/agri-business/the-soil-smoke-and-changing-monsoon-understanding-our-agricultural-ecosystem/article71724388.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "FMCG & agri",
-          "Telecom"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Parandur airport project: Madras HC orders notice to TN govt",
-        "url": "https://www.thehindubusinessline.com/economy/logistics/parandur-airport-project-madras-hc-orders-notice-to-tn-govt/article71724019.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Aviation & travel"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Can smarter energy solutions help make Indian agriculture more profitable and sustainable?",
-        "url": "https://www.thehindubusinessline.com/economy/agri-business/can-smarter-energy-solutions-help-make-indian-agriculture-more-profitable-and-sustainable/article71724211.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "FMCG & agri",
-          "Telecom"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "MapMyCrop begins working with Abu Dhabi Agriculture and Food Safety Authority",
-        "url": "https://www.thehindubusinessline.com/economy/agri-business/mapmycrop-begins-working-with-abu-dhabi-agriculture-and-food-safety-authority/article71723483.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "FMCG & agri",
-          "Telecom"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Sabarimala pilgrimage season lends support to Kochi tea market",
-        "url": "https://www.thehindubusinessline.com/economy/agri-business/sabarimala-pilgrimage-season-lends-support-to-kochi-tea-market/article71723368.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "RBI clarifies forex reporting rules for service imports, exports",
-        "url": "https://www.thehindubusinessline.com/money-and-banking/rbi-clarifies-forex-reporting-rules-for-service-imports-exports/article71723850.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Banks & NBFC",
-          "Rupee & FX",
-          "Textiles & exports"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "EV charging could become strong revenue stream for Discoms, says PM adviser Tarun Kapoor",
-        "url": "https://www.thehindubusinessline.com/economy/ev-charging-could-become-strong-revenue-stream-for-discoms-says-pm-adviser-tarun-kapoor/article71723674.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Auto",
-          "Power & renewables"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Over 30 lakh EVs sold under PM E-DRIVE; Kumaraswamy calls for more charging stations",
-        "url": "https://www.thehindubusinessline.com/economy/over-30-lakh-evs-sold-under-pm-e-drive-kumaraswamy-calls-for-more-charging-stations/article71723630.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Auto"
-        ],
-        "tone": "·"
       }
     ]
   },
   "rbi_releases": {
-    "fetched": "2026-11-21",
+    "fetched": "2026-11-22",
     "press": [
       {
         "date": "2026-11-21",
@@ -1522,7 +1555,7 @@
     ]
   },
   "index_members": {
-    "fetched": "2026-11-21",
+    "fetched": "2026-11-22",
     "NIFTY50": [
       {
         "symbol": "ADANIENT",
