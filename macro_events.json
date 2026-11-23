@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-22",
+  "last_updated": "2026-11-23",
   "updated_by": "auto-refresh",
   "note": "Facts only. The daily 7AM-IST refresh rewrites this file; macro_events.py holds the logic and does all date math live (recurring prints, D-1/D-0 flags, the peace model). v2 keys: schedule, calendar, pending, sector_policy, earnings, sector_news, rbi_releases, index_members, rates. No personal names of officials anywhere (institution/role only).",
   "nse_holidays": [
@@ -101,80 +101,48 @@
       "Russia-Ukraine (2022- )"
     ],
     "hold_prob": 0.38,
-    "signals": [
-      {
-        "date": "2026-11-22",
-        "kind": "hawkish",
-        "weight": "weak",
-        "note": "GDELT tone: 2 hawkish vs 1 dovish headlines (3d)",
-        "source": "gdelt-heuristic"
-      }
-    ]
+    "signals": []
   },
   "market": {
     "brent": {
-      "last": 89.95,
-      "chg_pct": -2.21
+      "last": 89.29,
+      "chg_pct": -3.54
     },
     "usdinr": {
-      "last": 92.67,
-      "chg_pct": -0.67
+      "last": 92.98,
+      "chg_pct": -0.33
     },
     "indiavix": {
-      "last": 17.32,
-      "chg_pct": 7.51
+      "last": 17.78,
+      "chg_pct": 2.67
     },
     "dxy": {
-      "last": 103.81,
-      "chg_pct": -0.09
+      "last": 103.75,
+      "chg_pct": -0.06
     },
     "us10y": {
       "last": 4.91,
       "chg_pct": -2.77
     },
-    "fetched": "2026-11-22"
+    "fetched": "2026-11-23"
   },
   "headlines": {
     "iran": [
       {
-        "date": "2026-11-21",
-        "title": "Iran strikes tankers and Israeli hit on food truck in Gaza kills 3",
-        "domain": "wdbo.com",
-        "url": "https://www.wdbo.com/news/world/iran-strikes-3/5DOQKPG6KUZP3LICC6KBHJWPF4/"
+        "date": "2026-11-22",
+        "title": "Lebanese villagers return to wrecked homes as the Israeli army pulls back",
+        "domain": "wdiy.org",
+        "url": "https://www.wdiy.org/npr-news/2026-11-22/lebanese-villagers-return-to-wrecked-homes-as-the-israeli-army-pulls-back"
       },
       {
-        "date": "2026-11-21",
-        "title": "Iran strikes 3 tankers as it shows off missile launchers , and other Mideast news",
-        "domain": "idahopress.com",
-        "url": "http://www.idahopress.com/ap_news/us/iran-strikes-3-tankers-as-it-shows-off-missile-launchers-and-other-mideast-news/article_d69706d0-0aa1-5a72-85d7-55f28dbbb892.html"
-      },
-      {
-        "date": "2026-11-21",
-        "title": "Rickards : Hard Truths On Iran And Ukraine",
-        "domain": "zerohedge.com",
-        "url": "http://www.zerohedge.com/geopolitical/rickards-hard-truths-iran-and-ukraine"
-      },
-      {
-        "date": "2026-11-21",
-        "title": "Ominous reversal ! Iran issues nuclear ultimatum against US after downing 58 MQ drones as F - 16 sends SOS",
-        "domain": "bankingnews.gr",
-        "url": "https://www.bankingnews.gr/diethni/articles/912456/ominous-reversal-iran-issues-nuclear-ultimatum-against-us-after-downing-58-mq-drones-as-f-16-sends-sos"
-      },
-      {
-        "date": "2026-11-21",
-        "title": "US , Qatar intensify mediation efforts to end Iran conflict",
-        "domain": "samaa.tv",
-        "url": "https://www.samaa.tv/2087360717-us-qatar-intensify-mediation-efforts-to-end-iran-conflict"
-      },
-      {
-        "date": "2026-11-21",
-        "title": "Not every agreement is worth accepting to escape : Iran FM Iran's leadership lays out terms for US deal",
-        "domain": "southeastasiapost.com",
-        "url": "http://www.southeastasiapost.com/news/279446396/not-every-agreement-is-worth-accepting-to-escape-iran-fm-araghchi-lays-out-terms-for-us-deal"
+        "date": "2026-11-22",
+        "title": "The Iranian theocracy is the scorpion We must not play its frog",
+        "domain": "torontosun.com",
+        "url": "https://torontosun.com/opinion/columnists/iranian-theocracy-scorpion-we-must-not-play-its-frog"
       }
     ],
     "india_us": [],
-    "fetched": "2026-11-22"
+    "fetched": "2026-11-23"
   },
   "schema": 2,
   "rates": {
@@ -548,7 +516,7 @@
   ],
   "earnings": {
     "season": "Q2 FY27",
-    "fetched": "2026-11-22",
+    "fetched": "2026-11-23",
     "upcoming": [
       {
         "date": "2026-11-25",
@@ -562,6 +530,7 @@
       "2026-11-23": 2,
       "2026-11-24": 4,
       "2026-11-25": 2,
+      "2026-11-27": 1,
       "2026-11-28": 1,
       "2026-12-05": 2
     },
@@ -614,40 +583,240 @@
         "company": "Tata Motors Passenger Vehicles Ltd.",
         "index": "NIFTY50",
         "pdf": "https://nsearchives.nseindia.in/corporate/TATAMOTORSSJS_13112026161123_NSEBSEOutcome.pdf"
-      },
-      {
-        "date": "2026-11-12",
-        "symbol": "BRITANNIA",
-        "company": "Britannia Industries Ltd.",
-        "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.in/corporate/BRITANNIA1_12112026200331_Intimation_Signed.pdf"
-      },
-      {
-        "date": "2026-11-12",
-        "symbol": "POWERINDIA",
-        "company": "Hitachi Energy India Ltd.",
-        "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.in/corporate/HitachiEnergy_12112026162640_outcome.pdf"
-      },
-      {
-        "date": "2026-11-12",
-        "symbol": "TATAPOWER",
-        "company": "Tata Power Co. Ltd.",
-        "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.in/corporate/VPTPCL_12112026143001_new3.pdf"
-      },
-      {
-        "date": "2026-11-12",
-        "symbol": "HAL",
-        "company": "Hindustan Aeronautics Ltd.",
-        "index": "NIFTYNEXT50",
-        "pdf": "https://nsearchives.nseindia.in/corporate/HAL_12112026132915_IntegratedFinancial_30092026.pdf"
       }
     ]
   },
   "sector_news": {
-    "fetched": "2026-11-22",
+    "fetched": "2026-11-23",
     "items": [
+      {
+        "date": "2026-11-23",
+        "title": "Pune-Patna Indigo flight diverted to Lucknow due to bad weather",
+        "url": "https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/pune-patna-indigo-flight-diverted-to-lucknow-due-to-bad-weather/articleshow/136088211.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Aviation & travel"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "India-EU trade deal likely to be signed on December 16",
+        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/india-eu-trade-deal-likely-to-be-signed-on-december-16/articleshow/136082167.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Rupee retreats, Goldman calls it a 'port of stability' in AI storm",
+        "url": "https://economictimes.indiatimes.com/markets/forex/rupee-retreats-goldman-calls-it-a-port-of-stability-in-ai-storm/articleshow/136092977.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Rupee & FX"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Gold Silver Rates Live Updates: Gold, silver prices jump over 2% on MCX: Key levels to watch, What lies ahead?",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/live-blog/live-updates-gold-rate-today-19th-november-24k-22k-20k-18-carat-mcx-gold-silver-price-in-delhi-hyderabad-chennai-bengaluru-citywise/liveblog/136088467.cms",
+        "source": "ET markets",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Rupee could rise to 91.50/$ on equity inflows, says HDFC Bank's treasury head",
+        "url": "https://economictimes.indiatimes.com/markets/forex/rupee-could-rise-to-91-50/-on-equity-inflows-says-hdfc-banks-treasury-head/articleshow/136088042.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Banks & NBFC",
+          "Rupee & FX"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "HDFC Bank among 5 stocks showing White Marubozu pattern",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/news/hdfc-bank-among-5-stocks-showing-white-marubozu-pattern/slideshow/136087788.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Gold recovers from 14-month low; focus turns to US inflation data",
+        "url": "https://economictimes.indiatimes.com/markets/commodities/news/gold-recovers-from-14-month-low-focus-turns-to-us-inflation-data/articleshow/136086840.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Dollar edges off 19-month high after market rout; yen softens",
+        "url": "https://economictimes.indiatimes.com/markets/forex/forex-news/dollar-edges-off-19-month-high-after-market-rout-yen-softens/articleshow/136086760.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Rupee & FX"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Stock Market Live Updates: Sensex tanks 1,150 points, Nifty below 25,450; bank, metal stocks crack",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/live-blog/bse-sensex-today-nifty50-stock-market-live-updates-gift-nifty-maruti-adani-energy-share-price-23-november-2026/liveblog/136086783.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Banks & NBFC",
+          "Metals & mining"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "India remains Asia's third-most powerful country, narrows gap with China",
+        "url": "https://www.thehindubusinessline.com/economy/india-remains-asias-third-most-powerful-country-narrows-gap-with-china/article71733616.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Power & renewables"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Rising EV demand and climate change threaten global natural rubber supplies",
+        "url": "https://www.thehindubusinessline.com/economy/agri-business/rising-ev-demand-and-climate-change-threaten-global-natural-rubber-supplies/article71733591.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Auto",
+          "Electronics & PLI"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Auto retail hits record 55.25 lakh units during 42-day festive season, EV sales suge 53%: FADA",
+        "url": "https://www.thehindubusinessline.com/economy/auto-retail-hits-record-5525-lakh-units-during-42-day-festive-season-ev-sales-suge-53-fada/article71733423.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Auto"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "India limited fuel price rise to 7% despite global surge of up to 70%: Puri",
+        "url": "https://www.thehindubusinessline.com/economy/india-limited-fuel-price-rise-to-7-despite-global-surge-of-up-to-70-puri/article71733312.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "FMCG & agri"
+        ],
+        "tone": "+"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Tamil Nadu unveils TN-TREND reforms to speed up approvals, simplify business regulations",
+        "url": "https://www.thehindubusinessline.com/news/tamil-nadu-unveils-tn-trend-reforms-to-speed-up-approvals-simplify-business-regulations/article71733357.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Electronics & PLI"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Global electrical infrastructure spending projected to reach $32 trillion over next decade: UBS",
+        "url": "https://www.thehindubusinessline.com/economy/global-electrical-infrastructure-spending-projected-to-reach-32-trillion-over-next-decade-ubs/article71733293.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Cement & infra"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "India-EU FTA likely to be signed during PM the Prime Minister's Europe visit in December: Official",
+        "url": "https://www.thehindubusinessline.com/economy/india-eu-fta-likely-to-be-signed-during-pm-modis-europe-visit-in-december-official/article71733295.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Protein prices bite as food inflation squeezes Indian households",
+        "url": "https://www.livemint.com/economy/protein-prices-food-inflation-meat-eggs-pulses-indian-households-11795085417616.html",
+        "source": "Mint economy",
+        "sectors": [
+          "FMCG & agri",
+          "Macro"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "Tata Steel to sell tubes, pipes business and Tata Steel Colors to APL Apollo for Rs 28,000 crore",
+        "url": "https://economictimes.indiatimes.com/industry/indl-goods/svs/steel/tata-steel-to-sell-tubes-pipes-business-and-tata-steel-colors-to-apl-apollo-for-rs-28000-crore/articleshow/136078094.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Metals & mining"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "JK Urbanscapes to invest Rs 1,000 cr to build 6 hotels, plans Rs 4,500-cr housing projects",
+        "url": "https://economictimes.indiatimes.com/industry/services/property-/-cstruction/jk-urbanscapes-to-invest-rs-1000-cr-to-build-6-hotels-plans-rs-4500-cr-housing-projects/articleshow/136077123.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Realty",
+          "Aviation & travel"
+        ],
+        "tone": "−"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "Petrol, diesel prices rose 7% in India vs 50-70% globally over four years: the petroleum minister",
+        "url": "https://economictimes.indiatimes.com/industry/energy/oil-gas/petrol-diesel-prices-rose-7-in-india-vs-50-70-globally-over-four-years-hardeep-puri/articleshow/136075385.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Oil & gas",
+          "FMCG & agri"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "Aditya Birla Real Estate aims Rs 15,000 crore annual pre-sales in three years",
+        "url": "https://economictimes.indiatimes.com/industry/services/property-/-cstruction/aditya-birla-real-estate-aims-rs-15000-crore-annual-pre-sales-in-three-years/articleshow/136070818.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Realty"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "Grid constraints, slower project awards may weigh on solar capacity growth beyond FY28: Report",
+        "url": "https://economictimes.indiatimes.com/industry/renewables/grid-constraints-slower-project-awards-may-weigh-on-solar-capacity-growth-beyond-fy28-report/articleshow/136069400.cms",
+        "source": "ET industry",
+        "sectors": [
+          "Banks & NBFC",
+          "Power & renewables",
+          "Telecom"
+        ],
+        "tone": "·"
+      },
       {
         "date": "2026-11-22",
         "title": "Non-coal mining projects spread up to 500 hectares now to be appraised at state level",
@@ -713,6 +882,16 @@
       },
       {
         "date": "2026-11-22",
+        "title": "Asia, Africa to drive expansion of India's export markets as shipments grow across regions",
+        "url": "https://economictimes.indiatimes.com/news/economy/foreign-trade/asia-africa-to-drive-expansion-of-indias-export-markets-as-shipments-grow-across-regions/articleshow/136070074.cms",
+        "source": "ET economy",
+        "sectors": [
+          "Textiles & exports"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
         "title": "Government, corporate spending to sustain global growth in 2027 as inflation eases: JPMorgan",
         "url": "https://economictimes.indiatimes.com/news/economy/indicators/government-corporate-spending-to-sustain-global-growth-in-2027-as-inflation-eases-jpmorgan/articleshow/136068673.cms",
         "source": "ET economy",
@@ -720,6 +899,16 @@
           "Macro"
         ],
         "tone": "+"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "Crude oil futures brace for OPEC+ output decision amid supply glut concerns: Analysts",
+        "url": "https://economictimes.indiatimes.com/markets/commodities/crude-oil-futures-brace-for-opec-output-decision-amid-supply-glut-concerns-analysts/articleshow/136072428.cms",
+        "source": "ET markets",
+        "sectors": [
+          "Oil & gas"
+        ],
+        "tone": "·"
       },
       {
         "date": "2026-11-22",
@@ -731,6 +920,16 @@
           "Insurance"
         ],
         "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "CII proposes 15 priority reforms inputs for High-Level Committee on Banking for Viksit Bharat",
+        "url": "https://www.thehindubusinessline.com/economy/cii-proposes-15-priority-reforms-inputs-for-high-level-committee-on-banking-for-viksit-bharat/article71730587.ece",
+        "source": "BusinessLine economy",
+        "sectors": [
+          "Banks & NBFC"
+        ],
+        "tone": "−"
       },
       {
         "date": "2026-11-22",
@@ -787,21 +986,21 @@
       },
       {
         "date": "2026-11-22",
-        "title": "CII proposes 15 priority reforms inputs for High-Level Committee on Banking for Viksit Bharat",
-        "url": "https://www.thehindubusinessline.com/economy/cii-proposes-15-priority-reforms-inputs-for-high-level-committee-on-banking-for-viksit-bharat/article71730587.ece",
-        "source": "BusinessLine economy",
-        "sectors": [
-          "Banks & NBFC"
-        ],
-        "tone": "−"
-      },
-      {
-        "date": "2026-11-22",
         "title": "NHAI Implements Multi-Lane Free Flow tolling system at Chennasamudram toll plaza in Ranipet district",
         "url": "https://www.thehindubusinessline.com/economy/logistics/nhai-implements-multi-lane-free-flow-tolling-system-at-chennasamudram-toll-plaza-in-ranipet-district/article71730590.ece",
         "source": "BusinessLine economy",
         "sectors": [
           "Cement & infra"
+        ],
+        "tone": "·"
+      },
+      {
+        "date": "2026-11-22",
+        "title": "Gold prices fall below $4,000: Could bullion slide further to $3,500 as higher US interest rates weigh on demand?",
+        "url": "https://www.livemint.com/economy/gold-prices-fall-below-4-000-could-bullion-slide-further-to-3-500-as-higher-us-interest-rates-weigh-on-demand-11795359358956.html",
+        "source": "Mint economy",
+        "sectors": [
+          "FMCG & agri"
         ],
         "tone": "·"
       },
@@ -1096,101 +1295,6 @@
       },
       {
         "date": "2026-11-20",
-        "title": "Govt to expand Unified EV charging platform beyond five-state pilot as network strengthens",
-        "url": "https://economictimes.indiatimes.com/industry/renewables/govt-to-expand-unified-ev-charging-platform-beyond-five-state-pilot-as-network-strengthens/articleshow/136023114.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Auto",
-          "Oil & gas"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Andhra govt to tap nuclear power through SMR tech as alternative to thermal power",
-        "url": "https://economictimes.indiatimes.com/industry/energy/power/andhra-govt-to-tap-nuclear-power-through-smr-tech-as-alternative-to-thermal-power/articleshow/136022324.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Power & renewables"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Premium flagship smartphone prices likely to go up by over 30% by year-end: Counterpoint",
-        "url": "https://economictimes.indiatimes.com/industry/cons-products/electronics/premium-flagship-smartphone-prices-likely-to-go-up-by-over-30-by-year-end-counterpoint/articleshow/136022099.cms",
-        "source": "ET industry",
-        "sectors": [
-          "FMCG & agri",
-          "Electronics & PLI"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "10 months after Ajit Pawar's plane crash, Baramati airport gets Rs 64.5 crore upgrade",
-        "url": "https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/10-months-after-ajit-pawars-plane-crash-baramati-airport-gets-rs-64-5-crore-upgrade/articleshow/136019120.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Aviation & travel"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "EV could become one of the largest sectors for power consumption, says PM advisor Tarun Kapoor",
-        "url": "https://economictimes.indiatimes.com/industry/renewables/ev-could-become-one-of-the-largest-sectors-for-power-consumption-says-pm-advisor-tarun-kapoor/articleshow/136019124.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Auto",
-          "Power & renewables"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "India's solar cell capacity surge may squeeze margins, favour integrated manufacturers: Report",
-        "url": "https://economictimes.indiatimes.com/industry/renewables/indias-solar-cell-capacity-surge-may-squeeze-margins-favour-integrated-manufacturers-report/articleshow/136011171.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Banks & NBFC",
-          "Power & renewables"
-        ],
-        "tone": "+"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "From being seen to being chosen: The power of strategic partnerships",
-        "url": "https://economictimes.indiatimes.com/industry/media/entertainment/from-being-seen-to-being-chosen-the-power-of-strategic-partnerships/articleshow/135991112.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Power & renewables"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Nike to become Formula One's official apparel and uniform partner",
-        "url": "https://economictimes.indiatimes.com/industry/cons-products/fashion-/-cosmetics-/-jewellery/nike-to-become-formula-ones-official-apparel-and-uniform-partner/articleshow/136009500.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Textiles & exports"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Ethanol blending touches 20% milestone in FY26",
-        "url": "https://economictimes.indiatimes.com/industry/energy/power/ethanol-blending-touches-20-milestone-in-fy26/articleshow/136003344.cms",
-        "source": "ET industry",
-        "sectors": [
-          "Banks & NBFC",
-          "Sugar & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
         "title": "the finance minister chairs ninth pre-Budget consultation with housing, urbanisation and culture stakeholders",
         "url": "https://economictimes.indiatimes.com/news/economy/policy/nirmala-sitharaman-chairs-ninth-pre-budget-consultation-with-housing-urbanisation-and-culture-stakeholders/articleshow/136033324.cms",
         "source": "ET economy",
@@ -1313,178 +1417,42 @@
           "Capital markets"
         ],
         "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Indian finance hub eyes dual share model to kickstart public offers: Report",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/news/indian-finance-hub-eyes-dual-share-model-to-kickstart-public-offers-report/articleshow/136017941.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Banks & NBFC",
-          "Insurance"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Sun Pharma Share Price Live Updates: Sun Pharma Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/sun-pharma-stock-price-livestock-price-today-live-updates-20-nov-2026/liveblog/136016959.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Pharma",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "M&amp;M Share Price Live Updates: M&amp;M Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/mm-share-price-today-live-20-nov-2026/liveblog/136016893.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Eicher Motors Share Price Live Updates: Eicher Motors Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/eicher-motors-share-price-live-20-nov-2026/liveblog/136016875.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "NTPC Share Price Live Updates: NTPC Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ntpc-stock-price-today-live-20-nov-2026/liveblog/136016873.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Rupee rises past 93 vs USD as portfolio inflows, bear retreat fuel rally",
-        "url": "https://economictimes.indiatimes.com/markets/forex/rupee-rises-past-93-vs-usd-as-portfolio-inflows-bear-retreat-fuel-rally/articleshow/136014185.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Rupee & FX"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Rupee strengthens 17 paise to 93.15 against US dollar in early trade",
-        "url": "https://economictimes.indiatimes.com/markets/forex/rupee-strengthens-17-paise-to-93-15-against-us-dollar-in-early-trade/articleshow/136013858.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Rupee & FX"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Adani Ent Share Price Highlights: Adani Ent. Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/adani-ent-stock-price-today-live-20-nov-2026/liveblog/136013496.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "HUL Share Price Highlights: HUL Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/hul-share-price-today-live-20-nov-2026/liveblog/136013489.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Adani Ports SEZ Share Price Highlights: Adani Ports SEZ Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/adani-ports-sez-share-price-today-live-20-nov-2026/liveblog/136013481.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Infosys Share Price Highlights: Infosys Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/infosys-share-price-today-live-updates-20-nov-2026/liveblog/136013468.cms",
-        "source": "ET markets",
-        "sectors": [
-          "IT",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Axis Bank Share Price Highlights: Axis Bank Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/axis-bank-stock-price-livestock-price-today-live-updates-20-nov-2026/liveblog/136013459.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Banks & NBFC",
-          "FMCG & agri"
-        ],
-        "tone": "−"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Tata Motors PV Share Price Highlights: Tata Motors PV Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/tata-motors-pv-share-price-today-live-20-nov-2026/liveblog/136013458.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Auto",
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "LTIMindtree Share Price Highlights: LTIMindtree Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/ltimindtree-share-price-live-20-nov-2026/liveblog/136013457.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Grasim Inds Share Price Highlights: Grasim Inds. Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/grasim-inds-stock-price-today-live-20-nov-2026/liveblog/136013447.cms",
-        "source": "ET markets",
-        "sectors": [
-          "FMCG & agri"
-        ],
-        "tone": "·"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Bajaj Auto Share Price Highlights: Bajaj Auto Stock Price History",
-        "url": "https://economictimes.indiatimes.com/markets/stocks/stock-liveblog/bajaj-auto-share-price-live-updates-20-nov-2026/liveblog/136013446.cms",
-        "source": "ET markets",
-        "sectors": [
-          "Auto",
-          "FMCG & agri"
-        ],
-        "tone": "·"
       }
     ]
   },
   "rbi_releases": {
-    "fetched": "2026-11-22",
+    "fetched": "2026-11-23",
     "press": [
+      {
+        "date": "2026-11-23",
+        "title": "Money Market Operations as on November 22, 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64023"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Money Market Operations as on November 21, 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64022"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Result of the 2-day Variable Rate Repo (VRR) auction held on November 23, 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64021"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Result of the 4-day Variable Rate Repo (VRR) auction held on November 23, 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64020"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "RBI to conduct 2-day Variable Rate Repo (VRR) auction under LAF on November 23, 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64019"
+      },
+      {
+        "date": "2026-11-23",
+        "title": "Money Market Operations as on November 20, 2026",
+        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64018"
+      },
       {
         "date": "2026-11-21",
         "title": "Conversion/Switch of State Government Securities",
@@ -1504,31 +1472,6 @@
         "date": "2026-11-20",
         "title": "Auction of 91-Day, 182-Day and 364-Day Treasury Bills",
         "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64014"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Government Stock - Full Auction Results",
-        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64012"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Government Stock - Auction Results: Cut-off",
-        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64011"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Result of the Second 3-day Variable Rate Repo (VRR) auction held on November 20, 2026",
-        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64010"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "Reserve Bank issues Foreign Exchange Management (Export and Import of Goods and Services) (Second Amendment) Regulations, 2026",
-        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64009"
-      },
-      {
-        "date": "2026-11-20",
-        "title": "RBI to conduct Second 3-day Variable Rate Repo (VRR) auction under LAF on November 20, 2026",
-        "url": "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=64008"
       }
     ],
     "notifications": [
@@ -1555,7 +1498,7 @@
     ]
   },
   "index_members": {
-    "fetched": "2026-11-22",
+    "fetched": "2026-11-23",
     "NIFTY50": [
       {
         "symbol": "ADANIENT",
